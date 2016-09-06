@@ -1,0 +1,10 @@
+C:\Users\Matias\Downloads\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll.config
+C:\Users\Matias\Downloads\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll
+C:\Users\Matias\Downloads\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
+C:\Users\Matias\Downloads\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
+C:\Users\Matias\Downloads\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
+C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll.config
+C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll
+C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
+C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
+C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
