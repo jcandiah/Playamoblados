@@ -16,3 +16,12 @@ C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Framework
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.csprojResolveAssemblyReference.cache
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.dll
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.pdb
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\Service.Pattern.dll.config
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\Service.Pattern.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\Service.Pattern.pdb
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\Repository.Pattern.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\System.Net.Http.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\bin\Debug\Repository.Pattern.pdb
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.csprojResolveAssemblyReference.cache
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Service.Pattern\obj\Debug\Service.Pattern.pdb

@@ -734,7 +734,7 @@ header .navbar-form .input-group .form-control {
 }
 /* skin-blue logo */
 .logo {
-  background-color: #263238;
+  background-color: #565656;
   color: #ffffff;
 }
 .logo > a {
@@ -988,7 +988,7 @@ header .navbar-form {
 .sidebar > .sidebar-menu > li > a:hover,
 .sidebar > .sidebar-menu > li.active > a {
   color: #fff;
-  background: #2196f3;
+  background: #CFF701;
   -webkit-transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
@@ -997,7 +997,7 @@ header .navbar-form {
   background: #263238;
 }
 .left-section {
-  background: #263238;
+  background: #565656;
   -webkit-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
   box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.07);

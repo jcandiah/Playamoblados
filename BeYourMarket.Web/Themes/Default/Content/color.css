@@ -1,6 +1,12 @@
 ﻿.bg-black {
   background-color: #222222 !important;
 }
+
+.bg-barraIzquierda
+{
+    background-color: #5bc0de !important;
+}
+
 .bg-red {
   background-color: #f56954 !important;
 }

@@ -35,10 +35,10 @@
 <body>
     <div class="wrapper row-offcanvas row-offcanvas-left">
 
-        <aside class="left-section sidebar-offcanvas @(Convert.ToBoolean(ViewBag.SideCollapse) ? "collapse-left" : "")">
+        <aside class="left-section bg-barraIzquierda sidebar-offcanvas @(Convert.ToBoolean(ViewBag.SideCollapse) ? "collapse-left" : "")">
             <header class="header hidden-xs">
                 <a href="@Url.Action("Index", "Home")" class="logo">
-                    <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">
+                    <img src="@ImageHelper.GetCommunityImagePath("playamobladosLogo", "jpg")" alt="@settings.Name">
                 </a>
             </header>
 

@@ -8,3 +8,9 @@ C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Framework
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
 C:\Users\Matias\Documents\GitHub\playamoblados\beyourmarket-master\src\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll.config
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.csprojResolveAssemblyReference.cache
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
+C:\Users\Ripley\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb

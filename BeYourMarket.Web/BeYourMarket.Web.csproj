@@ -371,6 +371,7 @@
     <Content Include="css\HomePlayamoblado\img\Zapallar.png" />
     <Content Include="css\HomePlayamoblado\js\scripts.js" />
     <Content Include="Images\Community\logo.png" />
+    <Content Include="Images\Community\playamobladosLogo.jpg" />
     <Content Include="Images\Sample\Community\cover.jpg" />
     <Content Include="Images\Sample\Community\favicon.jpg" />
     <Content Include="Images\Sample\Community\logo.png" />
