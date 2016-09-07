@@ -219,7 +219,7 @@ namespace BeYourMarket.Web.Controllers
                 AddErrors(result);
 
                 if (result.Succeeded)                    
-                    return RedirectToAction("Index", "Manage");                
+                    return RedirectToAction("Index", "Home");                
             }
 
             // If we got this far, something failed, redisplay form
