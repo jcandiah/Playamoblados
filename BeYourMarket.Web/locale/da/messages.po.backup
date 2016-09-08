@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-09-07 11:44-03:00\n"
-"PO-Revision-Date: 2016-09-07 11:44-03:00\n"
+"POT-Creation-Date: 2016-09-08 14:47-03:00\n"
+"PO-Revision-Date: 2016-09-08 14:47-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -163,7 +163,12 @@ msgstr "Tilbage til forsiden"
 
 #: Views\Listing\Listings.cshtml:88
 #: Views\Listing\Listings.cshtml:89
+#: Views\Listing\ListingUpdate.cshtml:83
 msgid "Bathrooms"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:73
+msgid "Beds"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:55
@@ -175,7 +180,7 @@ msgstr "Brødtekst"
 msgid "Button Label"
 msgstr "Label"
 
-#: Views\Listing\ListingUpdate.cshtml:129
+#: Views\Listing\ListingUpdate.cshtml:164
 #: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:27
 #: Views\Payment\Orders.cshtml:31
@@ -238,6 +243,7 @@ msgstr ""
 
 #: Views\Listing\Listings.cshtml:98
 #: Views\Listing\Listings.cshtml:99
+#: Views\Listing\ListingUpdate.cshtml:88
 msgid "Cellars"
 msgstr ""
 
@@ -312,8 +318,8 @@ msgstr "Bekræft adgangskode"
 
 #: Views\Account\Register.cshtml:54
 #: Views\Account\Register.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:122
-#: Views\Listing\ListingUpdate.cshtml:123
+#: Views\Listing\ListingUpdate.cshtml:157
+#: Views\Listing\ListingUpdate.cshtml:158
 msgid "Confirm Password"
 msgstr "Bekræft adgangskode"
 
@@ -579,7 +585,7 @@ msgstr "Redigér"
 msgid "Email"
 msgstr "Email"
 
-#: Views\Listing\ListingUpdate.cshtml:112
+#: Views\Listing\ListingUpdate.cshtml:147
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "Email-adresse"
@@ -641,16 +647,44 @@ msgstr "Indtast email"
 msgid "Enter Email"
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:113
+#: Views\Listing\ListingUpdate.cshtml:148
 msgid "Enter Email Address"
 msgstr "Indtast email-adresse"
 
-#: Views\Listing\ListingUpdate.cshtml:85
+#: Views\Listing\ListingUpdate.cshtml:99
+msgid "Enter floor number"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:120
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Enter Location"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:105
+#: Views\Listing\ListingUpdate.cshtml:79
+msgid "Enter M2"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:74
+msgid "Enter number of Beds"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:69
+msgid "Enter number of Rooms"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:84
+msgid "Enter numbers of bathrooms"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:89
+msgid "Enter numbers of cellars"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:94
+msgid "Enter numbers of Parking Lot"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:140
 msgid "Enter Phone Number"
 msgstr "Indtast telefonnr."
 
@@ -683,7 +717,7 @@ msgstr "Indtast brugerdefineret Javascript nedenfor"
 msgid "Enter your email."
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:101
+#: Views\Listing\ListingUpdate.cshtml:136
 msgid "Enter Your Full Name"
 msgstr "Fulde navn"
 
@@ -727,7 +761,7 @@ msgstr "Favicon"
 msgid "Fecha"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:69
+#: Views\Manage\UserProfile.cshtml:76
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:50
 msgid "Female"
 msgstr "Kvinde"
@@ -737,6 +771,10 @@ msgstr "Kvinde"
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:30
 msgid "First Name"
 msgstr "Fornavn"
+
+#: Views\Listing\ListingUpdate.cshtml:98
+msgid "Floor Number"
+msgstr ""
 
 #: Views\Account\ForgotPasswordConfirmation.cshtml:2
 msgid "Forgot Password Confirmation"
@@ -769,7 +807,7 @@ msgstr "Fra dato"
 msgid "Frontend"
 msgstr "Frontend"
 
-#: Views\Listing\ListingUpdate.cshtml:100
+#: Views\Listing\ListingUpdate.cshtml:135
 msgid "Full Name"
 msgstr "Fulde navn"
 
@@ -985,8 +1023,8 @@ msgid "Listings by category"
 msgstr "Annoncer efter kategori"
 
 #: Views\Listing\Listing.cshtml:167
-#: Views\Listing\ListingUpdate.cshtml:82
-#: Views\Listing\ListingUpdate.cshtml:84
+#: Views\Listing\ListingUpdate.cshtml:117
+#: Views\Listing\ListingUpdate.cshtml:119
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
@@ -1040,10 +1078,11 @@ msgid "Logo"
 msgstr "Logo"
 
 #: Views\Listing\Listings.cshtml:103
+#: Views\Listing\ListingUpdate.cshtml:78
 msgid "M2"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:66
+#: Views\Manage\UserProfile.cshtml:73
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:47
 msgid "Male"
 msgstr "Mand"
@@ -1251,6 +1290,7 @@ msgstr "Betalt"
 
 #: Views\Listing\Listings.cshtml:83
 #: Views\Listing\Listings.cshtml:84
+#: Views\Listing\ListingUpdate.cshtml:93
 msgid "Parking Lot"
 msgstr ""
 
@@ -1266,8 +1306,8 @@ msgstr ""
 #: Views\Account\Login.cshtml:28
 #: Views\Account\Register.cshtml:50
 #: Views\Account\Register.cshtml:51
-#: Views\Listing\ListingUpdate.cshtml:118
-#: Views\Listing\ListingUpdate.cshtml:119
+#: Views\Listing\ListingUpdate.cshtml:153
+#: Views\Listing\ListingUpdate.cshtml:154
 #: Views\Manage\Index.cshtml:13
 #: Areas\Admin\Views\Install\Index.cshtml:32
 #: Areas\Admin\Views\Install\Index.cshtml:33
@@ -1313,7 +1353,7 @@ msgid "Pending"
 msgstr "Afventer"
 
 #: Models\ManageViewModels.cs:65
-#: Views\Listing\ListingUpdate.cshtml:104
+#: Views\Listing\ListingUpdate.cshtml:139
 #: Views\Manage\AddPhoneNumber.cshtml:3
 #: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:41
@@ -1405,7 +1445,7 @@ msgstr "Prisenhed"
 msgid "Profile"
 msgstr "Profil"
 
-#: Views\Manage\UserProfile.cshtml:74
+#: Views\Manage\UserProfile.cshtml:81
 msgid "Profile Picture"
 msgstr "Profilbillede"
 
@@ -1413,7 +1453,7 @@ msgstr "Profilbillede"
 msgid "Provider"
 msgstr "Udbyder"
 
-#: Views\Listing\ListingUpdate.cshtml:128
+#: Views\Listing\ListingUpdate.cshtml:163
 msgid "Publish Listing"
 msgstr "Opret annonce"
 
@@ -1430,7 +1470,7 @@ msgstr "Opret annonce"
 msgid "Published"
 msgstr "Oprettet"
 
-#: Views\Listing\ListingUpdate.cshtml:98
+#: Views\Listing\ListingUpdate.cshtml:133
 msgid "Publisher's Info"
 msgstr "Annoncørinfo"
 
@@ -1512,10 +1552,11 @@ msgstr ""
 
 #: Views\Listing\Listings.cshtml:93
 #: Views\Listing\Listings.cshtml:94
+#: Views\Listing\ListingUpdate.cshtml:68
 msgid "Rooms"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:81
+#: Views\Manage\UserProfile.cshtml:88
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
 #: Areas\Admin\Views\Design\Appearance.cshtml:44
 #: Areas\Admin\Views\Design\CodeScript.cshtml:34
@@ -1569,6 +1610,10 @@ msgstr ""
 msgid "Searchable"
 msgstr "Søgbar"
 
+#: Views\Manage\UserProfile.cshtml:63
+msgid "Secondary Phone Number"
+msgstr ""
+
 #: Views\Shared\_LoginPartial.cshtml:49
 msgid "See all messages"
 msgstr ""
@@ -1621,7 +1666,7 @@ msgstr "Forsendelse aktiveret"
 msgid "Show Email"
 msgstr "Vis email"
 
-#: Views\Listing\ListingUpdate.cshtml:108
+#: Views\Listing\ListingUpdate.cshtml:143
 msgid "Show Phone"
 msgstr "Vis telefonnr."
 
@@ -1919,7 +1964,7 @@ msgstr "Afinstallér"
 msgid "Unsuccessful login with service."
 msgstr "Kunne ikke logge ind med servicen."
 
-#: Views\Listing\ListingUpdate.cshtml:73
+#: Views\Listing\ListingUpdate.cshtml:108
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
 msgstr "Upload billeder"
@@ -2132,6 +2177,9 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgstr ""
 
 #~ msgid "passengers"
+#~ msgstr ""
+
+#~ msgid "Phone Number 2"
 #~ msgstr ""
 
 #~ msgid "Precio"

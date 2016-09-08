@@ -13,7 +13,7 @@
 
             @Html.Partial("_DashBoardSide", "profile")
 
-            <div class=" col-md-9">
+            <div class="" col-md-9">
                 <div id="myTabContent" class="tab-content ">
                     <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
                         <div class="panel panel-default">
@@ -60,9 +60,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="PhoneNumber2">[[[Phone Number 2]]]</label>
+                                        <label class="col-md-2 control-label" for="SecondaryPhoneNumber">[[[Numero de telefono secundario]]]</label>
                                         <div class="col-md-10">
-                                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })*
+                                            @Html.TextBoxFor(m => m.SecondaryPhoneNumber, new { @class = "form-control" })
                                         </div>
                                     </div>
 

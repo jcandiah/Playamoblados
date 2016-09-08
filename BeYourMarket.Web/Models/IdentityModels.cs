@@ -45,6 +45,9 @@ namespace BeYourMarket.Web.Models
 
         public double Rating { get; set; }
 
+        public string SecondaryPhoneNumber { get; set; }
+
+
         [NotMapped]
         public bool RoleAdministrator { get; set; }
 

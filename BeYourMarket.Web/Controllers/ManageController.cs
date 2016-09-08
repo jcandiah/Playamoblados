@@ -623,6 +623,7 @@ namespace BeYourMarket.Web.Controllers
             userExisting.LastName = user.LastName;
             userExisting.Gender = user.Gender;
             userExisting.PhoneNumber = user.PhoneNumber;
+            userExisting.SecondaryPhoneNumber = user.SecondaryPhoneNumber;
 
             await UserManager.UpdateAsync(userExisting);
 
