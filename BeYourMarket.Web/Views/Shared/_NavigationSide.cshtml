@@ -22,7 +22,7 @@
     {
         <li class="treeview">
             <a href="@Url.Action("Search", "Home")">
-                <span>[[[All Categories]]]</span>
+                <span>[[[All Condominiums]]]</span>
             </a>
         </li>
 
@@ -67,7 +67,7 @@
             </li>
             <li class="hidden-lg hidden-md">
                 <a href="@Url.Action("ListingUpdate", "Listing")">
-                    <span>[[[Publish new listing]]]</span>
+                    <span>[[[Register your property]]]</span>
                 </a>
             </li>
         }
@@ -75,7 +75,7 @@
         {
             <li class="hidden-lg hidden-md">                
                 <a href="@Url.Action("ListingUpdate", "Listing")">
-                    <span>[[[Publish new listing]]]</span>
+                    <span>[[[Register your property]]]</span>
                 </a>
             </li>        
         if (User.IsInRole("Owner") || User.IsInRole("Administrator"))
@@ -96,7 +96,7 @@
                 }
         }
 
-        <li class="divider"><i class="fa fa-th-list"></i> [[[Categories]]]</li>
+        <li class="divider"><i class="fa fa-th-list"></i> [[[Condominiums]]]</li>
 
         @DisplayTree(Model.CategoryTree)
 

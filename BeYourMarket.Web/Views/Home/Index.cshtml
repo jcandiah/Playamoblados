@@ -1,4 +1,5 @@
 ﻿@using MoreLinq;
+@using i18n;
 @model BeYourMarket.Web.Models.SearchListingModel
 
 @{
@@ -6,7 +7,7 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="@Context.GetPrincipalAppLanguageForRequest()">
 <head>
     <meta charset="utf-8">
     <title>Playamoblados - Reservas vacacionales</title>
@@ -79,11 +80,15 @@
                         @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(p => p.FromDate, new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })
+                        <input type="text" class="form-control datepicker" placeholder="[[[From]]]" id="FromDate" name="FromDate">
+                        
+                        @*@Html.TextBoxFor(p => p.FromDate, new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })*@
 
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(p => p.ToDate, new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })
+                        <input type="text" class="form-control datepicker" placeholder="[[[To]]]" id="ToDate" name="ToDate">
+
+                        @*@Html.TextBoxFor(p => p.ToDate, new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })*@
 
                     </div>
 
@@ -108,9 +113,13 @@
                 </form>
             </div>
         </div>
-
-        <video autoplay loop id="video-background" data-wow-delay="0.5s">
-            <source src="~/Videos/fondo.mp4" type="video/mp4" />
+       
+        <video autoplay loop id="video-background" poster="@Url.Content("~/css/HomePlayamoblado/img/MientrasCarga.jpg")" data-wow-delay="0.5s">
+            <source src="~/Videos/playamoblados-desktop.webm" type="video/webm" />
+            <source src="~/Videos/Fondo.webm" type="video/webm" />
+            <source src="~/Videos/playamoblados-iPhone.m4v" type="video/quicktime" />
+            <source src="video/Fondo.webm" type="video/webm" />
+            <source src="video/fondo.mp4" type="video/mp4">
         </video>
     </header>
 
@@ -213,7 +222,7 @@
             $(document).ready(function () {
                 $('.datepicker').datepicker({
                     startDate: new Date(),
-                    daysOfWeekDisabled: "0",
+                    //daysOfWeekDisabled: "0",
                     language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
                 });
             });

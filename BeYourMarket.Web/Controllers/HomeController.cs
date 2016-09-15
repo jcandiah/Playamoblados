@@ -132,7 +132,9 @@ namespace BeYourMarket.Web.Controllers
 
                         items2 = await _listingService.Query(
                                 x => x.Orders.Any(y => y.FromDate >= FromDate2 && y.FromDate < model.FromDate ||
-                                                        y.ToDate > model.ToDate && y.ToDate <= Todate2))
+                                                        y.ToDate > model.ToDate && y.ToDate <= Todate2 ||
+                                                        y.FromDate <= Todate2 && y.FromDate > model.ToDate ||
+                                                        y.ToDate < model.FromDate && y.ToDate >= FromDate2))
                                 .Include(x => x.ListingPictures)
                                 .Include(x => x.Category)
                                 .Include(x => x.AspNetUser)

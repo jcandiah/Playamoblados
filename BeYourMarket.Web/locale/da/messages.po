@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-09-08 15:03-03:00\n"
-"PO-Revision-Date: 2016-09-08 15:03-03:00\n"
+"POT-Creation-Date: 2016-09-15 12:09-03:00\n"
+"PO-Revision-Date: 2016-09-15 12:09-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,9 +108,12 @@ msgid "Agreement Text"
 msgstr "Aftale tekst"
 
 #: Views\Listing\Listings.cshtml:59
+msgid "All Condominium"
+msgstr ""
+
 #: Views\Shared\_NavigationSide.cshtml:25
-msgid "All Categories"
-msgstr "Alle kategorier"
+msgid "All Condominiums"
+msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:126
 msgid "Allow Listing Review"
@@ -217,14 +220,12 @@ msgstr "Annulleret"
 msgid "Cancelled!"
 msgstr "Annulleret"
 
-#: Views\Shared\_NavigationSide.cshtml:99
 #: Areas\Admin\Views\Listing\Categories.cshtml:8
 #: Areas\Admin\Views\Listing\Categories.cshtml:37
 msgid "Categories"
 msgstr "Kategorier"
 
 #: Views\Listing\Listing.cshtml:140
-#: Views\Listing\Listings.cshtml:58
 #: Views\Listing\ListingUpdate.cshtml:35
 #: Views\Listing\_ListingGridList.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
@@ -288,6 +289,11 @@ msgstr "Kode"
 #: Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
 #: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
 msgid "Comments"
+msgstr ""
+
+#: Views\Listing\Listings.cshtml:58
+#: Views\Shared\_NavigationSide.cshtml:99
+msgid "Condominiums"
 msgstr ""
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:43
@@ -396,7 +402,7 @@ msgid "Create"
 msgstr "Opret"
 
 #: Views\Account\Register.cshtml:12
-#: Views\Shared\_loginParcialIndex.cshtml:23
+#: Views\Shared\_loginParcialIndex.cshtml:22
 #: Views\Shared\_NavigationSide.cshtml:65
 msgid "Create an account"
 msgstr "Opret konto"
@@ -785,15 +791,18 @@ msgstr "Glemt at bekræfte adgangskode"
 msgid "Forgot your password?"
 msgstr "Har du glemt din adgangskode?"
 
-#: Controllers\PaymentController.cs:316
-#: Controllers\PaymentController.cs:365
-#: Views\Home\Index.cshtml:82
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
+#: Views\Home\Index.cshtml:83
+#: Views\Home\Index.cshtml:85
 #: Views\Listing\Listings.cshtml:107
 #: Views\Listing\Listings.cshtml:114
 #: Views\Listing\Listings.cshtml:127
 #: Views\Listing\Listings.cshtml:133
 #: Views\Listing\Listings.cshtml:141
-#: Views\Listing\_ListingPayment.cshtml:25
+#: Views\Listing\_ListingPayment.cshtml:28
+#: Views\Listing\_ListingPayment.cshtml:60
 #: Views\Payment\Payment.cshtml:43
 msgid "From"
 msgstr "Fra"
@@ -1039,7 +1048,7 @@ msgstr "Udelukket"
 msgid "Locked Out."
 msgstr "Udelukket."
 
-#: Views\Shared\_loginParcialIndex.cshtml:26
+#: Views\Shared\_loginParcialIndex.cshtml:25
 #: Views\Shared\_LoginPartial.cshtml:93
 #: Views\Shared\_NavigationSide.cshtml:60
 msgid "Log in"
@@ -1049,7 +1058,7 @@ msgstr "Log ind"
 msgid "Log in using your {0} account"
 msgstr "Log ind med din {0} konto"
 
-#: Views\Shared\_loginParcialIndex.cshtml:16
+#: Views\Shared\_loginParcialIndex.cshtml:15
 #: Views\Shared\_LoginPartial.cshtml:79
 #: Areas\Admin\Views\Shared\_NavigationTop.cshtml:30
 msgid "Log off"
@@ -1217,6 +1226,10 @@ msgstr "Nej"
 msgid "No, cancel please!"
 msgstr "Nej, annullér"
 
+#: Views\Manage\UserProfile.cshtml:63
+msgid "Numero de telefono secundario"
+msgstr ""
+
 #: Views\Listing\Listings.cshtml:152
 msgid "Only show listings with photos"
 msgstr "Vis kun annoncer med billeder"
@@ -1294,7 +1307,7 @@ msgstr "Betalt"
 msgid "Parking Lot"
 msgstr ""
 
-#: Views\Home\Index.cshtml:103
+#: Views\Home\Index.cshtml:108
 #: Views\Listing\Listings.cshtml:78
 #: Views\Listing\Listings.cshtml:79
 msgid "Passengers"
@@ -1453,18 +1466,6 @@ msgstr "Profilbillede"
 msgid "Provider"
 msgstr "Udbyder"
 
-#: Views\Listing\ListingUpdate.cshtml:163
-msgid "Publish Listing"
-msgstr "Opret annonce"
-
-#: Views\Manage\Dashboard.cshtml:30
-#: Views\Shared\_Layout.cshtml:76
-#: Views\Shared\_LoginPartial.cshtml:65
-#: Views\Shared\_NavigationSide.cshtml:70
-#: Views\Shared\_NavigationSide.cshtml:78
-msgid "Publish new listing"
-msgstr "Opret annonce"
-
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:48
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:62
 msgid "Published"
@@ -1503,6 +1504,14 @@ msgstr "Oprettet den"
 msgid "Register IP"
 msgstr "Oprettet fra IP"
 
+#: Views\Manage\Dashboard.cshtml:30
+#: Views\Shared\_Layout.cshtml:76
+#: Views\Shared\_LoginPartial.cshtml:65
+#: Views\Shared\_NavigationSide.cshtml:70
+#: Views\Shared\_NavigationSide.cshtml:78
+msgid "Register your property"
+msgstr ""
+
 #: Views\Account\Login.cshtml:32
 msgid "Remeber me?"
 msgstr "Husk mig?"
@@ -1517,6 +1526,10 @@ msgstr "Husk denne browser?"
 
 #: Views\Manage\Message.cshtml:78
 msgid "Reply here..."
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:163
+msgid "Request publication"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:74
@@ -1575,7 +1588,7 @@ msgstr ""
 msgid "Save"
 msgstr "Gem"
 
-#: Views\Home\Index.cshtml:79
+#: Views\Home\Index.cshtml:80
 #: Views\Manage\Dashboard.cshtml:26
 #: Views\Manage\Messages.cshtml:34
 msgid "Search"
@@ -1609,10 +1622,6 @@ msgstr ""
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
 msgid "Searchable"
 msgstr "Søgbar"
-
-#: Views\Manage\UserProfile.cshtml:63
-msgid "Secondary Phone Number"
-msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:49
 msgid "See all messages"
@@ -1788,6 +1797,10 @@ msgstr ""
 msgid "The listing type has been deleted."
 msgstr ""
 
+#: Controllers\PaymentController.cs:444
+msgid "The maintenance was scheduled successfully!"
+msgstr ""
+
 #: Models\ManageViewModels.cs:38
 #: Models\ManageViewModels.cs:57
 msgid "The new password and confirmation password do not match."
@@ -1806,7 +1819,7 @@ msgstr "Siden du leder efter, eksisterer desværre ikke."
 msgid "The password and confirmation password do not match."
 msgstr "De to adgangskoder er ikke ens"
 
-#: Controllers\PaymentController.cs:296
+#: Controllers\PaymentController.cs:297
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr "Annoncøren har ikke opsat betaling for {0} endnu. Venligst kontakt annoncøren."
 
@@ -1890,15 +1903,18 @@ msgstr ""
 msgid "Title"
 msgstr "Titel"
 
-#: Controllers\PaymentController.cs:316
-#: Controllers\PaymentController.cs:365
-#: Views\Home\Index.cshtml:86
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
+#: Views\Home\Index.cshtml:89
+#: Views\Home\Index.cshtml:91
 #: Views\Listing\Listings.cshtml:110
 #: Views\Listing\Listings.cshtml:117
 #: Views\Listing\Listings.cshtml:130
 #: Views\Listing\Listings.cshtml:134
 #: Views\Listing\Listings.cshtml:142
-#: Views\Listing\_ListingPayment.cshtml:27
+#: Views\Listing\_ListingPayment.cshtml:30
+#: Views\Listing\_ListingPayment.cshtml:62
 #: Views\Payment\Payment.cshtml:50
 msgid "To"
 msgstr "Til"
@@ -2073,7 +2089,7 @@ msgstr "Ja"
 msgid "Yes, delete it!"
 msgstr "ja, slet"
 
-#: Controllers\PaymentController.cs:394
+#: Controllers\PaymentController.cs:395
 msgid "You booked your stay correctly!"
 msgstr ""
 
@@ -2143,6 +2159,12 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgid "Administration"
 #~ msgstr "Administration"
 
+#~ msgid "Agregue motivo de bloqueo"
+#~ msgstr ""
+
+#~ msgid "All Categories"
+#~ msgstr "Alle kategorier"
+
 #~ msgid "Buscar"
 #~ msgstr ""
 
@@ -2176,6 +2198,9 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgid "Listing is updated!!!!!!"
 #~ msgstr ""
 
+#~ msgid "My data"
+#~ msgstr ""
+
 #~ msgid "passengers"
 #~ msgstr ""
 
@@ -2187,6 +2212,15 @@ msgstr "Din adgangskode er blevet nulstillet"
 
 #~ msgid "Publish a listing (it's 100% free)"
 #~ msgstr "Opret en annonce (Det er 100% gratis)"
+
+#~ msgid "Publish Listing"
+#~ msgstr "Opret annonce"
+
+#~ msgid "Publish new listing"
+#~ msgstr "Opret annonce"
+
+#~ msgid "Secondary Phone Number"
+#~ msgstr ""
 
 #~ msgid "See All Listings"
 #~ msgstr "Se alle annoncer"

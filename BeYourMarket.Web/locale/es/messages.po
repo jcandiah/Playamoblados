@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-09-08 15:03-03:00\n"
-"PO-Revision-Date: 2016-09-08 15:03-03:00\n"
+"POT-Creation-Date: 2016-09-15 12:09-03:00\n"
+"PO-Revision-Date: 2016-09-15 12:09-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,9 +108,12 @@ msgid "Agreement Text"
 msgstr "Texto del acuerdo"
 
 #: Views\Listing\Listings.cshtml:59
+msgid "All Condominium"
+msgstr ""
+
 #: Views\Shared\_NavigationSide.cshtml:25
-msgid "All Categories"
-msgstr "Todas las categorias"
+msgid "All Condominiums"
+msgstr "Todos los condominios"
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:126
 msgid "Allow Listing Review"
@@ -165,11 +168,11 @@ msgstr "Volver al inicio"
 #: Views\Listing\Listings.cshtml:89
 #: Views\Listing\ListingUpdate.cshtml:83
 msgid "Bathrooms"
-msgstr ""
+msgstr "Baños"
 
 #: Views\Listing\ListingUpdate.cshtml:73
 msgid "Beds"
-msgstr ""
+msgstr "Camas"
 
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:55
 msgid "Body"
@@ -217,14 +220,12 @@ msgstr "Cancelado"
 msgid "Cancelled!"
 msgstr "Cancelado!"
 
-#: Views\Shared\_NavigationSide.cshtml:99
 #: Areas\Admin\Views\Listing\Categories.cshtml:8
 #: Areas\Admin\Views\Listing\Categories.cshtml:37
 msgid "Categories"
 msgstr "Categorias"
 
 #: Views\Listing\Listing.cshtml:140
-#: Views\Listing\Listings.cshtml:58
 #: Views\Listing\ListingUpdate.cshtml:35
 #: Views\Listing\_ListingGridList.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
@@ -235,7 +236,7 @@ msgstr "Categorias"
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:67
 msgid "Category"
-msgstr "Categoria"
+msgstr ""
 
 #: Areas\Admin\Views\Listing\Categories.cshtml:121
 msgid "Category is deleted."
@@ -245,7 +246,7 @@ msgstr "Categoria fue eliminada"
 #: Views\Listing\Listings.cshtml:99
 #: Views\Listing\ListingUpdate.cshtml:88
 msgid "Cellars"
-msgstr ""
+msgstr "Bodegas"
 
 #: Views\Manage\ChangePassword.cshtml:3
 #: Views\Manage\ChangePassword.cshtml:47
@@ -289,6 +290,11 @@ msgstr "codigo"
 #: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
 msgid "Comments"
 msgstr "Comentar"
+
+#: Views\Listing\Listings.cshtml:58
+#: Views\Shared\_NavigationSide.cshtml:99
+msgid "Condominiums"
+msgstr "Condominios"
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:43
 msgid "Configure"
@@ -396,7 +402,7 @@ msgid "Create"
 msgstr "Crear"
 
 #: Views\Account\Register.cshtml:12
-#: Views\Shared\_loginParcialIndex.cshtml:23
+#: Views\Shared\_loginParcialIndex.cshtml:22
 #: Views\Shared\_NavigationSide.cshtml:65
 msgid "Create an account"
 msgstr "Crear una cuenta"
@@ -640,57 +646,57 @@ msgstr "Habilitado"
 #: Views\Account\Register.cshtml:47
 #: Areas\Admin\Views\Install\Index.cshtml:29
 msgid "Enter email"
-msgstr "Ingresar Email"
+msgstr "Ingrese Email"
 
 #: Views\Account\Login.cshtml:24
 #: Views\Home\Contact.cshtml:25
 msgid "Enter Email"
-msgstr "Ingresar Email"
+msgstr "Ingrese Email"
 
 #: Views\Listing\ListingUpdate.cshtml:148
 msgid "Enter Email Address"
-msgstr "Ingresar Email"
+msgstr "Ingrese Email"
 
 #: Views\Listing\ListingUpdate.cshtml:99
 msgid "Enter floor number"
-msgstr ""
+msgstr "Ingrese numero de piso"
 
 #: Views\Listing\ListingUpdate.cshtml:120
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Enter Location"
-msgstr "Ingresasr Localidad"
+msgstr "Ingresasr Ubicacion"
 
 #: Views\Listing\ListingUpdate.cshtml:79
 msgid "Enter M2"
-msgstr ""
+msgstr "Ingrese M2"
 
 #: Views\Listing\ListingUpdate.cshtml:74
 msgid "Enter number of Beds"
-msgstr ""
+msgstr "Ingrese numero de camas"
 
 #: Views\Listing\ListingUpdate.cshtml:69
 msgid "Enter number of Rooms"
-msgstr ""
+msgstr "Ingrese numero de habitaciones"
 
 #: Views\Listing\ListingUpdate.cshtml:84
 msgid "Enter numbers of bathrooms"
-msgstr ""
+msgstr "Ingrese nuero de baños"
 
 #: Views\Listing\ListingUpdate.cshtml:89
 msgid "Enter numbers of cellars"
-msgstr ""
+msgstr "Ingrese numero de bodegas"
 
 #: Views\Listing\ListingUpdate.cshtml:94
 msgid "Enter numbers of Parking Lot"
-msgstr ""
+msgstr "Ingrese numero de estacionamientos"
 
 #: Views\Listing\ListingUpdate.cshtml:140
 msgid "Enter Phone Number"
-msgstr "Ingresar Numero Celular"
+msgstr "Ingrese numero de celular"
 
 #: Views\Listing\ListingUpdate.cshtml:44
 msgid "Enter Title"
-msgstr "Ingresar Titulo"
+msgstr "Ingrese Titulo"
 
 #: Views\Account\VerifyCode.cshtml:12
 #: Views\Manage\VerifyPhoneNumber.cshtml:12
@@ -774,7 +780,7 @@ msgstr "Nombre"
 
 #: Views\Listing\ListingUpdate.cshtml:98
 msgid "Floor Number"
-msgstr ""
+msgstr "Numero de piso"
 
 #: Views\Account\ForgotPasswordConfirmation.cshtml:2
 msgid "Forgot Password Confirmation"
@@ -785,15 +791,18 @@ msgstr "Olvidaste confirmar contraseña"
 msgid "Forgot your password?"
 msgstr "Olvidaste tu clave?"
 
-#: Controllers\PaymentController.cs:316
-#: Controllers\PaymentController.cs:365
-#: Views\Home\Index.cshtml:82
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
+#: Views\Home\Index.cshtml:83
+#: Views\Home\Index.cshtml:85
 #: Views\Listing\Listings.cshtml:107
 #: Views\Listing\Listings.cshtml:114
 #: Views\Listing\Listings.cshtml:127
 #: Views\Listing\Listings.cshtml:133
 #: Views\Listing\Listings.cshtml:141
-#: Views\Listing\_ListingPayment.cshtml:25
+#: Views\Listing\_ListingPayment.cshtml:28
+#: Views\Listing\_ListingPayment.cshtml:60
 #: Views\Payment\Payment.cshtml:43
 msgid "From"
 msgstr "De"
@@ -1029,7 +1038,7 @@ msgstr "Propiedades por categoria"
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
 msgid "Location"
-msgstr "Locacion"
+msgstr "Ubicación"
 
 #: Views\Shared\Lockout.cshtml:4
 msgid "Locked Out"
@@ -1039,7 +1048,7 @@ msgstr "Bloqueado"
 msgid "Locked Out."
 msgstr "Bloqueado."
 
-#: Views\Shared\_loginParcialIndex.cshtml:26
+#: Views\Shared\_loginParcialIndex.cshtml:25
 #: Views\Shared\_LoginPartial.cshtml:93
 #: Views\Shared\_NavigationSide.cshtml:60
 msgid "Log in"
@@ -1049,7 +1058,7 @@ msgstr "Iniciar sesion"
 msgid "Log in using your {0} account"
 msgstr "Iniciar sesion con tu cuenta de {0}"
 
-#: Views\Shared\_loginParcialIndex.cshtml:16
+#: Views\Shared\_loginParcialIndex.cshtml:15
 #: Views\Shared\_LoginPartial.cshtml:79
 #: Areas\Admin\Views\Shared\_NavigationTop.cshtml:30
 msgid "Log off"
@@ -1217,6 +1226,10 @@ msgstr "No!"
 msgid "No, cancel please!"
 msgstr "No. Por favor cancele"
 
+#: Views\Manage\UserProfile.cshtml:63
+msgid "Numero de telefono secundario"
+msgstr ""
+
 #: Views\Listing\Listings.cshtml:152
 msgid "Only show listings with photos"
 msgstr "Mostrar propiedades con fotos"
@@ -1292,9 +1305,9 @@ msgstr "Pagado"
 #: Views\Listing\Listings.cshtml:84
 #: Views\Listing\ListingUpdate.cshtml:93
 msgid "Parking Lot"
-msgstr ""
+msgstr "Estacionamientos"
 
-#: Views\Home\Index.cshtml:103
+#: Views\Home\Index.cshtml:108
 #: Views\Listing\Listings.cshtml:78
 #: Views\Listing\Listings.cshtml:79
 msgid "Passengers"
@@ -1337,7 +1350,7 @@ msgstr "Payment Configuracion"
 #: Views\Shared\_DashBoardSide.cshtml:22
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:117
 msgid "Payments"
-msgstr "Pagos"
+msgstr "Resultados"
 
 #: Views\Payment\PaymentSetting.cshtml:25
 msgid "Payout information"
@@ -1443,7 +1456,7 @@ msgstr "Etiqueta de precio"
 #: Views\Shared\_DashBoardSide.cshtml:26
 #: Views\Shared\_LoginPartial.cshtml:70
 msgid "Profile"
-msgstr "Perfil"
+msgstr "Mis Datos"
 
 #: Views\Manage\UserProfile.cshtml:81
 msgid "Profile Picture"
@@ -1452,18 +1465,6 @@ msgstr "Foto de perfil"
 #: Areas\Admin\Views\Payment\Order.cshtml:101
 msgid "Provider"
 msgstr "Proveedor"
-
-#: Views\Listing\ListingUpdate.cshtml:163
-msgid "Publish Listing"
-msgstr "Publicar Propiedad"
-
-#: Views\Manage\Dashboard.cshtml:30
-#: Views\Shared\_Layout.cshtml:76
-#: Views\Shared\_LoginPartial.cshtml:65
-#: Views\Shared\_NavigationSide.cshtml:70
-#: Views\Shared\_NavigationSide.cshtml:78
-msgid "Publish new listing"
-msgstr "Publicar nueva propiedad"
 
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:48
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:62
@@ -1503,6 +1504,14 @@ msgstr "Fecha de registro"
 msgid "Register IP"
 msgstr "Registrar IP"
 
+#: Views\Manage\Dashboard.cshtml:30
+#: Views\Shared\_Layout.cshtml:76
+#: Views\Shared\_LoginPartial.cshtml:65
+#: Views\Shared\_NavigationSide.cshtml:70
+#: Views\Shared\_NavigationSide.cshtml:78
+msgid "Register your property"
+msgstr "Inscribe tu propiedad"
+
 #: Views\Account\Login.cshtml:32
 msgid "Remeber me?"
 msgstr "Recordar?"
@@ -1518,6 +1527,10 @@ msgstr "recordar browser?"
 #: Views\Manage\Message.cshtml:78
 msgid "Reply here..."
 msgstr "Responder aca"
+
+#: Views\Listing\ListingUpdate.cshtml:163
+msgid "Request publication"
+msgstr "Solicitar publicacion"
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:74
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
@@ -1554,7 +1567,7 @@ msgstr "Opiniones"
 #: Views\Listing\Listings.cshtml:94
 #: Views\Listing\ListingUpdate.cshtml:68
 msgid "Rooms"
-msgstr ""
+msgstr "Habitaciones"
 
 #: Views\Manage\UserProfile.cshtml:88
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
@@ -1575,7 +1588,7 @@ msgstr ""
 msgid "Save"
 msgstr "Guardar"
 
-#: Views\Home\Index.cshtml:79
+#: Views\Home\Index.cshtml:80
 #: Views\Manage\Dashboard.cshtml:26
 #: Views\Manage\Messages.cshtml:34
 msgid "Search"
@@ -1608,10 +1621,6 @@ msgstr "Buscar mensajes..."
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:75
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
 msgid "Searchable"
-msgstr ""
-
-#: Views\Manage\UserProfile.cshtml:63
-msgid "Secondary Phone Number"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:49
@@ -1788,6 +1797,10 @@ msgstr "La propiedad ha sido eliminada"
 msgid "The listing type has been deleted."
 msgstr "El tipo de propiedad ha sido eliminado"
 
+#: Controllers\PaymentController.cs:444
+msgid "The maintenance was scheduled successfully!"
+msgstr ""
+
 #: Models\ManageViewModels.cs:38
 #: Models\ManageViewModels.cs:57
 msgid "The new password and confirmation password do not match."
@@ -1806,7 +1819,7 @@ msgstr "La pagina que estas buscando no existe."
 msgid "The password and confirmation password do not match."
 msgstr "\"La clave y la confirmacion de la clave no coinciden."
 
-#: Controllers\PaymentController.cs:296
+#: Controllers\PaymentController.cs:297
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr "El proveedor no tiene configurado la opcion de pago para {0} todavia, por favor contactarse con el proveedor."
 
@@ -1890,15 +1903,18 @@ msgstr "Formato Tiempo"
 msgid "Title"
 msgstr "Titulo"
 
-#: Controllers\PaymentController.cs:316
-#: Controllers\PaymentController.cs:365
-#: Views\Home\Index.cshtml:86
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
+#: Views\Home\Index.cshtml:89
+#: Views\Home\Index.cshtml:91
 #: Views\Listing\Listings.cshtml:110
 #: Views\Listing\Listings.cshtml:117
 #: Views\Listing\Listings.cshtml:130
 #: Views\Listing\Listings.cshtml:134
 #: Views\Listing\Listings.cshtml:142
-#: Views\Listing\_ListingPayment.cshtml:27
+#: Views\Listing\_ListingPayment.cshtml:30
+#: Views\Listing\_ListingPayment.cshtml:62
 #: Views\Payment\Payment.cshtml:50
 msgid "To"
 msgstr "Hasta"
@@ -1939,7 +1955,7 @@ msgstr "configuracion de transaccion"
 #: Areas\Admin\Views\Payment\Transaction.cshtml:14
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:123
 msgid "Transactions"
-msgstr "Transacciones"
+msgstr "Arriendos"
 
 #: Views\Listing\Listings.cshtml:50
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:64
@@ -1967,7 +1983,7 @@ msgstr "Inicio de sesion sin exito con el servicio."
 #: Views\Listing\ListingUpdate.cshtml:108
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
-msgstr "subir fotos"
+msgstr "Subir fotos"
 
 #: Views\Account\_ExternalLoginsListPartial.cshtml:4
 msgid "Use another service to log in."
@@ -2073,9 +2089,9 @@ msgstr "Si!"
 msgid "Yes, delete it!"
 msgstr "Si, Borrar"
 
-#: Controllers\PaymentController.cs:394
+#: Controllers\PaymentController.cs:395
 msgid "You booked your stay correctly!"
-msgstr ""
+msgstr "Has reservado tu estadia correctamente"
 
 #: Areas\Admin\Controllers\ManageController.cs:204
 msgid "You cannot delete Administrator, change the user role first."
@@ -2143,14 +2159,20 @@ msgstr "Su clave fue actualizada."
 #~ msgid "Administration"
 #~ msgstr "Administracion"
 
+#~ msgid "Agregue motivo de bloqueo"
+#~ msgstr ""
+
 #~ msgid "Latest Listings"
 #~ msgstr "Ultimas propiedades"
+
+#~ msgid "My data"
+#~ msgstr "Mis datos"
 
 #~ msgid "passengers"
 #~ msgstr ""
 
-#~ msgid "Phone Number 2"
-#~ msgstr ""
+#~ msgid "Property is updated, contact the provider to activate the service"
+#~ msgstr "La propiedad fue ingresada, contacte al proovedor para activar el servicio"
 
 #~ msgid "Publish a listing (it's 100% free)"
 #~ msgstr "Publicar una propiedad"

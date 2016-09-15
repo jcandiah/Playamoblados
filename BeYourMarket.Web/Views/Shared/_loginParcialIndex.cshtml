@@ -10,9 +10,8 @@
 
             <!-- /messages -->
             <!-- user login dropdown -->
-        <li class="list-inline">
-            <a><span style="cursor:default;">@User.Identity.User().FullName </span></a>
-        </li>
+        <li><a href="@Url.Action("UserProfile", "Manage")"><i class="fa fa-user"></i> @User.Identity.User().FullName</a></li>
+
             <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
     }
 }

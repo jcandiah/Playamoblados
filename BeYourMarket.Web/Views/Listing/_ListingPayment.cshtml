@@ -1,39 +1,115 @@
 ﻿@model BeYourMarket.Model.Models.Listing
-
+@{
+    var userCurrent = User.Identity.User();
+}
 @if (RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
 {
-    <div class="panel panel-default panel-body mrg-t">
-        @if (Model.Price.HasValue)
-        {
-            <h4>
-                @Html.DisplayFor(x => x.PriceFormatted) @Model.ListingType.PriceUnitLabel
-            </h4>
-        }
-
-        <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id =  Model.ID}) })" method="post" role="form">
-            <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
-            <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
-            @if (!string.IsNullOrEmpty(Model.ListingType.OrderTypeLabel))
+    if (!User.IsInRole("Administrator"))
+    {
+        <div class="panel panel-default panel-body mrg-t">
+            @if (Model.Price.HasValue)
             {
-                <h5>@Model.ListingType.OrderTypeLabel</h5>
+                <h4>
+                    @Html.DisplayFor(x => x.PriceFormatted) @Model.ListingType.PriceUnitLabel
+                </h4>
             }
 
-            @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
-            {
-                <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
-                </div>
-            }
+            <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" method="post" role="form">
+                <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
+                <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
+                @if (!string.IsNullOrEmpty(Model.ListingType.OrderTypeLabel))
+                {
+                    <h5>@Model.ListingType.OrderTypeLabel</h5>
+                }
+                @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+                {
+                    <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                    </div>
+                }
                 else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
                 {
                     <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
                 }
+                @if (User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID)
+                {
+                    <button class="btn btn-primary btn-bl9ock">Reservar</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-bl9ock">@Model.ListingType.ButtonLabel</button>
+                }
+            </form>
+        </div>
+    }
+    else
+    {        
+        <div class="panel panel-default panel-body mrg-t">
 
-            <button class="btn btn-primary btn-bl9ock">@Model.ListingType.ButtonLabel</button>
-        </form>
+            <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" method="post" role="form">
+                <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
+                <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
 
-    </div>
+                @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+                {
+                    <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                    </div>
+                }
+                else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
+                {
+                    <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+                }
+                    <button type="button" class="btn btn-primary btn-bl9ock" onclick="AbrirModal()" data-toggle="modal" data-whatever="mdo">Bloquear</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Agregue una descripcion al bloqueo</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Descripcion:</label>
+                                    <textarea class="form-control" id="Message" name="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Ingresar bloqueo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
 }
+
+<script type="text/javascript">
+    function AbrirModal() {
+       
+        if (document.getElementById("FromDate").value != "" || document.getElementById("ToDate").value != "") {
+
+         $('#exampleModal').modal();
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+
+            var modal = $(this)
+            modal.find('.modal-title').text('Agregue una descripcion al bloqueo' + recipient)
+            modal.find('.modal-body input').val(recipient)
+
+        })
+        }
+    }
+</script>

@@ -135,7 +135,7 @@ body, html {
 
 /*Left Panel (aside navigation)*/
 aside.left-panel {
-    background-color: #263238;
+    background-color: #565656;
     width: 230px;
     position: fixed;
     height: 100%;
@@ -210,8 +210,8 @@ aside.left-panel {
 
         .navigation > ul > li.active:hover > a,
         .navigation > ul > li.active > a {
-            color: #2196f3;
-            background: #455A64;
+            color: #fff;
+            background: #a9c320;
         }
 
     .navigation ul li a i {
@@ -233,7 +233,7 @@ aside.left-panel {
 /* Sub Menu */
 .navigation ul li ul {
     display: none;
-    background-color: #455A64;
+    background-color: #787E5A;
     padding-bottom: 10px;
 }
 
@@ -258,11 +258,11 @@ aside:not(.collapsed) .navigation ul li.active ul {
 }
 
     .navigation ul li ul li a:hover {
-        color: #2196f3;
+        color: #D6E871;
     }
 
 .navigation ul li ul li.active a {
-    color: #2196f3 !important;
+    color: #D6E871 !important;
 }
 
 

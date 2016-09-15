@@ -35,7 +35,7 @@
 <body>
     <div class="wrapper row-offcanvas row-offcanvas-left">
 
-        <aside class="left-section bg-barraIzquierda sidebar-offcanvas @(Convert.ToBoolean(ViewBag.SideCollapse) ? "collapse-left" : "")">
+        <aside class="left-section bg-barraIzquierda sidebar-offcanvas collapse-left">
             <header class="header hidden-xs">
                 <a href="@Url.Action("Index", "Home")" class="logo">
                     <img src="@ImageHelper.GetCommunityImagePath("playamobladosLogo", "jpg")" alt="@settings.Name">
@@ -73,7 +73,7 @@
                     </div>
                     @if(User.IsInRole("Owner") || User.IsInRole("Administrator"))
                     {
-                    <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> [[[Publish new listing]]]</a>
+                    <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> [[[Register your property]]]</a>
                     }
                 </nav>
             </header>
@@ -82,7 +82,61 @@
                 @RenderBody()
             </section>
         </aside>
+
+        <footer id="footer">
+            <div class="container">
+                <div class="row-fluid">
+
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h2 class="h4" style="color:white;"><strong>Empresa</strong></h2>
+                        <ul class="list-layout" style="list-style:none">
+                            <li><a href="#" class="link-contrast">Acerca de</a></li>
+                            <li><a href="#" class="link-contrast">Ayuda</a></li>
+                            <li><a href="#" class="link-contrast">Políticas</a></li>
+                            <li><a href="#" class="link-contrast">Términos y Privacidad</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 hidden-xs">
+                        <h2 class="h4" style="color:white;"><strong>Descubre Playamoblados</strong></h2>
+                        <ul class="list-layout" style="list-style:none">
+                            <li><a href="#" class="link-contrast">Confianza y seguridad</a></li>
+                            <li><a href="#" class="link-contrast">Aplicación para móviles</a></li>
+                            <li><a href="#" class="link-contrast">Mapa del sitio</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 hidden-xs ">
+                        <h2 class="h4" style="color:white;"><strong>Hospedar</strong></h2>
+                        <ul class="list-layout" style="list-style:none">
+                            <li><a href="#" class="link-contrast">Hospitalidad</a></li>
+                            <li><a href="#" class="link-contrast">Seguridad en el hogar</a></li>
+                            <li><a href="#" class="link-contrast">Reserva inmediata</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h2 class="h4" style="color:white;"><strong>Siguenos en</strong> </h2>
+                        <ul class="facebook" style="list-style:none">
+                            <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/FACE.png")" style="width:40px; height:40px;" class="img-hover">Facebook</a></li>
+                            <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/INS.png")" style="width:40px; height:40px;" class="img-hover">Instagram</a></li>
+                            <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/TWITTER.png")" style="width:40px; height:40px;" class="img-hover">Twitter</a></li>
+                            <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/GOO.png")" style="width:40px; height:40px;" class="img-hover">Google</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <style type="text/css">
+        #footer
+        {
+            padding:15px;
+            background: url(../../css/HomePlayamoblado/img/footer2.png) center;
+            width:100%;
+        }
+    </style>
 
     @RenderSection("scripts", required: false)
 

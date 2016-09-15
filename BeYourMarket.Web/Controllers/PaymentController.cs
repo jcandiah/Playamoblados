@@ -282,69 +282,119 @@ namespace BeYourMarket.Web.Controllers
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
-
-            if (listing.UserID != userCurrent.Id)
+            if (!User.IsInRole("Administrator"))
             {
-                //foreach (var descriptor in descriptors)
-                //{
-                //    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
-                //    var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
-
-                //    if (!controller.HasPaymentMethod(listing.UserID))
-                //    {
-                //        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                //        TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
-
-                //        return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
-                //    }
-                //}
-
-                if (order.ID == 0)
+                if (listing.UserID != userCurrent.Id)
                 {
-                    order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
-                    order.Created = DateTime.Now;
-                    order.Modified = DateTime.Now;
-                    order.Status = (int)Enum_OrderStatus.Created;
-                    order.UserProvider = listing.UserID;
-                    order.UserReceiver = userCurrent.Id;
-                    order.ListingTypeID = order.ListingTypeID;
-                    order.Currency = listing.Currency;
+                    //foreach (var descriptor in descriptors)
+                    //{
+                    //    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
+                    //    var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
 
-                    if (order.ToDate.HasValue && order.FromDate.HasValue)
-                    {
-                        order.Description = HttpContext.ParseAndTranslate(
-                            string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
-                            listing.Title,
-                            listing.ID,
-                            order.FromDate.Value.ToShortDateString(),
-                            order.ToDate.Value.ToShortDateString()));
+                    //    if (!controller.HasPaymentMethod(listing.UserID))
+                    //    {
+                    //        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                    //        TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
 
-                        order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
-                        order.Price = order.Quantity * listing.Price;
-                    }
-                    else if (order.Quantity.HasValue)
+                    //        return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+                    //    }
+                    //}
+
+                    if (order.ID == 0)
                     {
-                        order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                        order.Quantity = order.Quantity.Value;
-                        order.Price = listing.Price;
-                    }
-                    else
-                    {
-                        // Default
-                        order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                        order.Quantity = 1;
-                        order.Price = listing.Price;
+                        order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                        order.Created = DateTime.Now;
+                        order.Modified = DateTime.Now;
+                        order.Status = (int)Enum_OrderStatus.Created;
+                        order.UserProvider = listing.UserID;
+                        order.UserReceiver = userCurrent.Id;
+                        order.ListingTypeID = order.ListingTypeID;
+                        order.Currency = listing.Currency;
+
+                        if (order.ToDate.HasValue && order.FromDate.HasValue)
+                        {
+                            order.Description = HttpContext.ParseAndTranslate(
+                                string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
+                                listing.Title,
+                                listing.ID,
+                                order.FromDate.Value.ToShortDateString(),
+                                order.ToDate.Value.ToShortDateString()));
+
+                            order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
+                            order.Price = order.Quantity * listing.Price;
+                        }
+                        else if (order.Quantity.HasValue)
+                        {
+                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                            order.Quantity = order.Quantity.Value;
+                            order.Price = listing.Price;
+                        }
+                        else
+                        {
+                            // Default
+                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                            order.Quantity = 1;
+                            order.Price = listing.Price;
+                        }
+
+                        _orderService.Insert(order);
                     }
 
-                    _orderService.Insert(order);
+                    await _unitOfWorkAsync.SaveChangesAsync();
+
+                    ClearCache();
+
+                    return RedirectToAction("Payment", new { id = order.ID });
+
                 }
+                else
+                {
+                    if (order.ID == 0)
+                    {
+                        order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                        order.Created = DateTime.Now;
+                        order.Modified = DateTime.Now;
+                        order.Status = (int)Enum_OrderStatus.Created;
+                        order.UserProvider = listing.UserID;
+                        order.UserReceiver = userCurrent.Id;
+                        order.ListingTypeID = order.ListingTypeID;
+                        order.Currency = listing.Currency;
 
-                await _unitOfWorkAsync.SaveChangesAsync();
+                        if (order.ToDate.HasValue && order.FromDate.HasValue)
+                        {
+                            order.Description = HttpContext.ParseAndTranslate(
+                                string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
+                                listing.Title,
+                                listing.ID,
+                                order.FromDate.Value.ToShortDateString(),
+                                order.ToDate.Value.ToShortDateString()));
 
-                ClearCache();
+                            order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
+                            order.Price = 0;
+                        }
+                        else if (order.Quantity.HasValue)
+                        {
+                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                            order.Quantity = order.Quantity.Value;
+                            order.Price = 0;
+                        }
+                        else
+                        {
+                            // Default
+                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                            order.Quantity = 1;
+                            order.Price = 0;
+                        }
 
-                return RedirectToAction("Payment", new { id = order.ID });
+                        _orderService.Insert(order);
+                    }
 
+                    await _unitOfWorkAsync.SaveChangesAsync();
+
+                    ClearCache();
+                    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+                    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
+                }
             }
             else
             {
@@ -391,8 +441,8 @@ namespace BeYourMarket.Web.Controllers
                 await _unitOfWorkAsync.SaveChangesAsync();
 
                 ClearCache();
-                TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
-                return RedirectToAction("Listing","Listing", new { id = listing.ID });
+                TempData[TempDataKeys.UserMessage] = "[[[The maintenance was scheduled successfully!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = listing.ID });
             }
         }
 

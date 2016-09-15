@@ -131,7 +131,7 @@
 
                             <fieldset>
                                 <legend>[[[Publisher's Info]]]</legend>
-                                <div class="form-group">
+                                <div class="form-group" hidden>
                                     <label>[[[Full Name]]] <span class="text-red">*</span></label>
                                     <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
                                 </div>
@@ -143,7 +143,7 @@
                                     <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
                                     <input name="ShowPhone" type="hidden" value="false" />
                                 </div>*@
-                                <div class="form-group">
+                                <div class="form-group" hidden>
                                     <label>[[[Email Address]]] <span class="text-red">*</span></label>
                                     <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
                                 </div>
@@ -160,7 +160,7 @@
                                 }
                             </fieldset>
                             <fieldset>
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Publish Listing]]]</button>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Request publication]]]</button>
                                 <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                             </fieldset>
                         </form>

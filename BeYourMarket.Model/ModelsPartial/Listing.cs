@@ -24,7 +24,7 @@ namespace BeYourMarket.Model.Models
         {
             get
             {
-                return Price.HasValue ? string.Format("{0:N2}{1}", Currency, Price.Value) : string.Empty;
+                return Price.HasValue ? string.Format("{0} {1}", Price.Value, Currency ) : string.Empty;
             }
         }
 

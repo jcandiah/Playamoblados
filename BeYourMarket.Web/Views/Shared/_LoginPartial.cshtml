@@ -62,7 +62,7 @@
                     @if (User.IsInRole("Administrator") || User.IsInRole("Owner"))
                     {
                         <li><a href="@Url.Action("Dashboard", "Manage")">[[[Dashboard]]]</a></li>
-                        <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a></li>
+                        <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Register your property]]]</a></li>
                         <li class="divider"></li>
                     }
                     else
