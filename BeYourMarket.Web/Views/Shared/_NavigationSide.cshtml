@@ -26,7 +26,7 @@
             </a>
         </li>
 
-        foreach (var item in categories)
+        foreach (var item in categories.Take(3))
         {
             <li class="treeview">
                 <a href="@Url.Action("Search", "Home", new { CategoryID = item.Item.ID })">
