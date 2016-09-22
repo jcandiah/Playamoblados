@@ -23,6 +23,8 @@
                 }
             }
 
+            <li class="@( Model == "" ? "active" : null )"><a href="@Url.Action("ViewCalendar","Manage")"><i class="fa fa-calendar"></i> [[[Calendar]]]</a></li>
+
             <li class="@( Model == "profile" ? "active" : null )"><a href="@Url.Action("UserProfile", "Manage")"><i class="fa fa-user"></i> [[[Profile]]]</a></li>
             <li class="@( Model == "changepassword" ? "active" : null )"><a href="@Url.Action("ChangePassword", "Manage")"><i class="fa fa-key"></i> [[[Change Password]]]</a></li>
 

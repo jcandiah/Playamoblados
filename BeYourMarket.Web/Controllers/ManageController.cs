@@ -37,6 +37,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly IListingService _listingService;
         private readonly IListingStatService _listingStatservice;
         private readonly IListingPictureService _ListingPictureservice;
+        private readonly IListingReviewService _listingReviewService;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
@@ -92,6 +93,7 @@ namespace BeYourMarket.Web.Controllers
             ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
             IListingStatService listingStatservice,
+            IListingReviewService listingReviewService,
             IMessageService messageService,
             IMessageThreadService messageThreadService,
             IMessageParticipantService messageParticipantService,
@@ -106,6 +108,7 @@ namespace BeYourMarket.Web.Controllers
             _listingService = listingService;
             _pictureService = pictureService;
             _ListingPictureservice = ListingPictureservice;
+            _listingReviewService = listingReviewService;
             _orderService = orderService;
 
             _messageService = messageService;
@@ -385,6 +388,23 @@ namespace BeYourMarket.Web.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
+
+        public async Task<ActionResult> ViewCalendar(string searchtext)
+        {
+            return RedirectToAction("DashboardCalendar");
+
+            var userId = User.Identity.GetUserId();
+            var model = new IndexViewModel
+            {
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                Logins = await UserManager.GetLoginsAsync(userId),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+            };
+            return View(model);
+        }
+
         //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
@@ -600,6 +620,97 @@ namespace BeYourMarket.Web.Controllers
             };
 
             return View(model);
+        }
+
+        public async Task<ActionResult> DashboardCalendar(string searchText)
+        {
+            var userId = User.Identity.GetUserId();
+            var items = await _listingService.Query(x => x.UserID == userId).Include(x => x.ListingPictures).SelectAsync();
+
+            // Filter string
+            if (!string.IsNullOrEmpty(searchText))
+                items = items.Where(x => x.Title.ToLower().Contains(searchText.ToLower().ToString()));
+
+            var itemsModel = new List<ListingItemModel>();
+            foreach (var item in items.OrderByDescending(x => x.Created))
+            {
+                itemsModel.Add(new ListingItemModel()
+                {
+                    ListingCurrent = item,
+                    UrlPicture = item.ListingPictures.Count == 0 ? ImageHelper.GetListingImagePath(0) : ImageHelper.GetListingImagePath(item.ListingPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID)
+                });
+            }
+
+            var model = new ListingModel()
+            {
+                Listings = itemsModel
+            };
+
+            return View(model);
+        }
+
+
+        public async Task <ActionResult> ListingCalendar(int id)
+        {
+            var itemQuery = await _listingService.Query(x => x.ID == id)
+                                            .Include(x => x.Category)
+                                            .Include(x => x.ListingMetas)
+                                            .Include(x => x.ListingMetas.Select(y => y.MetaField))
+                                            .Include(x => x.ListingStats)
+                                            .Include(x => x.ListingType)
+                                            .SelectAsync();
+
+            var item = itemQuery.FirstOrDefault();
+
+            if (item == null)
+                return new HttpNotFoundResult();
+
+            var orders = _orderService.Queryable()
+                .Where(x => x.ListingID == id
+                    && (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    && (x.FromDate.HasValue && x.ToDate.HasValue)
+                    && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
+                    .ToList();
+
+            List<DateTime> datesBooked = new List<DateTime>();
+            foreach (var order in orders)
+            {
+                for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+                {
+                    datesBooked.Add(date);
+                }
+            }
+
+            var pictures = await _ListingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+
+            var picturesModel = pictures.Select(x =>
+                new PictureModel()
+                {
+                    ID = x.PictureID,
+                    Url = ImageHelper.GetListingImagePath(x.PictureID),
+                    ListingID = x.ListingID,
+                    Ordering = x.Ordering
+                }).OrderBy(x => x.Ordering).ToList();
+
+            var reviews = await _listingReviewService
+                .Query(x => x.UserTo == item.UserID)
+                .Include(x => x.AspNetUserFrom)
+                .SelectAsync();
+
+            var user = await UserManager.FindByIdAsync(item.UserID);
+
+            var itemModel = new ListingItemModel()
+            {
+                ListingCurrent = item,
+                Pictures = picturesModel,
+                DatesBooked = datesBooked,
+                User = user,
+                ListingReviews = reviews.ToList()
+            };
+
+
+
+            return View(itemModel);
         }
 
         public async Task<ActionResult> UserProfile()
