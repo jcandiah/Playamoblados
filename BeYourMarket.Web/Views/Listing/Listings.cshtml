@@ -36,7 +36,61 @@
     @DisplayBreadCrumb()
 
     <div class="mrg-tb">
-        <div class="row">
+        <div class="row">            
+            <div class="col-md-9 section-title">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="">
+                            <div class="form-inline pull-right">
+                                <div class="form-group">
+                                    <div class="btn-group" role="group" aria-label="Sort View">
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.Grid.ToString())"><i class="fa fa-th"></i> [[[Grid]]]</a>
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.List.ToString())"><i class="fa fa-th-list"></i> [[[List]]]</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>
+                            [[[Lista]]]
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    @switch (Model.SortView)
+                    {
+                        case BeYourMarket.Model.Enum.Enum_SortView.Grid:
+                        default:
+                            @Html.Partial("~/Views/Listing/_ListingGrid.cshtml", Model)
+                            break;
+                        case BeYourMarket.Model.Enum.Enum_SortView.List:
+                        @Html.Partial("~/Views/Listing/_ListingGridList.cshtml", Model)
+                            break;
+                        case BeYourMarket.Model.Enum.Enum_SortView.Map:
+                            break;
+                    }
+                </div>
+
+                <div class="panel-header bdr-b">
+                    <div class="container-fluid">
+                        <div class="" col-md-12">
+                            <h5 class="pull-left mrg-t">
+                            @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)
+                            </h5>
+                            @Html.PagedListPager(Model.ListingsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
+                            new PagedListRenderOptions
+                                 {
+                                     ContainerDivClasses = new List<string>(new string[] { "pull-right" }),
+                                     DisplayPageCountAndCurrentLocation = false,
+                                     MaximumPageNumbersToDisplay = 5,
+                                     DisplayEllipsesWhenNotShowingAllPageNumbers = false
+                                 })
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-3">
                 <div class="search-widget panel panel-default">
                     <form method="get" action="@Url.Action("Search", "Home", new { })">
@@ -47,33 +101,33 @@
                             <fieldset>
 
                                 @*<div class="form-group">
-                                    <label>[[[Type]]]</label>
-                                    <select name="Type" class="form-control inline">
-                                        <option selected>Tipo de propiedad</option>
-                                        <option value="1">Casa</option>
-                                        <option value="2">Departamento</option>
-                                        </select>                                
-                                </div>*@
+                                <label>[[[Type]]]</label>
+                                <select name="Type" class="form-control inline">
+                                    <option selected>Tipo de propiedad</option>
+                                    <option value="1">Casa</option>
+                                    <option value="2">Departamento</option>
+                                    </select>
+                            </div>*@
                                 <div class="form-group">
                                     <label>[[[Condominiums]]]</label>
                                     @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control", onchange = "this.form.submit()" })
                                 </div>
                                 <!--
-                                <div class="form-group">
-                                    <label>[[[Listing Type]]]</label>
-                                    @*@foreach (var listingType in Model.ListingTypes)
-                                    {
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                @{var listingTypeCheckBoxID = "ListingTypeID_" + listingType.ID; }
-                                                <input type="radio" id="@listingTypeCheckBoxID" name="ListingTypeID" value="@listingType.ID" @( Model.ListingTypeID.Contains(listingType.ID) ? "checked" : "") onchange="this.form.submit()" />
-                                                <label for="@listingTypeCheckBoxID">@listingType.Name</label>*@
-                                            </div>
-                                        </div>
-
-                                    }
+                        <div class="form-group">
+                            <label>[[[Listing Type]]]</label>
+                            @*@foreach (var listingType in Model.ListingTypes)
+                            {
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        @{var listingTypeCheckBoxID = "ListingTypeID_" + listingType.ID; }
+                                        <input type="radio" id="@listingTypeCheckBoxID" name="ListingTypeID" value="@listingType.ID" @( Model.ListingTypeID.Contains(listingType.ID) ? "checked" : "") onchange="this.form.submit()" />
+                                        <label for="@listingTypeCheckBoxID">@listingType.Name</label>*@
+                                    </div>
                                 </div>
-                                    -->
+
+                            }
+                        </div>
+                            -->
                                 <div class="form-group">
                                     <label>[[[Passengers]]]</label>
                                     <input type="text" onfocus="this.type='number'" min="1" class="form-control" placeholder="[[[Passengers]]]" name="Passengers" value="@Model.Passengers">
@@ -130,15 +184,15 @@
                                                 <label>[[[To]]]</label>
                                             </div>
                                         </div>
-                                            <div class="col-xs-6 range-from"><input type="date" class="form-control" placeholder="[[[From]]]" id="FromDate" name="FromDate" value="@Model.FromDate"></div>
-                                            <div class="col-xs-6 range-to"><input type="date" class="form-control" placeholder="[[[To]]]" id="ToDate" name="ToDate" value="@Model.ToDate"></div>
+                                        <div class="col-xs-6 range-from"><input type="date" class="form-control" placeholder="[[[From]]]" id="FromDate" name="FromDate" value="@Model.FromDate"></div>
+                                        <div class="col-xs-6 range-to"><input type="date" class="form-control" placeholder="[[[To]]]" id="ToDate" name="ToDate" value="@Model.ToDate"></div>
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label>[[[Price]]]</label>
                                     <div class="row">
-                                        <div class="col-xs-6 range-from"><input type="number" class="form-control"  placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
+                                        <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
                                         <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="[[[To]]]" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
                                     </div>
                                 </div>
@@ -149,7 +203,7 @@
                                 </div>
 
                                 @*<input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
-                                <label for="PhotoOnly">[[[Only show listings with photos]]]</label>*@
+                            <label for="PhotoOnly">[[[Only show listings with photos]]]</label>*@
 
                                 @Html.HiddenFor(x => x.SortView)
                             </fieldset>
@@ -159,60 +213,6 @@
                             <button type="submit" class="btn btn-sm btn-primary" href="">[[[Apply]]]</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="col-md-9 section-title">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="">
-                            <div class="form-inline pull-right">
-                                <div class="form-group">
-                                    <div class="btn-group" role="group" aria-label="Sort View">
-                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.Grid.ToString())"><i class="fa fa-th"></i> [[[Grid]]]</a>
-                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.List.ToString())"><i class="fa fa-th-list"></i> [[[List]]]</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4>
-                            [[[Lista]]]
-                        </h4>
-                    </div>
-                </div>
-
-                <div class="row m-b-10">
-                    @switch (Model.SortView)
-                    {
-                        case BeYourMarket.Model.Enum.Enum_SortView.Grid:
-                        default:
-                            @Html.Partial("~/Views/Listing/_ListingGrid.cshtml", Model)
-                            break;
-                        case BeYourMarket.Model.Enum.Enum_SortView.List:
-                        @Html.Partial("~/Views/Listing/_ListingGridList.cshtml", Model)
-                            break;
-                        case BeYourMarket.Model.Enum.Enum_SortView.Map:
-                            break;
-                    }
-                </div>
-
-                <div class="panel-header bdr-b">
-                    <div class="container-fluid">
-                        <div class="" col-md-12">
-                            <h5 class="pull-left mrg-t">
-                            @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)
-                            </h5>
-                            @Html.PagedListPager(Model.ListingsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
-                            new PagedListRenderOptions
-                                 {
-                                     ContainerDivClasses = new List<string>(new string[] { "pull-right" }),
-                                     DisplayPageCountAndCurrentLocation = false,
-                                     MaximumPageNumbersToDisplay = 5,
-                                     DisplayEllipsesWhenNotShowingAllPageNumbers = false
-                                 })
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

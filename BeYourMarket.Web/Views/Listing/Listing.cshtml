@@ -62,9 +62,9 @@
                                     <a href="#reviewList"><i class="fa fa-star"></i>[[[Reviews]]]</a>
                                 </li>
 
-                                <li role="presentation">
+                                @*<li role="presentation">
                                     <a id="contactModal" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i>[[[Contact]]]</a>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
 
@@ -72,15 +72,15 @@
                             <div role="tabpanel" class="tab-pane fade active in" id="description">
                                 <div class="panel panel-default bdr-t-none">
                                     <div class="panel-body">
-                                        <p>
+                                        <h4>
                                             @Model.ListingCurrent.Description
-                                        </p>
+                                        </h4>
                                     </div>
 
                                     <!---Pictures-->
-                                    <div class="panel-heading bdr-t">
+                                    @*<div class="panel-heading bdr-t">
                                         <i class="fa fa-picture-o"></i> [[[Pictures]]]
-                                    </div>
+                                    </div>*@
                                     <div class="panel-body">
                                         @if (Model.Pictures.Count > 0)
                                         {
@@ -137,7 +137,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    [[[Category]]]
+                                                    [[[Condominium]]]
                                                 </td>
                                                 <td>
                                                     <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
@@ -194,6 +194,39 @@
                                                     @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Rooms]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.Rooms
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Beds]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.Beds
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>
+                                                    [[[Bathrooms]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.Bathrooms
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Parking Lot]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.ParkingLot
+                                                </td>
+                                            </tr>
 
                                             @foreach (var item in Model.ListingCurrent.ListingMetas)
                                             {
@@ -236,7 +269,7 @@
                                         <span>[[[Contact]]] @Model.User.FullName</span>
                                     </div>
 
-                                    @*<a id="contactModal" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i>[[[Contact]]]</a>*@
+                                    <a id="contactModal" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i>[[[Contact]]]</a>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +287,7 @@
                             <div id="sidebar" data-spy="affix" data-offset-top="120" class="affix text-center">
                                 @Html.Partial("_ListingPayment", Model.ListingCurrent)
 
-                                <div class="panel panel-default panel-body mrg-t text-center">
+                                @*<div class="panel panel-default panel-body mrg-t text-center">
                                     <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
                                         <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
                                     </a>
@@ -282,7 +315,7 @@
                                     <a class="a2a_button_twitter"></a>
                                     <a class="a2a_button_google_plus"></a>
                                     <a class="a2a_button_linkedin"></a>
-                                </div>
+                                </div>*@
 
                                 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
                             </div>

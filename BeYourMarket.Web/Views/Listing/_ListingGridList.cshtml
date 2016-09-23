@@ -25,14 +25,14 @@
 }
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-                        @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
+                        @Html.Grid(Model.Listings).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
                        {
                            columns.Add(x => x.UrlPicture).Encoded(false).Sanitized(false)
                                .SetWidth(150)
                                .RenderValueAs(x => GetImage(x.UrlPicture, x.ListingCurrent.ID)).Titled("[[[Picture]]]");
 
                            if (Model.CategoryID == 0)
-                               columns.Add(x => x.ListingCurrent.CategoryID).RenderValueAs(x => GetCategoryName(x.ListingCurrent.CategoryID)).Titled("[[[Category]]]");
+                               columns.Add(x => x.ListingCurrent.CategoryID).RenderValueAs(x => GetCategoryName(x.ListingCurrent.CategoryID)).Titled("[[[Condominium]]]");
 
                            columns.Add(x => x.ListingCurrent.Title).Encoded(false).Sanitized(false)
                                .RenderValueAs(x => GetItemLink(x.ListingCurrent.Title, x.ListingCurrent.ID)).Titled("[[[Title]]]");
