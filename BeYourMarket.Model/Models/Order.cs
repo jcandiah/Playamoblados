@@ -27,6 +27,7 @@ namespace BeYourMarket.Model.Models
         public string PaymentPlugin { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
+        public Nullable<int> OrderType { get; set; }
         public virtual AspNetUser AspNetUserProvider { get; set; }
         public virtual AspNetUser AspNetUserReceiver { get; set; }
         public virtual ICollection<ListingReview> ListingReviews { get; set; }
