@@ -189,23 +189,26 @@
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             textArrows: { previous: '<', next: '>' },
             eventTitle: 'Eventos',
+            @*url: '@Url.Action("GetEvents", "Manage")',*@
             url: '',
-         @{
-             var datesDisabled = new System.Text.StringBuilder();
-             foreach (var fromDate in Model.DatesBooked)
-             {
-                 datesDisabled.AppendFormat("'{0}',", fromDate.ToShortDateString());
-             }
-    }
-            datesDisabled: [@Html.Raw(datesDisabled.ToString())],            
+
             events: [
-                { title: 'Evento de Abertura', description: 'Abertura das Olimpíadas Rio 2016', datetime: new Date(2016, new Date().getMonth(), 12, 17) },
-                { title: 'Tênis de Mesa', description: 'BRA x ARG - Semifinal', datetime: new Date(2016, new Date().getMonth(), 23, 16) },
-                { title: 'Ginástica Olímpica', description: 'Classificatórias de equipes', datetime: new Date(2016, new Date().getMonth(), 31, 16) }
+
+       
+               @{
+                   foreach(var fromDate in Model.DatesBooked)
+                   {
+
+                       string valor = string.Format("{title:'{0}', description: '{1}', datetime: new Date(2016,8,20)},", Model.ListingCurrent.Title, Model.ListingCurrent.Description);
+                       @Html.Raw(valor.ToString());
+                      
+
+                   }
+               }
+                @*{ title: 'Ginástica Olímpica', description: 'funciono', datetime: new Date(@Model.DatesBooked.First().Year,@Model.DatesBooked.First().Month,@Model.DatesBooked.First().Day) }*@
             ],
             firstDayOfWeek: 0
         };
-
     }(jQuery));
 
 </script>
@@ -213,19 +216,19 @@
 
 
 <div class="body-content container-fluid">
-        <div class="main-section row">
-            <div class="container-fluid mrg-tb">
+    <div class="main-section row">
+        <div class="container-fluid mrg-tb">
 
-                @Html.Partial("_DashBoardSide", "dashboard")
+            @Html.Partial("_DashBoardSide", "dashboard")
 
-                <div class="col-md-9 text-center">
+            <div class="col-md-9 text-center">
 
-                    <h2>@Model.ListingCurrent.Title <span class="fa fa-calendar"></span></h2>
+                <h2>@Model.ListingCurrent.Title <span class="fa fa-calendar"></span></h2>
 
-                    <div id="calendar"></div>
-                </div>
+                <div id="calendar"></div>
             </div>
         </div>
+    </div>
 </div>
 
 
