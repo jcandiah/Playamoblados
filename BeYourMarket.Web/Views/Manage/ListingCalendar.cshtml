@@ -198,16 +198,19 @@
                @{
                    foreach(var fromDate in Model.DatesBooked)
                    {
+                       //var order = Model.ListingCurrent.Orders.First(x=> x.);
 
-                       string valor = string.Format("{title:'{0}', description: '{1}', datetime: new Date(2016,8,20)},", Model.ListingCurrent.Title, Model.ListingCurrent.Description);
-                       @Html.Raw(valor.ToString());
-                      
+                       string valor = string.Format("title:'{0}', description: '{1}', datetime: new Date({2},{3},{4}),", Model.ListingCurrent.Title,Model.ListingCurrent.Description,fromDate.Year,fromDate.Month-1,fromDate.Day);
+                       //string valor = "{title:'asd', description: 'asd', datetime: new Date(2016,8,20)},";
+                       @Html.Raw("{"+valor.ToString()+"},");
+
 
                    }
                }
                 @*{ title: 'Ginástica Olímpica', description: 'funciono', datetime: new Date(@Model.DatesBooked.First().Year,@Model.DatesBooked.First().Month,@Model.DatesBooked.First().Day) }*@
             ],
-            firstDayOfWeek: 0
+            firstDayOfWeek: 0,
+            
         };
     }(jQuery));
 
