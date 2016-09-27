@@ -4,13 +4,13 @@
     var userId = User.Identity.GetUserId();
     var messages = MessageHelper.GetUnReadMessages(userId);
 
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav", style=" margin: 0px;" } ))
     {
         @Html.AntiForgeryToken()
 
             <!-- /messages -->
             <!-- user login dropdown -->
-        <li><a href="@Url.Action("UserProfile", "Manage")"><i class="fa fa-user"></i> @User.Identity.User().FullName</a></li>
+            <li><a href="@Url.Action("UserProfile", "Manage")"> @User.Identity.User().FullName</a></li>
 
             <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
     }
