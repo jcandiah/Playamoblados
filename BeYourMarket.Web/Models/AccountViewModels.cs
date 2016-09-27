@@ -85,6 +85,9 @@ namespace BeYourMarket.Web.Models
         
         [Display(Name = "[[[Last Name]]]")]
         public string LastName { get; set; }
+
+        [Display(Name = "[[[Gender]]]")]
+        public string Gender { get; set; }
     }
 
     public class ResetPasswordViewModel
