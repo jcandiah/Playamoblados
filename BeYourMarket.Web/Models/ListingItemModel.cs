@@ -21,5 +21,9 @@ namespace BeYourMarket.Web.Models
         public ApplicationUser User { get; set; }
 
         public List<ListingReview> ListingReviews { get; set; }
+
+        public List<Order> ListOrder { get; set; }
+
+        public List<ApplicationUser> ListUsers { get; set; }
     }
 }
