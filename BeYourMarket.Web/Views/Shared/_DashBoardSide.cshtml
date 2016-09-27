@@ -10,6 +10,7 @@
             @if (User.IsInRole("Owner") || User.IsInRole("Administrator"))
             {
             <li class="@( Model == "dashboard" ? "active" : null )"><a href="@Url.Action("Index", "Manage")"><i class="fa fa-th-list"></i> [[[Listings]]]</a></li>
+            <li class="@( Model == "calendar" ? "active" : null )"><a href="@Url.Action("ViewCalendar","Manage")"><i class="fa fa-calendar"></i> [[[Calendar]]]</a></li>
             }
             <li class="@( Model == "messages" ? "active" : null )"><a href="@Url.Action("Messages", "Manage")"><i class="fa fa-envelope"></i> [[[Messages]]]</a></li>
 
@@ -22,8 +23,6 @@
                 <li class="@( Model == "payment" ? "active" : null )"><a href="@Url.Action("PaymentSetting", "Payment")"><i class="fa fa-gears"></i> [[[Payments]]]</a></li>
                 }
             }
-
-            <li class="@( Model == "" ? "active" : null )"><a href="@Url.Action("ViewCalendar","Manage")"><i class="fa fa-calendar"></i> [[[Calendar]]]</a></li>
 
             <li class="@( Model == "profile" ? "active" : null )"><a href="@Url.Action("UserProfile", "Manage")"><i class="fa fa-user"></i> [[[Profile]]]</a></li>
             <li class="@( Model == "changepassword" ? "active" : null )"><a href="@Url.Action("ChangePassword", "Manage")"><i class="fa fa-key"></i> [[[Change Password]]]</a></li>

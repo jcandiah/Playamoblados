@@ -7,7 +7,7 @@
     <div class="main-section row">
         <div class="container-fluid mrg-tb">
 
-            @Html.Partial("_DashBoardSide", "dashboard")
+            @Html.Partial("_DashBoardSide", "calendar")
 
             <div class="col-md-9">
                 <div id="myTabContent" class="tab-content ">
@@ -16,7 +16,7 @@
                             @if (User.IsInRole("Administrator") || User.IsInRole("Owner"))
                             {
                                 <div class="panel-heading">
-                                    [[[My Listings]]]
+                                    [[[My Listings Calendar]]]
                                 </div>
                                 <div class="panel-body">
                                     <div class="pull-left">

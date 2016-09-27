@@ -1,6 +1,9 @@
-﻿@model BeYourMarket.Web.Models.ListingItemModel
+﻿@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+@using Microsoft.Owin.Security;
+@model BeYourMarket.Web.Models.ListingItemModel
 @{
-    ViewBag.Title = "ListingCalendar";
+        ViewBag.Title = "ListingCalendar";
 }
 
 <link href="~/calendar-master/css/jquery.e-calendar.css" rel="stylesheet" />
@@ -191,26 +194,24 @@
             eventTitle: 'Eventos',
             @*url: '@Url.Action("GetEvents", "Manage")',*@
             url: '',
-
+            
             events: [
-
-       
                @{
-                   foreach(var fromDate in Model.DatesBooked)
+
+                   foreach(var orders in Model.ListOrder)
                    {
-                       //var order = Model.ListingCurrent.Orders.First(x=> x.);
-
-                       string valor = string.Format("title:'{0}', description: '{1}', datetime: new Date({2},{3},{4}),", Model.ListingCurrent.Title,Model.ListingCurrent.Description,fromDate.Year,fromDate.Month-1,fromDate.Day);
-                       //string valor = "{title:'asd', description: 'asd', datetime: new Date(2016,8,20)},";
-                       @Html.Raw("{"+valor.ToString()+"},");
-
-
+                       var usuario = Model.ListUsers.First(x => x.Id.Equals(orders.UserReceiver));
+                      
+                       for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
+                       {
+                           string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1}', datetime: new Date({2},{3},{4}),", usuario.FullName, usuario.Email, orders.FromDate.Value.Year, date.Month - 1, date.Day);
+                           @Html.Raw("{"+valor.ToString()+"},");
+                       }
                    }
                }
-                @*{ title: 'Ginástica Olímpica', description: 'funciono', datetime: new Date(@Model.DatesBooked.First().Year,@Model.DatesBooked.First().Month,@Model.DatesBooked.First().Day) }*@
             ],
-            firstDayOfWeek: 0,
-            
+            firstDayOfWeek: 1,
+
         };
     }(jQuery));
 
@@ -222,7 +223,7 @@
     <div class="main-section row">
         <div class="container-fluid mrg-tb">
 
-            @Html.Partial("_DashBoardSide", "dashboard")
+            @Html.Partial("_DashBoardSide", "calendar")
 
             <div class="col-md-9 text-center">
 

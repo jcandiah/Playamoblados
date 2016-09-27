@@ -658,6 +658,7 @@ namespace BeYourMarket.Web.Controllers
                                             .Include(x => x.ListingMetas.Select(y => y.MetaField))
                                             .Include(x => x.ListingStats)
                                             .Include(x => x.ListingType)
+                                            .Include(x => x.Orders)
                                             .SelectAsync();
 
             var item = itemQuery.FirstOrDefault();
@@ -672,9 +673,12 @@ namespace BeYourMarket.Web.Controllers
                     && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
                     .ToList();
 
+
+
             List<DateTime> datesBooked = new List<DateTime>();
             foreach (var order in orders)
             {
+        
                 for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
                 {
                     datesBooked.Add(date);
@@ -698,14 +702,16 @@ namespace BeYourMarket.Web.Controllers
                 .SelectAsync();
 
             var user = await UserManager.FindByIdAsync(item.UserID);
-
+            var usuarios = UserManager.Users.ToList();
             var itemModel = new ListingItemModel()
             {
                 ListingCurrent = item,
                 Pictures = picturesModel,
                 DatesBooked = datesBooked,
-                User = user,
-                ListingReviews = reviews.ToList()
+                ListUsers= usuarios.ToList(),
+                ListingReviews = reviews.ToList(),
+                ListOrder = orders,
+                
             };
 
 
@@ -760,6 +766,18 @@ namespace BeYourMarket.Web.Controllers
 
             return RedirectToAction("UserProfile", "Manage");
         }
+
+
+        //public async Task<JsonResult> GetEvents()
+        //{
+        //    var evt = Model.ListOrder.Select(o => new {
+        //        title = o.Description,
+        //        description = o.Description,
+        //        datetime = o.FromDate
+        //    }).ToList();
+
+        //    return Json(evt, JsonRequestBehavior.AllowGet);
+        //}
         #endregion
 
         #region Helpers
