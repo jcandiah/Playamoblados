@@ -234,6 +234,7 @@ namespace BeYourMarket.Web.Controllers
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Gender = model.Gender,
                 RegisterDate = DateTime.Now,
                 RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP(),
                 LastAccessDate = DateTime.Now,
