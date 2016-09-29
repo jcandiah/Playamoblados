@@ -10,7 +10,8 @@
 <script src="~/calendar-master/example/index.js"></script>
 
 
-<script type="text/javascript">
+<div>
+    <script type="text/javascript">
 
 
     (function ($) {
@@ -144,13 +145,43 @@
                         if (day == dDay && adMonth == dMonth && adYear == dYear) {
                             cDay.addClass('c-today');
                         }
+
+
+                        //aca pinta el calendario de los eventos
                         for (var j = 0; j < settings.events.length; j++) {
                             var d = settings.events[j].datetime;
                             if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
-                                cDay.addClass('c-event').attr('data-event-day', d.getDate());
+
+                                cDay.addClass('c-event-pasajero').attr('data-event-day', d.getDate());
                                 cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                             }
                         }
+
+
+                        //truco pinta calendario para reserva
+                        for (var j = 0; j < settings.datedisabled.length; j++) {
+                            var c = settings.datedisabled[j];
+                            var d = new Date(c);
+                            if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
+
+                                cDay.addClass('c-event-reserva').attr('data-event-day', d.getDate());
+                                cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
+                            }
+                        }
+
+                        //pinta calendario para bloqueo playamoblados
+                        for (var j = 0; j < settings.bloqueo.length; j++) {
+                            var c = settings.bloqueo[j];
+                            var d = new Date(c);
+                            if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
+
+                                cDay.addClass('c-event-bloqueo').attr('data-event-day', d.getDate());
+                                cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
+                            }
+                        }
+
+
+
                         cDay.html(day++);
                     } else {
                         cDay.addClass('c-day-next-month c-pad-top');
@@ -158,19 +189,34 @@
                     }
                     cBody.append(cDay);
                 }
+
+                //ACA CARGA LOS EVENTOS
                 var eventList = $('<div/>').addClass('c-event-list');
-                for (var i = 0; i < settings.events.length; i++) {
-                    var d = settings.events[i].datetime;
-                    if (d.getMonth() == dMonth && d.getFullYear() == dYear) {
-                        var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth() + 1, 2) + ' ' + lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2);
-                        var item = $('<div/>').addClass('c-event-item');
-                        var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title + '<br/>');
-                        var description = $('<div/>').addClass('description').html(settings.events[i].description + '<br/>');
-                        item.attr('data-event-day', d.getDate());
-                        item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
-                        item.append(title).append(description);
-                        eventList.append(item);
-                    }
+                var tituloComparar;
+                for (var i = 0; i < settings.events.length; i++)
+                {
+
+                        var d = settings.events[i].datetime;
+
+                        if (d.getMonth() == dMonth && d.getFullYear() == dYear)
+                            {
+                                var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth() + 1, 2);
+                                var item = $('<div/>').addClass('c-event-item');
+                                var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title + '<br/>');
+                                var description = $('<div/>').addClass('description').html(settings.events[i].description + '<br/>');
+                                item.attr('data-event-day', d.getDate());
+                                item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
+                                item.append(title).append(description);
+                                //if (settings.events.length > i+1)
+                                //{
+                                //    if (tituloComparar != settings.events[i].title)
+                                    //{
+                                        eventList.append(item);
+                                //    }
+                                //}
+                                tituloComparar = settings.events[i].title;
+                              }
+
                 }
                 $(instance).addClass('calendar');
                 cEventsBody.append(eventList);
@@ -194,14 +240,32 @@
             eventTitle: 'Eventos',
             @*url: '@Url.Action("GetEvents", "Manage")',*@
             url: '',
-            
+            @{
+                var datesDisabledbloqueo = new System.Text.StringBuilder();
+                foreach (var fromDate in Model.ListOrder.Where(x=>x.OrderType==1))
+                {
+                    datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", fromDate.FromDate.Value.Year, fromDate.FromDate.Value.Month, fromDate.FromDate.Value.Day);
+                }
+            }
+            bloqueo: [@Html.Raw(datesDisabledbloqueo.ToString())],
+         @{
+                var datesDisabledreserva = new System.Text.StringBuilder();
+                foreach (var fromDate in Model.ListOrder.Where(x=>x.OrderType==2))
+                {
+                    datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", fromDate.FromDate.Value.Year, fromDate.FromDate.Value.Month, fromDate.FromDate.Value.Day);
+    }
+    }
+            datedisabled: [@Html.Raw(datesDisabledreserva.ToString())],
             events: [
                @{
-
-                   foreach(var orders in Model.ListOrder)
+ // 1 = bloqueo
+ // 2 = reserva
+ // 3 = arriendo
+                   foreach(var orders in Model.ListOrder.Where(x=>x.OrderType==3))
                    {
+
                        var usuario = Model.ListUsers.First(x => x.Id.Equals(orders.UserReceiver));
-                      
+
                        for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
                        {
                            string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1}', datetime: new Date({2},{3},{4}),", usuario.FullName, usuario.Email, orders.FromDate.Value.Year, date.Month - 1, date.Day);
@@ -215,8 +279,21 @@
         };
     }(jQuery));
 
-</script>
+    </script>
+</div>
 
+
+
+
+<style>
+    .color-swatch {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    border-radius: 3px;
+}
+</style>
 
 
 <div class="body-content container-fluid">
@@ -225,13 +302,46 @@
 
             @Html.Partial("_DashBoardSide", "calendar")
 
-            <div class="col-md-9 text-center">
+            <div class="col-md-9 text-center" style="padding-bottom:4%;">
 
                 <h2>@Model.ListingCurrent.Title <span class="fa fa-calendar"></span></h2>
 
                 <div id="calendar"></div>
+                <br />
+            </div>   
+
+            <div class="row">
+                <div class="col-md-offset-3">
+                    <div class="color-swatch" style="background-color:cadetblue"></div>
+                    <div>
+                        <t  style="color:cadetblue"><strong>Arriendos</strong>, fechas ocupadas por clientes que arrendaron la propiedad.</t>
+                    </div>
+                </div>
             </div>
+            <br />
+            <div class="row">
+                <div class="col-md-offset-3">
+                    <div class="color-swatch" style="background-color:goldenrod"></div>
+                    <div>
+                        <t style="color:goldenrod"><strong>Reservas</strong> fechas ocupadas por ti mismo que reservaste por un motivo personal.</t>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-offset-3">
+                    <div class="color-swatch" style="background-color:darkred"></div>
+                    <div>
+                        <t style="color:darkred"><strong>Bloqueos</strong>, playamoblados bloqueo las fechas.</t>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+        
+
+        
     </div>
 </div>
 

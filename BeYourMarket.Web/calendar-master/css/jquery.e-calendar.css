@@ -41,6 +41,7 @@
     float: left;
     text-align: center;
     color: gray;
+    display:none;
 }
 
 .c-day-next-month {
@@ -50,6 +51,7 @@
     float: left;
     text-align: center;
     color: gray;
+    display:none;
 }
 
 .c-week-day {
@@ -94,8 +96,22 @@
     background-color: #D8EAF1;
 }
 
-.c-event {
-    background-color: rgb(166, 166, 166);
+.c-event-pasajero {
+    background-color: cadetblue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.c-event-reserva {
+    background-color: goldenrod;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.c-event-bloqueo {
+    background-color: darkred;
     color: white;
     font-weight: bold;
     cursor: pointer;
