@@ -1,7 +1,6 @@
 ﻿@using MoreLinq;
 @using i18n;
 @model BeYourMarket.Web.Models.SearchListingModel
-
 @{
     Layout = null;
 }
@@ -72,43 +71,41 @@
 
 
             <div style="background-color: rgba(0,0,0,0.5);">
-                <form class="intro-text form-inline" method="get" style="padding:10px;" role="form" action="@Url.Action("Search", "Home")">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "intro-text form-inline", @style = "padding:10px;", role = "form" }))
+                {
+                @*<form class="intro-text form-inline" method="get" style="padding:10px;" role="form" action="@Url.Action("Search", "Home")">*@
                     <h4 class="hidden-lg hidden-md hidden-sm ">Reserva tus vacaciones</h4>
                     <div class="form-group">
                         @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control datepicker" placeholder="[[[From]]]" id="FromDate" name="FromDate">
-                        
-                        @*@Html.TextBoxFor(p => p.FromDate, new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })*@
-
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control datepicker" placeholder="[[[To]]]" id="ToDate" name="ToDate">
-
-                        @*@Html.TextBoxFor(p => p.ToDate, new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })*@
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.DropDownListFor(p => p.Passengers,
-                new[]
-                {
-                    new SelectListItem{ Value = "1", Text = "1 pax" },
-                    new SelectListItem{ Value = "2", Text = "2 pax" },
-                    new SelectListItem{ Value = "3", Text = "3 pax" },
-                    new SelectListItem{ Value = "4", Text = "4 pax" },
-                    new SelectListItem{ Value = "5", Text = "5 pax" },
-                    new SelectListItem{ Value = "6", Text = "6 pax" },
-                    new SelectListItem{ Value = "7", Text = "7 pax" },
-                    new SelectListItem{ Value = "8", Text = "8+ pax" }
-                },
-                "[[[Passengers]]]", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
-                    </div>
-                </form>
+                        <div class="form-group">                            
+                            @*@Html.TextBoxFor(p => p.FromDate, new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })*@
+                            <input type="date" class="form-control" placeholder="[[[From]]]" id="FromDate" name="FromDate" data-rule-date="true">
+                        </div>
+                        <div class="form-group">
+                            @*@Html.TextBoxFor(p => p.ToDate, new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })*@
+                            <input type="date" class="form-control" placeholder="[[[To]]]" id="ToDate" name="ToDate" data-rule-date="true">
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(p => p.Passengers,
+                 new[]
+                 {
+                        new SelectListItem{ Value = "1", Text = "1 pax" },
+                        new SelectListItem{ Value = "2", Text = "2 pax" },
+                        new SelectListItem{ Value = "3", Text = "3 pax" },
+                        new SelectListItem{ Value = "4", Text = "4 pax" },
+                        new SelectListItem{ Value = "5", Text = "5 pax" },
+                        new SelectListItem{ Value = "6", Text = "6 pax" },
+                        new SelectListItem{ Value = "7", Text = "7 pax" },
+                        new SelectListItem{ Value = "8", Text = "8+ pax" }
+                 },
+                 "[[[Passengers]]]", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
+                        </div>
+                @*</form>*@
+                }
             </div>
         </div>
        
@@ -213,8 +210,8 @@
     <!--scripts loaded here from cdn for performance -->
 
     <script src="~/Scripts/bootstrap.min.js"></script>
-
     <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+
     @Html.Partial("_LocalizationDatePicker")
     <script type="text/javascript">
             $(document).ready(function () {

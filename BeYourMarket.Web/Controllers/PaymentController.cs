@@ -264,6 +264,30 @@ namespace BeYourMarket.Web.Controllers
         {
             var listing = await _listingService.FindAsync(order.ListingID);
 
+            //if (order.FromDate <= DateTime.Now.Date && order.ToDate >= DateTime.Now.Date || order.FromDate == DateTime.Now.Date && order.ToDate == DateTime.Now.Date)
+            //{
+            //    IEnumerable<Order> ordenes = null;
+            //    var fecha = DateTime.Now.Date;
+            //    ordenes = await _orderService.Query(x => x.ListingID == listing.ID && (x.FromDate <= fecha && x.ToDate >= fecha ||
+            //                                        x.FromDate == fecha && x.ToDate == fecha))
+            //        .SelectAsync();
+
+            //    if (ordenes.Count() > 0)
+            //    {
+            //        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+            //        TempData[TempDataKeys.UserMessage] = "[[[You can'n book this property, already previously reserved]]]";
+
+            //        return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+            //    }
+            //}
+
+            if (User.IsInRole("Administrator"))
+                order.OrderType = 1;
+            if (User.IsInRole("Owner"))
+                order.OrderType = 2;
+            if (!User.IsInRole("Administrator") && !User.IsInRole("Owner"))
+                order.OrderType = 3;
+
             if (listing == null)
                 return new HttpNotFoundResult();
 
@@ -282,7 +306,7 @@ namespace BeYourMarket.Web.Controllers
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
-            if (!User.IsInRole("Administrator"))
+            if(!User.IsInRole("Administrator"))
             {
                 if (listing.UserID != userCurrent.Id)
                 {

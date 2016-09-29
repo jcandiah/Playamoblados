@@ -36,12 +36,10 @@
                 }
                 @if (User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID)
                 {
-                    <input type="hidden" value="2" name="OrderType">
-                    <button class="btn btn-primary btn-bl9ock btn-block btn-lg">Reservar</button>
+                    <button type="submit" class="btn btn-primary btn-bl9ock btn-block btn-lg">Reservar</button>
                 }
                 else
                 {
-                    <input type="hidden" value="3" name="OrderType">
                     <button class="btn btn-primary btn-bl9ock btn-block btn-lg">@Model.ListingType.ButtonLabel</button>
                 }
             </form>
