@@ -64,40 +64,103 @@
                                     <input name="Active" type="hidden" value="false" />
                                 </div>*@
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[Rooms]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Rooms]]]" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[Beds]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Beds]]]" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[M2]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter M2]]]" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[Bathrooms]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of bathrooms]]]" onfocus="this.type='number'" id="Bathrooms" name="Bathrooms" value="@Model.ListingItem.Bathrooms" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[Cellars]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of cellars]]]" onfocus="this.type='number'" id="Cellar" name="Cellar" value="@Model.ListingItem.Cellar" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                     <label>[[[Parking Lot]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of Parking Lot]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-3">
                                     <label>[[[Floor Number]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter floor number]]]" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber" required>
                                 </div>
+
+                                @*DEAQUILONUEVO*@
+
+                                <div class="form-group col-md-3">
+                                    <label>[[[Max. Capacity]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Max capacity]]]" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Number of parking]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of parking]]]" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>[[[Number of TV]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of TV]]]" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv" required>
+                                </div>
+                               
+                                <div class="form-group col-md-3">
+                                    <label>[[[Dish washer]]] </label>
+                                    <input type="checkbox" id="Dishwasher" name="Dishwasher" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "") />
+                                    <input name="Dishwasher" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Washer]]] </label>
+                                    <input type="checkbox" id="Washer" name="Washer" value="true" @(Model.ListingItem.Washer ? "checked" : "") />
+                                    <input name="Washer" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Grill]]]</label>
+                                    <input type="checkbox" id="Grill" name="Grill" value="true" @(Model.ListingItem.Grill ? "checked" : "") />
+                                    <input name="Grill" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Terrace]]] </label>
+                                    <input type="checkbox" id="Terrace" name="Terrace" value="true" @(Model.ListingItem.Terrace ? "checked" : "") />
+                                    <input name="Terrace" type="hidden" value="false" />
+                                   
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Safety Mesh]]] </label>
+                                    <input type="checkbox" id="SafetyMesh" name="SafetyMesh" value="true" @(Model.ListingItem.SafetyMesh ? "checked" : "") />
+                                    <input name="SafetyMesh" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[WIFI]]] </label>
+                                    <input type="checkbox" id="Wifi" name="Wifi" value="true" @(Model.ListingItem.Wifi ? "checked" : "") />
+                                    <input name="Wifi" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[First Line]]] </label>
+                                    <input type="checkbox" id="FirstLine" name="FirstLine" value="true" @(Model.ListingItem.FirstLine ? "checked" : "") />
+                                    <input name="FirstLine" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>[[[TV cable]]] </label>
+                                    <input type="checkbox" id="TV_cable" name="TV_cable" value="true" @(Model.ListingItem.TV_cable ? "checked" : "") />
+                                    <input name="TV_cable" type="hidden" value="false" />
+                                </div>
+
+
+
+                               
+
                             </fieldset>
 
                             <div id="partialPlaceHolder">
