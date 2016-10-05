@@ -1,9 +1,46 @@
 ﻿@using Microsoft.Practices.Unity;
 @using Microsoft.Practices.Unity.Configuration;
+@using System.Net;
+@using System.Web.Script.Serialization;
+@using System.Collections.Generic;
 @model BeYourMarket.Web.Models.PaymentModel
 
 @{
     ViewBag.Title = "[[[Payment]]]";
+
+    string apiUrl = "http://www.mindicador.cl/api";
+    string jsonString = "{}";
+    WebClient http = new WebClient();
+    JavaScriptSerializer jss = new JavaScriptSerializer();
+
+    http.Headers.Add(HttpRequestHeader.Accept, "application/json");
+    jsonString = http.DownloadString(apiUrl);
+    var indicatorsObject = jss.Deserialize<Dictionary<string, object>>(jsonString);
+
+    Dictionary<string, Dictionary<string, string>> dailyIndicators = new Dictionary<string, Dictionary<string, string>>();
+
+    int i = 0;
+    foreach (var key in indicatorsObject.Keys.ToArray())
+    {
+        var item = indicatorsObject[key];
+
+        if (item.GetType().FullName.Contains("System.Collections.Generic.Dictionary"))
+        {
+            Dictionary<string, object> itemObject = (Dictionary<string, object>)item;
+            Dictionary<string, string> indicatorProp = new Dictionary<string, string>();
+
+            int j = 0;
+            foreach (var key2 in itemObject.Keys.ToArray())
+            {
+                indicatorProp.Add(key2, itemObject[key2].ToString());
+                j++;
+            }
+
+            dailyIndicators.Add(key, indicatorProp);
+        }
+        i++;
+    }
+    Response.Write("El valor actual de la UF es $" + dailyIndicators["uf"]["valor"]);
 }
 
 @section Styles {
@@ -63,6 +100,18 @@
 
                         <!-- Payment Hook -->
                         @Html.DoAction(HookName.Payment, Model.ListingOrder)*
+
+                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="73WGEALYFQE86">
+                            <input type="hidden" name="amount" value="10.15" />
+                            <input type="hidden" name="currency_code" value="CLP" />
+                            <input type="hidden" name="item_name" value="@Model.ListingOrder.Listing.Title" />
+                            <input type="hidden" name="item_number"  value="@Model.ListingOrder.ListingID"/>
+                            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+
+                        </form>                        
                     </div>
 
                 </div>

@@ -43,7 +43,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <button type="button" class="btn btn-default2" style="padding: 13px;">Inscribe tu propiedad</button>
+                        <a type="button" class="btn btn-default2" style="padding: 13px;" href="@if (User.Identity.IsAuthenticated) {@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })} else {@Url.Action("Login", "Account") } ">Inscribe tu propiedad</a>
                     </li>
                     <li>
                         <a href="#">Quiénes somos</a>

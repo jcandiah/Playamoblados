@@ -71,10 +71,10 @@
                     <div class="navbar-right">
                         @Html.Partial("_LoginPartial")
                     </div>
-                    @if(User.IsInRole("Owner") || User.IsInRole("Administrator"))
-                    {
+                    @*@if(User.IsInRole("Owner") || User.IsInRole("Administrator"))
+                    {*@
                     <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> [[[Register your property]]]</a>
-                    }
+                    @* } *@
                 </nav>
             </header>
 
