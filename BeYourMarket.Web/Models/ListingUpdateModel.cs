@@ -37,5 +37,7 @@ namespace BeYourMarket.Web.Models
         public List<PictureModel> Pictures { get; set; }
 
         public CustomFieldListingModel CustomFields { get; set; }
+
+
     }
 }
