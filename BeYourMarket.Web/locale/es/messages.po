@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-07 16:56-04:00\n"
-"PO-Revision-Date: 2016-10-07 16:56-04:00\n"
+"POT-Creation-Date: 2016-10-11 15:10-03:00\n"
+"PO-Revision-Date: 2016-10-11 15:10-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -148,7 +148,7 @@ msgstr "Todos los condominios"
 #: Areas\Admin\Views\Manage\Settings.cshtml:126
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:126
 msgid "Allow Listing Review"
-msgstr ""
+msgstr "Permite opinion sobre propiedad"
 
 #: Views\Account\Register.cshtml:84
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:84
@@ -247,7 +247,7 @@ msgstr "Etiqueta boton"
 #: obj\Release\Package\PackageTmp\Views\Manage\DashboardCalendar.cshtml:3
 #: obj\Release\Package\PackageTmp\Views\Shared\_DashBoardSide.cshtml:13
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 #: Views\Listing\ListingUpdate.cshtml:232
 #: Views\Listing\Review.cshtml:74
@@ -337,7 +337,7 @@ msgstr "Categorias"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:67
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: Areas\Admin\Views\Listing\Categories.cshtml:121
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:121
@@ -415,7 +415,7 @@ msgstr "Comentar"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:140
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:35
 msgid "Condominium"
-msgstr ""
+msgstr "Condominio"
 
 #: Views\Listing\Listings.cshtml:112
 #: Views\Shared\_NavigationSide.cshtml:99
@@ -767,7 +767,7 @@ msgstr "Stripe desconectado correctamente!"
 #: Views\Listing\ListingUpdate.cshtml:124
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:119
 msgid "Dish washer"
-msgstr ""
+msgstr "Lava vajilla"
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:161
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:161
@@ -855,7 +855,7 @@ msgstr "Email Confirmado"
 #: Views\Manage\ListingCalendar.cshtml:278
 #: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:278
 msgid "Email Contact: "
-msgstr ""
+msgstr "Email contacto :"
 
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:25
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:25
@@ -934,7 +934,7 @@ msgstr "Ingrese Email"
 #: Views\Account\Register.cshtml:51
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:51
 msgid "Enter First Name"
-msgstr ""
+msgstr "Nombre"
 
 #: Views\Listing\ListingUpdate.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
@@ -944,7 +944,7 @@ msgstr "Ingrese numero de piso"
 #: Views\Account\Register.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:55
 msgid "Enter Last Name"
-msgstr ""
+msgstr "Apellido"
 
 #: Views\Listing\ListingUpdate.cshtml:188
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
@@ -961,7 +961,7 @@ msgstr "Ingrese M2"
 #: Views\Listing\ListingUpdate.cshtml:111
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:106
 msgid "Enter Max capacity"
-msgstr ""
+msgstr "Max capacidad"
 
 #: Views\Listing\ListingUpdate.cshtml:79
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:74
@@ -971,7 +971,7 @@ msgstr "Ingrese numero de camas"
 #: Views\Listing\ListingUpdate.cshtml:115
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:110
 msgid "Enter Number of parking"
-msgstr ""
+msgstr "Nro de estacionamiento"
 
 #: Views\Listing\ListingUpdate.cshtml:69
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:69
@@ -980,12 +980,12 @@ msgstr "Ingrese numero de habitaciones"
 
 #: Views\Listing\ListingUpdate.cshtml:74
 msgid "Enter number of Suite"
-msgstr ""
+msgstr "Numero de Suite"
 
 #: Views\Listing\ListingUpdate.cshtml:120
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:115
 msgid "Enter Number of TV"
-msgstr ""
+msgstr "Numeros de TV"
 
 #: Views\Listing\ListingUpdate.cshtml:89
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:84
@@ -1382,7 +1382,7 @@ msgstr "Lista"
 #: Views\Listing\Listings.cshtml:56
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:56
 msgid "Lista"
-msgstr ""
+msgstr "Lista"
 
 #: Views\Listing\ListingUpdate.cshtml:34
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:34
@@ -1400,7 +1400,7 @@ msgstr "Propiedad esta actualizada!"
 
 #: Controllers\ListingController.cs:597
 msgid "Listing is updated, contact the provider to activate the service"
-msgstr ""
+msgstr "La propiedad se actualizo"
 
 #: Controllers\ListingController.cs:876
 msgid "Listing review is not allowed!"
@@ -1556,7 +1556,7 @@ msgstr "Logo"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:157
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:78
 msgid "M2"
-msgstr ""
+msgstr "M2"
 
 #: Views\Account\Register.cshtml:60
 #: Views\Manage\UserProfile.cshtml:73
@@ -1686,7 +1686,7 @@ msgstr "Mis propiedades"
 #: Views\Manage\DashboardCalendar.cshtml:19
 #: obj\Release\Package\PackageTmp\Views\Manage\DashboardCalendar.cshtml:19
 msgid "My Listings Calendar"
-msgstr ""
+msgstr "Calendario de propiedades"
 
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:19
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:62
@@ -1840,7 +1840,7 @@ msgstr "Otra informaciòn"
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:121
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:121
 msgid "Owner"
-msgstr ""
+msgstr "Pasajero"
 
 #: Views\Listing\Listings.cshtml:80
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:80
@@ -2395,7 +2395,7 @@ msgstr "Envío Activado"
 #: Views\Manage\DashboardCalendar.cshtml:45
 #: obj\Release\Package\PackageTmp\Views\Manage\DashboardCalendar.cshtml:45
 msgid "Show Calendar"
-msgstr ""
+msgstr "Mostrar Calendario"
 
 #: Areas\Admin\Views\Listing\Listings.cshtml:69
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
@@ -2559,7 +2559,7 @@ msgstr "El tipo de propiedad ha sido eliminado"
 
 #: Controllers\PaymentController.cs:468
 msgid "The maintenance was scheduled successfully!"
-msgstr ""
+msgstr "El mantenimiento se ha programado correctamente!"
 
 #: Models\ManageViewModels.cs:38
 #: Models\ManageViewModels.cs:57
@@ -3042,10 +3042,10 @@ msgstr "Su clave fue actualizada."
 #~ msgstr "Administracion"
 
 #~ msgid "Agregue motivo de bloqueo"
-#~ msgstr ""
+#~ msgstr "Agregue motivo de bloqueo"
 
 #~ msgid "All Categories"
-#~ msgstr ""
+#~ msgstr "Toda las categoria"
 
 #~ msgid "Enter Dish washer"
 #~ msgstr "Lava vajilla"

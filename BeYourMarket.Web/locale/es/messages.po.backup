@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-06 12:54-04:00\n"
-"PO-Revision-Date: 2016-10-06 12:54-04:00\n"
+"POT-Creation-Date: 2016-10-07 16:56-04:00\n"
+"PO-Revision-Date: 2016-10-07 16:56-04:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -148,7 +148,7 @@ msgstr "Todos los condominios"
 #: Areas\Admin\Views\Manage\Settings.cshtml:126
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:126
 msgid "Allow Listing Review"
-msgstr ""
+msgstr "Permite opinion sobre propiedad"
 
 #: Views\Account\Register.cshtml:84
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:84
@@ -182,7 +182,7 @@ msgstr "Aplicar"
 #: Views\Manage\Dashboard.cshtml:69
 #: Views\Payment\Orders.cshtml:167
 #: Areas\Admin\Views\Listing\Categories.cshtml:101
-#: Areas\Admin\Views\Listing\Listings.cshtml:92
+#: Areas\Admin\Views\Listing\Listings.cshtml:91
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: Areas\Admin\Views\Manage\Users.cshtml:77
 #: Areas\Admin\Views\Payment\Order.cshtml:142
@@ -247,7 +247,7 @@ msgstr "Etiqueta boton"
 #: obj\Release\Package\PackageTmp\Views\Manage\DashboardCalendar.cshtml:3
 #: obj\Release\Package\PackageTmp\Views\Shared\_DashBoardSide.cshtml:13
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 #: Views\Listing\ListingUpdate.cshtml:232
 #: Views\Listing\Review.cshtml:74
@@ -306,7 +306,7 @@ msgstr "Cancelado"
 
 #: Views\Manage\Dashboard.cshtml:93
 #: Views\Payment\Orders.cshtml:190
-#: Areas\Admin\Views\Listing\Listings.cshtml:105
+#: Areas\Admin\Views\Listing\Listings.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:190
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:105
@@ -337,7 +337,7 @@ msgstr "Categorias"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:67
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: Areas\Admin\Views\Listing\Categories.cshtml:121
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:121
@@ -415,7 +415,7 @@ msgstr "Comentar"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:140
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:35
 msgid "Condominium"
-msgstr ""
+msgstr "Condominio"
 
 #: Views\Listing\Listings.cshtml:112
 #: Views\Shared\_NavigationSide.cshtml:99
@@ -579,12 +579,12 @@ msgstr "Crear datos de muestra"
 #: Views\Shared\_LoginPartial.cshtml:90
 #: obj\Release\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:90
 msgid "Create your account"
-msgstr ""
+msgstr "Crear una cuenta"
 
 #: Views\Listing\_ListingGridList.cshtml:44
 #: Views\Payment\Orders.cshtml:133
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
-#: Areas\Admin\Views\Listing\Listings.cshtml:71
+#: Areas\Admin\Views\Listing\Listings.cshtml:70
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 #: Areas\Admin\Views\Payment\Order.cshtml:112
@@ -726,7 +726,6 @@ msgstr "Eliminado!"
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
-#: Areas\Admin\Views\Listing\Listings.cshtml:69
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: Areas\Admin\Views\Manage\Settings.cshtml:28
 #: Areas\Admin\Views\Payment\Order.cshtml:106
@@ -768,7 +767,7 @@ msgstr "Stripe desconectado correctamente!"
 #: Views\Listing\ListingUpdate.cshtml:124
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:119
 msgid "Dish washer"
-msgstr ""
+msgstr "Lava vajilla"
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:161
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:161
@@ -935,7 +934,7 @@ msgstr "Ingrese Email"
 #: Views\Account\Register.cshtml:51
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:51
 msgid "Enter First Name"
-msgstr ""
+msgstr "Nombre"
 
 #: Views\Listing\ListingUpdate.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
@@ -945,7 +944,7 @@ msgstr "Ingrese numero de piso"
 #: Views\Account\Register.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:55
 msgid "Enter Last Name"
-msgstr ""
+msgstr "Apellido"
 
 #: Views\Listing\ListingUpdate.cshtml:188
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
@@ -1100,7 +1099,7 @@ msgstr "Favicon"
 #: Views\Listing\Listings.cshtml:177
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:177
 msgid "Fecha"
-msgstr ""
+msgstr "Fecha"
 
 #: Views\Account\Register.cshtml:61
 #: Views\Manage\UserProfile.cshtml:76
@@ -1114,7 +1113,7 @@ msgstr "Mujer"
 #: Views\Listing\ListingUpdate.cshtml:155
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:150
 msgid "First Line"
-msgstr ""
+msgstr "Frente al mar"
 
 #: Models\AccountViewModels.cs:83
 #: Views\Account\Register.cshtml:50
@@ -1190,7 +1189,7 @@ msgstr "Nombre Completo"
 #: Views\Account\Register.cshtml:59
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:59
 msgid "Gender"
-msgstr ""
+msgstr "Genero"
 
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:102
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_NavigationSide.cshtml:102
@@ -1205,7 +1204,7 @@ msgstr "Cuadrícula"
 #: Views\Listing\ListingUpdate.cshtml:134
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:129
 msgid "Grill"
-msgstr ""
+msgstr "Parrilla"
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:92
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:92
@@ -1411,7 +1410,6 @@ msgstr "La vista de la propiedad no esta permitida "
 #: Views\Listing\Listings.cshtml:117
 #: Views\Shared\_ListingTypes.cshtml:6
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
-#: Areas\Admin\Views\Listing\Listings.cshtml:66
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:159
@@ -1624,7 +1622,7 @@ msgstr "Marcar como leido"
 #: Views\Listing\ListingUpdate.cshtml:110
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:105
 msgid "Max. Capacity"
-msgstr ""
+msgstr "Max. Capacidad"
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:137
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:137
@@ -1739,7 +1737,7 @@ msgstr "No!"
 
 #: Views\Manage\Dashboard.cshtml:75
 #: Areas\Admin\Views\Listing\Categories.cshtml:107
-#: Areas\Admin\Views\Listing\Listings.cshtml:98
+#: Areas\Admin\Views\Listing\Listings.cshtml:97
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 #: Areas\Admin\Views\Manage\Users.cshtml:83
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:75
@@ -1753,17 +1751,17 @@ msgstr "No. Por favor cancele"
 #: Views\Listing\ListingUpdate.cshtml:114
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:109
 msgid "Number of parking"
-msgstr ""
+msgstr "Nro de estacionamiento"
 
 #: Views\Listing\ListingUpdate.cshtml:119
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:114
 msgid "Number of TV"
-msgstr ""
+msgstr "Cantidad de TV"
 
 #: Views\Manage\UserProfile.cshtml:63
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:63
 msgid "Numero de telefono secundario"
-msgstr ""
+msgstr "Numero de telefono secundario"
 
 #: Views\Listing\Listings.cshtml:206
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:206
@@ -2239,12 +2237,12 @@ msgstr "Habitaciones"
 
 #: Views\Listing\ListingUpdate.cshtml:73
 msgid "Rooms Suite"
-msgstr ""
+msgstr "Habitacion Suite"
 
 #: Views\Listing\ListingUpdate.cshtml:145
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:140
 msgid "Safety Mesh"
-msgstr ""
+msgstr "Malla de seguridad"
 
 #: Views\Manage\UserProfile.cshtml:88
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
@@ -2399,7 +2397,7 @@ msgstr "Envío Activado"
 msgid "Show Calendar"
 msgstr ""
 
-#: Areas\Admin\Views\Listing\Listings.cshtml:70
+#: Areas\Admin\Views\Listing\Listings.cshtml:69
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:70
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
@@ -2514,7 +2512,7 @@ msgstr "Terminos & Condiciones"
 #: Views\Listing\ListingUpdate.cshtml:139
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:134
 msgid "Terrace"
-msgstr ""
+msgstr "Terraza"
 
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:74
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:74
@@ -2914,7 +2912,7 @@ msgstr "Vistas"
 #: Views\Listing\ListingUpdate.cshtml:129
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:124
 msgid "Washer"
-msgstr ""
+msgstr "Lavadora"
 
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:8
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:8
@@ -2928,7 +2926,7 @@ msgstr "Bienvenido a {0}!"
 #: Views\Listing\ListingUpdate.cshtml:150
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:145
 msgid "WIFI"
-msgstr ""
+msgstr "WIFI"
 
 #: Views\Listing\Review.cshtml:72
 #: Views\Listing\_ListingReviewModal.cshtml:27
@@ -2951,7 +2949,7 @@ msgstr "Si!"
 
 #: Views\Manage\Dashboard.cshtml:74
 #: Areas\Admin\Views\Listing\Categories.cshtml:106
-#: Areas\Admin\Views\Listing\Listings.cshtml:97
+#: Areas\Admin\Views\Listing\Listings.cshtml:96
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 #: Areas\Admin\Views\Manage\Users.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:74
@@ -3005,7 +3003,7 @@ msgid "You must have a confirmed email to log on."
 msgstr "Debes tener la confirmacion del Email para iniciar la sesion"
 
 #: Views\Manage\Dashboard.cshtml:70
-#: Areas\Admin\Views\Listing\Listings.cshtml:93
+#: Areas\Admin\Views\Listing\Listings.cshtml:92
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:70
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:93
 msgid "You will delete"
@@ -3050,7 +3048,7 @@ msgstr "Su clave fue actualizada."
 #~ msgstr ""
 
 #~ msgid "Enter Dish washer"
-#~ msgstr ""
+#~ msgstr "Lava vajilla"
 
 #~ msgid "Latest Listings"
 #~ msgstr "Ultimas propiedades"
@@ -3059,7 +3057,7 @@ msgstr "Su clave fue actualizada."
 #~ msgstr "Mis datos"
 
 #~ msgid "passengers"
-#~ msgstr ""
+#~ msgstr "pasajeros"
 
 #~ msgid "Property is updated, contact the provider to activate the service"
 #~ msgstr "La propiedad fue ingresada, contacte al proovedor para activar el servicio"
@@ -3068,10 +3066,10 @@ msgstr "Su clave fue actualizada."
 #~ msgstr "Publicar una propiedad"
 
 #~ msgid "Publish Listing"
-#~ msgstr ""
+#~ msgstr "Publicar propiedad"
 
 #~ msgid "Publish new listing"
-#~ msgstr ""
+#~ msgstr "Publicar nueva propiedad"
 
 #~ msgid "See All Listings"
 #~ msgstr "Ver todas las propiedades"
