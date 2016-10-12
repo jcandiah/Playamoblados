@@ -64,17 +64,22 @@
                                     <input name="Active" type="hidden" value="false" />
                                 </div>*@
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label>[[[Rooms]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Rooms]]]" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
                                 </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Beds]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Beds]]]" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds" required>
+                                <div class="form-group col-md-3">
+                                    <label>[[[Rooms Suite]]]</label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Suite]]]" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
+                                    <label>[[[Beds]]]</label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Beds]]]" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds">
+                                </div>
+
+                                <div class="form-group col-md-3">
                                     <label>[[[M2]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter M2]]]" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2" required>
                                 </div>
@@ -95,8 +100,8 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label>[[[Floor Number]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter floor number]]]" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber" required>
+                                    <label>[[[Floor Number]]]</label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter floor number]]]" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber" >
                                 </div>
 
                                 @*DEAQUILONUEVO*@
@@ -106,13 +111,13 @@
                                     <input type="text" class="form-control input-lg" placeholder="[[[Enter Max capacity]]]" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label>[[[Number of parking]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of parking]]]" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
+                                    <label>[[[Number of parking]]]</label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of parking]]]" onfocus="this.type='number'" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking " >
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label>[[[Number of TV]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of TV]]]" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv" required>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of TV]]]" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
                                 </div>
                                
                                 <div class="form-group col-md-3">
@@ -261,7 +266,7 @@
             showCaption: false,
             showRemove: false,
             showUpload: false,
-            maxFileCount: 5,
+            maxFileCount: 20,
             overwriteInitial: false,
             initialPreview: [
                     @Html.Raw(preview.ToString())
