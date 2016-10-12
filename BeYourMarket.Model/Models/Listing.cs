@@ -44,19 +44,21 @@ namespace BeYourMarket.Model.Models
         public Nullable<int> Bathrooms { get; set; }
         public Nullable<int> Cellar { get; set; }
         public Nullable<int> ParkingLot { get; set; }
-        public int FloorNumber { get; set; }  
+        public Nullable<int> FloorNumber { get; set; }  
         public int Max_Capacity { get; set;}
         public bool Dishwasher { get; set; }
         public bool Washer { get; set; }
         public bool Grill { get; set; }
         public bool Terrace { get; set; }
-        public int NroOfParking { get; set; }
+        public Nullable<int> NroOfParking { get; set; }
         public bool SafetyMesh { get; set; }
         public bool Wifi { get; set; }
         public bool TV_cable { get; set; }
-        public int Tv { get; set; }
+        public Nullable<int> Tv { get; set; }
 
         public bool FirstLine { get; set;}
+
+        public Nullable<int> Suite { get; set; }
 
 
         //Referencias
