@@ -281,13 +281,6 @@ namespace BeYourMarket.Web.Controllers
             //    }
             //}
 
-            if (User.IsInRole("Administrator"))
-                order.OrderType = 1;
-            if (User.IsInRole("Owner"))
-                order.OrderType = 2;
-            if (!User.IsInRole("Administrator") && !User.IsInRole("Owner"))
-                order.OrderType = 3;
-
             if (listing == null)
                 return new HttpNotFoundResult();
 
@@ -310,6 +303,7 @@ namespace BeYourMarket.Web.Controllers
             {
                 if (listing.UserID != userCurrent.Id)
                 {
+                    order.OrderType = 3;
                     //foreach (var descriptor in descriptors)
                     //{
                     //    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
@@ -373,6 +367,7 @@ namespace BeYourMarket.Web.Controllers
                 }
                 else
                 {
+                    order.OrderType = 2;
                     if (order.ID == 0)
                     {
                         order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
@@ -422,6 +417,7 @@ namespace BeYourMarket.Web.Controllers
             }
             else
             {
+                order.OrderType = 1;
                 if (order.ID == 0)
                 {
                     order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
