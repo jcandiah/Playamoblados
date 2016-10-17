@@ -388,7 +388,9 @@ namespace BeYourMarket.Web.Controllers
             if (model.PriceTo.HasValue)
                 items = items.Where(x => x.Price <= model.PriceTo.Value);
             #endregion
-
+            #region Busqueda Propiedad
+                items = items.Where(x => x.ID == model.Property);
+            #endregion
 
             // Show active and enabled only
             var itemsModelList = new List<ListingItemModel>();
