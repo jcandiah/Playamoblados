@@ -63,5 +63,7 @@ namespace BeYourMarket.Web.Models
         public List<ListingType> ListingTypes { get; set; }
 
         public ListingModelGrid Grid { get; set; }
+
+        public int Property { get; set; }
     }
 }
