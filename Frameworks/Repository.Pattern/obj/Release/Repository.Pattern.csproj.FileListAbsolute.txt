@@ -1,0 +1,5 @@
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Release\Repository.Pattern.dll.config
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Release\Repository.Pattern.dll
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Release\Repository.Pattern.pdb
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\obj\Release\Repository.Pattern.dll
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\obj\Release\Repository.Pattern.pdb

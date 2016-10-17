@@ -1,0 +1,168 @@
+﻿<error errorId="da4150b1-4708-4735-b0a3-b07bbdbec8ad" host="PCMATIAS" type="System.Web.HttpParseException" message="Only one 'model' statement is allowed in a file.&#xD;&#xA;" source="System.Web.WebPages.Razor" detail="System.Web.HttpParseException (0x80004005): Only one 'model' statement is allowed in a file.&#xD;&#xA;&#xD;&#xA;   at System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode()&#xD;&#xA;   at System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType()&#xD;&#xA;   at System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)&#xD;&#xA;   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()&#xD;&#xA;   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()&#xD;&#xA;   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)&#xD;&#xA;   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)&#xD;&#xA;   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)&#xD;&#xA;   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)&#xD;&#xA;   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)&#xD;&#xA;   at System.Web.Compilation.BuildManager.GetCompiledType(String virtualPath)&#xD;&#xA;   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.GetCompiledType(String virtualPath)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)" user="mlara@ratio.cl" time="2016-08-10T21:47:45.9346190Z" statusCode="500" webHostHtmlMessage="&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html&gt;&#xD;&#xA;    &lt;head&gt;&#xD;&#xA;        &lt;title&gt;Parser Error&lt;/title&gt;&#xD;&#xA;        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;&#xD;&#xA;        &lt;style&gt;&#xD;&#xA;         body {font-family:&quot;Verdana&quot;;font-weight:normal;font-size: .7em;color:black;} &#xD;&#xA;         p {font-family:&quot;Verdana&quot;;font-weight:normal;color:black;margin-top: -5px}&#xD;&#xA;         b {font-family:&quot;Verdana&quot;;font-weight:bold;color:black;margin-top: -5px}&#xD;&#xA;         H1 { font-family:&quot;Verdana&quot;;font-weight:normal;font-size:18pt;color:red }&#xD;&#xA;         H2 { font-family:&quot;Verdana&quot;;font-weight:normal;font-size:14pt;color:maroon }&#xD;&#xA;         pre {font-family:&quot;Consolas&quot;,&quot;Lucida Console&quot;,Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}&#xD;&#xA;         .marker {font-weight: bold; color: black;text-decoration: none;}&#xD;&#xA;         .version {color: gray;}&#xD;&#xA;         .error {margin-bottom: 10px;}&#xD;&#xA;         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:hand; }&#xD;&#xA;         @media screen and (max-width: 639px) {&#xD;&#xA;          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }&#xD;&#xA;         }&#xD;&#xA;         @media screen and (max-width: 479px) {&#xD;&#xA;          pre { width: 280px; }&#xD;&#xA;         }&#xD;&#xA;        &lt;/style&gt;&#xD;&#xA;    &lt;/head&gt;&#xD;&#xA;&#xD;&#xA;    &lt;body bgcolor=&quot;white&quot;&gt;&#xD;&#xA;&#xD;&#xA;            &lt;span&gt;&lt;H1&gt;Server Error in '/' Application.&lt;hr width=100% size=1 color=silver&gt;&lt;/H1&gt;&#xD;&#xA;&#xD;&#xA;            &lt;h2&gt; &lt;i&gt;Parser Error&lt;/i&gt; &lt;/h2&gt;&lt;/span&gt;&#xD;&#xA;&#xD;&#xA;            &lt;font face=&quot;Arial, Helvetica, Geneva, SunSans-Regular, sans-serif &quot;&gt;&#xD;&#xA;&#xD;&#xA;            &lt;b&gt; Description: &lt;/b&gt;An error occurred during the parsing of a resource required to service this request.   Please review the following specific parse error details and modify your source file appropriately.&#xD;&#xA;            &lt;br&gt;&lt;br&gt;&#xD;&#xA;&#xD;&#xA;            &lt;b&gt; Parser Error Message: &lt;/b&gt;Only one 'model' statement is allowed in a file.&lt;br&gt;&lt;br&gt;&lt;br&gt;&#xD;&#xA;&#xD;&#xA;            &lt;b&gt;Source Error:&lt;/b&gt; &lt;br&gt;&lt;br&gt;&#xD;&#xA;&#xD;&#xA;            &lt;table width=100% bgcolor=&quot;#ffffcc&quot;&gt;&#xD;&#xA;               &lt;tr&gt;&#xD;&#xA;                  &lt;td&gt;&#xD;&#xA;                      &lt;code&gt;&lt;pre&gt;&#xD;&#xA;&#xD;&#xA;Line 1:  @using MoreLinq;&#xD;&#xA;Line 2:  @model BeYourMarket.Web.Models.SearchListingModel&#xD;&#xA;&lt;font color=red&gt;Line 3:  @model BeYourMarket.Model.Models.Listing&#xD;&#xA;&lt;/font&gt;Line 4:  &#xD;&#xA;Line 5:  @{&lt;/pre&gt;&lt;/code&gt;&#xD;&#xA;&#xD;&#xA;                  &lt;/td&gt;&#xD;&#xA;               &lt;/tr&gt;&#xD;&#xA;            &lt;/table&gt;&#xD;&#xA;&#xD;&#xA;            &lt;br&gt;&#xD;&#xA;&#xD;&#xA;            &lt;b&gt; Source File: &lt;/b&gt; /Views/home/index.cshtml&lt;b&gt; &amp;nbsp;&amp;nbsp; Line: &lt;/b&gt; 3&#xD;&#xA;            &lt;br&gt;&lt;br&gt;&#xD;&#xA;&#xD;&#xA;    &lt;/body&gt;&#xD;&#xA;&lt;/html&gt;&#xD;&#xA;">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:es-ES,es;q=0.8,en;q=0.6&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=JxhOEHzJrwAcqxtIJs7qQwnAjM7vB07p-6YDUtLThREWyLsHm6SJqi3UWlbznTZ5R7GX1HyqPsP14h4GDERg8hZH0cMafl1gokrrQJIgAIE1; .AspNet.ApplicationCookie=Utj-cVtwJfHFbbzBfmo4EjWnaPc2ap0fub66OkDDrU3Bd5nCWvANZ5DHzv-65kkgdn2a9EmOgJwuGvYDIAIZuJGLM1rByYFdhXY71ZmRvk8m9gvnvchcK6V44z4Rv1XXwBKvcfon4dNwPsEd5QAErTGVPjGFNvcwj3Yd-fU6XKYzy3GtJBjmyMiCLYcrZzBhFvQV-Gctqtd2EM4sJ305VQRbQhe0RV3Bg4g-2bIu6eKqotR_tDIRHClq8UQXrYaPOE7bQQk1puENNw9wWq2Q4yVakRVdLy2A_xD8ZDscsxiMiaOppA56cLBaPpiNHriMvroveuLSVRwh7tDFfON3qVTFsU8rTKhE8PMCARvE26geFkOGNmtjtqVHAwLt2Y3NoqL2PextIPYPKCBtiKxomhgKEx5uSr_3we1qVXHuoN9EppR3ETMej_GEOW1NqaMYPFzVcPTffFgAC_F8qZTxFiZai2z3vSTLEVp_I99Pkto&#xD;&#xA;HTTP_HOST:localhost:8389&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: es-ES,es;q=0.8,en;q=0.6&#xD;&#xA;Cookie: __RequestVerificationToken=JxhOEHzJrwAcqxtIJs7qQwnAjM7vB07p-6YDUtLThREWyLsHm6SJqi3UWlbznTZ5R7GX1HyqPsP14h4GDERg8hZH0cMafl1gokrrQJIgAIE1; .AspNet.ApplicationCookie=Utj-cVtwJfHFbbzBfmo4EjWnaPc2ap0fub66OkDDrU3Bd5nCWvANZ5DHzv-65kkgdn2a9EmOgJwuGvYDIAIZuJGLM1rByYFdhXY71ZmRvk8m9gvnvchcK6V44z4Rv1XXwBKvcfon4dNwPsEd5QAErTGVPjGFNvcwj3Yd-fU6XKYzy3GtJBjmyMiCLYcrZzBhFvQV-Gctqtd2EM4sJ305VQRbQhe0RV3Bg4g-2bIu6eKqotR_tDIRHClq8UQXrYaPOE7bQQk1puENNw9wWq2Q4yVakRVdLy2A_xD8ZDscsxiMiaOppA56cLBaPpiNHriMvroveuLSVRwh7tDFfON3qVTFsU8rTKhE8PMCARvE26geFkOGNmtjtqVHAwLt2Y3NoqL2PextIPYPKCBtiKxomhgKEx5uSr_3we1qVXHuoN9EppR3ETMej_GEOW1NqaMYPFzVcPTffFgAC_F8qZTxFiZai2z3vSTLEVp_I99Pkto&#xD;&#xA;Host: localhost:8389&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\Matias\Downloads\beyourmarket-master\src\BeYourMarket.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/home/index" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\Matias\Downloads\beyourmarket-master\src\BeYourMarket.Web\home\index" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="14379" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/home/index" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="8389" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/home/index" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="es-ES,es;q=0.8,en;q=0.6" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=JxhOEHzJrwAcqxtIJs7qQwnAjM7vB07p-6YDUtLThREWyLsHm6SJqi3UWlbznTZ5R7GX1HyqPsP14h4GDERg8hZH0cMafl1gokrrQJIgAIE1; .AspNet.ApplicationCookie=Utj-cVtwJfHFbbzBfmo4EjWnaPc2ap0fub66OkDDrU3Bd5nCWvANZ5DHzv-65kkgdn2a9EmOgJwuGvYDIAIZuJGLM1rByYFdhXY71ZmRvk8m9gvnvchcK6V44z4Rv1XXwBKvcfon4dNwPsEd5QAErTGVPjGFNvcwj3Yd-fU6XKYzy3GtJBjmyMiCLYcrZzBhFvQV-Gctqtd2EM4sJ305VQRbQhe0RV3Bg4g-2bIu6eKqotR_tDIRHClq8UQXrYaPOE7bQQk1puENNw9wWq2Q4yVakRVdLy2A_xD8ZDscsxiMiaOppA56cLBaPpiNHriMvroveuLSVRwh7tDFfON3qVTFsU8rTKhE8PMCARvE26geFkOGNmtjtqVHAwLt2Y3NoqL2PextIPYPKCBtiKxomhgKEx5uSr_3we1qVXHuoN9EppR3ETMej_GEOW1NqaMYPFzVcPTffFgAC_F8qZTxFiZai2z3vSTLEVp_I99Pkto" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:8389" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="JxhOEHzJrwAcqxtIJs7qQwnAjM7vB07p-6YDUtLThREWyLsHm6SJqi3UWlbznTZ5R7GX1HyqPsP14h4GDERg8hZH0cMafl1gokrrQJIgAIE1" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="Utj-cVtwJfHFbbzBfmo4EjWnaPc2ap0fub66OkDDrU3Bd5nCWvANZ5DHzv-65kkgdn2a9EmOgJwuGvYDIAIZuJGLM1rByYFdhXY71ZmRvk8m9gvnvchcK6V44z4Rv1XXwBKvcfon4dNwPsEd5QAErTGVPjGFNvcwj3Yd-fU6XKYzy3GtJBjmyMiCLYcrZzBhFvQV-Gctqtd2EM4sJ305VQRbQhe0RV3Bg4g-2bIu6eKqotR_tDIRHClq8UQXrYaPOE7bQQk1puENNw9wWq2Q4yVakRVdLy2A_xD8ZDscsxiMiaOppA56cLBaPpiNHriMvroveuLSVRwh7tDFfON3qVTFsU8rTKhE8PMCARvE26geFkOGNmtjtqVHAwLt2Y3NoqL2PextIPYPKCBtiKxomhgKEx5uSr_3we1qVXHuoN9EppR3ETMej_GEOW1NqaMYPFzVcPTffFgAC_F8qZTxFiZai2z3vSTLEVp_I99Pkto" />
+    </item>
+  </cookies>
+</error>

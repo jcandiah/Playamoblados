@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-11 15:10-03:00\n"
-"PO-Revision-Date: 2016-10-11 15:10-03:00\n"
+"POT-Creation-Date: 2016-10-14 16:32-03:00\n"
+"PO-Revision-Date: 2016-10-14 16:32-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -189,7 +189,7 @@ msgstr "Aplicar"
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:69
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:167
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:91
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:77
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:142
@@ -219,14 +219,14 @@ msgstr "Volver al inicio"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:216
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:142
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:143
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:83
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:88
 msgid "Bathrooms"
 msgstr "Baños"
 
 #: Views\Listing\Listing.cshtml:207
 #: Views\Listing\ListingUpdate.cshtml:78
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:207
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:73
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:78
 msgid "Beds"
 msgstr "Camas"
 
@@ -270,7 +270,7 @@ msgstr "Calendario"
 #: Areas\Admin\Views\Payment\Order.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:29
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:227
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:232
 #: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:74
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:27
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:31
@@ -309,7 +309,7 @@ msgstr "Cancelado"
 #: Areas\Admin\Views\Listing\Listings.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:190
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:105
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:104
 msgid "Cancelled!"
 msgstr "Cancelado!"
 
@@ -349,7 +349,7 @@ msgstr "Categoria fue eliminada"
 #: Views\Listing\ListingUpdate.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:152
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:153
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:88
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:93
 msgid "Cellars"
 msgstr "Bodegas"
 
@@ -460,8 +460,8 @@ msgstr "Confirmar Clave"
 #: Views\Listing\ListingUpdate.cshtml:226
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:69
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:70
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:220
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:221
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:225
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:226
 msgid "Confirm Password"
 msgstr "Confirmar Clave"
 
@@ -591,7 +591,7 @@ msgstr "Crear una cuenta"
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:44
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:133
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:70
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:112
@@ -737,7 +737,6 @@ msgstr "Eliminado!"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:28
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:106
@@ -765,7 +764,7 @@ msgid "Disconnnect to stripe successfully!"
 msgstr "Stripe desconectado correctamente!"
 
 #: Views\Listing\ListingUpdate.cshtml:124
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:119
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:124
 msgid "Dish washer"
 msgstr "Lava vajilla"
 
@@ -835,7 +834,7 @@ msgstr "Email"
 
 #: Views\Listing\ListingUpdate.cshtml:215
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:210
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:215
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "Email"
@@ -927,7 +926,7 @@ msgid "Enter Email"
 msgstr "Ingrese Email"
 
 #: Views\Listing\ListingUpdate.cshtml:216
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:211
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:216
 msgid "Enter Email Address"
 msgstr "Ingrese Email"
 
@@ -937,7 +936,7 @@ msgid "Enter First Name"
 msgstr "Nombre"
 
 #: Views\Listing\ListingUpdate.cshtml:104
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:104
 msgid "Enter floor number"
 msgstr "Ingrese numero de piso"
 
@@ -948,28 +947,28 @@ msgstr "Apellido"
 
 #: Views\Listing\ListingUpdate.cshtml:188
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:183
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:188
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Enter Location"
 msgstr "Ingresasr Ubicacion"
 
 #: Views\Listing\ListingUpdate.cshtml:84
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:79
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:84
 msgid "Enter M2"
 msgstr "Ingrese M2"
 
 #: Views\Listing\ListingUpdate.cshtml:111
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:106
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:111
 msgid "Enter Max capacity"
 msgstr "Max capacidad"
 
 #: Views\Listing\ListingUpdate.cshtml:79
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:74
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:79
 msgid "Enter number of Beds"
 msgstr "Ingrese numero de camas"
 
 #: Views\Listing\ListingUpdate.cshtml:115
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:110
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:115
 msgid "Enter Number of parking"
 msgstr "Nro de estacionamiento"
 
@@ -979,31 +978,32 @@ msgid "Enter number of Rooms"
 msgstr "Ingrese numero de habitaciones"
 
 #: Views\Listing\ListingUpdate.cshtml:74
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:74
 msgid "Enter number of Suite"
 msgstr "Numero de Suite"
 
 #: Views\Listing\ListingUpdate.cshtml:120
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:115
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:120
 msgid "Enter Number of TV"
 msgstr "Numeros de TV"
 
 #: Views\Listing\ListingUpdate.cshtml:89
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:84
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:89
 msgid "Enter numbers of bathrooms"
 msgstr "Ingrese nuero de baños"
 
 #: Views\Listing\ListingUpdate.cshtml:94
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:89
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:94
 msgid "Enter numbers of cellars"
 msgstr "Ingrese numero de bodegas"
 
 #: Views\Listing\ListingUpdate.cshtml:99
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:94
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
 msgid "Enter numbers of Parking Lot"
 msgstr "Ingrese numero de estacionamientos"
 
 #: Views\Listing\ListingUpdate.cshtml:208
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:203
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:208
 msgid "Enter Phone Number"
 msgstr "Ingrese numero de celular"
 
@@ -1045,7 +1045,7 @@ msgid "Enter your email."
 msgstr "Ingresa tu Email"
 
 #: Views\Listing\ListingUpdate.cshtml:204
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:199
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:204
 msgid "Enter Your Full Name"
 msgstr "Ingresa tu Nombre completo"
 
@@ -1111,7 +1111,7 @@ msgid "Female"
 msgstr "Mujer"
 
 #: Views\Listing\ListingUpdate.cshtml:155
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:150
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:155
 msgid "First Line"
 msgstr "Frente al mar"
 
@@ -1126,7 +1126,7 @@ msgid "First Name"
 msgstr "Nombre"
 
 #: Views\Listing\ListingUpdate.cshtml:103
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:98
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:103
 msgid "Floor Number"
 msgstr "Numero de piso"
 
@@ -1142,9 +1142,9 @@ msgstr "Olvidaste confirmar contraseña"
 msgid "Forgot your password?"
 msgstr "Olvidaste tu clave?"
 
-#: Controllers\PaymentController.cs:341
-#: Controllers\PaymentController.cs:390
-#: Controllers\PaymentController.cs:439
+#: Controllers\PaymentController.cs:371
+#: Controllers\PaymentController.cs:423
+#: Controllers\PaymentController.cs:473
 #: Views\Home\Index.cshtml:82
 #: Views\Home\Index.cshtml:83
 #: Views\Listing\Listings.cshtml:161
@@ -1154,7 +1154,7 @@ msgstr "Olvidaste tu clave?"
 #: Views\Listing\Listings.cshtml:195
 #: Views\Listing\_ListingPayment.cshtml:28
 #: Views\Listing\_ListingPayment.cshtml:60
-#: Views\Payment\Payment.cshtml:80
+#: Views\Payment\Payment.cshtml:81
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:83
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:161
@@ -1164,12 +1164,12 @@ msgstr "Olvidaste tu clave?"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:195
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:28
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:60
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:80
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:81
 msgid "From"
 msgstr "De"
 
-#: Views\Payment\Payment.cshtml:78
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:78
+#: Views\Payment\Payment.cshtml:79
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:79
 msgid "From Date"
 msgstr "Fecha"
 
@@ -1181,7 +1181,7 @@ msgid "Frontend"
 msgstr "Inicio"
 
 #: Views\Listing\ListingUpdate.cshtml:203
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:198
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:203
 msgid "Full Name"
 msgstr "Nombre Completo"
 
@@ -1202,7 +1202,7 @@ msgid "Grid"
 msgstr "Cuadrícula"
 
 #: Views\Listing\ListingUpdate.cshtml:134
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:129
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:134
 msgid "Grill"
 msgstr "Parrilla"
 
@@ -1394,15 +1394,15 @@ msgstr "Detalles de Propiedad"
 msgid "Listing ID"
 msgstr "Propiedad ID"
 
-#: Controllers\ListingController.cs:602
+#: Controllers\ListingController.cs:603
 msgid "Listing is updated!"
 msgstr "Propiedad esta actualizada!"
 
-#: Controllers\ListingController.cs:597
+#: Controllers\ListingController.cs:598
 msgid "Listing is updated, contact the provider to activate the service"
 msgstr "La propiedad se actualizo"
 
-#: Controllers\ListingController.cs:876
+#: Controllers\ListingController.cs:877
 msgid "Listing review is not allowed!"
 msgstr "La vista de la propiedad no esta permitida "
 
@@ -1416,7 +1416,6 @@ msgstr "La vista de la propiedad no esta permitida "
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:117
 #: obj\Release\Package\PackageTmp\Views\Shared\_ListingTypes.cshtml:6
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:66
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
 msgid "Listing Type"
@@ -1481,8 +1480,8 @@ msgstr "Propiedades por categoria"
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:167
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:180
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:182
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:185
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:187
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:43
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
@@ -1554,7 +1553,7 @@ msgstr "Logo"
 #: Views\Listing\Listings.cshtml:157
 #: Views\Listing\ListingUpdate.cshtml:83
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:157
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:78
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:83
 msgid "M2"
 msgstr "M2"
 
@@ -1620,7 +1619,7 @@ msgid "Mark as read"
 msgstr "Marcar como leido"
 
 #: Views\Listing\ListingUpdate.cshtml:110
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:105
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:110
 msgid "Max. Capacity"
 msgstr "Max. Capacidad"
 
@@ -1640,7 +1639,7 @@ msgstr "Mensaje"
 msgid "Message is sent."
 msgstr "Mensaje enviado"
 
-#: Controllers\ListingController.cs:734
+#: Controllers\ListingController.cs:735
 msgid "Message sent succesfully!"
 msgstr "Beskeden er sendt"
 
@@ -1742,19 +1741,19 @@ msgstr "No!"
 #: Areas\Admin\Views\Manage\Users.cshtml:83
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:75
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:107
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:98
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:97
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:83
 msgid "No, cancel please!"
 msgstr "No. Por favor cancele"
 
 #: Views\Listing\ListingUpdate.cshtml:114
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:109
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:114
 msgid "Number of parking"
 msgstr "Nro de estacionamiento"
 
 #: Views\Listing\ListingUpdate.cshtml:119
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:114
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:119
 msgid "Number of TV"
 msgstr "Cantidad de TV"
 
@@ -1865,7 +1864,7 @@ msgstr "Pagado"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:224
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:137
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:138
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:93
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:98
 msgid "Parking Lot"
 msgstr "Estacionamientos"
 
@@ -1893,8 +1892,8 @@ msgstr "Pasajeros"
 #: obj\Release\Package\PackageTmp\Views\Account\Login.cshtml:28
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:65
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:66
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:216
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:217
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:221
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:222
 #: obj\Release\Package\PackageTmp\Views\Manage\Index.cshtml:13
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Install\Index.cshtml:32
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Install\Index.cshtml:33
@@ -1960,7 +1959,7 @@ msgstr "Pendiente"
 #: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:41
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:73
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:202
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:207
 #: obj\Release\Package\PackageTmp\Views\Manage\AddPhoneNumber.cshtml:3
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:56
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:41
@@ -2043,7 +2042,7 @@ msgstr "Tilbage"
 #: Views\Listing\ListingUpdate.cshtml:57
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:126
-#: Views\Payment\Payment.cshtml:99
+#: Views\Payment\Payment.cshtml:100
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: Areas\Admin\Views\Payment\Order.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:150
@@ -2052,7 +2051,7 @@ msgstr "Tilbage"
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:57
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:41
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:126
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:99
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:100
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:104
 msgid "Price"
@@ -2103,7 +2102,7 @@ msgid "Published"
 msgstr "Publicar"
 
 #: Views\Listing\ListingUpdate.cshtml:201
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:196
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:201
 msgid "Publisher's Info"
 msgstr "Info Dueño"
 
@@ -2176,7 +2175,7 @@ msgid "Reply here..."
 msgstr "Responder aca"
 
 #: Views\Listing\ListingUpdate.cshtml:231
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:226
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:231
 msgid "Request publication"
 msgstr "Solicitar publicacion"
 
@@ -2215,11 +2214,11 @@ msgstr "Opinion"
 
 #: Views\Listing\Listing.cshtml:62
 #: Views\Listing\Review.cshtml:5
-#: Views\Listing\_ListingCard.cshtml:26
+#: Views\Listing\_ListingCard.cshtml:25
 #: Views\Listing\_ListingReview.cshtml:11
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:62
 #: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:5
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingCard.cshtml:26
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingCard.cshtml:25
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingReview.cshtml:11
 msgid "Reviews"
 msgstr "Opiniones"
@@ -2236,11 +2235,12 @@ msgid "Rooms"
 msgstr "Habitaciones"
 
 #: Views\Listing\ListingUpdate.cshtml:73
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:73
 msgid "Rooms Suite"
 msgstr "Habitacion Suite"
 
 #: Views\Listing\ListingUpdate.cshtml:145
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:140
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:145
 msgid "Safety Mesh"
 msgstr "Malla de seguridad"
 
@@ -2399,13 +2399,13 @@ msgstr "Mostrar Calendario"
 
 #: Areas\Admin\Views\Listing\Listings.cshtml:69
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:70
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
 msgid "Show Email"
 msgstr "Ver Email"
 
 #: Views\Listing\ListingUpdate.cshtml:211
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:206
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:211
 msgid "Show Phone"
 msgstr "Mostrar Telefono."
 
@@ -2510,7 +2510,7 @@ msgid "Terms & Conditions"
 msgstr "Terminos & Condiciones"
 
 #: Views\Listing\ListingUpdate.cshtml:139
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:134
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:139
 msgid "Terrace"
 msgstr "Terraza"
 
@@ -2528,8 +2528,8 @@ msgstr "Probando"
 msgid "Thank you for confirming your email."
 msgstr "Gracias por confirmar tu Email."
 
-#: Controllers\ListingController.cs:858
-#: Controllers\ListingController.cs:947
+#: Controllers\ListingController.cs:859
+#: Controllers\ListingController.cs:948
 msgid "Thanks for your feedback!"
 msgstr "Gracias por tu comentario"
 
@@ -2557,7 +2557,7 @@ msgstr "La propiedad ha sido eliminada"
 msgid "The listing type has been deleted."
 msgstr "El tipo de propiedad ha sido eliminado"
 
-#: Controllers\PaymentController.cs:468
+#: Controllers\PaymentController.cs:502
 msgid "The maintenance was scheduled successfully!"
 msgstr "El mantenimiento se ha programado correctamente!"
 
@@ -2580,11 +2580,11 @@ msgstr "La pagina que estas buscando no existe."
 msgid "The password and confirmation password do not match."
 msgstr "\"La clave y la confirmacion de la clave no coinciden."
 
-#: Controllers\PaymentController.cs:321
+#: Controllers\PaymentController.cs:351
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr "El proveedor no tiene configurado la opcion de pago para {0} todavia, por favor contactarse con el proveedor."
 
-#: Controllers\PaymentController.cs:305
+#: Controllers\PaymentController.cs:334
 msgid "The provider has not setup the payment option yet, please contact the provider."
 msgstr "El proveedor no tiene configurado la opcion de pago todavia, por favor contactarse con el proveedor."
 
@@ -2631,13 +2631,13 @@ msgid "There are no new messages"
 msgstr "No hay mensajes nuevos"
 
 #: Controllers\ListingController.cs:186
-#: Controllers\ListingController.cs:377
+#: Controllers\ListingController.cs:378
 #: Areas\Admin\Controllers\ListingController.cs:390
 #: Areas\Admin\Controllers\ListingController.cs:490
 msgid "There are not categories available yet."
 msgstr "No hay categorias disponible aun."
 
-#: Controllers\ListingController.cs:448
+#: Controllers\ListingController.cs:449
 msgid "There are not listing types available yet."
 msgstr "No hay tipos de propiedades aun."
 
@@ -2690,9 +2690,9 @@ msgstr "Formato Tiempo"
 msgid "Title"
 msgstr "Titulo"
 
-#: Controllers\PaymentController.cs:341
-#: Controllers\PaymentController.cs:390
-#: Controllers\PaymentController.cs:439
+#: Controllers\PaymentController.cs:371
+#: Controllers\PaymentController.cs:423
+#: Controllers\PaymentController.cs:473
 #: Views\Home\Index.cshtml:86
 #: Views\Home\Index.cshtml:87
 #: Views\Listing\Listings.cshtml:164
@@ -2702,7 +2702,7 @@ msgstr "Titulo"
 #: Views\Listing\Listings.cshtml:196
 #: Views\Listing\_ListingPayment.cshtml:30
 #: Views\Listing\_ListingPayment.cshtml:62
-#: Views\Payment\Payment.cshtml:87
+#: Views\Payment\Payment.cshtml:88
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:86
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:87
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:164
@@ -2712,7 +2712,7 @@ msgstr "Titulo"
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:196
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:30
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:62
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:87
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:88
 msgid "To"
 msgstr "Hasta"
 
@@ -2726,8 +2726,8 @@ msgstr "Para completar este asistente , debe conocer alguna información acerca 
 msgid "To configure payment method for payout, please configure the Payment plugin"
 msgstr ""
 
-#: Views\Payment\Payment.cshtml:85
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:85
+#: Views\Payment\Payment.cshtml:86
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:86
 msgid "To Date"
 msgstr "Fecha"
 
@@ -2768,7 +2768,7 @@ msgid "Transactions"
 msgstr "Arriendos"
 
 #: Views\Listing\ListingUpdate.cshtml:160
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:155
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:160
 msgid "TV cable"
 msgstr "TV cable"
 
@@ -2808,7 +2808,7 @@ msgstr "Inicio de sesion sin exito con el servicio."
 
 #: Views\Listing\ListingUpdate.cshtml:176
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:171
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:176
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
 msgstr "Subir fotos"
@@ -2910,7 +2910,7 @@ msgid "Views"
 msgstr "Vistas"
 
 #: Views\Listing\ListingUpdate.cshtml:129
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:124
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:129
 msgid "Washer"
 msgstr "Lavadora"
 
@@ -2924,7 +2924,7 @@ msgid "Welcome to {0}!"
 msgstr "Bienvenido a {0}!"
 
 #: Views\Listing\ListingUpdate.cshtml:150
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:145
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:150
 msgid "WIFI"
 msgstr "WIFI"
 
@@ -2954,17 +2954,22 @@ msgstr "Si!"
 #: Areas\Admin\Views\Manage\Users.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:74
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:106
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:97
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:96
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:82
 msgid "Yes, delete it!"
 msgstr "Si, Borrar"
 
-#: Controllers\PaymentController.cs:419
+#: Controllers\PaymentController.cs:402
+#: Controllers\PaymentController.cs:452
 msgid "You booked your stay correctly!"
 msgstr "Has reservado tu estadia correctamente"
 
-#: Controllers\PaymentController.cs:278
+#: Controllers\PaymentController.cs:319
+msgid "You can not book with these selected dates!"
+msgstr ""
+
+#: Controllers\PaymentController.cs:279
 msgid "You can'n book this property, already previously reserved"
 msgstr ""
 
@@ -2972,21 +2977,21 @@ msgstr ""
 msgid "You cannot delete Administrator, change the user role first."
 msgstr "No puedes eliminar al Administrador, cambia los roles de usuario primero."
 
-#: Controllers\ListingController.cs:616
+#: Controllers\ListingController.cs:617
 #: Areas\Admin\Controllers\ListingController.cs:657
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "No puedes eliminar Propiedades cuando ya estan reservadas."
 
-#: Controllers\ListingController.cs:811
+#: Controllers\ListingController.cs:812
 msgid "You cannot review the order!"
 msgstr "No puede opinar de la reserva!"
 
-#: Controllers\ListingController.cs:803
-#: Controllers\ListingController.cs:903
+#: Controllers\ListingController.cs:804
+#: Controllers\ListingController.cs:904
 msgid "You cannot review yourself!"
 msgstr "No puedes opinar a ti mismo!"
 
-#: Controllers\ListingController.cs:706
+#: Controllers\ListingController.cs:707
 msgid "You cannot send message to yourself!"
 msgstr "No puedes enviarte mensajes a ti mismo!"
 
@@ -2994,7 +2999,11 @@ msgstr "No puedes enviarte mensajes a ti mismo!"
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr "No puedes eliminar el tipo de propiedad, Debe haber por lo menos un tipo de propiedad"
 
-#: Controllers\ListingController.cs:889
+#: Controllers\PaymentController.cs:289
+msgid "You cant book just to one day, minimun two day."
+msgstr "No puedes reservar solo por un dia, minimo dos dias."
+
+#: Controllers\ListingController.cs:890
 msgid "You have reach the review limits today!"
 msgstr "Llegaste a los límites de revisión hoy!"
 
@@ -3005,7 +3014,7 @@ msgstr "Debes tener la confirmacion del Email para iniciar la sesion"
 #: Views\Manage\Dashboard.cshtml:70
 #: Areas\Admin\Views\Listing\Listings.cshtml:92
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:70
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:93
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
 msgid "You will delete"
 msgstr "Sera eliminado"
 
@@ -3029,7 +3038,7 @@ msgstr "Eliminaras el usuario y todas sus propiedades"
 msgid "Your Email"
 msgstr "Tu Email"
 
-#: Controllers\ListingController.cs:624
+#: Controllers\ListingController.cs:625
 msgid "Your listing has been deleted."
 msgstr "Su propiedad ha sido eliminada"
 
@@ -3050,6 +3059,9 @@ msgstr "Su clave fue actualizada."
 #~ msgid "Enter Dish washer"
 #~ msgstr "Lava vajilla"
 
+#~ msgid "Hola"
+#~ msgstr ""
+
 #~ msgid "Latest Listings"
 #~ msgstr "Ultimas propiedades"
 
@@ -3058,6 +3070,9 @@ msgstr "Su clave fue actualizada."
 
 #~ msgid "passengers"
 #~ msgstr "pasajeros"
+
+#~ msgid "Pene"
+#~ msgstr ""
 
 #~ msgid "Property is updated, contact the provider to activate the service"
 #~ msgstr "La propiedad fue ingresada, contacte al proovedor para activar el servicio"

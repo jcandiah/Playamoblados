@@ -263,6 +263,7 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Order(Order order)
         {
             var listing = await _listingService.FindAsync(order.ListingID);
+            var ordersListing = await _orderService.Query(x=>x.ListingID==order.ListingID).SelectAsync();
 
             //if (order.FromDate <= DateTime.Now.Date && order.ToDate >= DateTime.Now.Date || order.FromDate == DateTime.Now.Date && order.ToDate == DateTime.Now.Date)
             //{
@@ -280,6 +281,16 @@ namespace BeYourMarket.Web.Controllers
             //        return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             //    }
             //}
+            if (!User.IsInRole("Administrator"))
+            {
+                if (order.FromDate == order.ToDate)
+                {
+                    TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                    TempData[TempDataKeys.UserMessage] = "[[[You cant book just to one day, minimun two day.]]]";
+
+                    return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+                }
+            }
 
             if (listing == null)
                 return new HttpNotFoundResult();
@@ -289,6 +300,31 @@ namespace BeYourMarket.Web.Controllers
                 return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }) });
 
             var userCurrent = User.Identity.User();
+
+
+            //validar que los dias no esten reservados
+            List<DateTime> FechasCocinadas = new List<DateTime>();
+            for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+            {
+                FechasCocinadas.Add(date);
+              
+            }
+            foreach (Order ordenesArrendadas in ordersListing)
+            {
+                for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
+                {
+                    if(FechasCocinadas.Contains(date))
+                    {
+                        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                        TempData[TempDataKeys.UserMessage] = "[[[You can not book with these selected dates!]]]";
+                        return RedirectToAction("Listing", "Listing", new { id = listing.ID });
+                    }
+                }
+
+            }
+
+
+
 
             // Check if payment method is setup on user or the platform
             var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, "Payment").Where(x => x.Enabled);
@@ -339,7 +375,7 @@ namespace BeYourMarket.Web.Controllers
                                 order.ToDate.Value.ToShortDateString()));
 
                             order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
-                            order.Price = order.Quantity * listing.Price;
+                            order.Price = (order.Quantity-1) * listing.Price;
                         }
                         else if (order.Quantity.HasValue)
                         {
@@ -362,7 +398,9 @@ namespace BeYourMarket.Web.Controllers
 
                     ClearCache();
 
-                    return RedirectToAction("Payment", new { id = order.ID });
+                    //return RedirectToAction("Payment", new { id = order.ID });
+                    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+                    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
 
                 }
                 else
