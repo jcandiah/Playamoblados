@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-14 12:31-03:00\n"
-"PO-Revision-Date: 2016-10-14 12:31-03:00\n"
+"POT-Creation-Date: 2016-09-15 11:56-03:00\n"
+"PO-Revision-Date: 2016-09-15 11:56-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,7 +12,7 @@ msgstr ""
 msgid "\", \"(((\").Replace(\""
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:301
+#: Views\Listing\Listing.cshtml:268
 #: Views\Listing\Profile.cshtml:25
 #: Views\Listing\Review.cshtml:36
 msgid "{0:N0} reviews"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Add new page"
 msgstr ""
 
-#: Views\Shared\_DashBoardSide.cshtml:33
+#: Views\Shared\_DashBoardSide.cshtml:32
 msgid "Admin"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Agreement Text"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:113
+#: Views\Listing\Listings.cshtml:59
 msgid "All Condominium"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Allow Listing Review"
 msgstr ""
 
-#: Views\Account\Register.cshtml:84
+#: Views\Account\Register.cshtml:69
 msgid "Already a member?"
 msgstr ""
 
@@ -137,14 +137,14 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:213
+#: Views\Listing\Listings.cshtml:159
 msgid "Apply"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:69
 #: Views\Payment\Orders.cshtml:167
 #: Areas\Admin\Views\Listing\Categories.cshtml:101
-#: Areas\Admin\Views\Listing\Listings.cshtml:91
+#: Areas\Admin\Views\Listing\Listings.cshtml:92
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: Areas\Admin\Views\Manage\Users.cshtml:77
 #: Areas\Admin\Views\Payment\Order.cshtml:142
@@ -164,15 +164,13 @@ msgstr ""
 msgid "Back to the Home"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:216
-#: Views\Listing\Listings.cshtml:142
-#: Views\Listing\Listings.cshtml:143
-#: Views\Listing\ListingUpdate.cshtml:88
+#: Views\Listing\Listings.cshtml:88
+#: Views\Listing\Listings.cshtml:89
+#: Views\Listing\ListingUpdate.cshtml:83
 msgid "Bathrooms"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:207
-#: Views\Listing\ListingUpdate.cshtml:78
+#: Views\Listing\ListingUpdate.cshtml:73
 msgid "Beds"
 msgstr ""
 
@@ -185,12 +183,7 @@ msgstr ""
 msgid "Button Label"
 msgstr ""
 
-#: Views\Manage\DashboardCalendar.cshtml:3
-#: Views\Shared\_DashBoardSide.cshtml:13
-msgid "Calendar"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:232
+#: Views\Listing\ListingUpdate.cshtml:164
 #: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:27
 #: Views\Payment\Orders.cshtml:31
@@ -223,7 +216,7 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:93
 #: Views\Payment\Orders.cshtml:190
-#: Areas\Admin\Views\Listing\Listings.cshtml:104
+#: Areas\Admin\Views\Listing\Listings.cshtml:105
 msgid "Cancelled!"
 msgstr ""
 
@@ -232,7 +225,9 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
+#: Views\Listing\Listing.cshtml:140
 #: Views\Listing\ListingUpdate.cshtml:35
+#: Views\Listing\_ListingGridList.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:69
@@ -247,15 +242,15 @@ msgstr ""
 msgid "Category is deleted."
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:152
-#: Views\Listing\Listings.cshtml:153
-#: Views\Listing\ListingUpdate.cshtml:93
+#: Views\Listing\Listings.cshtml:98
+#: Views\Listing\Listings.cshtml:99
+#: Views\Listing\ListingUpdate.cshtml:88
 msgid "Cellars"
 msgstr ""
 
 #: Views\Manage\ChangePassword.cshtml:3
 #: Views\Manage\ChangePassword.cshtml:47
-#: Views\Shared\_DashBoardSide.cshtml:28
+#: Views\Shared\_DashBoardSide.cshtml:27
 #: Views\Shared\_LoginPartial.cshtml:71
 msgid "Change Password"
 msgstr ""
@@ -290,17 +285,13 @@ msgstr ""
 msgid "Code"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
 #: Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
 msgid "Comments"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:140
-#: Views\Listing\_ListingGridList.cshtml:35
-msgid "Condominium"
-msgstr ""
-
-#: Views\Listing\Listings.cshtml:112
+#: Views\Listing\Listings.cshtml:58
 #: Views\Shared\_NavigationSide.cshtml:99
 msgid "Condominiums"
 msgstr ""
@@ -327,14 +318,14 @@ msgid "Confirm new password"
 msgstr ""
 
 #: Models\AccountViewModels.cs:79
-#: Models\AccountViewModels.cs:107
+#: Models\AccountViewModels.cs:104
 msgid "Confirm password"
 msgstr ""
 
-#: Views\Account\Register.cshtml:69
-#: Views\Account\Register.cshtml:70
-#: Views\Listing\ListingUpdate.cshtml:225
-#: Views\Listing\ListingUpdate.cshtml:226
+#: Views\Account\Register.cshtml:54
+#: Views\Account\Register.cshtml:55
+#: Views\Listing\ListingUpdate.cshtml:157
+#: Views\Listing\ListingUpdate.cshtml:158
 msgid "Confirm Password"
 msgstr ""
 
@@ -352,15 +343,15 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
 msgid "Connnect to stripe successfully!"
 msgstr ""
 
 #: Views\Home\Contact.cshtml:4
 #: Views\Listing\Listing.cshtml:66
-#: Views\Listing\Listing.cshtml:269
-#: Views\Listing\Listing.cshtml:272
-#: Views\Listing\Listing.cshtml:306
+#: Views\Listing\Listing.cshtml:236
+#: Views\Listing\Listing.cshtml:239
+#: Views\Listing\Listing.cshtml:273
 #: Views\Listing\_ListingContactModal.cshtml:8
 msgid "Contact"
 msgstr ""
@@ -373,8 +364,8 @@ msgstr ""
 msgid "Contact Name"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:263
-#: Views\Listing\Listing.cshtml:263
+#: Views\Listing\Listing.cshtml:230
+#: Views\Listing\Listing.cshtml:230
 #: Views\Listing\_ListingContactModal.cshtml:17
 msgid "Contact number (Click to show)"
 msgstr ""
@@ -427,7 +418,7 @@ msgstr ""
 #: Views\Listing\_ListingGridList.cshtml:44
 #: Views\Payment\Orders.cshtml:133
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
-#: Areas\Admin\Views\Listing\Listings.cshtml:70
+#: Areas\Admin\Views\Listing\Listings.cshtml:71
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 #: Areas\Admin\Views\Payment\Order.cshtml:112
@@ -531,6 +522,7 @@ msgstr ""
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
+#: Areas\Admin\Views\Listing\Listings.cshtml:69
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: Areas\Admin\Views\Manage\Settings.cshtml:28
 #: Areas\Admin\Views\Payment\Order.cshtml:106
@@ -550,12 +542,8 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
 msgid "Disconnnect to stripe successfully!"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:124
-msgid "Dish washer"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:161
@@ -593,8 +581,8 @@ msgstr ""
 #: Models\AccountViewModels.cs:45
 #: Models\AccountViewModels.cs:52
 #: Models\AccountViewModels.cs:69
-#: Models\AccountViewModels.cs:97
-#: Models\AccountViewModels.cs:118
+#: Models\AccountViewModels.cs:94
+#: Models\AccountViewModels.cs:115
 #: Views\Account\Register.cshtml:46
 #: Areas\Admin\Views\Manage\Settings.cshtml:49
 #: Areas\Admin\Views\Manage\Settings.cshtml:51
@@ -603,7 +591,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:215
+#: Views\Listing\ListingUpdate.cshtml:147
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr ""
@@ -615,10 +603,6 @@ msgstr ""
 #: Areas\Admin\Views\Manage\Users.cshtml:40
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:67
 msgid "Email Confirmed"
-msgstr ""
-
-#: Views\Manage\ListingCalendar.cshtml:278
-msgid "Email Contact: "
 msgstr ""
 
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:25
@@ -669,68 +653,44 @@ msgstr ""
 msgid "Enter Email"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:216
+#: Views\Listing\ListingUpdate.cshtml:148
 msgid "Enter Email Address"
 msgstr ""
 
-#: Views\Account\Register.cshtml:51
-msgid "Enter First Name"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:104
+#: Views\Listing\ListingUpdate.cshtml:99
 msgid "Enter floor number"
 msgstr ""
 
-#: Views\Account\Register.cshtml:55
-msgid "Enter Last Name"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:188
+#: Views\Listing\ListingUpdate.cshtml:120
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Enter Location"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:84
+#: Views\Listing\ListingUpdate.cshtml:79
 msgid "Enter M2"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:111
-msgid "Enter Max capacity"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:79
+#: Views\Listing\ListingUpdate.cshtml:74
 msgid "Enter number of Beds"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:115
-msgid "Enter Number of parking"
 msgstr ""
 
 #: Views\Listing\ListingUpdate.cshtml:69
 msgid "Enter number of Rooms"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:74
-msgid "Enter number of Suite"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:120
-msgid "Enter Number of TV"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:89
+#: Views\Listing\ListingUpdate.cshtml:84
 msgid "Enter numbers of bathrooms"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:94
+#: Views\Listing\ListingUpdate.cshtml:89
 msgid "Enter numbers of cellars"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:99
+#: Views\Listing\ListingUpdate.cshtml:94
 msgid "Enter numbers of Parking Lot"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:208
+#: Views\Listing\ListingUpdate.cshtml:140
 msgid "Enter Phone Number"
 msgstr ""
 
@@ -763,7 +723,7 @@ msgstr ""
 msgid "Enter your email."
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:204
+#: Views\Listing\ListingUpdate.cshtml:136
 msgid "Enter Your Full Name"
 msgstr ""
 
@@ -788,7 +748,7 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: Controllers\ManageController.cs:274
+#: Controllers\ManageController.cs:271
 msgid "Failed to verify phone"
 msgstr ""
 
@@ -803,28 +763,22 @@ msgstr ""
 msgid "Favicon"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:177
+#: Views\Listing\Listings.cshtml:123
 msgid "Fecha"
 msgstr ""
 
-#: Views\Account\Register.cshtml:61
 #: Views\Manage\UserProfile.cshtml:76
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:50
 msgid "Female"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:155
-msgid "First Line"
-msgstr ""
-
 #: Models\AccountViewModels.cs:83
-#: Views\Account\Register.cshtml:50
 #: Views\Manage\UserProfile.cshtml:43
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:30
 msgid "First Name"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:103
+#: Views\Listing\ListingUpdate.cshtml:98
 msgid "Floor Number"
 msgstr ""
 
@@ -837,23 +791,23 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr ""
 
-#: Controllers\PaymentController.cs:371
-#: Controllers\PaymentController.cs:423
-#: Controllers\PaymentController.cs:473
-#: Views\Home\Index.cshtml:82
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
 #: Views\Home\Index.cshtml:83
-#: Views\Listing\Listings.cshtml:161
-#: Views\Listing\Listings.cshtml:168
-#: Views\Listing\Listings.cshtml:181
-#: Views\Listing\Listings.cshtml:187
-#: Views\Listing\Listings.cshtml:195
-#: Views\Listing\_ListingPayment.cshtml:28
-#: Views\Listing\_ListingPayment.cshtml:60
-#: Views\Payment\Payment.cshtml:81
+#: Views\Home\Index.cshtml:85
+#: Views\Listing\Listings.cshtml:107
+#: Views\Listing\Listings.cshtml:114
+#: Views\Listing\Listings.cshtml:127
+#: Views\Listing\Listings.cshtml:133
+#: Views\Listing\Listings.cshtml:141
+#: Views\Listing\_ListingPayment.cshtml:29
+#: Views\Listing\_ListingPayment.cshtml:61
+#: Views\Payment\Payment.cshtml:43
 msgid "From"
 msgstr ""
 
-#: Views\Payment\Payment.cshtml:79
+#: Views\Payment\Payment.cshtml:41
 msgid "From Date"
 msgstr ""
 
@@ -862,25 +816,16 @@ msgstr ""
 msgid "Frontend"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:203
+#: Views\Listing\ListingUpdate.cshtml:135
 msgid "Full Name"
-msgstr ""
-
-#: Models\AccountViewModels.cs:89
-#: Views\Account\Register.cshtml:59
-msgid "Gender"
 msgstr ""
 
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:102
 msgid "General Settings"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:48
+#: Views\Listing\Listings.cshtml:172
 msgid "Grid"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:134
-msgid "Grill"
 msgstr ""
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:92
@@ -919,7 +864,7 @@ msgstr ""
 msgid "Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured."
 msgstr ""
 
-#: Controllers\AccountController.cs:264
+#: Controllers\AccountController.cs:263
 msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
 msgstr ""
 
@@ -927,7 +872,7 @@ msgstr ""
 msgid "Host"
 msgstr ""
 
-#: Views\Account\Register.cshtml:76
+#: Views\Account\Register.cshtml:61
 msgid "I accept the"
 msgstr ""
 
@@ -973,11 +918,11 @@ msgstr ""
 msgid "Javascript Code Editor"
 msgstr ""
 
-#: Views\Account\Register.cshtml:79
+#: Views\Account\Register.cshtml:64
 msgid "Join"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:296
+#: Views\Listing\Listing.cshtml:263
 #: Views\Listing\Profile.cshtml:28
 #: Views\Listing\Review.cshtml:33
 msgid "Joined since"
@@ -998,7 +943,6 @@ msgid "Last Access IP"
 msgstr ""
 
 #: Models\AccountViewModels.cs:86
-#: Views\Account\Register.cshtml:54
 #: Views\Manage\UserProfile.cshtml:49
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:37
 msgid "Last Name"
@@ -1014,11 +958,11 @@ msgstr ""
 msgid "Let me in"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:49
+#: Views\Listing\Listings.cshtml:173
 msgid "List"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:56
+#: Views\Listing\Listings.cshtml:180
 msgid "Lista"
 msgstr ""
 
@@ -1030,22 +974,23 @@ msgstr ""
 msgid "Listing ID"
 msgstr ""
 
-#: Controllers\ListingController.cs:603
+#: Controllers\ListingController.cs:602
 msgid "Listing is updated!"
 msgstr ""
 
-#: Controllers\ListingController.cs:598
+#: Controllers\ListingController.cs:597
 msgid "Listing is updated, contact the provider to activate the service"
 msgstr ""
 
-#: Controllers\ListingController.cs:877
+#: Controllers\ListingController.cs:876
 msgid "Listing review is not allowed!"
 msgstr ""
 
 #: Views\Listing\Listing.cshtml:159
-#: Views\Listing\Listings.cshtml:117
+#: Views\Listing\Listings.cshtml:63
 #: Views\Shared\_ListingTypes.cshtml:6
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
+#: Areas\Admin\Views\Listing\Listings.cshtml:66
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
 msgid "Listing Type"
@@ -1087,8 +1032,8 @@ msgid "Listings by category"
 msgstr ""
 
 #: Views\Listing\Listing.cshtml:167
-#: Views\Listing\ListingUpdate.cshtml:185
-#: Views\Listing\ListingUpdate.cshtml:187
+#: Views\Listing\ListingUpdate.cshtml:117
+#: Views\Listing\ListingUpdate.cshtml:119
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
@@ -1120,7 +1065,7 @@ msgid "Log off"
 msgstr ""
 
 #: Views\Account\Login.cshtml:5
-#: Views\Account\Register.cshtml:84
+#: Views\Account\Register.cshtml:69
 #: Areas\Admin\Views\Install\Index.cshtml:77
 msgid "Login"
 msgstr ""
@@ -1141,12 +1086,11 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:157
-#: Views\Listing\ListingUpdate.cshtml:83
+#: Views\Listing\Listings.cshtml:103
+#: Views\Listing\ListingUpdate.cshtml:78
 msgid "M2"
 msgstr ""
 
-#: Views\Account\Register.cshtml:60
 #: Views\Manage\UserProfile.cshtml:73
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:47
 msgid "Male"
@@ -1181,7 +1125,7 @@ msgstr ""
 msgid "Manage Users"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:249
+#: Views\Listing\Listing.cshtml:216
 msgid "Map"
 msgstr ""
 
@@ -1193,10 +1137,6 @@ msgstr ""
 msgid "Mark as read"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:110
-msgid "Max. Capacity"
-msgstr ""
-
 #: Areas\Admin\Views\Manage\Settings.cshtml:137
 msgid "Max. Review per day"
 msgstr ""
@@ -1206,11 +1146,11 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: Controllers\ManageController.cs:551
+#: Controllers\ManageController.cs:531
 msgid "Message is sent."
 msgstr ""
 
-#: Controllers\ListingController.cs:735
+#: Controllers\ListingController.cs:734
 msgid "Message sent succesfully!"
 msgstr ""
 
@@ -1226,7 +1166,7 @@ msgstr ""
 #: Views\Manage\Message.cshtml:21
 #: Views\Manage\Messages.cshtml:7
 #: Views\Manage\Messages.cshtml:26
-#: Views\Shared\_DashBoardSide.cshtml:15
+#: Views\Shared\_DashBoardSide.cshtml:14
 #: Views\Shared\_LoginPartial.cshtml:23
 msgid "Messages"
 msgstr ""
@@ -1241,10 +1181,6 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:20
 msgid "My Listings"
-msgstr ""
-
-#: Views\Manage\DashboardCalendar.cshtml:19
-msgid "My Listings Calendar"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:19
@@ -1284,25 +1220,17 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:75
 #: Areas\Admin\Views\Listing\Categories.cshtml:107
-#: Areas\Admin\Views\Listing\Listings.cshtml:97
+#: Areas\Admin\Views\Listing\Listings.cshtml:98
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 #: Areas\Admin\Views\Manage\Users.cshtml:83
 msgid "No, cancel please!"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:114
-msgid "Number of parking"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:119
-msgid "Number of TV"
 msgstr ""
 
 #: Views\Manage\UserProfile.cshtml:63
 msgid "Numero de telefono secundario"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:206
+#: Views\Listing\Listings.cshtml:152
 msgid "Only show listings with photos"
 msgstr ""
 
@@ -1320,7 +1248,7 @@ msgstr ""
 msgid "Order ID"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
 msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
 msgstr ""
 
@@ -1342,7 +1270,7 @@ msgstr ""
 #: Views\Payment\Orders.cshtml:7
 #: Views\Payment\Orders.cshtml:88
 #: Views\Payment\Orders.cshtml:96
-#: Views\Shared\_DashBoardSide.cshtml:21
+#: Views\Shared\_DashBoardSide.cshtml:20
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: Areas\Admin\Views\Payment\Order.cshtml:7
 #: Areas\Admin\Views\Payment\Order.cshtml:65
@@ -1359,7 +1287,7 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:80
+#: Views\Listing\Listings.cshtml:204
 msgid "Page {0} of {1}"
 msgstr ""
 
@@ -1367,32 +1295,32 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
 msgid "Paid"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:224
-#: Views\Listing\Listings.cshtml:137
-#: Views\Listing\Listings.cshtml:138
-#: Views\Listing\ListingUpdate.cshtml:98
+#: Views\Listing\Listings.cshtml:83
+#: Views\Listing\Listings.cshtml:84
+#: Views\Listing\ListingUpdate.cshtml:93
 msgid "Parking Lot"
 msgstr ""
 
-#: Views\Home\Index.cshtml:102
-#: Views\Listing\Listings.cshtml:132
-#: Views\Listing\Listings.cshtml:133
+#: Views\Home\Index.cshtml:108
+#: Views\Listing\Listings.cshtml:78
+#: Views\Listing\Listings.cshtml:79
 msgid "Passengers"
 msgstr ""
 
 #: Models\AccountViewModels.cs:58
 #: Models\AccountViewModels.cs:75
-#: Models\AccountViewModels.cs:103
+#: Models\AccountViewModels.cs:100
 #: Views\Account\Login.cshtml:28
-#: Views\Account\Register.cshtml:65
-#: Views\Account\Register.cshtml:66
-#: Views\Listing\ListingUpdate.cshtml:221
-#: Views\Listing\ListingUpdate.cshtml:222
+#: Views\Account\Register.cshtml:50
+#: Views\Account\Register.cshtml:51
+#: Views\Listing\ListingUpdate.cshtml:153
+#: Views\Listing\ListingUpdate.cshtml:154
 #: Views\Manage\Index.cshtml:13
 #: Areas\Admin\Views\Install\Index.cshtml:32
 #: Areas\Admin\Views\Install\Index.cshtml:33
@@ -1400,7 +1328,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: Views\Payment\Payment.cshtml:9
+#: Views\Payment\Payment.cshtml:6
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:77
 msgid "Payment"
 msgstr ""
@@ -1419,7 +1347,7 @@ msgstr ""
 msgid "Payment Settings"
 msgstr ""
 
-#: Views\Shared\_DashBoardSide.cshtml:23
+#: Views\Shared\_DashBoardSide.cshtml:22
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:117
 msgid "Payments"
 msgstr ""
@@ -1430,14 +1358,15 @@ msgstr ""
 
 #: Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:46
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 msgid "Pending"
 msgstr ""
 
 #: Models\ManageViewModels.cs:65
-#: Views\Listing\ListingUpdate.cshtml:207
+#: Views\Listing\ListingUpdate.cshtml:139
 #: Views\Manage\AddPhoneNumber.cshtml:3
 #: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:41
@@ -1471,9 +1400,9 @@ msgstr ""
 msgid "Please Rate"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr ""
 
@@ -1500,12 +1429,12 @@ msgid "Previous"
 msgstr ""
 
 #: Views\Listing\Listing.cshtml:150
-#: Views\Listing\Listings.cshtml:193
+#: Views\Listing\Listings.cshtml:139
 #: Views\Listing\ListingUpdate.cshtml:55
 #: Views\Listing\ListingUpdate.cshtml:57
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:126
-#: Views\Payment\Payment.cshtml:100
+#: Views\Payment\Payment.cshtml:62
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: Areas\Admin\Views\Payment\Order.cshtml:104
 msgid "Price"
@@ -1524,7 +1453,7 @@ msgstr ""
 #: Views\Manage\UserProfile.cshtml:3
 #: Views\Manage\UserProfile.cshtml:22
 #: Views\Manage\UserProfile.cshtml:29
-#: Views\Shared\_DashBoardSide.cshtml:27
+#: Views\Shared\_DashBoardSide.cshtml:26
 #: Views\Shared\_LoginPartial.cshtml:70
 msgid "Profile"
 msgstr ""
@@ -1542,7 +1471,7 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:201
+#: Views\Listing\ListingUpdate.cshtml:133
 msgid "Publisher's Info"
 msgstr ""
 
@@ -1555,7 +1484,7 @@ msgstr ""
 msgid "Receiver"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:98
+#: Views\Listing\Listings.cshtml:44
 msgid "Refine Search"
 msgstr ""
 
@@ -1599,7 +1528,7 @@ msgstr ""
 msgid "Reply here..."
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:231
+#: Views\Listing\ListingUpdate.cshtml:163
 msgid "Request publication"
 msgstr ""
 
@@ -1629,24 +1558,15 @@ msgstr ""
 
 #: Views\Listing\Listing.cshtml:62
 #: Views\Listing\Review.cshtml:5
-#: Views\Listing\_ListingCard.cshtml:25
+#: Views\Listing\_ListingCard.cshtml:26
 #: Views\Listing\_ListingReview.cshtml:11
 msgid "Reviews"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:199
-#: Views\Listing\Listings.cshtml:147
-#: Views\Listing\Listings.cshtml:148
+#: Views\Listing\Listings.cshtml:93
+#: Views\Listing\Listings.cshtml:94
 #: Views\Listing\ListingUpdate.cshtml:68
 msgid "Rooms"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:73
-msgid "Rooms Suite"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:145
-msgid "Safety Mesh"
 msgstr ""
 
 #: Views\Manage\UserProfile.cshtml:88
@@ -1668,9 +1588,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: Views\Home\Index.cshtml:79
+#: Views\Home\Index.cshtml:80
 #: Views\Manage\Dashboard.cshtml:26
-#: Views\Manage\DashboardCalendar.cshtml:25
 #: Views\Manage\Messages.cshtml:34
 msgid "Search"
 msgstr ""
@@ -1683,16 +1602,15 @@ msgstr ""
 msgid "Search PlaceHolder"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:202
+#: Views\Listing\Listings.cshtml:148
 msgid "Search text"
 msgstr ""
 
-#: Views\Listing\Listings.cshtml:201
+#: Views\Listing\Listings.cshtml:147
 msgid "Search Text"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:25
-#: Views\Manage\DashboardCalendar.cshtml:24
 msgid "Search your listings..."
 msgstr ""
 
@@ -1742,7 +1660,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:312
+#: Views\Listing\Listing.cshtml:279
 msgid "Share"
 msgstr ""
 
@@ -1751,16 +1669,12 @@ msgstr ""
 msgid "Shipping Enabled"
 msgstr ""
 
-#: Views\Manage\DashboardCalendar.cshtml:45
-msgid "Show Calendar"
-msgstr ""
-
-#: Areas\Admin\Views\Listing\Listings.cshtml:69
+#: Areas\Admin\Views\Listing\Listings.cshtml:70
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
 msgid "Show Email"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:211
+#: Views\Listing\ListingUpdate.cshtml:143
 msgid "Show Phone"
 msgstr ""
 
@@ -1835,12 +1749,8 @@ msgstr ""
 msgid "SystemName"
 msgstr ""
 
-#: Views\Account\Register.cshtml:76
+#: Views\Account\Register.cshtml:61
 msgid "Terms & Conditions"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:139
-msgid "Terrace"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:74
@@ -1855,17 +1765,17 @@ msgstr ""
 msgid "Thank you for confirming your email."
 msgstr ""
 
-#: Controllers\ListingController.cs:859
-#: Controllers\ListingController.cs:948
+#: Controllers\ListingController.cs:858
+#: Controllers\ListingController.cs:947
 msgid "Thanks for your feedback!"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr ""
 
 #: Models\AccountViewModels.cs:73
-#: Models\AccountViewModels.cs:101
+#: Models\AccountViewModels.cs:98
 #: Models\ManageViewModels.cs:31
 #: Models\ManageViewModels.cs:50
 msgid "The {0} must be at least {2} characters long."
@@ -1883,7 +1793,7 @@ msgstr ""
 msgid "The listing type has been deleted."
 msgstr ""
 
-#: Controllers\PaymentController.cs:502
+#: Controllers\PaymentController.cs:444
 msgid "The maintenance was scheduled successfully!"
 msgstr ""
 
@@ -1901,15 +1811,15 @@ msgid "The page you were looking for doesn't exist."
 msgstr ""
 
 #: Models\AccountViewModels.cs:80
-#: Models\AccountViewModels.cs:108
+#: Models\AccountViewModels.cs:105
 msgid "The password and confirmation password do not match."
 msgstr ""
 
-#: Controllers\PaymentController.cs:351
+#: Controllers\PaymentController.cs:297
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr ""
 
-#: Controllers\PaymentController.cs:334
+#: Controllers\PaymentController.cs:281
 msgid "The provider has not setup the payment option yet, please contact the provider."
 msgstr ""
 
@@ -1920,12 +1830,15 @@ msgstr ""
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:103
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -1941,13 +1854,13 @@ msgid "There are no new messages"
 msgstr ""
 
 #: Controllers\ListingController.cs:186
-#: Controllers\ListingController.cs:378
+#: Controllers\ListingController.cs:377
 #: Areas\Admin\Controllers\ListingController.cs:390
 #: Areas\Admin\Controllers\ListingController.cs:490
 msgid "There are not categories available yet."
 msgstr ""
 
-#: Controllers\ListingController.cs:449
+#: Controllers\ListingController.cs:448
 msgid "There are not listing types available yet."
 msgstr ""
 
@@ -1986,19 +1899,19 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: Controllers\PaymentController.cs:371
-#: Controllers\PaymentController.cs:423
-#: Controllers\PaymentController.cs:473
-#: Views\Home\Index.cshtml:86
-#: Views\Home\Index.cshtml:87
-#: Views\Listing\Listings.cshtml:164
-#: Views\Listing\Listings.cshtml:171
-#: Views\Listing\Listings.cshtml:184
-#: Views\Listing\Listings.cshtml:188
-#: Views\Listing\Listings.cshtml:196
-#: Views\Listing\_ListingPayment.cshtml:30
-#: Views\Listing\_ListingPayment.cshtml:62
-#: Views\Payment\Payment.cshtml:88
+#: Controllers\PaymentController.cs:317
+#: Controllers\PaymentController.cs:366
+#: Controllers\PaymentController.cs:415
+#: Views\Home\Index.cshtml:89
+#: Views\Home\Index.cshtml:91
+#: Views\Listing\Listings.cshtml:110
+#: Views\Listing\Listings.cshtml:117
+#: Views\Listing\Listings.cshtml:130
+#: Views\Listing\Listings.cshtml:134
+#: Views\Listing\Listings.cshtml:142
+#: Views\Listing\_ListingPayment.cshtml:31
+#: Views\Listing\_ListingPayment.cshtml:63
+#: Views\Payment\Payment.cshtml:50
 msgid "To"
 msgstr ""
 
@@ -2010,7 +1923,7 @@ msgstr ""
 msgid "To configure payment method for payout, please configure the Payment plugin"
 msgstr ""
 
-#: Views\Payment\Payment.cshtml:86
+#: Views\Payment\Payment.cshtml:48
 msgid "To Date"
 msgstr ""
 
@@ -2022,7 +1935,7 @@ msgstr ""
 msgid "Transaction fee (%)"
 msgstr ""
 
-#: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+#: C:\Users\Matias\Desktop\Repositorio\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
 msgid "Transaction not found"
 msgstr ""
 
@@ -2032,7 +1945,7 @@ msgstr ""
 
 #: Views\Payment\Transaction.cshtml:5
 #: Views\Payment\Transaction.cshtml:20
-#: Views\Shared\_DashBoardSide.cshtml:22
+#: Views\Shared\_DashBoardSide.cshtml:21
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:37
 #: Areas\Admin\Views\Payment\Transaction.cshtml:2
 #: Areas\Admin\Views\Payment\Transaction.cshtml:14
@@ -2040,11 +1953,7 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:160
-msgid "TV cable"
-msgstr ""
-
-#: Views\Listing\Listings.cshtml:104
+#: Views\Listing\Listings.cshtml:50
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
 msgid "Type"
@@ -2067,7 +1976,7 @@ msgstr ""
 msgid "Unsuccessful login with service."
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:176
+#: Views\Listing\ListingUpdate.cshtml:108
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
 msgstr ""
@@ -2129,12 +2038,12 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:264
+#: Views\Listing\Listing.cshtml:231
 #: Views\Listing\_ListingContactModal.cshtml:18
 msgid "View User's other listings"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:299
+#: Views\Listing\Listing.cshtml:266
 msgid "View user's profile and other listings"
 msgstr ""
 
@@ -2146,20 +2055,12 @@ msgstr ""
 msgid "Views"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:129
-msgid "Washer"
-msgstr ""
-
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:8
 msgid "Welcome to {0} Admin Panel!"
 msgstr ""
 
-#: Controllers\AccountController.cs:263
+#: Controllers\AccountController.cs:262
 msgid "Welcome to {0}!"
-msgstr ""
-
-#: Views\Listing\ListingUpdate.cshtml:150
-msgid "WIFI"
 msgstr ""
 
 #: Views\Listing\Review.cshtml:72
@@ -2178,44 +2079,35 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:74
 #: Areas\Admin\Views\Listing\Categories.cshtml:106
-#: Areas\Admin\Views\Listing\Listings.cshtml:96
+#: Areas\Admin\Views\Listing\Listings.cshtml:97
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 #: Areas\Admin\Views\Manage\Users.cshtml:82
 msgid "Yes, delete it!"
 msgstr ""
 
-#: Controllers\PaymentController.cs:402
-#: Controllers\PaymentController.cs:452
+#: Controllers\PaymentController.cs:395
 msgid "You booked your stay correctly!"
-msgstr ""
-
-#: Controllers\PaymentController.cs:319
-msgid "You can not book with these selected dates!"
-msgstr ""
-
-#: Controllers\PaymentController.cs:279
-msgid "You can'n book this property, already previously reserved"
 msgstr ""
 
 #: Areas\Admin\Controllers\ManageController.cs:204
 msgid "You cannot delete Administrator, change the user role first."
 msgstr ""
 
-#: Controllers\ListingController.cs:617
+#: Controllers\ListingController.cs:616
 #: Areas\Admin\Controllers\ListingController.cs:657
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr ""
 
-#: Controllers\ListingController.cs:812
+#: Controllers\ListingController.cs:811
 msgid "You cannot review the order!"
 msgstr ""
 
-#: Controllers\ListingController.cs:804
-#: Controllers\ListingController.cs:904
+#: Controllers\ListingController.cs:803
+#: Controllers\ListingController.cs:903
 msgid "You cannot review yourself!"
 msgstr ""
 
-#: Controllers\ListingController.cs:707
+#: Controllers\ListingController.cs:706
 msgid "You cannot send message to yourself!"
 msgstr ""
 
@@ -2223,11 +2115,7 @@ msgstr ""
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr ""
 
-#: Controllers\PaymentController.cs:289
-msgid "You cant book just to one day, minimun two day."
-msgstr ""
-
-#: Controllers\ListingController.cs:890
+#: Controllers\ListingController.cs:889
 msgid "You have reach the review limits today!"
 msgstr ""
 
@@ -2236,7 +2124,7 @@ msgid "You must have a confirmed email to log on."
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:70
-#: Areas\Admin\Views\Listing\Listings.cshtml:92
+#: Areas\Admin\Views\Listing\Listings.cshtml:93
 msgid "You will delete"
 msgstr ""
 
@@ -2256,7 +2144,7 @@ msgstr ""
 msgid "Your Email"
 msgstr ""
 
-#: Controllers\ListingController.cs:625
+#: Controllers\ListingController.cs:624
 msgid "Your listing has been deleted."
 msgstr ""
 
@@ -2330,9 +2218,6 @@ msgstr ""
 #~ msgid "Desde"
 #~ msgstr ""
 
-#~ msgid "Enter Dish washer"
-#~ msgstr ""
-
 #~ msgid "Has account already? Login here"
 #~ msgstr ""
 
@@ -2391,9 +2276,6 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "PaymentEnabled"
-#~ msgstr ""
-
-#~ msgid "Pene"
 #~ msgstr ""
 
 #~ msgid "Phone Number (Optional)"

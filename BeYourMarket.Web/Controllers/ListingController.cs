@@ -301,7 +301,6 @@ namespace BeYourMarket.Web.Controllers
                     .ToList();
 
             List<DateTime> datesBooked = new List<DateTime>();
-            datesBooked.Add(DateTime.Now);
             foreach (var order in orders)
             {
                 for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))

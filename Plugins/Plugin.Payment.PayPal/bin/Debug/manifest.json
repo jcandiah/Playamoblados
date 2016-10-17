@@ -1,0 +1,11 @@
+﻿{
+    "Group": "Payment",
+    "SystemName": "Plugin.Payment.PayPal",
+    "FriendlyName": "PayPal",    
+    "Version": "1.0",
+    "SupportedVersions": ["1.0"],
+    "Author": "BeYorMarket",
+    "DisplayOrder": "1",
+    "PluginFileName": "Plugin.Payment.PayPal.dll",
+    "Description":  "Add PayPal with commments support in your marketplace!"
+}

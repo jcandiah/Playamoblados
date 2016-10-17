@@ -275,7 +275,7 @@
 
                      for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
                      {
-                         string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1}', datetime: new Date({2},{3},{4}),", usuario.FullName, usuario.Email, date.Year, date.Month - 1, date.Day);
+                         string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1}', datetime: new Date({2},{3},{4}),", usuario.FullName, usuario.Email, orders.FromDate.Value.Year, date.Month - 1, date.Day);
                      @Html.Raw("{"+valor.ToString()+"},");
                      }
                  }
@@ -347,23 +347,10 @@
 
         </div>
         
-        @Html.Partial("_ListingPayment", Model.ListingCurrent)
 
+        
     </div>
-
-  
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
-        <!-- Include Roller JS -->
-<script src="~/js/formstone/core.js"></script>
-<script src="~/js/formstone/touch.js"></script>
-<script src="~/js/formstone/transition.js"></script>
-<script src="~/js/formstone/lightbox.js"></script>
-    }
 
 
 
