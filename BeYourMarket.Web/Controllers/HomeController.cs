@@ -14,6 +14,7 @@ using BeYourMarket.Web.Models.Grids;
 using i18n;
 using i18n.Helpers;
 using System.Data.Entity;
+using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -98,7 +99,7 @@ namespace BeYourMarket.Web.Controllers
             // Search dates
             #region Busqueda Fecha
             if (!string.IsNullOrEmpty(model.FromDate.ToString()))
-            {                               
+            {
                 if (!string.IsNullOrEmpty(model.ToDate.ToString()))
                 {
                     var Todate2 = model.ToDate.Value.AddDays(2);
@@ -158,35 +159,6 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
             #endregion
-            // Category
-            #region Busqueda Condominio
-            if (model.CategoryID != 0)
-            {
-                items = await _listingService.Query(x => x.CategoryID == model.CategoryID)
-                    .Include(x => x.ListingPictures)
-                    .Include(x => x.Category)
-                    .Include(x => x.ListingType)
-                    .Include(x => x.AspNetUser)
-                    .Include(x => x.Orders)
-                    .Include(x => x.ListingReviews)
-                    .SelectAsync();
-
-                // Set listing types
-                model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
-            }
-            else
-            {
-                model.ListingTypes = CacheHelper.ListingTypes;
-            }
-            #endregion
-            // Set default Listing Type if it's not set or listing type is not set
-            if (model.ListingTypes.Count > 0 &&
-                (model.ListingTypeID == null || !model.ListingTypes.Any(x => model.ListingTypeID.Contains(x.ID))))
-            {
-                model.ListingTypeID = new List<int>();
-                model.ListingTypeID.Add(model.ListingTypes.FirstOrDefault().ID);
-            }
-
             // Search Text
             #region Busqueda Texto
             if (!string.IsNullOrEmpty(model.SearchText))
@@ -216,18 +188,46 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
             #endregion            
+            // Category
+            #region Busqueda Condominio
+            if (model.CategoryID != 0)
+            {
+                items = await _listingService.Query(x => x.CategoryID == model.CategoryID)
+                    .Include(x => x.ListingPictures)
+                    .Include(x => x.Category)
+                    .Include(x => x.ListingType)
+                    .Include(x => x.AspNetUser)
+                    .Include(x => x.Orders)
+                    .Include(x => x.ListingReviews)
+                    .SelectAsync();
+
+                // Set listing types
+                model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
+            }
+            else
+            {
+                model.ListingTypes = CacheHelper.ListingTypes;
+            }
+            #endregion
+            // Set default Listing Type if it's not set or listing type is not set
+            if (model.ListingTypes.Count > 0 &&
+                (model.ListingTypeID == null || !model.ListingTypes.Any(x => model.ListingTypeID.Contains(x.ID))))
+            {
+                model.ListingTypeID = new List<int>();
+                model.ListingTypeID.Add(model.ListingTypes.FirstOrDefault().ID);
+            }
             //Search Passengers
             #region Busqueda Pasajeros
             if (!string.IsNullOrEmpty(model.Passengers.ToString()))
             {
                 if (items != null)
                 {
-                    items = items.Where(x => x.Beds == model.Passengers);
+                    items = items.Where(x => x.Max_Capacity >= model.Passengers);
                 }
                 else
                 {
                     items = await _listingService.Query(
-                            x => x.Beds == model.Passengers)
+                            x => x.Max_Capacity >= model.Passengers)
                             .Include(x => x.ListingPictures)
                             .Include(x => x.Category)
                             .Include(x => x.AspNetUser)
