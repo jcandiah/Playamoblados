@@ -12,9 +12,9 @@
     </div>
 
     <div class="card-content">
-        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })">
-            <img class="thumb-md img-profile-card img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.ListingCurrent.UserID)" />            
-        </a>
+       
+            <img class="thumb-md img-profile-card img-circle" src="~/Images/Sample/Profile/profile.jpg"   />            
+       
 
         <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingCurrent.ID })">
             <h5 class="card-title">@Model.ListingCurrent.Title</h5>

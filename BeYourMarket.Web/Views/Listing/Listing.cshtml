@@ -156,28 +156,13 @@
                                             }
                                             <tr>
                                                 <td>
-                                                    [[[Listing Type]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.ListingType.Name
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
                                                     [[[Location]]]
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(x => Model.ListingCurrent.Location)
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Date Posted]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.Created.ToShortDateString()
-                                                </td>
-                                            </tr>
+                                       
                                             <tr>
                                                 <td>
                                                     [[[Listing ID]]]
@@ -186,14 +171,7 @@
                                                     @Model.ListingCurrent.ID
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Views]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
-                                                </td>
-                                            </tr>
+
                                             <tr>
                                                 <td>
                                                     [[[Rooms]]]
@@ -204,11 +182,12 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    [[[Beds]]]
+                                                    [[[Capacity]]]
                                                 </td>
                                                 <td>
-                                                    @Model.ListingCurrent.Beds
+                                                    @Model.ListingCurrent.Max_Capacity
                                                 </td>
+
                                             </tr>
                                             
                                             <tr>
@@ -225,6 +204,47 @@
                                                 </td>
                                                 <td>
                                                     @Model.ListingCurrent.ParkingLot
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    [[[Grill]]]
+                                                </td>
+                                                <td>
+                                                    @(Model.ListingCurrent.Grill ? "Si" : "No")
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Safety Mesh]]]
+                                                </td>
+                                                <td>
+                                                    @(Model.ListingCurrent.SafetyMesh ? "Si" : "No")
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Washer]]]
+                                                </td>
+                                                <td>
+                                                    @(Model.ListingCurrent.Washer ? "Si" : "No")
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Lavavajillas]]]
+                                                </td>
+                                                <td>
+                                                    @(Model.ListingCurrent.Dishwasher ? "Si" : "No")
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Suite Rooms]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.Suite
                                                 </td>
                                             </tr>
 
