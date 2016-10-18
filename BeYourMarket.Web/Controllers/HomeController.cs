@@ -88,7 +88,13 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Search(SearchListingModel model)
         {
             await GetSearchResult(model);
-
+            //Si las listas vienen vacias
+            if (model.ListingsPageList.Count() == 0 && model.ListingsPageList2.Count() == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[La busqueda no arrojo ningún resultado, por favor verifique los campos]]]";
+                return View("~/Views/Listing/Listings.cshtml", model);
+            }
             return View("~/Views/Listing/Listings.cshtml", model);
         }
         private async Task GetSearchResult(SearchListingModel model)
@@ -380,14 +386,14 @@ namespace BeYourMarket.Web.Controllers
             #region Busqueda ListingType
             //items = items.Where(x => model.ListingTypeID.Contains(x.ListingTypeID));
             #endregion
-            /// Price
+            // Price
             #region Busqueda Precio
             if (model.PriceFrom.HasValue)
                 items = items.Where(x => x.Price >= model.PriceFrom.Value);
-
             if (model.PriceTo.HasValue)
                 items = items.Where(x => x.Price <= model.PriceTo.Value);
             #endregion
+            // Property
             #region Busqueda Propiedad
             if (model.Property > 0)
                 items = items.Where(x => x.ID == model.Property);
