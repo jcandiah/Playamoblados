@@ -467,6 +467,64 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return PartialView("_CategoryCustomFields", customFieldModel);
         }
 
+
+        public async Task<ActionResult> ListingCalendar(int id)
+        {
+            var itemQuery = await _listingService.Query(x => x.ID == id)
+                                            .Include(x => x.Category)
+                                            .Include(x => x.ListingMetas)
+                                            .Include(x => x.ListingMetas.Select(y => y.MetaField))
+                                            .Include(x => x.ListingStats)
+                                            .Include(x => x.ListingType)
+                                            .Include(x => x.Orders)
+                                            .SelectAsync();
+
+            var item = itemQuery.FirstOrDefault();
+
+            if (item == null)
+                return new HttpNotFoundResult();
+
+            var orders = _orderService.Queryable()
+                .Where(x => x.ListingID == id
+                    && (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    && (x.FromDate.HasValue && x.ToDate.HasValue)
+                    && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
+                    .ToList();
+
+
+
+            List<DateTime> datesBooked = new List<DateTime>();
+            foreach (var order in orders)
+            {
+
+                for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+                {
+                    datesBooked.Add(date);
+                }
+            }
+
+            var reviews = await _listingReviewService
+                .Query(x => x.UserTo == item.UserID)
+                .Include(x => x.AspNetUserFrom)
+                .SelectAsync();
+
+            var user = await UserManager.FindByIdAsync(item.UserID);
+            var usuarios = UserManager.Users.ToList();
+            var itemModel = new ListingItemModel()
+            {
+                ListingCurrent = item,
+                DatesBooked = datesBooked,
+                ListUsers = usuarios.ToList(),
+                ListingReviews = reviews.ToList(),
+                ListOrder = orders,
+
+            };
+
+
+
+            return View(itemModel);
+        }
+
         public async Task<ActionResult> ListingTypesPartial(int categoryID, int listingID)
         {
             var model = new ListingUpdateModel();
