@@ -23,8 +23,8 @@ namespace BeYourMarket.Model.Models
         public string PriceFormatted
         {
             get
-            {
-                return Price.HasValue ? string.Format("{0} {1}", Price.Value, Currency ) : string.Empty;
+            {               
+                return Price.HasValue ? string.Format("{0} {1:N0}", "$ ", Price.Value ) : string.Empty;
             }
         }
 

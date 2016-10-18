@@ -3,17 +3,15 @@
 @using Microsoft.Owin.Security;
 @model BeYourMarket.Web.Models.ListingItemModel
 @{
-        ViewBag.Title = "ListingCalendar";
+    ViewBag.Title = "ListingCalendar";
 }
 
 <link href="~/calendar-master/css/jquery.e-calendar.css" rel="stylesheet" />
 <script src="~/calendar-master/example/index.js"></script>
-
-
 <div>
     <script type="text/javascript">
 
-
+      
     (function ($) {
 
         var eCalendar = function (options, object) {
@@ -294,75 +292,30 @@
 
 <style>
     .color-swatch {
-    float: left;
-    width: 40px;
-    height: 40px;
-    margin: 0 5px;
-    border-radius: 3px;
-}
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin: 0 5px;
+        border-radius: 3px;
+    }
 </style>
 
-
-<div class="body-content container-fluid">
-    <div class="main-section row">
-        <div class="container-fluid mrg-tb">
-
-            @Html.Partial("_DashBoardSide", "calendar")
-
-            <div class="col-md-9 text-center" style="padding-bottom:4%;">
+<div class="wraper container-fluid">
+    <div class="row">
+            <div class="col-md-12 text-center" style="padding-bottom:4%;">
 
                 <h2>@Model.ListingCurrent.Title <span class="fa fa-calendar"></span></h2>
 
                 <div id="calendar"></div>
+                
                 <br />
             </div>
+
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-
-                    <table class="table">
-                        <tr>
-                            <th>
-                                [[[block]]]
-                            </th>
-                            <th>
-                                [[[From date]]]
-                            </th>
-                            <th>
-                                [[[To date]]]
-                            </th>
-                            <th></th>
-                        </tr>
-                        @{ int cont = 0;}
-                        @foreach (var item in Model.ListOrder.Where(x => x.OrderType == 2))
-                        {
-                            cont++;
-                            <tr>
-                                <td>
-                                    @cont
-                                </td>
-                                <td>
-                                    @item.FromDate.Value.ToShortDateString()
-                                </td>
-                                <td>
-                                    @item.ToDate.Value.ToShortDateString()
-                                </td>
-
-                                <td>
-                                    <a class="btn btn-warning btn-sm" href="@Url.Action("Unlock", "Manage", new { id = item.ID })"><i class="fa fa-support"></i><span class="hidden-xs">[[[Unlock]]]</span></a>
-                                    @*@Html.ActionLink("[[[Unlock]]]", "Delete", new { id = item.ID })*@
-                                </td>
-                            </tr>
-                        }
-
-                    </table>
-                </div>
-            </div>
-
-            @*<div class="row">
                 <div class="col-md-offset-3">
                     <div class="color-swatch" style="background-color:cadetblue"></div>
                     <div>
-                        <t  style="color:cadetblue"><strong>Reservar</strong>, fechas ocupadas por clientes que reservaron la propiedad.</t>
+                        <t style="color:cadetblue"><strong>Reservar</strong>, fechas ocupadas por clientes que reservaron la propiedad.</t>
                     </div>
                 </div>
             </div>
@@ -383,12 +336,12 @@
                         <t style="color:darkred"><strong>Bloqueos</strong>, playamoblados bloqueo las fechas.</t>
                     </div>
                 </div>
-            </div>*@
-
-        </div>
-
             </div>
-        </div>
+
+        
+
+    </div>
+</div>
 
 
 

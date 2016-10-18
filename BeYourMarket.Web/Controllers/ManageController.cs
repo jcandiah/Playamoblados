@@ -627,6 +627,11 @@ namespace BeYourMarket.Web.Controllers
             var userId = User.Identity.GetUserId();
             var items = await _listingService.Query(x => x.UserID == userId).Include(x => x.ListingPictures).SelectAsync();
 
+            if(items.Count() == 1)
+            {
+              return RedirectToAction("ListingCalendar", "Manage", new { id= items.FirstOrDefault().ID });
+            }
+
             // Filter string
             if (!string.IsNullOrEmpty(searchText))
                 items = items.Where(x => x.Title.ToLower().Contains(searchText.ToLower().ToString()));
@@ -650,16 +655,16 @@ namespace BeYourMarket.Web.Controllers
         }
 
 
-        public async Task <ActionResult> ListingCalendar(int id)
+        public ActionResult ListingCalendar(int id)
         {
-            var itemQuery = await _listingService.Query(x => x.ID == id)
+            var itemQuery =  _listingService.Query(x => x.ID == id)
                                             .Include(x => x.Category)
                                             .Include(x => x.ListingMetas)
                                             .Include(x => x.ListingMetas.Select(y => y.MetaField))
                                             .Include(x => x.ListingStats)
                                             .Include(x => x.ListingType)
                                             .Include(x => x.Orders)
-                                            .SelectAsync();
+                                            .Select();
 
             var item = itemQuery.FirstOrDefault();
 
@@ -685,7 +690,7 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
 
-            var pictures = await _ListingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+            var pictures =  _ListingPictureservice.Query(x => x.ListingID == id).Select();
 
             var picturesModel = pictures.Select(x =>
                 new PictureModel()
@@ -696,12 +701,12 @@ namespace BeYourMarket.Web.Controllers
                     Ordering = x.Ordering
                 }).OrderBy(x => x.Ordering).ToList();
 
-            var reviews = await _listingReviewService
+            var reviews =  _listingReviewService
                 .Query(x => x.UserTo == item.UserID)
                 .Include(x => x.AspNetUserFrom)
-                .SelectAsync();
+                .Select();
 
-            var user = await UserManager.FindByIdAsync(item.UserID);
+            var user =  UserManager.FindById(item.UserID);
             var usuarios = UserManager.Users.ToList();
             var itemModel = new ListingItemModel()
             {
