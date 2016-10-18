@@ -72,8 +72,11 @@
                             break;
                     }
                 </div>
+                @*@if (Model.ListingsPageList2.Count > 0)
+                {
 
-                <div class="panel-header bdr-b">
+                }*@                
+                <div class="panel-header bdr-b">  @*paginacion*@
                     <div class="container-fluid">
                         <div class="" col-md-12">
                             <h5 class="pull-left mrg-t">
@@ -90,6 +93,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-3">
                 <div class="search-widget panel panel-default">
@@ -99,20 +103,19 @@
                         </div>
                         <div class="panel-body">
                             <fieldset>
-
                                 <div class="form-group">
                                     <label>[[[Number of property]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" placeholder="[[[Number of property]]]" name="Property" value="@Model.Property">
+                                    <input type="text" onfocus="this.type='number'" min="1" id="Property" class="form-control" name="Property" placeholder="[[[Number of property]]]" value="@Model.Property">
                                 </div>
 
                                 <div class="form-group">
                                     <label>[[[Condominiums]]]</label>
                                     @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control", onchange = "this.form.submit()" })
                                 </div>
-
+                                
                                 <div class="form-group">
                                     <label>[[[Passengers]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" placeholder="[[[Passengers]]]" name="Passengers" value="@Model.Passengers">
+                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Passengers]]]" name="Passengers" value="@Model.Passengers">
                                 </div>
 
                                 <div class="form-group">
@@ -161,8 +164,12 @@
                                                 <label>[[[To]]]</label>
                                             </div>
                                         </div>
-                                        <div class="col-xs-6 range-from"><input type="date" class="form-control" placeholder="[[[From]]]" id="FromDate" name="FromDate" value="@Model.FromDate"></div>
-                                        <div class="col-xs-6 range-to"><input type="date" class="form-control" placeholder="[[[To]]]" id="ToDate" name="ToDate" value="@Model.ToDate"></div>
+                                        <div class="col-xs-6 range-from">
+                                            @Html.TextBoxFor(x => x.FromDate, "[[[From]]]", new { @class = "form-control", @name = "FromDate", @value = "@Model.FromDate", @type = "date" })
+                                        </div>
+                                        <div class="col-xs-6 range-to">
+                                            @Html.TextBoxFor(x => x.ToDate, "[[[To]]]", new { @class = "form-control", @name = "ToDate", @value = "@Model.ToDate", @type = "date" })
+                                        </div>
                                     </div>
                                 </div>
 

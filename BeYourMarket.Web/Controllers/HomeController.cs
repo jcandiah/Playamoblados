@@ -378,7 +378,7 @@ namespace BeYourMarket.Web.Controllers
             #endregion
             // Filter items by Listing Type
             #region Busqueda ListingType
-            items = items.Where(x => model.ListingTypeID.Contains(x.ListingTypeID));
+            //items = items.Where(x => model.ListingTypeID.Contains(x.ListingTypeID));
             #endregion
             /// Price
             #region Busqueda Precio
@@ -389,6 +389,7 @@ namespace BeYourMarket.Web.Controllers
                 items = items.Where(x => x.Price <= model.PriceTo.Value);
             #endregion
             #region Busqueda Propiedad
+            if (model.Property > 0)
                 items = items.Where(x => x.ID == model.Property);
             #endregion
 
