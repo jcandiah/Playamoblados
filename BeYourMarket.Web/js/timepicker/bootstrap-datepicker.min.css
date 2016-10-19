@@ -133,7 +133,7 @@
     background: 0 0;
     color: #999;
     cursor: default;
-    background-color:red;
+    background: rgba(0, 128, 0, .3);
 }
 
 .datepicker table tr td.today, .datepicker table tr td.today:hover, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover {

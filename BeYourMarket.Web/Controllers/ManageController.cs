@@ -772,17 +772,22 @@ namespace BeYourMarket.Web.Controllers
             return RedirectToAction("UserProfile", "Manage");
         }
 
+        public ActionResult Unlock(int id)
+        {
+            var orders = _orderService.Queryable()
+                          .Where(x => x.ID == id)
+                          .ToList().FirstOrDefault();
+            if(orders==null)
+            {
+                return Redirect("a la ctm");
+            }
+                
+               _orderService.Delete(id);
+               _unitOfWorkAsync.SaveChanges();
 
-        //public async Task<JsonResult> GetEvents()
-        //{
-        //    var evt = Model.ListOrder.Select(o => new {
-        //        title = o.Description,
-        //        description = o.Description,
-        //        datetime = o.FromDate
-        //    }).ToList();
+                return RedirectToAction("ListingCalendar", new { id= orders.ListingID });
+        }
 
-        //    return Json(evt, JsonRequestBehavior.AllowGet);
-        //}
         #endregion
 
         #region Helpers

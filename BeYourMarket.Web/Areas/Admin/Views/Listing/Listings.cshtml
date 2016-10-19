@@ -64,7 +64,7 @@
                             columns.Add()
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayCalendarLink(x.ID));
+                             .RenderValueAs(x => DisplayDeleteLink(x.ID,x.Title));
 
                            columns.Add(x => x.ID);
                            columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID)).Titled("[[[Category]]]");
