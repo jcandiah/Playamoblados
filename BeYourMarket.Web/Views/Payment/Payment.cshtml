@@ -57,72 +57,74 @@
                 <h5>@Model.ListingOrder.Listing.Description</h5>
 
                 <h3>@Model.ListingOrder.PriceFormatted</h3>
+                <form method="post" style="padding:10px;" role="form" action="@Url.Action("ConfirmarPago", "Payment")">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @if (Model.ListingOrder.Listing.ListingPictures.Count > 0)
+                            {
+                                <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(Model.ListingOrder.Listing.ListingPictures.FirstOrDefault().ID)" />
+                            }
+                            else
+                            {
+                                <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
+                            }
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        @if (Model.ListingOrder.Listing.ListingPictures.Count > 0)
-                        {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(Model.ListingOrder.Listing.ListingPictures.FirstOrDefault().ID)" />
-                        }
-                        else
-                        {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
-                        }
-                    </div>
+                        <div class="col-md-6">
+                            <input type="hidden" id="id" name="id" value="@Model.ListingOrder.ID" />
 
-                    <div class="col-md-6">
-                        <input type="hidden" id="id" name="id" value="@Model.ListingOrder.ID" />
-
-                        @if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
-                        {
-                            <div class="form-group">
-                                <label for="FromDate">[[[From Date]]]</label>
-                                <div class="input-group date datepicker">
-                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" readonly value="@Model.ListingOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            @if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+                            {
+                                <div class="form-group">
+                                    <label for="FromDate">[[[From Date]]]</label>
+                                    <div class="input-group date datepicker">
+                                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" readonly value="@Model.ListingOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="ToDate">[[[To Date]]]</label>
-                                <div class="input-group date datepicker">
-                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" readonly value="@Model.ListingOrder.ToDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <div class="form-group">
+                                    <label for="ToDate">[[[To Date]]]</label>
+                                    <div class="input-group date datepicker">
+                                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" readonly value="@Model.ListingOrder.ToDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                        else if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
-                        {
-                            <div class="form-group">
-                                <label for="OrderTypeLabel">@Model.ListingOrder.Listing.ListingType.OrderTypeLabel</label>
-                                <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" readonly value="@Model.ListingOrder.Quantity" />
-                            </div>
-                        }                        
-
-                        <h5>[[[Price]]]: @Model.ListingOrder.PriceFormatted</h5>
-
-                        <!-- Payment Hook -->
-                        @Html.DoAction(HookName.Payment, Model.ListingOrder)*
-                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" @*target="_top"*@>
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="6RNT8A4HBBJRE">
-                            <input type="hidden" name="price" value="11.00">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="no_shipping" value="1">
-                            @*<input type="hidden" name="   " value="http://www.sitio.com/pagado.php">
-                            <input type="hidden" name="cancel_return" value="http://www.sitio.com/cancelado.php">*@
-                            <input type="hidden" name="item_name" value="@Model.ListingOrder.Listing.Title" />
-                            <input type="hidden" name="tx" value="@Model.ListingOrder.ID" />
-                            <input type="hidden" name="item_number" value="@Model.ListingOrder.ListingID" />
-                            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                            <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                        </form>
-                  
+                            }
+                            else if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
+                            {
+                                <div class="form-group">
+                                    <label for="OrderTypeLabel">@Model.ListingOrder.Listing.ListingType.OrderTypeLabel</label>
+                                    <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" readonly value="@Model.ListingOrder.Quantity" />
+                                </div>
+                            }
+                        </div>
                     </div>
-
-                </div>
+                    @*<button type="submit" name="boton">Confirmar Pago</button>*@
+                </form>
+                <form method="post" style="padding:10px;" role="form" action="@Url.Action("Search", "Home", new { })">
+                    <button type="submit" name="boton">Volver</button>
+                </form>
+            
+                <h5>[[[Price]]]: @Model.ListingOrder.PriceFormatted</h5>
+                @*
+                @Html.DoAction(HookName.Payment, Model.ListingOrder)*
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="6RNT8A4HBBJRE">
+                    <input type="hidden" name="price" value="11.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="no_shipping" value="1">
+                    <input type="hidden" name="   " value="http://www.sitio.com/pagado.php">
+                    <input type="hidden" name="cancel_return" value="http://www.sitio.com/cancelado.php">
+                    <input type="hidden" name="item_name" value="@Model.ListingOrder.Listing.Title" />
+                    <input type="hidden" name="tx" value="@Model.ListingOrder.ID" />
+                    <input type="hidden" name="item_number" value="@Model.ListingOrder.ListingID" />
+                    <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                *@
             </div>
         </div>
     </div>
-
 </div>
 
 @section Scripts {

@@ -265,17 +265,13 @@ namespace BeYourMarket.Web.Controllers
             var listing = await _listingService.FindAsync(order.ListingID);
             var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
 
-          
-                if (order.FromDate == order.ToDate)
-                {
-                    TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                    TempData[TempDataKeys.UserMessage] = "[[[You cant book just to one day, minimun two day.]]]";
+            if (order.FromDate == order.ToDate)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cant book just to one day, minimun two day.]]]";
 
-                    return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
-                }
-
-
-            
+                return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+            }
 
             if (listing == null)
                 return new HttpNotFoundResult();
@@ -288,13 +284,13 @@ namespace BeYourMarket.Web.Controllers
 
 
             //validar que los dias no esten reservados
-            List < DateTime > FechasCocinadas = new List<DateTime>();
+            List<DateTime> FechasCocinadas = new List<DateTime>();
             for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
             {
                 FechasCocinadas.Add(date);
 
             }
-            foreach (Order ordenesArrendadas in ordersListing)
+            foreach (Order ordenesArrendadas in ordersListing.Where(x=>x.Status!=(int)Enum_OrderStatus.Cancelled))
             {
                 for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
@@ -317,11 +313,11 @@ namespace BeYourMarket.Web.Controllers
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
-            if(!User.IsInRole("Administrator"))
+
+            if (!User.IsInRole("Administrator"))
             {
                 if (listing.UserID != userCurrent.Id)
                 {
-                    order.OrderType = 3;
                     //foreach (var descriptor in descriptors)
                     //{
                     //    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
@@ -334,8 +330,7 @@ namespace BeYourMarket.Web.Controllers
 
                     //        return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
                     //    }
-                    //}
-
+                    //}       
                     if (order.ID == 0)
                     {
                         order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
@@ -346,7 +341,7 @@ namespace BeYourMarket.Web.Controllers
                         order.UserReceiver = userCurrent.Id;
                         order.ListingTypeID = order.ListingTypeID;
                         order.Currency = listing.Currency;
-
+                        order.OrderType = 3;
                         if (order.ToDate.HasValue && order.FromDate.HasValue)
                         {
                             order.Description = HttpContext.ParseAndTranslate(
@@ -373,18 +368,12 @@ namespace BeYourMarket.Web.Controllers
                             order.Quantity = 1;
                             order.Price = listing.Price;
                         }
-
-                        _orderService.Insert(order);
+                        _orderService.Insert(order);                        
                     }
-
                     await _unitOfWorkAsync.SaveChangesAsync();
 
                     ClearCache();
-
-                    return RedirectToAction("Payment", new { id = order.ID });
-                    //return RedirectToAction("Payment", new { id = order.ID });
-                    //TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
-                    //return RedirectToAction("Listing", "Listing", new { id = listing.ID });
+                    return RedirectToAction("Payment", "Payment", new { id = order.ID });
                 }
                 else
                 {
@@ -494,5 +483,28 @@ namespace BeYourMarket.Web.Controllers
             Response.Cache.SetNoStore();
         }
         #endregion
+
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ConfirmarPago(Order order)
+        //{
+        //    var listing = await _listingService.FindAsync(order.ListingID);
+        //    var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
+        //    var userCurrent = User.Identity.User();
+
+        //    order.OrderType = 3;
+            
+
+        //    _orderService.Insert(order);            
+
+        //    await _unitOfWorkAsync.SaveChangesAsync();
+
+        //    ClearCache();
+
+        //    ClearCache();
+        //    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+        //    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
+
+        //}
     }
 }
