@@ -241,25 +241,25 @@
             @*url: '@Url.Action("GetEvents", "Manage")',*@
             url: '',
             @{
-                    var datesDisabledbloqueo = new System.Text.StringBuilder();
-                    foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==1))
+                var datesDisabledbloqueo = new System.Text.StringBuilder();
+                foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==1 && x.Status != 3))
+                {
+                    for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
                     {
-                        for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
-                        {
-                            datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
-                        }
+                        datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
                     }
+                }
            }
                 bloqueo: [@Html.Raw(datesDisabledbloqueo.ToString())],
          @{
-                         var datesDisabledreserva = new System.Text.StringBuilder();
-                         foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==2))
-                         {
-                             for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
-                             {
-                                 datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
-                             }
-                         }
+             var datesDisabledreserva = new System.Text.StringBuilder();
+             foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==2 && x.Status != 3))
+             {
+                 for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
+                 {
+                     datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
+                 }
+             }
           }
             datedisabled: [@Html.Raw(datesDisabledreserva.ToString())],
 
@@ -268,7 +268,7 @@
                    // 1 = bloqueo
                    // 2 = reserva
                    // 3 = arriendo
-                   foreach(var orders in Model.ListOrder.Where(x=>x.OrderType==3))
+                   foreach(var orders in Model.ListOrder.Where(x=>x.OrderType==3 && x.Status != 3))
                    {
 
                        var usuario = Model.ListUsers.First(x => x.Id.Equals(orders.UserReceiver));
@@ -302,6 +302,10 @@
 }
 </style>
 
+@helper DisplayUnlockLink(int id)
+    {
+    <a class="btn btn-warning btn-sm" href="javascript:void(0);" onclick="confirmUnlock('@id');"><i class="fa fa-key"></i> [[[Unlock]]]</a>
+}
 
 <div class="body-content container-fluid">
     <div class="main-section row">
@@ -317,78 +321,92 @@
                 <br />
             </div>
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-
-                    <table class="table">
-                        <tr>
-                            <th>
-                                [[[block]]]
-                            </th>
-                            <th>
-                                [[[From date]]]
-                            </th>
-                            <th>
-                                [[[To date]]]
-                            </th>
-                            <th></th>
-                        </tr>
-                        @{ int cont = 0;}
-                        @foreach (var item in Model.ListOrder.Where(x => x.OrderType == 2))
-                        {
-                            cont++;
-                            <tr>
-                                <td>
-                                    @cont
-                                </td>
-                                <td>
-                                    @item.FromDate.Value.ToShortDateString()
-                                </td>
-                                <td>
-                                    @item.ToDate.Value.ToShortDateString()
-                                </td>
-
-                                <td>
-                                    <a class="btn btn-warning btn-sm" href="@Url.Action("Unlock", "Manage", new { id = item.ID })"><i class="fa fa-support"></i><span class="hidden-xs">[[[Unlock]]]</span></a>
-                                    @*@Html.ActionLink("[[[Unlock]]]", "Delete", new { id = item.ID })*@
-                                </td>
+                <div class="col-md-offset-3 col-md-9 col-sm-9 col-xs-12">
+                    <h3>[[[Unlock Orders]]]</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr class="bg-warning">
+                                <th>
+                                    [[[block]]]
+                                </th>
+                                <th>
+                                    [[[From date]]]
+                                </th>
+                                <th>
+                                    [[[To date]]]
+                                </th>
+                                <th>[[[Unlock]]]</th>
                             </tr>
-                        }
+                            @{ int cont = 0;}
+                            @foreach (var item in Model.ListOrder.Where(x => x.OrderType == 2 && x.ToDate.Value > DateTime.Now && x.Status!=3))
+                            {
+                                cont++;
+                                <tr>
+                                    <td>
+                                        @cont
+                                    </td>
+                                    <td>
+                                        @item.FromDate.Value.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @item.ToDate.Value.ToShortDateString()
+                                    </td>
 
-                    </table>
+                                    <td>
+                                        @DisplayUnlockLink(item.ID)
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            @*<div class="row">
-                <div class="col-md-offset-3">
-                    <div class="color-swatch" style="background-color:cadetblue"></div>
-                    <div>
-                        <t  style="color:cadetblue"><strong>Reservar</strong>, fechas ocupadas por clientes que reservaron la propiedad.</t>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-offset-3">
-                    <div class="color-swatch" style="background-color:goldenrod"></div>
-                    <div>
-                        <t style="color:goldenrod"><strong>Bloqueos</strong> fechas ocupadas por ti mismo que reservaste por un motivo personal.</t>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-offset-3">
-                    <div class="color-swatch" style="background-color:darkred"></div>
-                    <div>
-                        <t style="color:darkred"><strong>Bloqueos</strong>, playamoblados bloqueo las fechas.</t>
-                    </div>
-                </div>
-            </div>*@
+
 
         </div>
 
             </div>
         </div>
+@section Scripts {
+    <script type="text/javascript">
+        function confirmUnlock(id) {
+            swal({
+                title: "[[[Are you sure?]]]",
+                text: "[[[You will delete the order]]] ",
+                type: "input",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "[[[Yes, delete it!]]]",
+                cancelButtonText: "[[[No, cancel please!]]]",
+                inputPlaceholder: "[[[Type UNLOCK to confirm delete]]]",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function (inputValue) {
+
+                if (inputValue === false)
+                    return false;
+                if (inputValue === "" || inputValue != "UNLOCK") {
+                    swal.showInputError("[[[Type UNLOCK to confirm unlock]]]"); return false
+                }
+
+                swal.disableButtons();
+
+                post('@Url.Action("Unlock","Manage")', { id: id });
+
+                swal("Unlock!", "[[[The order is unlock.]]]", "success");
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
 
 
 

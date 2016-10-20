@@ -295,7 +295,8 @@ namespace BeYourMarket.Web.Controllers
 
             var orders = _orderService.Queryable()
                 .Where(x => x.ListingID == id
-                    && (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    //&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    && (x.Status != (int)Enum_OrderStatus.Cancelled)
                     && (x.FromDate.HasValue && x.ToDate.HasValue)
                     && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
                     .ToList();

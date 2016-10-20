@@ -47,7 +47,7 @@
                                         <div class="col-xs-4">
                                             <div class="pull-right">
                                                 <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i><span class="hidden-xs">[[[Edit]]]</span></a>
-                                                <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');"><i class="fa fa-remove"></i><span class="hidden-xs">[[[Delete]]]</span></a>
+                                                <a class="btn btn-warning btn-sm" href="@Url.Action("ListingCalendar", "Manage", new { id= item.ListingCurrent.ID })"><i class="fa fa-calendar"></i><span class="hidden-xs">[[[Calendar]]]</span></a>
                                             </div>
                                         </div>
                                     </li>

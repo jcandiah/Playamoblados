@@ -673,7 +673,8 @@ namespace BeYourMarket.Web.Controllers
 
             var orders = _orderService.Queryable()
                 .Where(x => x.ListingID == id
-                    && (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    //&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    && (x.Status != (int)Enum_OrderStatus.Cancelled)
                     && (x.FromDate.HasValue && x.ToDate.HasValue)
                     && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
                     .ToList();
@@ -772,17 +773,22 @@ namespace BeYourMarket.Web.Controllers
             return RedirectToAction("UserProfile", "Manage");
         }
 
+        public ActionResult Unlock(int id)
+        {
+            var orders = _orderService.Queryable()
+                          .Where(x => x.ID == id)
+                          .ToList().FirstOrDefault();
+            if(orders==null)
+            {
+                return Redirect("a la ctm");
+            }
+            orders.Status = (int)Enum_OrderStatus.Cancelled;
+            _orderService.Update(orders);
+            _unitOfWorkAsync.SaveChanges();
 
-        //public async Task<JsonResult> GetEvents()
-        //{
-        //    var evt = Model.ListOrder.Select(o => new {
-        //        title = o.Description,
-        //        description = o.Description,
-        //        datetime = o.FromDate
-        //    }).ToList();
+            return RedirectToAction("ListingCalendar", new { id= orders.ListingID });
+        }
 
-        //    return Json(evt, JsonRequestBehavior.AllowGet);
-        //}
         #endregion
 
         #region Helpers
