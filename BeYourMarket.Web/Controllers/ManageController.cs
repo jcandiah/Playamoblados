@@ -673,7 +673,8 @@ namespace BeYourMarket.Web.Controllers
 
             var orders = _orderService.Queryable()
                 .Where(x => x.ListingID == id
-                    && (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    //&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+                    && (x.Status != (int)Enum_OrderStatus.Cancelled)
                     && (x.FromDate.HasValue && x.ToDate.HasValue)
                     && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
                     .ToList();
@@ -781,11 +782,11 @@ namespace BeYourMarket.Web.Controllers
             {
                 return Redirect("a la ctm");
             }
-                
-               _orderService.Delete(id);
-               _unitOfWorkAsync.SaveChanges();
+            orders.Status = (int)Enum_OrderStatus.Cancelled;
+            _orderService.Update(orders);
+            _unitOfWorkAsync.SaveChanges();
 
-                return RedirectToAction("ListingCalendar", new { id= orders.ListingID });
+            return RedirectToAction("ListingCalendar", new { id= orders.ListingID });
         }
 
         #endregion
