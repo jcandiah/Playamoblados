@@ -101,7 +101,35 @@ namespace BeYourMarket.Web.Controllers
         {
             IEnumerable<Listing> items = null;
             IEnumerable<Listing> items2 = null;
+            // Search Text
+            #region Busqueda Texto
+            if (!string.IsNullOrEmpty(model.SearchText))
+            {
+                model.SearchText = model.SearchText.ToLower();
 
+                // Search by title, description, location
+                if (items != null)
+                {
+                    items = items.Where(x =>
+                        //x.Title.ToLower().Contains(model.SearchText) ||
+                        x.Description.ToLower().Contains(model.SearchText) ||
+                        x.Location.ToLower().Contains(model.SearchText));
+                }
+                else
+                {
+                    items = await _listingService.Query(
+                            x => x.Title.ToLower().Contains(model.SearchText) ||
+                            x.Description.ToLower().Contains(model.SearchText) ||
+                            x.Location.ToLower().Contains(model.SearchText))
+                            .Include(x => x.ListingPictures)
+                            .Include(x => x.Category)
+                            .Include(x => x.AspNetUser)
+                            .Include(x => x.Orders)
+                            .Include(x => x.ListingReviews)
+                            .SelectAsync();
+                }
+            }
+            #endregion         
             // Search dates
             #region Busqueda Fecha
             if (!string.IsNullOrEmpty(model.FromDate.ToString()))
@@ -164,36 +192,7 @@ namespace BeYourMarket.Web.Controllers
                             .SelectAsync();
                 }
             }
-            #endregion
-            // Search Text
-            #region Busqueda Texto
-            if (!string.IsNullOrEmpty(model.SearchText))
-            {
-                model.SearchText = model.SearchText.ToLower();
-
-                // Search by title, description, location
-                if (items != null)
-                {
-                    items = items.Where(x =>
-                        x.Title.ToLower().Contains(model.SearchText) ||
-                        x.Description.ToLower().Contains(model.SearchText) ||
-                        x.Location.ToLower().Contains(model.SearchText));
-                }
-                else
-                {
-                    items = await _listingService.Query(
-                            x => x.Title.ToLower().Contains(model.SearchText) ||
-                            x.Description.ToLower().Contains(model.SearchText) ||
-                            x.Location.ToLower().Contains(model.SearchText))
-                            .Include(x => x.ListingPictures)
-                            .Include(x => x.Category)
-                            .Include(x => x.AspNetUser)
-                            .Include(x => x.Orders)
-                            .Include(x => x.ListingReviews)
-                            .SelectAsync();
-                }
-            }
-            #endregion            
+            #endregion               
             // Category
             #region Busqueda Condominio
             if (model.CategoryID != 0)
@@ -297,27 +296,6 @@ namespace BeYourMarket.Web.Controllers
                 {
                     items = await _listingService.Query(
                             x => x.Rooms == model.Rooms)
-                            .Include(x => x.ListingPictures)
-                            .Include(x => x.Category)
-                            .Include(x => x.AspNetUser)
-                            .Include(x => x.Orders)
-                            .Include(x => x.ListingReviews)
-                            .SelectAsync();
-                }
-            }
-            #endregion
-            //Search Cellar
-            #region Busqueda Bodegas
-            if (!string.IsNullOrEmpty(model.Cellar.ToString()))
-            {
-                if (items != null)
-                {
-                    items = items.Where(x => x.Cellar == model.Cellar);
-                }
-                else
-                {
-                    items = await _listingService.Query(
-                            x => x.Cellar == model.Cellar)
                             .Include(x => x.ListingPictures)
                             .Include(x => x.Category)
                             .Include(x => x.AspNetUser)
