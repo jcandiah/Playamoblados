@@ -28,7 +28,7 @@
                         <div class="section panel-header">
                             <div class="col-md-12">
                                 <h3>
-                                    @Model.ListingCurrent.Title
+                                   ID : @Model.ListingCurrent.Title
                                     <span class="score @Model.ListingCurrent.RatingClass text-md"></span>
                                     <!-- Show edit button if administrator or the user who create the listing -->
                                     @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
@@ -165,7 +165,7 @@
                                        
                                             <tr>
                                                 <td>
-                                                    [[[Listing ID]]]
+                                                    ID
                                                 </td>
                                                 <td>
                                                     @Model.ListingCurrent.ID
