@@ -55,11 +55,9 @@ namespace BeYourMarket.Model.Models
         public bool Wifi { get; set; }
         public bool TV_cable { get; set; }
         public Nullable<int> Tv { get; set; }
-
         public bool FirstLine { get; set;}
-
         public Nullable<int> Suite { get; set; }
-
+        public Nullable<Char> PropertyType { get; set; }
 
         //Referencias
         public virtual AspNetUser AspNetUser { get; set; }

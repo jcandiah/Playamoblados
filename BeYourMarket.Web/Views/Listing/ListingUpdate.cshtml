@@ -215,7 +215,7 @@
                                     <label>[[[Email Address]]] <span class="text-red">*</span></label>
                                     <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
                                 </div>
-                                @if (!User.Identity.IsAuthenticated)
+                                @*@if (!User.Identity.IsAuthenticated)
                                 {
                                     <div class="form-group">
                                         <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
@@ -225,7 +225,7 @@
                                         <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
                                         <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
                                     </div>
-                                }
+                                }*@
                             </fieldset>
                             <fieldset>
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Request publication]]]</button>
