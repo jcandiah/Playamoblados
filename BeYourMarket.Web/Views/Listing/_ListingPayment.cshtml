@@ -14,7 +14,7 @@
                 </h4>
             }
 
-            <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" method="post" role="form">
+            <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" id="formulario" method="post" role="form">
                 <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
                 <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
                 @if (!string.IsNullOrEmpty(Model.ListingType.OrderTypeLabel))
@@ -36,11 +36,11 @@
                 }
                 @if (User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID)
                 {
-                    <button type="submit" class="btn btn-primary btn-bl9ock btn-block btn-lg">Reservar</button>
+                    <button type="submit" class="btn btn-primary btn-bl9ock btn-block btn-lg">Bloquear</button>
                 }
                 else
                 {
-                    <button class="btn btn-primary btn-bl9ock btn-block btn-lg">@Model.ListingType.ButtonLabel</button>
+                    <button class="btn btn-success btn-bl9ock btn-block btn-lg" type="button" onclick="confirmDelete()">Reservar</button>
                 }
             </form>
         </div>
@@ -97,7 +97,7 @@
 
 <script type="text/javascript">
     function AbrirModal() {
-       
+
         if (document.getElementById("FromDate").value != "" || document.getElementById("ToDate").value != "") {
 
          $('#exampleModal').modal();
@@ -114,4 +114,35 @@
         })
         }
     }
+
+
+   
+    function confirmDelete(fromdate, todate) {
+        if (document.getElementById("FromDate").value != "" || document.getElementById("ToDate").value != "") {
+            swal({
+                title: "Estas seguro que deseas reservar la propiedad: " + @Model.Title + "\n desde: " + document.getElementById("FromDate").value + "\n hasta: " + document.getElementById("ToDate").value,
+                text: "Al confirmar se redirigira al formulario de pago",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#5cb85c",
+                confirmButtonText: "[[[Confirm]]]",
+                cancelButtonText: "[[[No, cancel]]]",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    //post('');
+                    document.getElementById("formulario").submit();
+                } else {
+                    swal("[[[Cancelled!]]]", "", "error");
+                }
+            });
+        }
+    }
+    
+
+
 </script>
+
+
+
