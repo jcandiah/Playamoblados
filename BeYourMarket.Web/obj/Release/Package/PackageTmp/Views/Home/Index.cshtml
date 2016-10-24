@@ -1,0 +1,229 @@
+﻿@using MoreLinq;
+@using i18n;
+@model BeYourMarket.Web.Models.SearchListingModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="@Context.GetPrincipalAppLanguageForRequest()">
+<head>
+    <meta charset="utf-8">
+    <title>Playamoblados - Reservas vacacionales</title>
+    <meta name="description" content="Inscribe tu propiedad" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <link href="~/css/HomePlayamoblado/css/styles.css" rel="stylesheet" />
+    <link href="~/css/formstone/lightbox.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+
+    <nav class="navbar navbar-default  navbar-fixed-top" style="position:absolute;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"></a>
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default2" style="padding: 13px;" href="@if (User.Identity.IsAuthenticated) {@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })} else {@Url.Action("Login", "Account") } ">Inscribe tu propiedad</a>
+                    </li>
+                    <li>
+                        <a href="#">Quiénes somos</a>
+                    </li>
+                    @Html.Partial("_loginParcialIndex")
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <header id="first">
+        <div class="header-content">
+            <img src="~/css/HomePlayamoblado/img/logo.png" class="img-responsive hidden-xs" /><br><br>
+            <div class="inner">
+
+                <div class="hidden-xs" style="text-align:right;">
+                    <h1>Playamoblados</h1>
+                    <h3>Reservas&nbsp;&nbsp;Vacacionales</h3>
+                </div>
+
+
+            </div>
+
+
+            <div style="background-color: rgba(0,0,0,0.5);">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "intro-text form-inline", @style = "padding:10px;", role = "form" }))
+                {
+                @*<form class="intro-text form-inline" method="get" style="padding:10px;" role="form" action="@Url.Action("Search", "Home")">*@
+                    <h4 class="hidden-lg hidden-md hidden-sm ">Reserva tus vacaciones</h4>
+                    <div class="form-group">
+                        @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
+                    </div>
+                        <div class="form-group">                            
+                            @*@Html.TextBoxFor(p => p.FromDate, new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })*@
+                            <input type="date" class="form-control" placeholder="[[[From]]]" id="FromDate" name="FromDate" data-rule-date="true" required>
+                        </div>
+                        <div class="form-group">
+                            @*@Html.TextBoxFor(p => p.ToDate, new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })*@
+                            <input type="date" class="form-control" placeholder="[[[To]]]" id="ToDate" name="ToDate" data-rule-date="true" required>
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(p => p.Passengers,
+                 new[]
+                 {
+                        new SelectListItem{ Value = "1", Text = "1 pax" },
+                        new SelectListItem{ Value = "2", Text = "2 pax" },
+                        new SelectListItem{ Value = "3", Text = "3 pax" },
+                        new SelectListItem{ Value = "4", Text = "4 pax" },
+                        new SelectListItem{ Value = "5", Text = "5 pax" },
+                        new SelectListItem{ Value = "6", Text = "6 pax" },
+                        new SelectListItem{ Value = "7", Text = "7 pax" },
+                        new SelectListItem{ Value = "8", Text = "8+ pax" }
+                 },
+                 "[[[Passengers]]]", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
+                        </div>
+                @*</form>*@
+                }
+            </div>
+        </div>
+       
+        <video autoplay loop id="video-background" poster="@Url.Content("~/css/HomePlayamoblado/img/MientrasCarga.jpg")" data-wow-delay="0.5s">
+            <source src="~/Videos/playamoblados-desktop.webm" type="video/webm" />
+            <source src="~/Videos/Fondo.webm" type="video/webm" />
+            <source src="~/Videos/playamoblados-iPhone.m4v" type="video/quicktime" />
+            <source src="video/Fondo.webm" type="video/webm" />
+            <source src="video/fondo.mp4" type="video/mp4">
+        </video>
+    </header>
+
+    <section id="servicios" class="servicios">
+
+        <div class="container">
+            <h2 style="color:black; font-size:26px;"><p>SERVICIOS BÁSICOS</p></h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Wifi.png">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Mucama.png">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/RopaBlanca.png">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/DescuentosComerciales.png">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+        <img class="img-responsive" src="~/css/HomePlayamoblado/img/inscribe2.png" style="width:100%;">
+    </section>
+
+
+    <section id="contact" class="servicios">
+        <br>
+        <div class="container">
+            <h2 style="color:black; font-size:26px;"><p>LUGARES DE DESTINO</p></h2>
+            <div class="col-md-4 col-sm-4  col-xs-6">
+                <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Papudo.png">
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Maitencillo.png">
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Zapallar.png">
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row-fluid">
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h2 class="h4" style="color:white;"><strong>Empresa</strong></h2>
+                    <ul class="list-layout" style="list-style:none">
+                        <li><a href="#" class="link-contrast">Acerca de</a></li>
+                        <li><a href="#" class="link-contrast">Ayuda</a></li>
+                        <li><a href="#" class="link-contrast">Políticas</a></li>
+                        <li><a href="#" class="link-contrast">Términos y Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-3 hidden-xs">
+                    <h2 class="h4" style="color:white;"><strong>Descubre Playamoblados</strong></h2>
+                    <ul class="list-layout" style="list-style:none">
+                        <li><a href="#" class="link-contrast">Confianza y seguridad</a></li>
+                        <li><a href="#" class="link-contrast">Aplicación para móviles</a></li>
+                        <li><a href="#" class="link-contrast">Mapa del sitio</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-3 hidden-xs ">
+                    <h2 class="h4" style="color:white;"><strong>Hospedar</strong></h2>
+                    <ul class="list-layout" style="list-style:none">
+                        <li><a href="#" class="link-contrast">Hospitalidad</a></li>
+                        <li><a href="#" class="link-contrast">Seguridad en el hogar</a></li>
+                        <li><a href="#" class="link-contrast">Reserva inmediata</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h2 class="h4" style="color:white;"><strong>Siguenos en</strong> </h2>
+                    <ul class="facebook" style="list-style:none">
+                        <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/FACE.png")" style="width:40px; height:40px;" class="img-hover">Facebook</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/INS.png")" style="width:40px; height:40px;" class="img-hover">Instagram</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/TWITTER.png")" style="width:40px; height:40px;" class="img-hover">Twitter</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/css/HomePlayamoblado/img/GOO.png")" style="width:40px; height:40px;" class="img-hover">Google</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/js")
+    <!--scripts loaded here from cdn for performance -->
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+
+    @Html.Partial("_LocalizationDatePicker")
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.datepicker').datepicker({
+                    startDate: new Date(),
+                    //daysOfWeekDisabled: "0",
+                    language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
+                });
+            });
+    </script>
+
+</body>
+</html>
+
+

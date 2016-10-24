@@ -1,0 +1,174 @@
+﻿<error errorId="43f4b244-f4b3-4a56-9099-3f5926832980" host="RIPLEY-PC" type="System.MissingMethodException" message="Método no encontrado: 'System.String BeYourMarket.Model.Models.Listing.get_PropertyType()'." source="App_Web_hs255dcu" detail="System.MissingMethodException: Método no encontrado: 'System.String BeYourMarket.Model.Models.Listing.get_PropertyType()'.&#xD;&#xA;   en ASP._Page_Views_Listing_ListingUpdate_cshtml.Execute()&#xD;&#xA;   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   en System.Web.WebPages.StartPage.RunPage()&#xD;&#xA;   en System.Web.WebPages.StartPage.ExecutePageHierarchy()&#xD;&#xA;   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   en System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   en System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)" user="mlara@ratio.cl" time="2016-10-21T18:40:34.9623663Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:es-ES,es;q=0.8&#xD;&#xA;HTTP_COOKIE:i18n.langtag=es; __RequestVerificationToken=mIPAl7emJU_Jn132hIrw83Kff_-QPSQRJ5EQG5CKC6qxZNk6okG_mKNAhXKQQnQCssHDFcnZ2OoXzV7p0OAW1Dvb8LICCBvYWv-sk783poA1; ASP.NET_SessionId=fpnbytfkdjomxgckj1xmyjnp; .AspNet.ApplicationCookie=lV0hE332t4NYfn2RBl_mX3_e2YigeMf8LlsJAoCFtZUDXOuFWbLjAAkoM5XvIy6pmYiOt0Y7vahb6bViIkD0zC-qDkFyTz1Zm97xgmE3XaKK9ZS9uCigG3LqXDcTIGkUZj8eSaGQZ24V1WSxb9p8EUMm7Ec_yX8yAD-x-OTtmrnxZbJkLTqx1Jxn7nnDQmaV7zgV7U1NOfBYPHz04Cde2FWORex7MYfDLHxV_k2n-_8dCgVPT1-WJim4dzOC1AGK-7_ESCPVPN5T94pbxJWZWBl1cDk_IoTVVUuXRhRq7al-KJsQUHhH8_laS4RJ3NXDbvLV0GXto4V1Kdfw97jE0SPjW7lkAvNiLifrh-C7or_0EsX3mx20lK-FCSKRYMlKsNDky9sCkSFND6OfJSHagiX206xjvWLla4ypvtHLkofMfn0A4bo95K75adyzLAu09k9gI_KJtU60oHNWEANYusUapyFIUz6aaW9t7Ajkfhw&#xD;&#xA;HTTP_HOST:localhost:8389&#xD;&#xA;HTTP_REFERER:http://localhost:8389/es/home/search?SearchText=&amp;FromDate=2016-10-18&amp;ToDate=2016-11-03&amp;Passengers=&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: es-ES,es;q=0.8&#xD;&#xA;Cookie: i18n.langtag=es; __RequestVerificationToken=mIPAl7emJU_Jn132hIrw83Kff_-QPSQRJ5EQG5CKC6qxZNk6okG_mKNAhXKQQnQCssHDFcnZ2OoXzV7p0OAW1Dvb8LICCBvYWv-sk783poA1; ASP.NET_SessionId=fpnbytfkdjomxgckj1xmyjnp; .AspNet.ApplicationCookie=lV0hE332t4NYfn2RBl_mX3_e2YigeMf8LlsJAoCFtZUDXOuFWbLjAAkoM5XvIy6pmYiOt0Y7vahb6bViIkD0zC-qDkFyTz1Zm97xgmE3XaKK9ZS9uCigG3LqXDcTIGkUZj8eSaGQZ24V1WSxb9p8EUMm7Ec_yX8yAD-x-OTtmrnxZbJkLTqx1Jxn7nnDQmaV7zgV7U1NOfBYPHz04Cde2FWORex7MYfDLHxV_k2n-_8dCgVPT1-WJim4dzOC1AGK-7_ESCPVPN5T94pbxJWZWBl1cDk_IoTVVUuXRhRq7al-KJsQUHhH8_laS4RJ3NXDbvLV0GXto4V1Kdfw97jE0SPjW7lkAvNiLifrh-C7or_0EsX3mx20lK-FCSKRYMlKsNDky9sCkSFND6OfJSHagiX206xjvWLla4ypvtHLkofMfn0A4bo95K75adyzLAu09k9gI_KJtU60oHNWEANYusUapyFIUz6aaW9t7Ajkfhw&#xD;&#xA;Host: localhost:8389&#xD;&#xA;Referer: http://localhost:8389/es/home/search?SearchText=&amp;FromDate=2016-10-18&amp;ToDate=2016-11-03&amp;Passengers=&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\daniel\Source\Repos\Playamoblados\BeYourMarket.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="mlara@ratio.cl" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/listing/listingupdate" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\daniel\Source\Repos\Playamoblados\BeYourMarket.Web\listing\listingupdate" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="52380" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/listing/listingupdate" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="8389" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/listing/listingupdate" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="es-ES,es;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="i18n.langtag=es; __RequestVerificationToken=mIPAl7emJU_Jn132hIrw83Kff_-QPSQRJ5EQG5CKC6qxZNk6okG_mKNAhXKQQnQCssHDFcnZ2OoXzV7p0OAW1Dvb8LICCBvYWv-sk783poA1; ASP.NET_SessionId=fpnbytfkdjomxgckj1xmyjnp; .AspNet.ApplicationCookie=lV0hE332t4NYfn2RBl_mX3_e2YigeMf8LlsJAoCFtZUDXOuFWbLjAAkoM5XvIy6pmYiOt0Y7vahb6bViIkD0zC-qDkFyTz1Zm97xgmE3XaKK9ZS9uCigG3LqXDcTIGkUZj8eSaGQZ24V1WSxb9p8EUMm7Ec_yX8yAD-x-OTtmrnxZbJkLTqx1Jxn7nnDQmaV7zgV7U1NOfBYPHz04Cde2FWORex7MYfDLHxV_k2n-_8dCgVPT1-WJim4dzOC1AGK-7_ESCPVPN5T94pbxJWZWBl1cDk_IoTVVUuXRhRq7al-KJsQUHhH8_laS4RJ3NXDbvLV0GXto4V1Kdfw97jE0SPjW7lkAvNiLifrh-C7or_0EsX3mx20lK-FCSKRYMlKsNDky9sCkSFND6OfJSHagiX206xjvWLla4ypvtHLkofMfn0A4bo95K75adyzLAu09k9gI_KJtU60oHNWEANYusUapyFIUz6aaW9t7Ajkfhw" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:8389" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:8389/es/home/search?SearchText=&amp;FromDate=2016-10-18&amp;ToDate=2016-11-03&amp;Passengers=" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="i18n.langtag">
+      <value string="es" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="mIPAl7emJU_Jn132hIrw83Kff_-QPSQRJ5EQG5CKC6qxZNk6okG_mKNAhXKQQnQCssHDFcnZ2OoXzV7p0OAW1Dvb8LICCBvYWv-sk783poA1" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="fpnbytfkdjomxgckj1xmyjnp" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="lV0hE332t4NYfn2RBl_mX3_e2YigeMf8LlsJAoCFtZUDXOuFWbLjAAkoM5XvIy6pmYiOt0Y7vahb6bViIkD0zC-qDkFyTz1Zm97xgmE3XaKK9ZS9uCigG3LqXDcTIGkUZj8eSaGQZ24V1WSxb9p8EUMm7Ec_yX8yAD-x-OTtmrnxZbJkLTqx1Jxn7nnDQmaV7zgV7U1NOfBYPHz04Cde2FWORex7MYfDLHxV_k2n-_8dCgVPT1-WJim4dzOC1AGK-7_ESCPVPN5T94pbxJWZWBl1cDk_IoTVVUuXRhRq7al-KJsQUHhH8_laS4RJ3NXDbvLV0GXto4V1Kdfw97jE0SPjW7lkAvNiLifrh-C7or_0EsX3mx20lK-FCSKRYMlKsNDky9sCkSFND6OfJSHagiX206xjvWLla4ypvtHLkofMfn0A4bo95K75adyzLAu09k9gI_KJtU60oHNWEANYusUapyFIUz6aaW9t7Ajkfhw" />
+    </item>
+  </cookies>
+</error>

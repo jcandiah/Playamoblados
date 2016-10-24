@@ -20,3 +20,9 @@ C:\Users\Matias\Desktop\Repositorio\Frameworks\Repository.Pattern\bin\Debug\Repo
 C:\Users\Matias\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.csprojResolveAssemblyReference.cache
 C:\Users\Matias\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
 C:\Users\Matias\Desktop\Repositorio\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll.config
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.dll
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\bin\Debug\Repository.Pattern.pdb
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.csprojResolveAssemblyReference.cache
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.dll
+C:\Users\daniel\Source\Repos\Playamoblados\Frameworks\Repository.Pattern\obj\Debug\Repository.Pattern.pdb
