@@ -16,9 +16,39 @@ namespace BeYourMarket.Web.Models
 
         public string SearchText { get; set; }
 
-        public Nullable<System.DateTime> FromDate { get; set; }
+        public string string_fromdate { get; set; }
+        public string string_todate { get; set; }
 
-        public Nullable<System.DateTime> ToDate { get; set; }
+        private DateTime? _fromDate;
+
+        public DateTime? FromDate
+        {
+            get
+            {
+                return DateTime.Parse(string_fromdate);
+            }
+
+            set
+            {
+                var valor = DateTime.Parse(string_fromdate);
+                _fromDate = DateTime.Parse(string_fromdate);
+            }
+        }
+        private Nullable<DateTime> _toDate;
+
+        public DateTime? ToDate
+        {
+            get
+            {
+                return DateTime.Parse(string_todate);
+            }
+
+            set
+            {
+                _toDate = DateTime.Parse(string_todate);
+            }
+        }
+
 
         public Nullable<int> Passengers { get; set; }
 

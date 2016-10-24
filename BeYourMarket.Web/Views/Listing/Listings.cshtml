@@ -11,6 +11,7 @@
 
 @section Styles {
     <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
 }
 
 @helper DisplayBreadCrumb()
@@ -162,10 +163,10 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 range-from">
-                                            @Html.TextBoxFor(x => x.FromDate, "[[[From]]]", new { @class = "form-control", @name = "FromDate", @value = "@Model.FromDate", @type = "date" })
+                                            @Html.TextBoxFor(x => x.string_fromdate, new { @class = "form-control datepicker", @placeholder ="[[[From]]]", @value = "@Model.FromDate" })
                                         </div>
                                         <div class="col-xs-6 range-to">
-                                            @Html.TextBoxFor(x => x.ToDate, "[[[To]]]", new { @class = "form-control", @name = "ToDate", @value = "@Model.ToDate", @type = "date" })
+                                            @Html.TextBoxFor(x => x.string_todate, new { @class = "form-control datepicker", @placeholder= "[[[To]]]", @value = "@Model.ToDate" })
                                         </div>
                                     </div>
                                 </div>
@@ -203,3 +204,16 @@
 @section Scripts {
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places" async defer></script>
 }
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+
+@Html.Partial("_LocalizationDatePicker")
+<script type="text/javascript">
+            $(document).ready(function () {
+                $('.datepicker').datepicker({
+                    startDate: new Date(),
+                    //daysOfWeekDisabled: "0",
+                    language: "es" @*'@Context.GetPrincipalAppLanguageForRequest().ToString()'*@
+                });
+            });
+</script>
