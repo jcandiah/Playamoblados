@@ -25,6 +25,10 @@ namespace BeYourMarket.Web.Models
         {
             get
             {
+                if(string.IsNullOrEmpty(string_fromdate))
+                {
+                    return new DateTime(2000, 1, 1);
+                }
                 return DateTime.Parse(string_fromdate);
             }
 
@@ -40,6 +44,10 @@ namespace BeYourMarket.Web.Models
         {
             get
             {
+                if (string.IsNullOrEmpty(string_todate))
+                {
+                    return new DateTime(2500, 1, 1);
+                }
                 return DateTime.Parse(string_todate);
             }
 
