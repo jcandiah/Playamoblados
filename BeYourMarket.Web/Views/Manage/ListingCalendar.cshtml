@@ -99,11 +99,15 @@
             function print() {
                 loadEvents();
                 var dWeekDayOfMonthStart = new Date(dYear, dMonth, 1).getDay() - settings.firstDayOfWeek;
+            
                 if (dWeekDayOfMonthStart < 0) {
                     dWeekDayOfMonthStart = 6 - ((dWeekDayOfMonthStart + 1) * -1);
+                   
                 }
                 var dLastDayOfMonth = new Date(dYear, dMonth + 1, 0).getDate();
-                var dLastDayOfPreviousMonth = new Date(dYear, dMonth + 1, 0).getDate() - dWeekDayOfMonthStart + 1;
+                var dLastDayOfPreviousMonth = new Date(dYear, dMonth + 1, 0).getDate() - dWeekDayOfMonthStart+1;
+                
+              
 
                 var cBody = $('<div/>').addClass('c-grid');
                 var cEvents = $('<div/>').addClass('c-event-grid');
@@ -137,9 +141,11 @@
                 var dayOfNextMonth = 1;
                 for (var i = 0; i < 42; i++) {
                     var cDay = $('<div/>');
+                    
                     if (i < dWeekDayOfMonthStart) {
+                       
                         cDay.addClass('c-day-previous-month c-pad-top');
-                        cDay.html(dLastDayOfPreviousMonth++);
+                        cDay.html("");
                     } else if (day <= dLastDayOfMonth) {
                         cDay.addClass('c-day c-pad-top');
                         if (day == dDay && adMonth == dMonth && adYear == dYear) {
@@ -236,6 +242,7 @@
         $.fn.eCalendar.defaults = {
             weekDays: ['Dom', 'Lun', 'Mar', 'Mi', 'Jue', 'Vie', 'Sab'],
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ 
             textArrows: { previous: '<', next: '>' },
             eventTitle: 'Eventos',
             @*url: '@Url.Action("GetEvents", "Manage")',*@
@@ -314,10 +321,17 @@
             @Html.Partial("_DashBoardSide", "calendar")
 
             <div class="col-md-9 text-center" style="padding-bottom:4%;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                       Propiedad ID : # @Model.ListingCurrent.Title <span class="fa fa-calendar"></span>
+                    </div>
+                    <div class="panel-body">
+                        <div id="calendar"></div>
+                    </div>
+                 </div>
+              
 
-                <h2>@Model.ListingCurrent.Title <span class="fa fa-calendar"></span></h2>
-
-                <div id="calendar"></div>
+                
                 <br />
             </div>
             <div class="row">
@@ -327,13 +341,13 @@
                         <table class="table table-hover">
                             <tr class="bg-warning">
                                 <th>
-                                    [[[block]]]
+                                    #
                                 </th>
                                 <th>
-                                    [[[From date]]]
+                                    [[[Check in]]]
                                 </th>
                                 <th>
-                                    [[[To date]]]
+                                    [[[Check out]]]
                                 </th>
                                 <th>[[[Unlock]]]</th>
                             </tr>
