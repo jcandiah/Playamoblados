@@ -170,7 +170,7 @@
                             var c = settings.datedisabled[j];
                             var d = new Date(c);
                             if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
-                                console.log(d);
+                                
                                 cDay.addClass('c-event-reserva').attr('data-event-day', d.getDate());
                                 cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                             }
