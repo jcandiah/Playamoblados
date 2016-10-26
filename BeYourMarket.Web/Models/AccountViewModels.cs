@@ -79,10 +79,10 @@ namespace BeYourMarket.Web.Models
         [Display(Name = "[[[Confirm password]]]")]
         [Compare("Password", ErrorMessage = "[[[The password and confirmation password do not match.]]]")]
         public string ConfirmPassword { get; set; }
-        
+
         [Display(Name = "[[[First Name]]]")]
         public string FirstName { get; set; }
-        
+
         [Display(Name = "[[[Last Name]]]")]
         public string LastName { get; set; }
 
@@ -117,5 +117,25 @@ namespace BeYourMarket.Web.Models
         [EmailAddress]
         [Display(Name = "[[[Email]]]")]
         public string Email { get; set; }
+    }
+
+    public class ConfirmOrder
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "[[[Email]]]")]
+        public string Email { get; set; }
+
+        [Display(Name = "[[[Name]]]")]
+        public string Name { get; set; }
+
+        [Display(Name = "[[[ID]]]")]
+        public int Id { get; set; }
+
+        [Display(Name = "[[[FromDate]]]")]
+        public string FromDate { get; set; }
+
+        [Display(Name = "[[[ToDate]]]")]
+        public string ToDate { get; set; }
     }
 }

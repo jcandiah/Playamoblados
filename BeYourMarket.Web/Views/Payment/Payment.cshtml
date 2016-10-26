@@ -1,12 +1,12 @@
 ﻿@*@using Microsoft.Practices.Unity;
-@using Microsoft.Practices.Unity.Configuration;
-@using System.Net;
-@using System.Web.Script.Serialization;
-@using System.Collections.Generic;*@
+    @using Microsoft.Practices.Unity.Configuration;
+    @using System.Net;
+    @using System.Web.Script.Serialization;
+    @using System.Collections.Generic;*@
 @model BeYourMarket.Web.Models.PaymentModel
 
 @{
-    ViewBag.Title = "[[[Payment]]]";    
+    ViewBag.Title = "[[[Payment]]]";
     #region Dolar
     //string apiUrl = "http://www.mindicador.cl/api";
     //string jsonString = "{}";
@@ -97,30 +97,30 @@
                                 </div>
                             }
                         </div>
+                        <h5>[[[Price]]]: @Model.ListingOrder.PriceFormatted</h5>
+                        <div style="text-align: center">
+                            <a class="btn btn-success btn-lg" style="width: 300px" href="@Url.Action("Search", "Home", new { })">Volver</a>
+                        </div>
                     </div>
                     @*<button type="submit" name="boton">Confirmar Pago</button>*@
                 </form>
-                <form method="post" style="padding:10px;" role="form" action="@Url.Action("Search", "Home", new { })">
-                    <button type="submit" name="boton">Volver</button>
-                </form>
-            
-                <h5>[[[Price]]]: @Model.ListingOrder.PriceFormatted</h5>
+
                 @*
-                @Html.DoAction(HookName.Payment, Model.ListingOrder)*
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="6RNT8A4HBBJRE">
-                    <input type="hidden" name="price" value="11.00">
-                    <input type="hidden" name="currency_code" value="USD">
-                    <input type="hidden" name="no_shipping" value="1">
-                    <input type="hidden" name="   " value="http://www.sitio.com/pagado.php">
-                    <input type="hidden" name="cancel_return" value="http://www.sitio.com/cancelado.php">
-                    <input type="hidden" name="item_name" value="@Model.ListingOrder.Listing.Title" />
-                    <input type="hidden" name="tx" value="@Model.ListingOrder.ID" />
-                    <input type="hidden" name="item_number" value="@Model.ListingOrder.ListingID" />
-                    <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                </form>
+                    @Html.DoAction(HookName.Payment, Model.ListingOrder)*
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="6RNT8A4HBBJRE">
+                        <input type="hidden" name="price" value="11.00">
+                        <input type="hidden" name="currency_code" value="USD">
+                        <input type="hidden" name="no_shipping" value="1">
+                        <input type="hidden" name="   " value="http://www.sitio.com/pagado.php">
+                        <input type="hidden" name="cancel_return" value="http://www.sitio.com/cancelado.php">
+                        <input type="hidden" name="item_name" value="@Model.ListingOrder.Listing.Title" />
+                        <input type="hidden" name="tx" value="@Model.ListingOrder.ID" />
+                        <input type="hidden" name="item_number" value="@Model.ListingOrder.ListingID" />
+                        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                    </form>
                 *@
             </div>
         </div>

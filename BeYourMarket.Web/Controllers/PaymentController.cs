@@ -48,6 +48,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
+        private readonly IEmailTemplateService _emailTemplateService;
         private readonly ICustomFieldListingService _customFieldListingService;
 
         private readonly DataCacheService _dataCacheService;
@@ -99,6 +100,7 @@ namespace BeYourMarket.Web.Controllers
             IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
+            IEmailTemplateService emailTemplateService,
             IPluginFinder pluginFinder)
         {
             _settingService = settingService;
@@ -123,6 +125,7 @@ namespace BeYourMarket.Web.Controllers
             _pluginFinder = pluginFinder;
 
             _unitOfWorkAsync = unitOfWorkAsync;
+            _emailTemplateService = emailTemplateService;
         }
         #endregion
 
@@ -282,6 +285,12 @@ namespace BeYourMarket.Web.Controllers
 
             var userCurrent = User.Identity.User();
 
+            ConfirmOrder confirmacion = new ConfirmOrder();
+            confirmacion.Id = order.ListingID;
+            confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
+            confirmacion.FromDate = order.FromDate.ToString();
+            confirmacion.ToDate = order.ToDate.ToString();
+            confirmacion.Email = userCurrent.Email;
 
             //validar que los dias no esten reservados
             List<DateTime> FechasCocinadas = new List<DateTime>();
@@ -290,7 +299,7 @@ namespace BeYourMarket.Web.Controllers
                 FechasCocinadas.Add(date);
 
             }
-            foreach (Order ordenesArrendadas in ordersListing.Where(x=>x.Status!=(int)Enum_OrderStatus.Cancelled))
+            foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
             {
                 for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
@@ -368,7 +377,8 @@ namespace BeYourMarket.Web.Controllers
                             order.Quantity = 1;
                             order.Price = listing.Price;
                         }
-                        _orderService.Insert(order);                        
+                        _orderService.Insert(order);
+                        await EnviarCorreo(confirmacion);
                     }
                     await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -493,7 +503,7 @@ namespace BeYourMarket.Web.Controllers
         //    var userCurrent = User.Identity.User();
 
         //    order.OrderType = 3;
-            
+
 
         //    _orderService.Insert(order);            
 
@@ -506,5 +516,22 @@ namespace BeYourMarket.Web.Controllers
         //    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
 
         //}
+
+        public async Task<ActionResult> EnviarCorreo(ConfirmOrder model)
+        {
+            var user = await UserManager.FindByNameAsync(model.Email);
+
+            var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
+            var emailTemplate = emailTemplateQuery.Single();
+
+            dynamic email = new Postal.Email("Email");
+            email.To = user.Email;
+            email.From = CacheHelper.Settings.EmailAddress;
+            email.Subject = emailTemplate.Subject;
+            email.Body = emailTemplate.Body;
+            EmailHelper.SendEmail(email);
+
+            return RedirectToAction("Payment", "Payment", new { id = model.Id });
+        }
     }
 }
