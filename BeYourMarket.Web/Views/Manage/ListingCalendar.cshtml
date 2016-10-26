@@ -8,7 +8,8 @@
 
 <link href="~/calendar-master/css/jquery.e-calendar.css" rel="stylesheet" />
 <script src="~/calendar-master/example/index.js"></script>
-
+<script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+<link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
 
 <div>
     <script type="text/javascript">
@@ -99,15 +100,15 @@
             function print() {
                 loadEvents();
                 var dWeekDayOfMonthStart = new Date(dYear, dMonth, 1).getDay() - settings.firstDayOfWeek;
-            
+
                 if (dWeekDayOfMonthStart < 0) {
                     dWeekDayOfMonthStart = 6 - ((dWeekDayOfMonthStart + 1) * -1);
-                   
+
                 }
                 var dLastDayOfMonth = new Date(dYear, dMonth + 1, 0).getDate();
                 var dLastDayOfPreviousMonth = new Date(dYear, dMonth + 1, 0).getDate() - dWeekDayOfMonthStart+1;
-                
-              
+
+
 
                 var cBody = $('<div/>').addClass('c-grid');
                 var cEvents = $('<div/>').addClass('c-event-grid');
@@ -141,9 +142,9 @@
                 var dayOfNextMonth = 1;
                 for (var i = 0; i < 42; i++) {
                     var cDay = $('<div/>');
-                    
+
                     if (i < dWeekDayOfMonthStart) {
-                       
+
                         cDay.addClass('c-day-previous-month c-pad-top');
                         cDay.html("");
                     } else if (day <= dLastDayOfMonth) {
@@ -169,7 +170,7 @@
                             var c = settings.datedisabled[j];
                             var d = new Date(c);
                             if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
-
+                                console.log(d);
                                 cDay.addClass('c-event-reserva').attr('data-event-day', d.getDate());
                                 cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                             }
@@ -242,7 +243,7 @@
         $.fn.eCalendar.defaults = {
             weekDays: ['Dom', 'Lun', 'Mar', 'Mi', 'Jue', 'Vie', 'Sab'],
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- 
+
             textArrows: { previous: '<', next: '>' },
             eventTitle: 'Eventos',
             @*url: '@Url.Action("GetEvents", "Manage")',*@
@@ -253,7 +254,15 @@
                 {
                     for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
                     {
-                        datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
+                        if (date.Day >= 10)
+                        {
+                            datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day + 1);
+                        }
+                        else
+                        {
+
+                            datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
+                        }
                     }
                 }
            }
@@ -264,17 +273,27 @@
              {
                  for (DateTime date = orders.FromDate.Value; date <= orders.ToDate.Value; date = date.Date.AddDays(1))
                  {
-                     datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
+                     if(date.Day >=10)
+                     {
+                         datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day+1);
+                     }
+                     else
+                     {
+
+                         datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
+                     }
                  }
              }
+
           }
             datedisabled: [@Html.Raw(datesDisabledreserva.ToString())],
+            //datedisabled: ['2016-11-18', '2016-11-19', '2016-11-20', '2016-11-9', '2016-11-10', '2016-11-11'],
 
             events: [
                @{
-                   // 1 = bloqueo
-                   // 2 = reserva
-                   // 3 = arriendo
+                   // 1 = bloqueo playamoblado
+                   // 2 = bloqueo
+                   // 3 = reserva
                    foreach(var orders in Model.ListOrder.Where(x=>x.OrderType==3 && x.Status != 3))
                    {
 
@@ -295,8 +314,6 @@
 
     </script>
 </div>
-
-
 
 
 <style>
@@ -328,12 +345,17 @@
                     <div class="panel-body">
                         <div id="calendar"></div>
                     </div>
-                 </div>
-              
-
-                
+                 </div>              
                 <br />
             </div>
+           
+            <div class="col-md-offset-5 col-md-5 col-sm-9 col-xs-12">
+                @Html.Partial("_UserMessage")
+                <h2>Bloquea tu propiedad</h2>
+                <br />
+                @Html.Partial("~/Views/Listing/_ListingPayment2.cshtml", Model.ListingCurrent)
+            </div>
+
             <div class="row">
                 <div class="col-md-offset-3 col-md-9 col-sm-9 col-xs-12">
                     <h3>[[[Unlock Orders]]]</h3>
@@ -383,6 +405,7 @@
 
             </div>
         </div>
+
 @section Scripts {
     <script type="text/javascript">
         function confirmUnlock(id) {
@@ -413,8 +436,31 @@
             });
         }
     </script>
-}
 
+}
+@{
+    var datesDisabled = new System.Text.StringBuilder();
+    foreach (var fromDate in Model.DatesBooked)
+    {
+        datesDisabled.AppendFormat("'{0}',", fromDate.ToShortDateString());
+    }
+}
+@Html.Partial("_LocalizationDatePicker")
+
+@Html.Partial("_LocalizationJQueryValidation")
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                startDate: new Date(),
+                defaultDate: new Date(),
+                //daysOfWeekDisabled: "0",
+                datesDisabled: [@Html.Raw(datesDisabled.ToString())],
+                language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
+            });
+        });
+</script>
 
 
 
