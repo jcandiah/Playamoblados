@@ -288,8 +288,8 @@ namespace BeYourMarket.Web.Controllers
             ConfirmOrder confirmacion = new ConfirmOrder();
             confirmacion.Id = order.ListingID;
             confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
-            confirmacion.FromDate = order.FromDate.ToString();
-            confirmacion.ToDate = order.ToDate.ToString();
+            confirmacion.FromDate = order.FromDate.Value.ToString("dd-MM-yyyy");
+            confirmacion.ToDate = order.ToDate.Value.ToString("dd-MM-yyyy");
             confirmacion.Email = userCurrent.Email;
 
             //validar que los dias no esten reservados
@@ -633,6 +633,10 @@ namespace BeYourMarket.Web.Controllers
             email.From = CacheHelper.Settings.EmailAddress;
             email.Subject = emailTemplate.Subject;
             email.Body = emailTemplate.Body;
+            email.Name = model.Name;
+            email.FromDate = model.FromDate;
+            email.ToDate = model.ToDate;
+            email.Id = model.Id;
             EmailHelper.SendEmail(email);
 
             return RedirectToAction("Payment", "Payment", new { id = model.Id });
