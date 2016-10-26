@@ -486,6 +486,110 @@ namespace BeYourMarket.Web.Controllers
             }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> PropertyOrder(Order order)
+        {
+            var listing = await _listingService.FindAsync(order.ListingID);
+            var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
+
+            if (order.FromDate == order.ToDate)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cant book just to one day, minimun two day.]]]";
+
+                return RedirectToAction("Listing", "Manage", new { id = order.ListingID });
+            }
+
+            if (listing == null)
+                return new HttpNotFoundResult();
+
+            // Redirect if not authenticated
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Manage", new { id = order.ListingID }) });
+
+            var userCurrent = User.Identity.User();
+
+            //validar que los dias no esten reservados
+            List<DateTime> FechasCocinadas = new List<DateTime>();
+            for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+            {
+                FechasCocinadas.Add(date);
+
+            }
+            foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
+            {
+                for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
+                {
+                    if (FechasCocinadas.Contains(date))
+                    {
+                        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                        TempData[TempDataKeys.UserMessage] = "[[[You can not book with these selected dates!]]]";
+                        return RedirectToAction("Listing", "Manage", new { id = listing.ID });
+                    }
+                }
+
+            }
+
+            // Check if payment method is setup on user or the platform
+            var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, "Payment").Where(x => x.Enabled);
+            if (descriptors.Count() == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[The provider has not setup the payment option yet, please contact the provider.]]]";
+
+                return RedirectToAction("Listing", "Manage", new { id = order.ListingID });
+            }
+
+
+            order.OrderType = 2;
+            if (order.ID == 0)
+            {
+                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                order.Created = DateTime.Now;
+                order.Modified = DateTime.Now;
+                order.Status = (int)Enum_OrderStatus.Created;
+                order.UserProvider = listing.UserID;
+                order.UserReceiver = userCurrent.Id;
+                order.ListingTypeID = order.ListingTypeID;
+                order.Currency = listing.Currency;
+
+                if (order.ToDate.HasValue && order.FromDate.HasValue)
+                {
+                    order.Description = HttpContext.ParseAndTranslate(
+                        string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
+                        listing.Title,
+                        listing.ID,
+                        order.FromDate.Value.ToShortDateString(),
+                        order.ToDate.Value.ToShortDateString()));
+
+                    order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
+                    order.Price = 0;
+                }
+                else if (order.Quantity.HasValue)
+                {
+                    order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                    order.Quantity = order.Quantity.Value;
+                    order.Price = 0;
+                }
+                else
+                {
+                    // Default
+                    order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
+                    order.Quantity = 1;
+                    order.Price = 0;
+                }
+
+                _orderService.Insert(order);
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            ClearCache();
+            TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+            return RedirectToAction("Listing", "Manage", new { id = listing.ID });
+        }
+
         private void ClearCache()
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
