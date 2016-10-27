@@ -49,7 +49,7 @@
 
 @helper DisplayListing(string title, int ListingID)
 {
-    <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
+    <a>@ListingID</a>
 }
 
 <div class="wraper container-fluid">
@@ -91,12 +91,12 @@
                                            columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+                                               .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
                                            columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Provider]]]");
                                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Receiver]]]");
 
-                                           columns.Add(x => x.Price).Titled("[[[Price]]]");
+                                           columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 
                                            columns.Add(x => x.FromDate).Titled("[[[From]]]");
                                            columns.Add(x => x.ToDate).Titled("[[[To]]]");
