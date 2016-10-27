@@ -360,14 +360,13 @@ namespace BeYourMarket.Web.Controllers
                                 order.FromDate.Value.ToShortDateString(),
                                 order.ToDate.Value.ToShortDateString()));
 
-                            order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
-                            order.Price = order.Quantity * listing.Price;
-                            order.Price = (order.Quantity - 1) * listing.Price;
+                            order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
+                            order.Price = order.Quantity * listing.Price;                            
                         }
                         else if (order.Quantity.HasValue)
                         {
                             order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                            order.Quantity = order.Quantity.Value;
+                            order.Quantity = order.Quantity.Value - 1;
                             order.Price = listing.Price;
                         }
                         else
@@ -408,13 +407,13 @@ namespace BeYourMarket.Web.Controllers
                                 order.FromDate.Value.ToShortDateString(),
                                 order.ToDate.Value.ToShortDateString()));
 
-                            order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
+                            order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
                             order.Price = 0;
                         }
                         else if (order.Quantity.HasValue)
                         {
                             order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                            order.Quantity = order.Quantity.Value;
+                            order.Quantity = order.Quantity.Value - 1;
                             order.Price = 0;
                         }
                         else
@@ -458,13 +457,13 @@ namespace BeYourMarket.Web.Controllers
                             order.FromDate.Value.ToShortDateString(),
                             order.ToDate.Value.ToShortDateString()));
 
-                        order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
+                        order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
                         order.Price = 0;
                     }
                     else if (order.Quantity.HasValue)
                     {
                         order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                        order.Quantity = order.Quantity.Value;
+                        order.Quantity = order.Quantity.Value - 1;
                         order.Price = 0;
                     }
                     else
