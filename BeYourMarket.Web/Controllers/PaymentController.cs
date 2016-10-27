@@ -345,7 +345,7 @@ namespace BeYourMarket.Web.Controllers
                         order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                         order.Created = DateTime.Now;
                         order.Modified = DateTime.Now;
-                        order.Status = (int)Enum_OrderStatus.Created;
+                        order.Status = (int)Enum_OrderStatus.Pending;
                         order.UserProvider = listing.UserID;
                         order.UserReceiver = userCurrent.Id;
                         order.ListingTypeID = order.ListingTypeID;
@@ -393,7 +393,7 @@ namespace BeYourMarket.Web.Controllers
                         order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                         order.Created = DateTime.Now;
                         order.Modified = DateTime.Now;
-                        order.Status = (int)Enum_OrderStatus.Created;
+                        order.Status = (int)Enum_OrderStatus.Pending;
                         order.UserProvider = listing.UserID;
                         order.UserReceiver = userCurrent.Id;
                         order.ListingTypeID = order.ListingTypeID;
@@ -431,7 +431,7 @@ namespace BeYourMarket.Web.Controllers
                     await _unitOfWorkAsync.SaveChangesAsync();
 
                     ClearCache();
-                    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[Has bloqueado correctamenter tu propiedad entre las fechas {0} y {1}]]]", order.FromDate.Value.ToString("dd-MM-yyyy"), order.ToDate.Value.ToString("dd-MM-yyyy"));
                     return RedirectToAction("Listing", "Listing", new { id = listing.ID });
                 }
             }
@@ -443,7 +443,7 @@ namespace BeYourMarket.Web.Controllers
                     order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                     order.Created = DateTime.Now;
                     order.Modified = DateTime.Now;
-                    order.Status = (int)Enum_OrderStatus.Created;
+                    order.Status = (int)Enum_OrderStatus.Pending;
                     order.UserProvider = listing.UserID;
                     order.UserReceiver = userCurrent.Id;
                     order.ListingTypeID = order.ListingTypeID;
@@ -542,18 +542,18 @@ namespace BeYourMarket.Web.Controllers
             }
 
 
-            order.OrderType = 2;
+            
             if (order.ID == 0)
             {
                 order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                 order.Created = DateTime.Now;
                 order.Modified = DateTime.Now;
-                order.Status = (int)Enum_OrderStatus.Created;
+                order.Status = (int)Enum_OrderStatus.Pending;
                 order.UserProvider = listing.UserID;
                 order.UserReceiver = userCurrent.Id;
                 order.ListingTypeID = order.ListingTypeID;
                 order.Currency = listing.Currency;
-
+                order.OrderType = 2;
                 if (order.ToDate.HasValue && order.FromDate.HasValue)
                 {
                     order.Description = HttpContext.ParseAndTranslate(
@@ -586,7 +586,7 @@ namespace BeYourMarket.Web.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             ClearCache();
-            TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+            TempData[TempDataKeys.UserMessage] = string.Format("[[[Has bloqueado correctamenter tu propiedad entre las fechas {0} y {1}]]]", order.FromDate.Value.ToString("dd-MM-yyyy"), order.ToDate.Value.ToString("dd-MM-yyyy"));
             return RedirectToAction("Listing", "Manage", new { id = listing.ID });
         }
 

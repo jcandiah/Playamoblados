@@ -143,7 +143,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created)
+            //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
+            var orders = await _orderService.Query(x=>x.AspNetUserReceiver.AspNetRoles.Count==0)
                 .Include(x => x.Listing).Include(x => x.AspNetUserProvider).Include(x => x.AspNetUserReceiver).SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
@@ -221,6 +222,24 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        #endregion
-    }
+
+        [HttpPost]
+        public async Task<ActionResult> OrderActionNew(int id, int status)
+        {
+            var order = await _orderService.FindAsync(id);
+            order.Status = status;
+            _orderService.Update(order);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            var result = new
+            {
+                Success = true,
+                Message = "Hola"
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+            #endregion
+        }
 }
