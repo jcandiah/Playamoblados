@@ -315,7 +315,7 @@
                            {
                                for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
                                {
-                                   string valor = string.Format("title:'Playamoblados', description: 'Reserva', datetime: new Date({0},{1},{2}),",date.Year, date.Month - 1, date.Day);
+                                   string valor = string.Format("title:'Reserva', description: '', datetime: new Date({0},{1},{2}),",date.Year, date.Month - 1, date.Day);
                                   @Html.Raw("{" + valor.ToString() + "},");
                                    }
                                }
@@ -362,7 +362,11 @@
                     </div>
                  </div>              
                 <br />
+                <div class="alert alert-info">
+                    Lost <strong>Eventos</strong> se mostraran cuando es reservado por un pasajero.
+                </div>
             </div>
+           
            
             <div class="col-md-offset-5 col-md-5 col-sm-9 col-xs-12">
                 @Html.Partial("_UserMessage")
