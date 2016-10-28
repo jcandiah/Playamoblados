@@ -301,7 +301,7 @@ namespace BeYourMarket.Web.Controllers
             }
             foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
             {
-                for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
+                for (DateTime date = ordenesArrendadas.FromDate.Value; date < ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
                     if (FechasCocinadas.Contains(date))
                     {
@@ -518,7 +518,7 @@ namespace BeYourMarket.Web.Controllers
             }
             foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
             {
-                for (DateTime date = ordenesArrendadas.FromDate.Value; date <= ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
+                for (DateTime date = ordenesArrendadas.FromDate.Value; date < ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
                     if (FechasCocinadas.Contains(date))
                     {

@@ -745,7 +745,7 @@ namespace BeYourMarket.Web.Controllers
             foreach (var order in orders)
             {
         
-                for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+                for (DateTime date = order.FromDate.Value; date < order.ToDate.Value; date = date.Date.AddDays(1))
                 {
                     datesBooked.Add(date);
                 }
