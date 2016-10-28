@@ -46,7 +46,7 @@ namespace BeYourMarket.Web.Models
             {
                 if (string.IsNullOrEmpty(string_todate))
                 {
-                    return new DateTime(2500, 1, 1);
+                    return new DateTime(2000, 1, 1);
                 }
                 return DateTime.Parse(string_todate);
             }

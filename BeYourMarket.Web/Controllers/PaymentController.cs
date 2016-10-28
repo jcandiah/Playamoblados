@@ -294,7 +294,7 @@ namespace BeYourMarket.Web.Controllers
 
             //validar que los dias no esten reservados
             List<DateTime> FechasCocinadas = new List<DateTime>();
-            for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value; date = date.Date.AddDays(1))
+            for (DateTime date = order.FromDate.Value; date < order.ToDate.Value; date = date.Date.AddDays(1))
             {
                 FechasCocinadas.Add(date);
 
