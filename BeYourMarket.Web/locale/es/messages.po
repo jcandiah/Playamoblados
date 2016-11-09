@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-10-24 11:09-03:00\n"
-"PO-Revision-Date: 2016-10-24 11:09-03:00\n"
+"POT-Creation-Date: 2016-11-09 11:03-03:00\n"
+"PO-Revision-Date: 2016-11-09 11:03-03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,13 +13,11 @@ msgstr ""
 msgid "\", \"(((\").Replace(\""
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:330
 #: Views\Listing\Profile.cshtml:25
 #: Views\Listing\Review.cshtml:36
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:301
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Profile.cshtml:25
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Review.cshtml:36
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:330
 #: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:25
 #: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:36
 msgid "{0:N0} reviews"
@@ -53,10 +51,10 @@ msgstr "Nosotros"
 
 #: Views\Payment\Orders.cshtml:26
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:26
-#: Areas\Admin\Views\Payment\Order.cshtml:24
+#: Areas\Admin\Views\Payment\Order.cshtml:20
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:24
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:26
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:24
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:20
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -66,7 +64,7 @@ msgstr "Aceptar"
 msgid "Accept Email"
 msgstr "Aceptar Email"
 
-#: Views\Listing\ListingUpdate.cshtml:74
+#: Views\Listing\ListingUpdate.cshtml:76
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:63
 #: Areas\Admin\Views\Listing\Listings.cshtml:72
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:133
@@ -168,9 +166,9 @@ msgstr "Acuerdo obligatorio"
 msgid "Agreement Text"
 msgstr "Texto del acuerdo"
 
-#: Views\Listing\Listings.cshtml:110
+#: Views\Listing\Listings.cshtml:111
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:113
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:110
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:111
 msgid "All Condominium"
 msgstr "Todos los condominios"
 
@@ -221,14 +219,14 @@ msgstr "Departamento"
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: Views\Listing\Listings.cshtml:194
+#: Views\Listing\Listings.cshtml:195
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:213
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:194
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:195
 msgid "Apply"
 msgstr "Aplicar"
 
 #: Views\Manage\Dashboard.cshtml:69
-#: Views\Manage\ListingCalendar.cshtml:376
+#: Views\Manage\ListingCalendar.cshtml:453
 #: Views\Payment\Orders.cshtml:167
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Manage\Dashboard.cshtml:69
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:167
@@ -236,20 +234,20 @@ msgstr "Aplicar"
 #: Areas\Admin\Views\Listing\Listings.cshtml:95
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: Areas\Admin\Views\Manage\Users.cshtml:77
-#: Areas\Admin\Views\Payment\Order.cshtml:142
+#: Areas\Admin\Views\Payment\Order.cshtml:138
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Categories.cshtml:101
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Listings.cshtml:91
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\Users.cshtml:77
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:142
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:69
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:376
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:453
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:167
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:101
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:95
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:77
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:142
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:138
 msgid "Are you sure?"
 msgstr "¿Estas seguro?"
 
@@ -273,32 +271,27 @@ msgstr "Autor"
 msgid "Back to the Home"
 msgstr "Volver al inicio"
 
-#: Views\Listing\Listing.cshtml:204
-#: Views\Listing\Listings.cshtml:124
+#: Views\Listing\Listing.cshtml:205
 #: Views\Listing\Listings.cshtml:125
-#: Views\Listing\ListingUpdate.cshtml:99
+#: Views\Listing\Listings.cshtml:126
+#: Views\Listing\ListingUpdate.cshtml:101
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:216
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:142
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:143
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:88
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:204
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:124
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:205
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:125
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:126
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
 msgid "Bathrooms"
 msgstr "Baños"
 
-#: Views\Listing\ListingUpdate.cshtml:89
+#: Views\Listing\ListingUpdate.cshtml:91
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:207
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:78
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:89
 msgid "Beds"
 msgstr "Camas"
-
-#: Views\Manage\ListingCalendar.cshtml:330
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:330
-msgid "block"
-msgstr "Bloquear"
 
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:55
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:55
@@ -315,6 +308,10 @@ msgstr "Cuerpo"
 msgid "Button Label"
 msgstr "Etiqueta boton"
 
+#: Views\Listing\ListingUpdate.cshtml:54
+msgid "Cabin"
+msgstr "Cabaña"
+
 #: Views\Manage\Dashboard.cshtml:50
 #: Views\Manage\DashboardCalendar.cshtml:3
 #: Views\Shared\_DashBoardSide.cshtml:13
@@ -326,7 +323,7 @@ msgstr "Etiqueta boton"
 msgid "Calendar"
 msgstr "Calendario"
 
-#: Views\Listing\ListingUpdate.cshtml:243
+#: Views\Listing\ListingUpdate.cshtml:245
 #: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:27
 #: Views\Payment\Orders.cshtml:31
@@ -348,8 +345,8 @@ msgstr "Calendario"
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
 #: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:43
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:157
+#: Areas\Admin\Views\Payment\Order.cshtml:21
 #: Areas\Admin\Views\Payment\Order.cshtml:25
-#: Areas\Admin\Views\Payment\Order.cshtml:29
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Design\Appearance.cshtml:45
@@ -386,42 +383,44 @@ msgstr "Calendario"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsLanguage.cshtml:43
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:157
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:21
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:25
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:29
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: Controllers\PaymentController.cs:167
+#: Controllers\PaymentController.cs:170
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:167
 #: Views\Payment\Orders.cshtml:52
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:52
-#: Areas\Admin\Views\Payment\Order.cshtml:46
-#: Areas\Admin\Views\Payment\Order.cshtml:165
+#: Areas\Admin\Views\Payment\Order.cshtml:41
+#: Areas\Admin\Views\Payment\Order.cshtml:161
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:46
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:165
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:52
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:46
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:165
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:41
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:161
 msgid "Cancelled"
 msgstr "Cancelado"
 
-#: Views\Listing\_ListingPayment.cshtml:137
+#: Views\Listing\_ListingPayment.cshtml:115
+#: Views\Listing\_ListingPayment2.cshtml:115
 #: Views\Manage\Dashboard.cshtml:93
 #: Views\Payment\Orders.cshtml:190
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Manage\Dashboard.cshtml:93
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:190
 #: Areas\Admin\Views\Listing\Listings.cshtml:108
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Listings.cshtml:104
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:137
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:115
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment2.cshtml:115
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:190
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:108
 msgid "Cancelled!"
 msgstr "Cancelado!"
 
-#: Views\Listing\Listing.cshtml:194
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:194
+#: Views\Listing\Listing.cshtml:195
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:195
 msgid "Capacity"
 msgstr "Capacidad"
 
@@ -434,7 +433,6 @@ msgstr "Capacidad"
 msgid "Categories"
 msgstr "Categorias"
 
-#: Views\Listing\ListingUpdate.cshtml:35
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
@@ -467,7 +465,7 @@ msgstr "Categoria"
 msgid "Category is deleted."
 msgstr "Categoria fue eliminada"
 
-#: Views\Listing\ListingUpdate.cshtml:104
+#: Views\Listing\ListingUpdate.cshtml:106
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:152
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:153
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:93
@@ -510,6 +508,16 @@ msgstr "Cambiar tu configuracion de cuenta"
 #: obj\Release\Package\PackageTmp\Views\Manage\Index.cshtml:18
 msgid "Change your password"
 msgstr "Cambia tu Clave"
+
+#: Views\Manage\ListingCalendar.cshtml:409
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:409
+msgid "Check in"
+msgstr "Entrada"
+
+#: Views\Manage\ListingCalendar.cshtml:412
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:412
+msgid "Check out"
+msgstr "Salida"
 
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:78
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:78
@@ -554,6 +562,7 @@ msgid "Comments"
 msgstr "Comentar"
 
 #: Views\Listing\Listing.cshtml:140
+#: Views\Listing\ListingUpdate.cshtml:35
 #: Views\Listing\_ListingGridList.cshtml:35
 #: Views\Listing\_ListingGridList.cshtml:58
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:140
@@ -564,11 +573,11 @@ msgstr "Comentar"
 msgid "Condominium"
 msgstr "Condominio"
 
-#: Views\Listing\Listings.cshtml:109
+#: Views\Listing\Listings.cshtml:110
 #: Views\Shared\_NavigationSide.cshtml:99
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:112
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Shared\_NavigationSide.cshtml:99
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:109
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:110
 #: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:99
 msgid "Condominiums"
 msgstr "Condominios"
@@ -591,8 +600,10 @@ msgstr "configurar Hook"
 msgid "Configure Plugins"
 msgstr "Configurar Complementos"
 
-#: Views\Listing\_ListingPayment.cshtml:128
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:128
+#: Views\Listing\_ListingPayment.cshtml:106
+#: Views\Listing\_ListingPayment2.cshtml:106
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:106
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment2.cshtml:106
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -618,8 +629,8 @@ msgstr "Confirmar Clave"
 
 #: Views\Account\Register.cshtml:69
 #: Views\Account\Register.cshtml:70
-#: Views\Listing\ListingUpdate.cshtml:236
-#: Views\Listing\ListingUpdate.cshtml:237
+#: Views\Listing\ListingUpdate.cshtml:238
+#: Views\Listing\ListingUpdate.cshtml:239
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Account\Register.cshtml:69
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Account\Register.cshtml:70
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:225
@@ -633,23 +644,23 @@ msgstr "Confirmar Clave"
 
 #: Views\Payment\Orders.cshtml:160
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:160
-#: Areas\Admin\Views\Payment\Order.cshtml:135
+#: Areas\Admin\Views\Payment\Order.cshtml:131
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:135
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:160
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:135
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:131
 msgid "Confirm to accept the order"
 msgstr "Confirmar para aceptar la orden"
 
 #: Views\Payment\Orders.cshtml:162
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:162
-#: Areas\Admin\Views\Payment\Order.cshtml:137
+#: Areas\Admin\Views\Payment\Order.cshtml:133
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:137
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:162
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:137
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:133
 msgid "Confirm to cancel the order"
 msgstr "Confirmar para cancelar la orden"
 
-#: Controllers\PaymentController.cs:164
+#: Controllers\PaymentController.cs:167
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:164
 msgid "Confirmed"
 msgstr "Confirmado"
@@ -661,9 +672,8 @@ msgstr "Conectado con stripe perfectamente!"
 
 #: Views\Home\Contact.cshtml:4
 #: Views\Listing\Listing.cshtml:66
-#: Views\Listing\Listing.cshtml:298
-#: Views\Listing\Listing.cshtml:301
-#: Views\Listing\Listing.cshtml:335
+#: Views\Listing\Listing.cshtml:299
+#: Views\Listing\Listing.cshtml:302
 #: Views\Listing\_ListingContactModal.cshtml:8
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Contact.cshtml:4
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:66
@@ -673,9 +683,8 @@ msgstr "Conectado con stripe perfectamente!"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingContactModal.cshtml:8
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:4
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:66
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:298
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:301
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:335
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:299
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:302
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingContactModal.cshtml:8
 msgid "Contact"
 msgstr "Contacto"
@@ -692,14 +701,14 @@ msgstr "Contacto Email"
 msgid "Contact Name"
 msgstr "Contacto Nombre"
 
-#: Views\Listing\Listing.cshtml:292
-#: Views\Listing\Listing.cshtml:292
+#: Views\Listing\Listing.cshtml:293
+#: Views\Listing\Listing.cshtml:293
 #: Views\Listing\_ListingContactModal.cshtml:17
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:263
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:263
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingContactModal.cshtml:17
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:292
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:292
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:293
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:293
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingContactModal.cshtml:17
 msgid "Contact number (Click to show)"
 msgstr "Telefono (Click para ver)"
@@ -788,7 +797,7 @@ msgstr "Crear una cuenta"
 #: Areas\Admin\Views\Listing\Listings.cshtml:75
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
-#: Areas\Admin\Views\Payment\Order.cshtml:112
+#: Areas\Admin\Views\Payment\Order.cshtml:108
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Listings.cshtml:70
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
@@ -801,7 +810,7 @@ msgstr "Crear una cuenta"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:75
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:112
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:108
 msgid "Created"
 msgstr "Creado"
 
@@ -956,7 +965,7 @@ msgid "Deleted!"
 msgstr "Eliminado!"
 
 #: Views\Listing\Listing.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:59
+#: Views\Listing\ListingUpdate.cshtml:61
 #: Views\Listing\_ListingGridList.cshtml:40
 #: Views\Listing\_ListingGridList.cshtml:63
 #: Views\Payment\Orders.cshtml:129
@@ -969,7 +978,6 @@ msgstr "Eliminado!"
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: Areas\Admin\Views\Manage\Settings.cshtml:28
-#: Areas\Admin\Views\Payment\Order.cshtml:106
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:99
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
@@ -988,12 +996,10 @@ msgstr "Eliminado!"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:28
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:106
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:99
 msgid "Description"
 msgstr "Descripcion"
 
-#: Views\Listing\ListingUpdate.cshtml:60
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:49
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:60
 msgid "Description..."
@@ -1016,7 +1022,7 @@ msgstr "Deshabilitado"
 msgid "Disconnnect to stripe successfully!"
 msgstr "Stripe desconectado correctamente!"
 
-#: Views\Listing\ListingUpdate.cshtml:135
+#: Views\Listing\ListingUpdate.cshtml:137
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:124
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:135
 msgid "Dish washer"
@@ -1082,11 +1088,16 @@ msgstr "e.g. Por dia"
 msgid "Edit"
 msgstr "Editar"
 
+#: Views\Listing\ListingUpdate.cshtml:112
+msgid "Ej: 1"
+msgstr ""
+
 #: Models\AccountViewModels.cs:45
 #: Models\AccountViewModels.cs:52
 #: Models\AccountViewModels.cs:69
 #: Models\AccountViewModels.cs:97
 #: Models\AccountViewModels.cs:118
+#: Models\AccountViewModels.cs:126
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Models\AccountViewModels.cs:45
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Models\AccountViewModels.cs:52
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Models\AccountViewModels.cs:69
@@ -1110,7 +1121,7 @@ msgstr "Editar"
 msgid "Email"
 msgstr "Email"
 
-#: Views\Listing\ListingUpdate.cshtml:226
+#: Views\Listing\ListingUpdate.cshtml:228
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:215
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
@@ -1134,10 +1145,10 @@ msgstr "Confirmacion de Email requerido"
 msgid "Email Confirmed"
 msgstr "Email Confirmado"
 
-#: Views\Manage\ListingCalendar.cshtml:278
+#: Views\Manage\ListingCalendar.cshtml:328
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Manage\ListingCalendar.cshtml:278
 #: Areas\Admin\Views\Listing\ListingCalendar.cshtml:275
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:278
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:328
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingCalendar.cshtml:275
 msgid "Email Contact: "
 msgstr "Email contacto :"
@@ -1232,7 +1243,7 @@ msgstr "Ingrese Email"
 msgid "Enter Email"
 msgstr "Ingrese Email"
 
-#: Views\Listing\ListingUpdate.cshtml:227
+#: Views\Listing\ListingUpdate.cshtml:229
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:216
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:227
 msgid "Enter Email Address"
@@ -1244,7 +1255,7 @@ msgstr "Ingrese Email"
 msgid "Enter First Name"
 msgstr "Nombre"
 
-#: Views\Listing\ListingUpdate.cshtml:115
+#: Views\Listing\ListingUpdate.cshtml:117
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:115
 msgid "Enter floor number"
@@ -1256,7 +1267,7 @@ msgstr "Ingrese numero de piso"
 msgid "Enter Last Name"
 msgstr "Apellido"
 
-#: Views\Listing\ListingUpdate.cshtml:199
+#: Views\Listing\ListingUpdate.cshtml:201
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:188
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
@@ -1265,67 +1276,64 @@ msgstr "Apellido"
 msgid "Enter Location"
 msgstr "Ingresasr Ubicacion"
 
-#: Views\Listing\ListingUpdate.cshtml:95
+#: Views\Listing\ListingUpdate.cshtml:97
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:84
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:95
 msgid "Enter M2"
 msgstr "Ingrese M2"
 
-#: Views\Listing\ListingUpdate.cshtml:122
+#: Views\Listing\ListingUpdate.cshtml:124
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:111
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:122
 msgid "Enter Max capacity"
 msgstr "Max capacidad"
 
-#: Views\Listing\ListingUpdate.cshtml:90
+#: Views\Listing\ListingUpdate.cshtml:92
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:79
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:90
 msgid "Enter number of Beds"
 msgstr "Ingrese numero de camas"
 
-#: Views\Listing\ListingUpdate.cshtml:126
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:115
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:126
 msgid "Enter Number of parking"
-msgstr "Nro de estacionamiento"
+msgstr "Numeración de estacionamiento"
 
-#: Views\Listing\ListingUpdate.cshtml:80
+#: Views\Listing\ListingUpdate.cshtml:82
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:69
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:80
 msgid "Enter number of Rooms"
 msgstr "Ingrese numero de habitaciones"
 
-#: Views\Listing\ListingUpdate.cshtml:85
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:74
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:85
 msgid "Enter number of Suite"
 msgstr "Numero de Suite"
 
-#: Views\Listing\ListingUpdate.cshtml:131
+#: Views\Listing\ListingUpdate.cshtml:133
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:120
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:131
 msgid "Enter Number of TV"
 msgstr "Numeros de TV"
 
-#: Views\Listing\ListingUpdate.cshtml:100
+#: Views\Listing\ListingUpdate.cshtml:102
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:89
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:100
 msgid "Enter numbers of bathrooms"
 msgstr "Ingrese nuero de baños"
 
-#: Views\Listing\ListingUpdate.cshtml:105
+#: Views\Listing\ListingUpdate.cshtml:107
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:94
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:105
 msgid "Enter numbers of cellars"
 msgstr "Ingrese numero de bodegas"
 
-#: Views\Listing\ListingUpdate.cshtml:110
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:99
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:110
 msgid "Enter numbers of Parking Lot"
 msgstr "Ingrese numero de estacionamientos"
 
-#: Views\Listing\ListingUpdate.cshtml:219
+#: Views\Listing\ListingUpdate.cshtml:221
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:208
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:219
 msgid "Enter Phone Number"
@@ -1376,7 +1384,7 @@ msgstr "Ingresa tu estilo javascript personalizado debajo"
 msgid "Enter your email."
 msgstr "Ingresa tu Email"
 
-#: Views\Listing\ListingUpdate.cshtml:215
+#: Views\Listing\ListingUpdate.cshtml:217
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:204
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:215
 msgid "Enter Your Full Name"
@@ -1406,12 +1414,12 @@ msgstr "Expirado"
 msgid "External Logins"
 msgstr "Login Externo"
 
+#: Areas\Admin\Views\Payment\Order.cshtml:154
 #: Areas\Admin\Views\Payment\Order.cshtml:158
-#: Areas\Admin\Views\Payment\Order.cshtml:162
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:158
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:162
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:154
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:158
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:162
 msgid "Failed"
 msgstr "Fallido"
 
@@ -1441,9 +1449,9 @@ msgstr "Fallado!"
 msgid "Favicon"
 msgstr "Favicon"
 
-#: Views\Listing\Listings.cshtml:154
+#: Views\Listing\Listings.cshtml:155
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:177
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:154
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:155
 msgid "Fecha"
 msgstr "Fecha"
 
@@ -1459,7 +1467,7 @@ msgstr "Fecha"
 msgid "Female"
 msgstr "Mujer"
 
-#: Views\Listing\ListingUpdate.cshtml:166
+#: Views\Listing\ListingUpdate.cshtml:168
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:155
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:166
 msgid "First Line"
@@ -1479,7 +1487,7 @@ msgstr "Frente al mar"
 msgid "First Name"
 msgstr "Nombre"
 
-#: Views\Listing\ListingUpdate.cshtml:114
+#: Views\Listing\ListingUpdate.cshtml:116
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:103
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:114
 msgid "Floor Number"
@@ -1500,21 +1508,22 @@ msgstr "Olvidaste confirmar contraseña"
 msgid "Forgot your password?"
 msgstr "Olvidaste tu clave?"
 
-#: Controllers\PaymentController.cs:348
-#: Controllers\PaymentController.cs:395
-#: Controllers\PaymentController.cs:445
+#: Controllers\PaymentController.cs:357
+#: Controllers\PaymentController.cs:404
+#: Controllers\PaymentController.cs:454
+#: Controllers\PaymentController.cs:559
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:335
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:385
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:435
 #: Views\Home\Index.cshtml:82
 #: Views\Home\Index.cshtml:83
-#: Views\Listing\Listings.cshtml:138
-#: Views\Listing\Listings.cshtml:145
-#: Views\Listing\Listings.cshtml:158
-#: Views\Listing\Listings.cshtml:165
-#: Views\Listing\Listings.cshtml:176
-#: Views\Listing\_ListingPayment.cshtml:28
-#: Views\Listing\_ListingPayment.cshtml:60
+#: Views\Listing\Listings.cshtml:139
+#: Views\Listing\Listings.cshtml:146
+#: Views\Listing\Listings.cshtml:159
+#: Views\Listing\Listings.cshtml:166
+#: Views\Listing\Listings.cshtml:177
+#: Views\Listing\_ListingPayment.cshtml:23
+#: Views\Listing\_ListingPayment2.cshtml:23
 #: Views\Payment\Payment.cshtml:81
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Index.cshtml:82
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Index.cshtml:83
@@ -1526,29 +1535,30 @@ msgstr "Olvidaste tu clave?"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingPayment.cshtml:28
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingPayment.cshtml:60
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Payment.cshtml:81
+#: Areas\Admin\Views\Payment\Order.cshtml:101
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:83
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:138
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:145
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:158
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:165
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:176
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:28
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:60
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:139
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:146
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:159
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:166
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:177
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:23
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment2.cshtml:23
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:81
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:101
 msgid "From"
 msgstr "De"
-
-#: Views\Manage\ListingCalendar.cshtml:333
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:333
-msgid "From date"
-msgstr "Desde"
 
 #: Views\Payment\Payment.cshtml:79
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Payment.cshtml:79
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:79
 msgid "From Date"
 msgstr "Fecha"
+
+#: Models\AccountViewModels.cs:135
+msgid "FromDate"
+msgstr "Desde"
 
 #: Areas\Admin\Views\Shared\_NavigationTop.cshtml:13
 #: Areas\Admin\Views\Shared\_NavigationTop.cshtml:29
@@ -1559,7 +1569,7 @@ msgstr "Fecha"
 msgid "Frontend"
 msgstr "Inicio"
 
-#: Views\Listing\ListingUpdate.cshtml:214
+#: Views\Listing\ListingUpdate.cshtml:216
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:203
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:214
 msgid "Full Name"
@@ -1579,16 +1589,16 @@ msgstr "Genero"
 msgid "General Settings"
 msgstr "Ajustes Generales"
 
-#: Views\Listing\Listings.cshtml:49
+#: Views\Listing\Listings.cshtml:50
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:48
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:49
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:50
 msgid "Grid"
 msgstr "Cuadrícula"
 
-#: Views\Listing\Listing.cshtml:221
-#: Views\Listing\ListingUpdate.cshtml:145
+#: Views\Listing\Listing.cshtml:222
+#: Views\Listing\ListingUpdate.cshtml:147
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:134
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:221
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:222
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:145
 msgid "Grill"
 msgstr "Parrilla"
@@ -1604,6 +1614,11 @@ msgstr "Grupo"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_NavigationSide.cshtml:157
 msgid "Guide"
 msgstr "Guia"
+
+#: Controllers\PaymentController.cs:433
+#: Controllers\PaymentController.cs:588
+msgid "Has bloqueado correctamenter tu propiedad entre las fechas {0} y {1}"
+msgstr ""
 
 #: Areas\Admin\Views\Listing\Categories.cshtml:44
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Categories.cshtml:44
@@ -1629,9 +1644,9 @@ msgstr "Aquí puede definir los tipos de propiedades como la oferta, demanda, et
 msgid "Here you can manage all the listings in the marketplace."
 msgstr "Aca tu puedes administrar todas tus propiedades de Playamoblado"
 
-#: Areas\Admin\Views\Payment\Order.cshtml:71
+#: Areas\Admin\Views\Payment\Order.cshtml:66
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:71
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:66
 msgid "Here you can manage all the orders, you can cancel or accept orders on behalf of the users."
 msgstr "Aca tu puedes administrar todas tus reservas, tu puedes cancelar o aceptar reservas de los usuarios."
 
@@ -1668,6 +1683,12 @@ msgstr "Host"
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:76
 msgid "I accept the"
 msgstr "Acepto"
+
+#: Models\AccountViewModels.cs:132
+#: Areas\Admin\Views\Payment\Order.cshtml:94
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:94
+msgid "ID"
+msgstr "ID"
 
 #: Areas\Admin\Views\Install\Index.cshtml:89
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:21
@@ -1739,13 +1760,11 @@ msgstr "Editor de codigo Javascript"
 msgid "Join"
 msgstr "Crear"
 
-#: Views\Listing\Listing.cshtml:325
 #: Views\Listing\Profile.cshtml:28
 #: Views\Listing\Review.cshtml:33
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:296
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Profile.cshtml:28
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Review.cshtml:33
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:325
 #: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:28
 #: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:33
 msgid "Joined since"
@@ -1805,8 +1824,8 @@ msgstr "Apellido"
 msgid "Last Updated"
 msgstr "Ultima actualización"
 
-#: Views\Listing\Listing.cshtml:245
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:245
+#: Views\Listing\Listing.cshtml:246
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:246
 msgid "Lavavajillas"
 msgstr ""
 
@@ -1816,15 +1835,15 @@ msgstr ""
 msgid "Let me in"
 msgstr "Entrar"
 
-#: Views\Listing\Listings.cshtml:50
+#: Views\Listing\Listings.cshtml:51
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:49
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:50
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:51
 msgid "List"
 msgstr "Lista"
 
-#: Views\Listing\Listings.cshtml:57
+#: Views\Listing\Listings.cshtml:58
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:56
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:57
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:58
 msgid "Lista"
 msgstr "Lista"
 
@@ -1940,8 +1959,8 @@ msgid "Listings by category"
 msgstr "Propiedades por categoria"
 
 #: Views\Listing\Listing.cshtml:159
-#: Views\Listing\ListingUpdate.cshtml:196
 #: Views\Listing\ListingUpdate.cshtml:198
+#: Views\Listing\ListingUpdate.cshtml:200
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Views\Listing\_ListingGridList.cshtml:66
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:167
@@ -2040,11 +2059,11 @@ msgstr "Iniciar sesion"
 msgid "Logo"
 msgstr "Logo"
 
-#: Views\Listing\Listings.cshtml:134
-#: Views\Listing\ListingUpdate.cshtml:94
+#: Views\Listing\Listings.cshtml:135
+#: Views\Listing\ListingUpdate.cshtml:96
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:157
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:83
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:134
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:135
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:94
 msgid "M2"
 msgstr "M2"
@@ -2106,9 +2125,9 @@ msgstr "Gestionar Plugins"
 msgid "Manage Users"
 msgstr "Gestionar Usuarios"
 
-#: Views\Listing\Listing.cshtml:278
+#: Views\Listing\Listing.cshtml:279
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:249
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:278
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:279
 msgid "Map"
 msgstr "Mapa"
 
@@ -2124,7 +2143,7 @@ msgstr "Mapas"
 msgid "Mark as read"
 msgstr "Marcar como leido"
 
-#: Views\Listing\ListingUpdate.cshtml:121
+#: Views\Listing\ListingUpdate.cshtml:123
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:110
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:121
 msgid "Max. Capacity"
@@ -2211,6 +2230,7 @@ msgstr "Mis propiedades"
 msgid "My Listings Calendar"
 msgstr "Calendario de propiedades"
 
+#: Models\AccountViewModels.cs:129
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:19
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:62
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:40
@@ -2257,6 +2277,11 @@ msgstr "Nueva clave"
 msgid "Next"
 msgstr "Siguente"
 
+#: Areas\Admin\Views\Payment\Order.cshtml:104
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:104
+msgid "Night"
+msgstr "Noches"
+
 #: App_Code\RazorHelper.cshtml:7
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\App_Code\RazorHelper.cshtml:7
 #: obj\Release\Package\PackageTmp\App_Code\RazorHelper.cshtml:7
@@ -2265,20 +2290,22 @@ msgstr "No"
 
 #: Views\Payment\Orders.cshtml:173
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:173
-#: Areas\Admin\Views\Payment\Order.cshtml:148
+#: Areas\Admin\Views\Payment\Order.cshtml:144
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:148
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:173
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:148
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:144
 msgid "No!"
 msgstr "No!"
 
-#: Views\Listing\_ListingPayment.cshtml:129
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:129
+#: Views\Listing\_ListingPayment.cshtml:107
+#: Views\Listing\_ListingPayment2.cshtml:107
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:107
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment2.cshtml:107
 msgid "No, cancel"
 msgstr "No, Cancelar"
 
 #: Views\Manage\Dashboard.cshtml:75
-#: Views\Manage\ListingCalendar.cshtml:382
+#: Views\Manage\ListingCalendar.cshtml:459
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Manage\Dashboard.cshtml:75
 #: Areas\Admin\Views\Listing\Categories.cshtml:107
 #: Areas\Admin\Views\Listing\Listings.cshtml:101
@@ -2289,7 +2316,7 @@ msgstr "No, Cancelar"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\Users.cshtml:83
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:75
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:382
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:459
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:107
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:101
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:108
@@ -2297,20 +2324,20 @@ msgstr "No, Cancelar"
 msgid "No, cancel please!"
 msgstr "No. Por favor cancele"
 
-#: Views\Listing\ListingUpdate.cshtml:125
+#: Views\Listing\ListingUpdate.cshtml:127
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:114
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:125
 msgid "Number of parking"
-msgstr "Nro de estacionamiento"
+msgstr "Numeración de estacionamiento"
 
-#: Views\Listing\Listings.cshtml:104
 #: Views\Listing\Listings.cshtml:105
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:104
+#: Views\Listing\Listings.cshtml:106
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:105
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:106
 msgid "Number of property"
 msgstr "Numero de propiedad"
 
-#: Views\Listing\ListingUpdate.cshtml:130
+#: Views\Listing\ListingUpdate.cshtml:132
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:119
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:130
 msgid "Number of TV"
@@ -2322,9 +2349,9 @@ msgstr "Cantidad de TV"
 msgid "Numero de telefono secundario"
 msgstr "Numero de telefono secundario"
 
-#: Views\Listing\Listings.cshtml:187
+#: Views\Listing\Listings.cshtml:188
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:206
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:187
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:188
 msgid "Only show listings with photos"
 msgstr "Mostrar propiedades con fotos"
 
@@ -2337,17 +2364,17 @@ msgstr "Mostrar propiedades con fotos"
 msgid "Options"
 msgstr "Opcion"
 
-#: Controllers\PaymentController.cs:190
+#: Controllers\PaymentController.cs:193
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:190
 msgid "Order %0 - %1 - Total Price %2 %3. <a href=\\"%4\\">See Details</a>"
 msgstr "Reserva %0 - %1 - Precio Total %2 %3. <a href=\\"%4\\">Ver Detalles</a>"
 
 #: Views\Payment\Orders.cshtml:131
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:131
-#: Areas\Admin\Views\Payment\Order.cshtml:110
+#: Areas\Admin\Views\Payment\Order.cshtml:106
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:110
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:131
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:110
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:106
 msgid "Order ID"
 msgstr "Reserva ID"
 
@@ -2393,8 +2420,8 @@ msgstr "Ordering"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Shared\_DashBoardSide.cshtml:21
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: Areas\Admin\Views\Payment\Order.cshtml:7
-#: Areas\Admin\Views\Payment\Order.cshtml:65
-#: Areas\Admin\Views\Payment\Order.cshtml:77
+#: Areas\Admin\Views\Payment\Order.cshtml:60
+#: Areas\Admin\Views\Payment\Order.cshtml:72
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:120
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:7
@@ -2407,11 +2434,15 @@ msgstr "Ordering"
 #: obj\Release\Package\PackageTmp\Views\Shared\_DashBoardSide.cshtml:21
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:7
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:65
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:77
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:60
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:72
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_NavigationSide.cshtml:120
 msgid "Orders"
 msgstr "Reservas"
+
+#: Views\Listing\ListingUpdate.cshtml:55
+msgid "Other"
+msgstr "Otros"
 
 #: Views\Shared\_CategoryCustomFields.cshtml:6
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Shared\_CategoryCustomFields.cshtml:6
@@ -2425,9 +2456,9 @@ msgstr "Otra informaciòn"
 msgid "Owner"
 msgstr "Pasajero"
 
-#: Views\Listing\Listings.cshtml:80
+#: Views\Listing\Listings.cshtml:81
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:80
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:80
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:81
 msgid "Page {0} of {1}"
 msgstr "Pagina {0} de {1}"
 
@@ -2448,30 +2479,30 @@ msgstr "Paginas"
 msgid "Paid"
 msgstr "Pagado"
 
-#: Views\Listing\Listing.cshtml:212
-#: Views\Listing\Listings.cshtml:119
+#: Views\Listing\Listing.cshtml:213
 #: Views\Listing\Listings.cshtml:120
-#: Views\Listing\ListingUpdate.cshtml:109
+#: Views\Listing\Listings.cshtml:121
+#: Views\Listing\ListingUpdate.cshtml:111
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:224
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:137
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:138
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:98
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:212
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:119
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:213
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:120
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:121
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:109
 msgid "Parking Lot"
-msgstr "Estacionamientos"
+msgstr "Cantidad de estacionamiento"
 
 #: Views\Home\Index.cshtml:102
-#: Views\Listing\Listings.cshtml:114
 #: Views\Listing\Listings.cshtml:115
+#: Views\Listing\Listings.cshtml:116
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Index.cshtml:102
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:132
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:133
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:102
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:114
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:115
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:116
 msgid "Passengers"
 msgstr "Pasajeros"
 
@@ -2484,8 +2515,8 @@ msgstr "Pasajeros"
 #: Views\Account\Login.cshtml:28
 #: Views\Account\Register.cshtml:65
 #: Views\Account\Register.cshtml:66
-#: Views\Listing\ListingUpdate.cshtml:232
-#: Views\Listing\ListingUpdate.cshtml:233
+#: Views\Listing\ListingUpdate.cshtml:234
+#: Views\Listing\ListingUpdate.cshtml:235
 #: Views\Manage\Index.cshtml:13
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Account\Login.cshtml:28
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Account\Register.cshtml:65
@@ -2565,7 +2596,7 @@ msgstr "Resultados"
 msgid "Payout information"
 msgstr "Informaciòn de pago"
 
-#: Controllers\PaymentController.cs:161
+#: Controllers\PaymentController.cs:164
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:46
 #: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
@@ -2575,18 +2606,18 @@ msgstr "Informaciòn de pago"
 #: C:\Users\daniel\Source\Repos\Playamoblados\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
-#: Areas\Admin\Views\Payment\Order.cshtml:40
+#: Areas\Admin\Views\Payment\Order.cshtml:35
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:40
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:46
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:40
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:35
 msgid "Pending"
 msgstr "Pendiente"
 
 #: Models\ManageViewModels.cs:65
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Models\ManageViewModels.cs:65
-#: Views\Listing\ListingUpdate.cshtml:218
+#: Views\Listing\ListingUpdate.cshtml:220
 #: Views\Manage\AddPhoneNumber.cshtml:3
 #: Views\Manage\UserProfile.cshtml:56
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:207
@@ -2694,13 +2725,13 @@ msgid "Previous"
 msgstr "Tilbage"
 
 #: Views\Listing\Listing.cshtml:150
-#: Views\Listing\Listings.cshtml:174
-#: Views\Listing\ListingUpdate.cshtml:66
+#: Views\Listing\Listings.cshtml:175
 #: Views\Listing\ListingUpdate.cshtml:68
+#: Views\Listing\ListingUpdate.cshtml:70
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Listing\_ListingGridList.cshtml:64
 #: Views\Payment\Orders.cshtml:126
-#: Views\Payment\Payment.cshtml:107
+#: Views\Payment\Payment.cshtml:100
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:150
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:193
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:55
@@ -2709,19 +2740,19 @@ msgstr "Tilbage"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:126
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Payment.cshtml:100
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
-#: Areas\Admin\Views\Payment\Order.cshtml:104
+#: Areas\Admin\Views\Payment\Order.cshtml:99
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:150
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:174
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:175
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:66
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:68
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:41
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:64
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:126
-#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:107
+#: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:100
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:104
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:99
 msgid "Price"
 msgstr "Precio"
 
@@ -2767,9 +2798,9 @@ msgstr "Mis Datos"
 msgid "Profile Picture"
 msgstr "Foto de perfil"
 
-#: Areas\Admin\Views\Payment\Order.cshtml:101
+#: Areas\Admin\Views\Payment\Order.cshtml:96
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:101
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:96
 msgid "Provider"
 msgstr "Proveedor"
 
@@ -2782,7 +2813,7 @@ msgstr "Proveedor"
 msgid "Published"
 msgstr "Publicar"
 
-#: Views\Listing\ListingUpdate.cshtml:212
+#: Views\Listing\ListingUpdate.cshtml:214
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:201
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:212
 msgid "Publisher's Info"
@@ -2790,22 +2821,20 @@ msgstr "Info Dueño"
 
 #: Views\Payment\Orders.cshtml:128
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:128
-#: Areas\Admin\Views\Payment\Order.cshtml:108
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:108
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:128
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:108
 msgid "Quantity"
 msgstr "Cantidad"
 
-#: Areas\Admin\Views\Payment\Order.cshtml:102
+#: Areas\Admin\Views\Payment\Order.cshtml:97
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:102
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:97
 msgid "Receiver"
 msgstr "Recibir"
 
-#: Views\Listing\Listings.cshtml:99
+#: Views\Listing\Listings.cshtml:100
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:98
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:99
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:100
 msgid "Refine Search"
 msgstr "Busca refinada"
 
@@ -2875,7 +2904,7 @@ msgstr "recordar browser?"
 msgid "Reply here..."
 msgstr "Responder aca"
 
-#: Views\Listing\ListingUpdate.cshtml:242
+#: Views\Listing\ListingUpdate.cshtml:244
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:231
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:242
 msgid "Request publication"
@@ -2938,31 +2967,31 @@ msgstr "Opinion"
 msgid "Reviews"
 msgstr "Opiniones"
 
-#: Views\Listing\Listing.cshtml:186
-#: Views\Listing\Listings.cshtml:129
+#: Views\Listing\Listing.cshtml:185
 #: Views\Listing\Listings.cshtml:130
-#: Views\Listing\ListingUpdate.cshtml:79
+#: Views\Listing\Listings.cshtml:131
+#: Views\Listing\ListingUpdate.cshtml:81
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:199
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:147
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:148
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:68
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:186
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:129
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:185
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:130
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:131
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:79
 msgid "Rooms"
 msgstr "Habitaciones"
 
-#: Views\Listing\ListingUpdate.cshtml:84
+#: Views\Listing\ListingUpdate.cshtml:86
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:73
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:84
 msgid "Rooms Suite"
 msgstr "Habitacion Suite"
 
-#: Views\Listing\Listing.cshtml:229
-#: Views\Listing\ListingUpdate.cshtml:156
+#: Views\Listing\Listing.cshtml:230
+#: Views\Listing\ListingUpdate.cshtml:158
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:145
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:229
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:230
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:156
 msgid "Safety Mesh"
 msgstr "Malla de seguridad"
@@ -3045,15 +3074,15 @@ msgstr "Buscar..."
 msgid "Search PlaceHolder"
 msgstr "Buscador texto placeholder"
 
-#: Views\Listing\Listings.cshtml:183
+#: Views\Listing\Listings.cshtml:184
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:202
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:183
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:184
 msgid "Search text"
 msgstr "Buscar texto"
 
-#: Views\Listing\Listings.cshtml:182
+#: Views\Listing\Listings.cshtml:183
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:201
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:182
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:183
 msgid "Search Text"
 msgstr "Buscar texto"
 
@@ -3145,9 +3174,7 @@ msgstr "Server dominio/IP"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: Views\Listing\Listing.cshtml:341
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:312
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:341
 msgid "Share"
 msgstr "Compartir"
 
@@ -3180,7 +3207,7 @@ msgstr "Mostrar Calendario"
 msgid "Show Email"
 msgstr "Ver Email"
 
-#: Views\Listing\ListingUpdate.cshtml:222
+#: Views\Listing\ListingUpdate.cshtml:224
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:211
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:222
 msgid "Show Phone"
@@ -3258,6 +3285,10 @@ msgstr "SMTP-Clave"
 msgid "SMTP User"
 msgstr "SMTP-Usuario"
 
+#: Views\Listing\ListingUpdate.cshtml:62
+msgid "Specify property information, for example the number of rooms, bathrooms, if you have parking, beds and types bed etc ..."
+msgstr "Especificar informacion de la propiedad, Por ejemplo cantidad de habitaciones, baños , si tiene estacionamiento, camas y sus tipos de cama etc..."
+
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:60
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\SettingsEmail.cshtml:60
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:60
@@ -3266,10 +3297,10 @@ msgstr "SSL activado"
 
 #: Views\Payment\Orders.cshtml:113
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:113
-#: Areas\Admin\Views\Payment\Order.cshtml:94
+#: Areas\Admin\Views\Payment\Order.cshtml:89
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:94
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:113
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:94
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:89
 msgid "Status"
 msgstr "Estado"
 
@@ -3291,15 +3322,15 @@ msgstr "Enviar"
 
 #: Views\Payment\Orders.cshtml:49
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:49
-#: Areas\Admin\Views\Payment\Order.cshtml:43
+#: Areas\Admin\Views\Payment\Order.cshtml:38
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:43
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:49
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:43
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:38
 msgid "Success"
 msgstr "Exito"
 
-#: Views\Listing\Listing.cshtml:253
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:253
+#: Views\Listing\Listing.cshtml:254
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:254
 msgid "Suite Rooms"
 msgstr "Piezas Suite"
 
@@ -3315,7 +3346,7 @@ msgstr "NombreDeSistema"
 msgid "Terms & Conditions"
 msgstr "Terminos & Condiciones"
 
-#: Views\Listing\ListingUpdate.cshtml:150
+#: Views\Listing\ListingUpdate.cshtml:152
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:139
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:150
 msgid "Terrace"
@@ -3377,7 +3408,7 @@ msgstr "La propiedad ha sido eliminada"
 msgid "The listing type has been deleted."
 msgstr "El tipo de propiedad ha sido eliminado"
 
-#: Controllers\PaymentController.cs:474
+#: Controllers\PaymentController.cs:483
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:464
 msgid "The maintenance was scheduled successfully!"
 msgstr "El mantenimiento se ha programado correctamente!"
@@ -3389,13 +3420,13 @@ msgstr "El mantenimiento se ha programado correctamente!"
 msgid "The new password and confirmation password do not match."
 msgstr "La nueva clave y la confirmacion de la clave no coinciden."
 
-#: Controllers\PaymentController.cs:201
+#: Controllers\PaymentController.cs:204
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:201
 msgid "The order is %0."
 msgstr "La reserva es %0."
 
-#: Views\Manage\ListingCalendar.cshtml:398
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:398
+#: Views\Manage\ListingCalendar.cshtml:475
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:475
 msgid "The order is unlock."
 msgstr "La propiedad esta desbloqueada."
 
@@ -3412,12 +3443,13 @@ msgstr "La pagina que estas buscando no existe."
 msgid "The password and confirmation password do not match."
 msgstr "\"La clave y la confirmacion de la clave no coinciden."
 
-#: Controllers\PaymentController.cs:329
+#: Controllers\PaymentController.cs:338
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:315
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr "El proveedor no tiene configurado la opcion de pago para {0} todavia, por favor contactarse con el proveedor."
 
-#: Controllers\PaymentController.cs:312
+#: Controllers\PaymentController.cs:321
+#: Controllers\PaymentController.cs:538
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:298
 msgid "The provider has not setup the payment option yet, please contact the provider."
 msgstr "El proveedor no tiene configurado la opcion de pago todavia, por favor contactarse con el proveedor."
@@ -3459,7 +3491,7 @@ msgstr "Tema"
 #: Areas\Admin\Views\Listing\Listings.cshtml:57
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:54
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
-#: Areas\Admin\Views\Payment\Order.cshtml:84
+#: Areas\Admin\Views\Payment\Order.cshtml:79
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:75
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\CustomFields.cshtml:54
@@ -3482,7 +3514,7 @@ msgstr "Tema"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:57
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:54
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:84
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:79
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:75
 msgid "There are no items to display."
 msgstr "No hay items para mostrar."
@@ -3556,7 +3588,6 @@ msgstr "Formato Tiempo"
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
 #: Areas\Admin\Views\Listing\Listings.cshtml:73
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
-#: Areas\Admin\Views\Payment\Order.cshtml:99
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\Listings.cshtml:68
@@ -3570,25 +3601,25 @@ msgstr "Formato Tiempo"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:73
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:99
 msgid "Title"
 msgstr "Titulo"
 
-#: Controllers\PaymentController.cs:348
-#: Controllers\PaymentController.cs:395
-#: Controllers\PaymentController.cs:445
+#: Controllers\PaymentController.cs:357
+#: Controllers\PaymentController.cs:404
+#: Controllers\PaymentController.cs:454
+#: Controllers\PaymentController.cs:559
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:335
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:385
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:435
 #: Views\Home\Index.cshtml:86
 #: Views\Home\Index.cshtml:87
-#: Views\Listing\Listings.cshtml:141
-#: Views\Listing\Listings.cshtml:148
-#: Views\Listing\Listings.cshtml:161
-#: Views\Listing\Listings.cshtml:168
-#: Views\Listing\Listings.cshtml:177
-#: Views\Listing\_ListingPayment.cshtml:30
-#: Views\Listing\_ListingPayment.cshtml:62
+#: Views\Listing\Listings.cshtml:142
+#: Views\Listing\Listings.cshtml:149
+#: Views\Listing\Listings.cshtml:162
+#: Views\Listing\Listings.cshtml:169
+#: Views\Listing\Listings.cshtml:178
+#: Views\Listing\_ListingPayment.cshtml:25
+#: Views\Listing\_ListingPayment2.cshtml:25
 #: Views\Payment\Payment.cshtml:88
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Index.cshtml:86
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Home\Index.cshtml:87
@@ -3600,16 +3631,18 @@ msgstr "Titulo"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingPayment.cshtml:30
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingPayment.cshtml:62
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Payment.cshtml:88
+#: Areas\Admin\Views\Payment\Order.cshtml:102
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:86
 #: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:87
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:141
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:148
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:161
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:168
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:177
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:30
-#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:62
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:142
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:149
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:162
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:169
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:178
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment.cshtml:25
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingPayment2.cshtml:25
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:88
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:102
 msgid "To"
 msgstr "Hasta"
 
@@ -3625,11 +3658,6 @@ msgstr "Para completar este asistente , debe conocer alguna información acerca 
 msgid "To configure payment method for payout, please configure the Payment plugin"
 msgstr "Para configurar el método de pago, por favor, configurar el plugin de Payment"
 
-#: Views\Manage\ListingCalendar.cshtml:336
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:336
-msgid "To date"
-msgstr "Hasta"
-
 #: Views\Payment\Payment.cshtml:86
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Payment.cshtml:86
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:86
@@ -3641,6 +3669,10 @@ msgstr "Fecha"
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:17
 msgid "To publish a property, you must complete the fields and contact management to post the information on this page."
 msgstr "Para publicar una propiedad, debe completar los campos para publicar la información en esta página."
+
+#: Models\AccountViewModels.cs:138
+msgid "ToDate"
+msgstr "Hasta"
 
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:30
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\PaymentSetting.cshtml:30
@@ -3683,20 +3715,20 @@ msgstr "configuracion de transaccion"
 msgid "Transactions"
 msgstr "Arriendos"
 
-#: Views\Listing\ListingUpdate.cshtml:171
+#: Views\Listing\ListingUpdate.cshtml:173
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:160
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:171
 msgid "TV cable"
 msgstr "TV cable"
 
-#: Views\Listing\Listing.cshtml:168
+#: Views\Listing\Listing.cshtml:167
 #: Views\Listing\ListingUpdate.cshtml:48
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listings.cshtml:104
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:168
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:167
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:48
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
@@ -3724,13 +3756,13 @@ msgstr "Tipo"
 msgid "Type DELETE to confirm delete"
 msgstr "Escriba DELETE para confirmar eliminar"
 
-#: Views\Manage\ListingCalendar.cshtml:383
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:383
+#: Views\Manage\ListingCalendar.cshtml:460
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:460
 msgid "Type UNLOCK to confirm delete"
 msgstr "Escribe UNLOCK para eliminar"
 
-#: Views\Manage\ListingCalendar.cshtml:391
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:391
+#: Views\Manage\ListingCalendar.cshtml:468
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:468
 msgid "Type UNLOCK to confirm unlock"
 msgstr "Escribe UNLICK para confirmar desbloqueo"
 
@@ -3740,15 +3772,15 @@ msgstr "Escribe UNLICK para confirmar desbloqueo"
 msgid "Uninstall"
 msgstr "Desintalado"
 
-#: Views\Manage\ListingCalendar.cshtml:307
-#: Views\Manage\ListingCalendar.cshtml:338
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:307
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:338
+#: Views\Manage\ListingCalendar.cshtml:367
+#: Views\Manage\ListingCalendar.cshtml:414
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:367
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:414
 msgid "Unlock"
 msgstr "Desbloquear"
 
-#: Views\Manage\ListingCalendar.cshtml:325
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:325
+#: Views\Manage\ListingCalendar.cshtml:401
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:401
 msgid "Unlock Orders"
 msgstr "Desbloquear reserva"
 
@@ -3758,7 +3790,7 @@ msgstr "Desbloquear reserva"
 msgid "Unsuccessful login with service."
 msgstr "Inicio de sesion sin exito con el servicio."
 
-#: Views\Listing\ListingUpdate.cshtml:187
+#: Views\Listing\ListingUpdate.cshtml:189
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:176
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
@@ -3859,18 +3891,16 @@ msgstr "Verificar numero de telefono."
 msgid "Version"
 msgstr "Version"
 
-#: Views\Listing\Listing.cshtml:293
+#: Views\Listing\Listing.cshtml:294
 #: Views\Listing\_ListingContactModal.cshtml:18
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:264
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\_ListingContactModal.cshtml:18
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:293
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:294
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingContactModal.cshtml:18
 msgid "View User's other listings"
 msgstr "Ver otros anuncios del usuario"
 
-#: Views\Listing\Listing.cshtml:328
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\Listing.cshtml:299
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:328
 msgid "View user's profile and other listings"
 msgstr "Ver Perfir y departamentos del usuario "
 
@@ -3884,10 +3914,10 @@ msgstr "Ver mi Perfil"
 msgid "Views"
 msgstr "Vistas"
 
-#: Views\Listing\Listing.cshtml:237
-#: Views\Listing\ListingUpdate.cshtml:140
+#: Views\Listing\Listing.cshtml:238
+#: Views\Listing\ListingUpdate.cshtml:142
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:129
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:237
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:238
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:140
 msgid "Washer"
 msgstr "Lavadora"
@@ -3903,7 +3933,7 @@ msgstr "Bienvenido a {0} Admin panel!"
 msgid "Welcome to {0}!"
 msgstr "Bienvenido a {0}!"
 
-#: Views\Listing\ListingUpdate.cshtml:161
+#: Views\Listing\ListingUpdate.cshtml:163
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Listing\ListingUpdate.cshtml:150
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:161
 msgid "WIFI"
@@ -3926,15 +3956,15 @@ msgstr "si"
 
 #: Views\Payment\Orders.cshtml:172
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Payment\Orders.cshtml:172
-#: Areas\Admin\Views\Payment\Order.cshtml:147
+#: Areas\Admin\Views\Payment\Order.cshtml:143
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Payment\Order.cshtml:147
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:172
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:147
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:143
 msgid "Yes!"
 msgstr "Si!"
 
 #: Views\Manage\Dashboard.cshtml:74
-#: Views\Manage\ListingCalendar.cshtml:381
+#: Views\Manage\ListingCalendar.cshtml:458
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Views\Manage\Dashboard.cshtml:74
 #: Areas\Admin\Views\Listing\Categories.cshtml:106
 #: Areas\Admin\Views\Listing\Listings.cshtml:100
@@ -3945,7 +3975,7 @@ msgstr "Si!"
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Areas\Admin\Views\Manage\Users.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:74
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:381
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:458
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:106
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:100
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:107
@@ -3953,13 +3983,13 @@ msgstr "Si!"
 msgid "Yes, delete it!"
 msgstr "Si, Borrar"
 
-#: Controllers\PaymentController.cs:424
-#: Controllers\PaymentController.cs:505
+#: Controllers\PaymentController.cs:618
 #: C:\Users\daniel\Source\Repos\Playamoblados - copia\BeYourMarket.Web\Controllers\PaymentController.cs:414
 msgid "You booked your stay correctly!"
 msgstr "Has reservado tu estadia correctamente"
 
-#: Controllers\PaymentController.cs:300
+#: Controllers\PaymentController.cs:309
+#: Controllers\PaymentController.cs:526
 msgid "You can not book with these selected dates!"
 msgstr "No se puede reservar con estas fechas seleccionadas!"
 
@@ -4001,7 +4031,8 @@ msgstr "No puedes enviarte mensajes a ti mismo!"
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr "No puedes eliminar el tipo de propiedad, Debe haber por lo menos un tipo de propiedad"
 
-#: Controllers\PaymentController.cs:271
+#: Controllers\PaymentController.cs:274
+#: Controllers\PaymentController.cs:498
 msgid "You cant book just to one day, minimun two day."
 msgstr "No puedes reservar solo un dia, minimo dos dias"
 
@@ -4036,8 +4067,8 @@ msgstr "Eliminaras todas tus propiedades con sus categoria"
 msgid "You will delete all listings with the listing type "
 msgstr "Eliminaras todas las propiedades con sus tipos"
 
-#: Views\Manage\ListingCalendar.cshtml:377
-#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:377
+#: Views\Manage\ListingCalendar.cshtml:454
+#: obj\Release\Package\PackageTmp\Views\Manage\ListingCalendar.cshtml:454
 msgid "You will delete the order"
 msgstr "Eliminaras el bloqueo"
 
@@ -4073,8 +4104,17 @@ msgstr "Su clave fue actualizada."
 #~ msgid "All Categories"
 #~ msgstr "Toda las categoria"
 
+#~ msgid "block"
+#~ msgstr "Bloquear"
+
+#~ msgid "Days"
+#~ msgstr "Dias"
+
 #~ msgid "Enter Dish washer"
 #~ msgstr "Lava vajilla"
+
+#~ msgid "From date"
+#~ msgstr "Desde"
 
 #~ msgid "Latest Listings"
 #~ msgstr "Ultimas propiedades"
@@ -4102,6 +4142,9 @@ msgstr "Su clave fue actualizada."
 
 #~ msgid "Thanks, have a lovely day."
 #~ msgstr "Gracias, que tenga un lindo dia."
+
+#~ msgid "To date"
+#~ msgstr "Hasta"
 
 #~ msgid "You cannot book the item from yourself!"
 #~ msgstr "No se puede reservar el item de unos mismo!"
