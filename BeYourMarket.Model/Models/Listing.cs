@@ -50,7 +50,7 @@ namespace BeYourMarket.Model.Models
         public bool Washer { get; set; }
         public bool Grill { get; set; }
         public bool Terrace { get; set; }
-        public Nullable<int> NroOfParking { get; set; }
+        public string NroOfParking { get; set; }
         public bool SafetyMesh { get; set; }
         public bool Wifi { get; set; }
         public bool TV_cable { get; set; }
