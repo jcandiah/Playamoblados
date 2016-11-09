@@ -154,7 +154,7 @@
                             }
 
 
-                            //aca pinta el calendario de los eventos
+                            //aca pinta el calendario de los eventos pasajero
                             for (var j = 0; j < settings.events.length; j++) {
                                 var d = settings.events[j].datetime;
                                 if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
@@ -164,11 +164,9 @@
                                 }
                             }
 
-
                             //truco pinta calendario para reserva
-                            for (var j = 0; j < settings.datedisabled.length; j++) {
-                                var c = settings.datedisabled[j];
-                                var d = new Date(c);
+                            for (var j = 0; j < settings.datedisabled.length; j++) {                            
+                                var d = settings.datedisabled[j].datetime;
                                 if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
 
                                     cDay.addClass('c-event-reserva').attr('data-event-day', d.getDate());
@@ -177,11 +175,9 @@
                             }
 
                             //pinta calendario para bloqueo playamoblados
-                            for (var j = 0; j < settings.bloqueo.length; j++) {
-                                var c = settings.bloqueo[j];
-                                var d = new Date(c);
+                            for (var j = 0; j < settings.bloqueo.length; j++) {                    
+                                var d = settings.bloqueo[j].datetime;
                                 if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
-
                                     cDay.addClass('c-event-bloqueo').attr('data-event-day', d.getDate());
                                     cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                                 }
@@ -197,7 +193,7 @@
                         cBody.append(cDay);
                     }
 
-                    //ACA CARGA LOS EVENTOS
+                    //ACA CARGA LOS EVENTOS PASAJERO
                     var eventList = $('<div/>').addClass('c-event-list');
                     var tituloComparar;
                     for (var i = 0; i < settings.events.length; i++) {
@@ -223,9 +219,45 @@
                         }
 
                     }
+                    //$(instance).addClass('calendar');
+                    //cEventsBody.append(eventList);
+                    //$(instance).html(cBody).append(cEvents);
+                    //fin CARGA EVENTOS PASAJERO
+
+
+
+                    //ACA CARGA LOS EVENTOS Bloqueo reserva
+                    //var eventList2 = $('<div/>').addClass('c-event-list');
+                    //var tituloComparar;
+                    //for (var i = 0; i < settings.datedisabled.length; i++) {
+
+                    //    var d = settings.datedisabled[i].datetime;
+
+                    //    if (d.getMonth() == dMonth && d.getFullYear() == dYear) {
+                    //        var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth() + 1, 2);
+                    //        var item = $('<div/>').addClass('c-event-item');
+                    //        var title = $('<div/>').addClass('title').html(date + '  ' + settings.datedisabled[i].title + '<br/>');
+                    //        var description = $('<div/>').addClass('description').html(settings.datedisabled[i].description + '<br/>');
+                    //        item.attr('data-event-day', d.getDate());
+                    //        item.on('mouseover', mouseOverItem).on('mouseleave', mouseLeaveItem);
+                    //        item.append(title).append(description);
+                    //        if (settings.events.length > i+1)
+                    //        {
+                    //            if (tituloComparar != settings.events[i].title)
+                    //        {
+                    //        eventList.append(item);
+                    //            }
+                    //        }
+                    //        tituloComparar = settings.datedisabled[i].title;
+                    //    }
+
+                    //}
                     $(instance).addClass('calendar');
                     cEventsBody.append(eventList);
+                    //cEventsBody.append(eventList2);
                     $(instance).html(cBody).append(cEvents);
+                    //fin CARGA EVENTOS PASAJERO
+
                 }
 
                 return print();
@@ -246,46 +278,35 @@
                 eventTitle: 'Eventos',
                 @*url: '@Url.Action("GetEvents", "Manage")',*@
                 url: '',
-                @{
-                var datesDisabledbloqueo = new System.Text.StringBuilder();
-                foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==1 && x.Status != 3))
-                {
-                    for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
-                    {
-                        if (date.Day >= 10)
-                        {
-                            datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day + 1);
-                        }
-                        else
-                        {
+                bloqueo: [
+                                @{
+                                    var datesDisabledbloqueo = new System.Text.StringBuilder();
+            foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==1 && x.Status != 3))
+            {
+                                        for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                                        {
+                                                string valor = string.Format("title:'Bloqueo', description: 'Playamoblados', datetime: new Date({0},{1},{2}),",date.Year, date.Month - 1, date.Day);
+                                                @Html.Raw("{" + valor.ToString() + "},");
+                                    }
+            }
+        }],
 
-                            datesDisabledbloqueo.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
-                        }
-                    }
-                }
-           }
-                bloqueo: [@Html.Raw(datesDisabledbloqueo.ToString())],
-                @{
-             var datesDisabledreserva = new System.Text.StringBuilder();
-             foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==2 && x.Status != 3))
-             {
-                 for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
-                 {
-                     if(date.Day >=10)
-                     {
-                         datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day+1);
-                     }
-                     else
-                     {
+                datedisabled: [
+                                    @{
 
-                         datesDisabledreserva.AppendFormat("'{0}-{1}-{2}',", date.Year, date.Month, date.Day);
-                     }
-                 }
-             }
+                                        foreach (var orders in Model.ListOrder.Where(x=>x.OrderType==2 && x.Status != 3))
+                                        {
+                                            for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                                            {
+                                                string valor = string.Format("title:'Bloqueo', description: '', datetime: new Date({0},{1},{2}),",date.Year, date.Month - 1, date.Day);
+                                                @Html.Raw("{" + valor.ToString() + "},");
+                                            }
+                                        }
 
-          }
-                datedisabled: [@Html.Raw(datesDisabledreserva.ToString())],
-                
+        }
+
+                ],
+
 
                 events: [
                    @{
@@ -294,7 +315,7 @@
                    // 3 = reserva
                    var userCurrent = User.Identity.User();
 
-                      
+
                    if (User.IsInRole("Administrator"))
                    {
                        foreach (var orders in Model.ListOrder.Where(x => x.OrderType == 3 && x.Status != 3))
