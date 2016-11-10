@@ -5,15 +5,23 @@
     ViewBag.Title = "[[[Login]]]";
 }
 
+
 <div class="main-section">
     <div class="container-fluid">
-        <div class="center-block col-md-6">
+        <div class="center-block col-md-6" style="padding-top: 10px;">
+            @if (Request.QueryString["ReturnUrl"] == "/listing/listingupdate")
+            {
+                <div class="alert alert-info">
+                    Para inscribir tu propiedad debes iniciar sesión aqui, si aún no te registras @Html.ActionLink("[[[Hazlo aqui]]]", "Register", new { })
+                </div>
+            }
             <div class="panel panel-default mrg-t">
                 <div class="panel-body bdr-b panel-header">
                     <h4>[[[Login to your account]]]</h4>
                 </div>
 
                 <div class="panel-body">
+
                     @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", id = "loginForm" }))
                     {
                         @Html.AntiForgeryToken()
@@ -35,9 +43,7 @@
                     }
 
                 </div>
-                <div class="panel-footer ">
-                    @Html.ActionLink("[[[Register as a new user]]]", "Register")
-                    <br />
+                <div class="panel-footer ">                    
                     @Html.ActionLink("[[[Forgot your password?]]]", "ForgotPassword")
                 </div>
             </div>
@@ -46,5 +52,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval") 
+    @Scripts.Render("~/bundles/jqueryval")
 }

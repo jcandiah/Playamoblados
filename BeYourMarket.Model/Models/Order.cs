@@ -28,6 +28,9 @@ namespace BeYourMarket.Model.Models
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
         public Nullable<int> OrderType { get; set; }
+
+        //Referencias 
+
         public virtual AspNetUser AspNetUserProvider { get; set; }
         public virtual AspNetUser AspNetUserReceiver { get; set; }
         public virtual ICollection<ListingReview> ListingReviews { get; set; }

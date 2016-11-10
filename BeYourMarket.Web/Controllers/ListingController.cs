@@ -368,6 +368,44 @@ namespace BeYourMarket.Web.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> ListingUpdate()
+        {
+            if (CacheHelper.Categories.Count == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
+            }
+
+            var userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(userId);
+
+            var model = new ListingUpdateModel()
+            {
+                Categories = CacheHelper.Categories
+            };
+
+            Listing listing = new Listing()
+            {
+                CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
+                ContactEmail = user.Email,
+                ContactName = string.Format("{0} {1}", user.FirstName, user.LastName),
+                ContactPhone = user.PhoneNumber,
+                Created = DateTime.Now.Date,
+                LastUpdated = DateTime.Now.Date,
+                Expiration = DateTime.MaxValue,
+                Enabled = false,
+                Active = false,
+            };
+
+            // Populate model with listing
+            await PopulateListingUpdateModel(listing, model);
+
+            return View(model);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files)
