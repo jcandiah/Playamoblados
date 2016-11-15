@@ -807,6 +807,13 @@ namespace BeYourMarket.Web.Controllers
             userExisting.Gender = user.Gender;
             userExisting.PhoneNumber = user.PhoneNumber;
             userExisting.SecondaryPhoneNumber = user.SecondaryPhoneNumber;
+            userExisting.Rut = user.Rut;
+            userExisting.Bank = user.Bank;
+            userExisting.AccountType = user.AccountType;
+            userExisting.NumberAccount = user.NumberAccount;
+            userExisting.NameContactPerson = user.NameContactPerson;
+            userExisting.EmailContactPerson = user.EmailContactPerson;
+            userExisting.PhoneContactPerson = user.PhoneContactPerson;
 
             await UserManager.UpdateAsync(userExisting);
 

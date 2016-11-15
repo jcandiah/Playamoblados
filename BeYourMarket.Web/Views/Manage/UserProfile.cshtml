@@ -45,27 +45,70 @@
                                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                                         </div>
                                     </div>
-                                    @*<div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-md-2 control-label" for="LastName">[[[Last Name]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                                         </div>
-                                    </div>*@
-
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="PhoneNumber">[[[Phone Number]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="SecondaryPhoneNumber">[[[Numero de telefono secundario]]]</label>
+                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Rut]]]</label>
                                         <div class="col-md-10">
-                                            @Html.TextBoxFor(m => m.SecondaryPhoneNumber, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.Rut, new { @class = "form-control" })
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Banco]]]</label>
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(p => p.Bank,
+                                                new[]
+                                                {
+                                                    new SelectListItem{ Value = "Banco Santander", Text = "Banco Santander" },
+                                                    new SelectListItem{ Value = "Banco Santander Banefe", Text = "Banco Santander Banefe" },
+                                                    new SelectListItem{ Value = "Banco BBVA", Text = "Banco BBVA" },
+                                                    new SelectListItem{ Value = "Banco BICE", Text = "Banco BICE" },
+                                                    new SelectListItem{ Value = "Banco Internacional", Text = "Banco Internacional" },
+                                                    new SelectListItem{ Value = "Banco Itaú", Text = "Banco Itaú" },
+                                                    new SelectListItem{ Value = "Banco de Chile / Edwards-Citi", Text = "Banco de Chile / Edwards-Citi" },
+                                                    new SelectListItem{ Value = "Corpbanca", Text = "Corpbanca" },
+                                                    new SelectListItem{ Value = "Banco Crédito e Inversiones", Text = "Banco Crédito e Inversiones" },
+                                                    new SelectListItem{ Value = "Banco del Desarrollo", Text = "Banco del Desarrollo" },
+                                                    new SelectListItem{ Value = "Banco Estado", Text = "Banco Estado" },
+                                                    new SelectListItem{ Value = "Banco Falabella", Text = "Banco Falabella" },
+                                                    new SelectListItem{ Value = "Banco Security", Text = "Banco Security" },
+                                                    new SelectListItem{ Value = "Scotiabank", Text = "Scotiabank" },
+                                                    new SelectListItem{ Value = "Rabobank", Text = "Rabobank" },
+                                                    new SelectListItem{ Value = "HSBC Bank", Text = "HSBC Bank" },
+                                                    new SelectListItem{ Value = "Banco Ripley", Text = "Banco Ripley" },
+                                                    new SelectListItem{ Value = "Banco Paris", Text = "Banco Paris" },
+                                                    new SelectListItem{ Value = "Banco Consorcio", Text = "Banco Consorcio" },
+                                                }, "[[[Banco]]]", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Tipo de cuenta]]]</label>
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(p => p.AccountType,
+                                                new[]
+                                                {
+                                                    new SelectListItem{ Value = "Cuenta Corriente", Text = "Cuenta Corriente" },
+                                                    new SelectListItem{ Value = "Cuenta de Ahorro", Text = "Cuenta de Ahorro" },
+                                                    new SelectListItem{ Value = "Cuenta Vista", Text = "Cuenta Vista" },
+                                                }, "[[[Tipo de cuenta]]]", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="Nombre">[[[Numero de cuenta]]]</label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.NumberAccount, new { @class = "form-control" })
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
                                         <div class="col-md-10">
@@ -81,6 +124,30 @@
                                         <label class="col-md-2 control-label">[[[Profile Picture]]]</label>
                                         <div class="col-md-10">
                                             <input id="file" name="file" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="panel-heading">
+                                            [[[Persona de contacto]]]
+                                        </div>
+                                        <hr />
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Nombre">[[[Nombre de contacto]]]</label>
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.NameContactPerson, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Email">[[[Email de contacto]]]</label>
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.EmailContactPerson, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="Email">[[[Telefono de contacto]]]</label>
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.PhoneContactPerson, new { @class = "form-control" })
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">

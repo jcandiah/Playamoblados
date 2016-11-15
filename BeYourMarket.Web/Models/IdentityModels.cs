@@ -47,6 +47,19 @@ namespace BeYourMarket.Web.Models
 
         public string SecondaryPhoneNumber { get; set; }
 
+        public string Rut { get; set; }
+
+        public string AccountType { get; set; }
+
+        public string NumberAccount { get; set; }
+
+        public string NameContactPerson { get; set; }
+
+        public string PhoneContactPerson { get; set; }
+
+        public string EmailContactPerson { get; set; }
+
+        public string Bank { get; set; }
 
         [NotMapped]
         public bool RoleAdministrator { get; set; }

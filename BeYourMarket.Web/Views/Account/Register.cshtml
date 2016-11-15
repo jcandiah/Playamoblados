@@ -43,42 +43,43 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
-                            <label for="Email">[[[Email]]] <span class="text-red">*</span></label>
-                            <input type="text" name="Email" id="Email" class="form-control input-lg" placeholder="[[[Enter email]]]" data-rule-required="true" data-rule-email="true">
+                            <label for="Email">[[[Email]]] <span class="text-red">*</span></label>                            
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", placeholder = "[[[Enter email]]]", data_rule_required = "true" })
                         </div>
                         <div class="form-group">
-                            <label for="FirstName">[[[First Name]]] <span class="text-red">*</span></label>
-                            <input type="text" name="FirstName" id="FirstName" class="form-control input-lg" placeholder="[[[Enter First Name]]]" data-rule-required="true">
+                            <label for="FirstName">[[[First Name]]] <span class="text-red">*</span></label>                            
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lg", placeholder = "[[[Enter First Name]]]", data_rule_required = "true" })
                         </div>
                         <div class="form-group">
-                            <label for="LastName">[[[Last Name]]] <span class="text-red">*</span></label>
-                            <input type="text" name="LastName" id="LastName" class="form-control input-lg" placeholder="[[[Enter Last Name]]]" data-rule-required="true">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="Gender">[[[Gender]]] <span class="text-red">*</span></label> <br />
-                                <input type="radio" name="Gender" id="Gender" class="input" value="M" data-rule-required="true" checked/> <i class="fa"></i> [[[Male]]]<i class="fa fa-male"></i> &nbsp;&nbsp;&nbsp;                               
-                                <input type="radio" name="Gender" id="Gender" class="" value="F" data-rule-required="true" /> <i class="fa"></i> [[[Female]]]<i class="fa fa-female"></i>                            
+                            <label for="LastName">[[[Last Name]]] <span class="text-red">*</span></label>                            
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-lg", placeholder = "[[[Enter Last Name]]]", data_rule_required = "true" })
                         </div>
 
                         <div class="form-group">
-                            <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
-                            <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
+                            <label for="Gender">[[[Gender]]] <span class="text-red">*</span></label> <br />                            
+                            @Html.RadioButton("Gender", "M", true)<i class="fa"></i> [[[Male]]]<i class="fa fa-male"></i>
+                            @Html.RadioButton("Gender", "F")<i class="fa"></i> [[[Female]]]<i class="fa fa-female"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">[[[Password]]] <span class="text-red">*</span></label>                           
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control input-lg", placeholder = "[[[Please enter a password with at least one digit and at least one uppercase]]]", data_rule_required = "true" })
+                            @*Por favor ingrese una contraseña que contenga al menos un digito y una letra mayuscula*@
                         </div>
                         <div class="form-group">
-                            <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
-                            <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
+                            <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>                            
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control input-lg", placeholder = "[[[Please repeat password]]]", data_rule_required = "true" })
                         </div>
                         if (CacheHelper.Settings.AgreementRequired)
                         {
-                        <div class="form-group">
-                            <input type="checkbox" id="Accept" name="Accept" value="true" data-rule-required="true" />
-                            <label for="Accept">[[[I accept the]]] <a id="agreementModal" data-toggle="modal" data-target="#agreementModal">[[[Terms & Conditions]]]</a></label>
-                        </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="Accept" name="Accept" value="true" data-rule-required="true" />
+                                <label for="Accept">[[[I accept the]]] <a id="agreementModal" data-toggle="modal" data-target="#agreementModal">[[[Terms & Conditions]]]</a></label>
+                            </div>
                         }
                         <input type="submit" class="btn btn-primary btn-lg" value="[[[Join]]]">
-                        }
-                        </div>
+                    }
+                </div>
 
                 <div class="panel-footer ">
                     <span>[[[Already a member?]]] <a href="@Url.Action("Login", "Account")">[[[Login]]]</a></span>
