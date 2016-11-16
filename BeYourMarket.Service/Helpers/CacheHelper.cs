@@ -37,6 +37,14 @@ namespace BeYourMarket.Service
             }
         }
 
+        public static List<TypeOfBed> TypesOfBeds
+        {
+            get
+            {
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.TypeOfBeds) as List<TypeOfBed>;
+            }
+        }
+
         public static List<ListingType> ListingTypes
         {
             get

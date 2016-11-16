@@ -16,6 +16,7 @@ namespace BeYourMarket.Web.Models
             Pictures = new List<PictureModel>();
             CustomFields = new CustomFieldListingModel();
             Roles = new List<AspNetRole>();
+            TypesOfBeds = new List<TypeOfBed>();
         }
 
         public int CategoryID { get; set; }
@@ -29,6 +30,8 @@ namespace BeYourMarket.Web.Models
         public List<Category> Categories { get; set; }
 
         public List<ListingType> ListingTypes { get; set; }
+
+        public List<TypeOfBed> TypesOfBeds { get; set; }
 
         public List<ApplicationUser> Users { get; set; }
 

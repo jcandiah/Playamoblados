@@ -40,9 +40,9 @@
                                 </div>
 
                                 @*<div class="form-group">
-                                    <label>[[[Title]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
-                                </div>*@
+                <label>[[[Title]]] <span class="text-red">*</span></label>
+                <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
+            </div>*@
 
                                 <div class="form-group">
                                     <label>[[[Type]]]<span class="text-red">*</span></label>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>[[[Description]]] <span class="text-red">*</span></label>
+                                    <label>[[[Comercial Description]]] <span class="text-red">*</span></label>
                                     <textarea class="form-control" rows="5" placeholder="[[[Specify property information, for example the number of rooms, bathrooms, if you have parking, beds and types bed etc ...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                                 </div>
 
@@ -67,32 +67,80 @@
                                     <div class="form-group" id="priceGroup">
                                         <label>[[[Price]]]</label>
                                         <div class="input-group">
-                                            <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
+                                            <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="Ej: 60000" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
                                             <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
                                         </div>
                                     </div>
                                 }
-                                @*<div class="form-group">
-                                    <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
-                                    <input name="Active" type="hidden" value="false" />
-                                </div>*@
 
-                                <div class="form-group col-md-3">
+                                @*<div class="form-group">
+                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
+                <input name="Active" type="hidden" value="false" />
+            </div>*@
+
+                                <div class="form-group">
+                                    <label>[[[Max. passenger capacity]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="Ej: 7" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
+                                </div>
+
+                                @*El showsito*@
+
+                                <div id="panel" class="panel panel-success">
+
+                                    <div class="panel-heading text-center">
+
+                                        <div class="form-group">
+                                            <div class="alert alert-info" role="alert">Agrega camas de tu propiedad</div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <td>@Html.DropDownListFor(m => m.TypesOfBeds, new SelectList(Model.TypesOfBeds, "ID", "Name"), new { @class = "form-control" })</td>
+                                                    <td><input type="text" onfocus="this.type='number'" id="cantidadcama" name="cantidadcama" min="0" max="15" placeholder="Cantidad" class="form-control" /></td>
+                                                    <td><button type="button" id="add" name="add" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="table-responsive">
+                                            <table id="tabla" class="table table-condensed table-striped">
+                                                <thead>
+                                                    <tr class="bg-success">
+
+                                                        <th>#</th>
+                                                        <th>#Id cama</th>
+                                                        <th>[[[Size]]]</th>
+                                                        <th>[[[Quantity]]]</th>
+                                                        <th>#</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+
+                                            </table>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-3">[[[Total Beds]]]</label>
+                                            <input type="text" class="form-control input-lg col-md-9" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds" readonly="readonly" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Hasta aqui es el showsito*@
+
+                                <div class="form-group col-md-4">
                                     <label>[[[Rooms]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label>[[[Rooms Suite]]]</label>
                                     <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
                                 </div>
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[Beds]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 7" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds">
-                                </div>
-
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label>[[[M2]]]</label>
                                     <input type="text" class="form-control input-lg" placeholder="Ej: 100" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2">
                                 </div>
@@ -112,27 +160,23 @@
                                     <input type="text" class="form-control input-lg" placeholder="[[[Ej: 1]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label>[[[Floor Number]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 4" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber" >
+                                    <input type="text" class="form-control input-lg" placeholder="Ej: 4" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber">
                                 </div>
 
-                                @*DEAQUILONUEVO*@
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[Max. Capacity]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 7" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
-                                </div>
-                                <div class="form-group col-md-3">
+
+                                <div class="form-group col-md-4">
                                     <label>[[[Number of parking]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="EJ: 26A" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking " >
+                                    <input type="text" class="form-control input-lg" placeholder="Ej: 26A" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking ">
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label>[[[Number of TV]]] <span class="text-red">*</span></label>
                                     <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
                                 </div>
-                               
+
                                 <div class="form-group col-md-3">
                                     <label>[[[Dish washer]]] </label>
                                     <input type="checkbox" id="Dishwasher" name="Dishwasher" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "") />
@@ -152,7 +196,7 @@
                                     <label>[[[Terrace]]] </label>
                                     <input type="checkbox" id="Terrace" name="Terrace" value="true" @(Model.ListingItem.Terrace ? "checked" : "") />
                                     <input name="Terrace" type="hidden" value="false" />
-                                   
+
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>[[[Safety Mesh]]] </label>
@@ -177,7 +221,7 @@
 
 
 
-                               
+
 
                             </fieldset>
 
@@ -194,7 +238,7 @@
                                 </div>
                             </fieldset>
 
-                            <fieldset>
+                            @*<fieldset>
                                 <legend>[[[Location]]]</legend>
                                 <div class="form-group">
                                     <label>[[[Location]]]</label>
@@ -208,7 +252,7 @@
                                     <div id="map-canvas"></div>
                                 </div>                                
 
-                            </fieldset>
+                            </fieldset>*@
 
                             <fieldset>
                                 <legend>[[[Publisher's Info]]]</legend>
@@ -241,16 +285,24 @@
                                 }*@
                             </fieldset>
                             <fieldset>
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Request publication]]]</button>
+                                <button class="btn btn-primary" id="botonfinal" type="button" onclick="antesdesubmit()"><i class="fa fa-save"></i> [[[Request publication]]]</button>
                                 <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                             </fieldset>
                         </form>
 
                     </div>
                 </div>
+                <div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog" style="padding-top:20%;" role="document">
+                        <div class="modal-content" style="padding:5px;">
+                            <p style="font-size:large;">Porfavor, ingresar cantidad de camas.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 @section Scripts {
@@ -336,7 +388,140 @@
         });
     </script>
 
-    <script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        if($('#Beds').val(''))
+        {
+            $('#Beds').val('0');
+        }
+        var idparcial = 0;
+        /**
+         * Funcion para añadir una nueva columna en la tabla
+         */
+        $("#add").click(function(){
+
+            if($("#tabla tbody tr").length==0)
+            {
+                idparcial=0;
+            }
+
+            var cantidad = $('#cantidadcama').val();
+
+            if(cantidad == '')
+            {
+                $('#modal').modal('show');
+                $('#cantidadcama').focus();
+                return false;
+            }
+
+            if(cantidad < 0 || cantidad > 15)
+            {
+                return false;
+            }
+
+
+
+            var edito=0;
+            var tds=$("#tabla tr:first td").length;
+            var trs=$("#tabla tr").length;
+            var nuevaFila="<tr>";
+            var idcama = $('#TypesOfBeds').val();
+            var nombrecama = $('#TypesOfBeds option:selected').html();
+
+            $('#tabla tbody tr').each(function() {
+                var idcamatabla = $(this).find("td").eq(1).html();
+                if(idcama==idcamatabla)
+                {
+                    $(this).find("td").eq(3).text(parseInt($(this).find("td").eq(3).html()) + parseInt(cantidad));                    
+                    edito=1;
+                }
+            });
+            if(edito==1)
+            {    
+                var totalcama =0;
+                $('#tabla tbody tr').each(function() {              
+                    totalcama += parseInt($(this).find("td").eq(3).html());               
+                });
+                $('#Beds').val(totalcama);
+
+
+                $('#cantidadcama').val('');
+                return false;
+            }
+                   
+                    nuevaFila+="<td>"+ idparcial +"</td>";                    
+                    nuevaFila+="<td>"+ idcama +"</td>";
+                    nuevaFila+="<td>"+ nombrecama +"</td>";
+                    nuevaFila+="<td>"+ cantidad +"</td>";
+                    nuevaFila+="<td><button type='button' onclick='eliminar("+idparcial+");' class='btn btn-danger btn-sm' id="+idparcial+"><span class='glyphicon glyphicon-remove'></span></button></td>"
+                    idparcial++;
+            nuevaFila+="</tr>";
+            $("#tabla").append(nuevaFila);
+        
+            $('#cantidadcama').val('');
+            $('#TypesOfBeds').val(1);
+            ModificarTotal();
+
+        });
+
+
+
+    });
+    function ModificarTotal()
+    {
+        var totalcama =0;
+        $('#tabla tbody tr').each(function() {              
+            totalcama += parseInt($(this).find("td").eq(3).html());               
+        });
+        $('#Beds').val(totalcama);
+    }
+
+    function eliminar(id)
+    {
+        $('#tabla tbody tr').each(function() {
+            var idparcial = $(this).find("td").eq(0).html();
+            console.log(idparcial + "  " + id);
+            if(idparcial==id)
+            {
+                $(this).remove()
+            }
+        });
+        var totalcama =0;
+        $('#tabla tbody tr').each(function() {              
+            totalcama += parseInt($(this).find("td").eq(3).html());               
+        });
+        $('#Beds').val(totalcama);
+        //document.getElementById("tabla").deleteRow(id);
+    }
+
+
+
+    function antesdesubmit()
+    {
+        if($('#tabla tbody tr').length>0)
+        {
+
+            $('#tabla tbody tr').each(function() {              
+                var cantidad=parseInt($(this).find("td").eq(3).html());   //totalCama 
+                var idcama=parseInt($(this).find("td").eq(1).html());   //idcama 
+                $('#tabla tbody').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
+                $('#tabla tbody').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
+                //document.getElementById("listingUpdateForm").submit();
+                $("#botonfinal").submit();
+            });
+        }
+        else
+        {
+            $("#panel").css("border","1px solid #f00");
+            $("#cantidadcama").focus();
+        }
+    }
+
+ </script>
+
+
+@*<script>
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
         function initMap() {
@@ -487,22 +672,25 @@
 
         }
 
-        function handleNoGeolocation(errorFlag) {
-            if (errorFlag) {
-                var content = 'Error: The Geolocation service failed.';
-            } else {
-                var content = 'Error: Your browser doesn\'t support geolocation.';
-            }
-
-            var options = {
-                map: map,
-                position: new google.maps.LatLng(60, 105),
-                content: content
-            };
-
-            var infowindow = new google.maps.InfoWindow(options);
-            map.setCenter(options.position);
+    function handleNoGeolocation(errorFlag) {
+        if (errorFlag) {
+            var content = 'Error: The Geolocation service failed.';
+        } else {
+            var content = 'Error: Your browser doesn\'t support geolocation.';
         }
-    </script>
+
+        var options = {
+            map: map,
+            position: new google.maps.LatLng(60, 105),
+            content: content
+        };
+
+        var infowindow = new google.maps.InfoWindow(options);
+        map.setCenter(options.position);
+    }
+
+</script>*@
+
+
 
 }

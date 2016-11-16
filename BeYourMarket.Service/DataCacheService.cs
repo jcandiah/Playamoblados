@@ -32,6 +32,12 @@ namespace BeYourMarket.Service
             get { return _container.Resolve<ICategoryService>(); }
         }
 
+        private ITypeOfBedService TypeBedService
+        {
+            get { return _container.Resolve<ITypeOfBedService>(); }
+        }
+
+
         private IListingTypeService ListingTypeService
         {
             get { return _container.Resolve<IListingTypeService>(); }
@@ -88,6 +94,7 @@ namespace BeYourMarket.Service
             GetCachedItem(CacheKeys.ContentPages);
             GetCachedItem(CacheKeys.EmailTemplates);
             GetCachedItem(CacheKeys.Statistics);
+            GetCachedItem(CacheKeys.TypeOfBeds);
         }
 
         public void UpdateCache(CacheKeys CacheKeyName, object CacheItem, int priority = (int)CacheItemPriority.NotRemovable)
@@ -123,6 +130,12 @@ namespace BeYourMarket.Service
                             var categories = CategoryService.Queryable().Where(x => x.Enabled).OrderBy(x => x.Ordering).ToList();
                             UpdateCache(CacheKeys.Categories, categories);
                             break;
+
+                        case CacheKeys.TypeOfBeds:
+                            var types = TypeBedService.Queryable().ToList();
+                            UpdateCache(CacheKeys.TypeOfBeds, types);
+                            break;
+
                         case CacheKeys.ListingTypes:
                             var ListingTypes = ListingTypeService.Query().Include(x => x.CategoryListingTypes).Select().ToList();
                             UpdateCache(CacheKeys.ListingTypes, ListingTypes);

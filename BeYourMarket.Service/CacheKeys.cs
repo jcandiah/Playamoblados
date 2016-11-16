@@ -14,6 +14,7 @@ namespace BeYourMarket.Service
         ListingTypes,
         ContentPages,
         EmailTemplates,
-        Statistics
+        Statistics,
+        TypeOfBeds
     }
 }

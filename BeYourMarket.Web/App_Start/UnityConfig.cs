@@ -52,12 +52,16 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<MessageParticipant>, Repository<MessageParticipant>>()
                 .RegisterType<IRepositoryAsync<MessageReadState>, Repository<MessageReadState>>()
                 .RegisterType<IRepositoryAsync<MessageThread>, Repository<MessageThread>>()
+                .RegisterType<IRepositoryAsync<TypeOfBed>, Repository<TypeOfBed>>()
+                .RegisterType<IRepositoryAsync<DetailBed>, Repository<DetailBed>>()
 
                 .RegisterType<ISettingService, SettingService>()
                 .RegisterType<ICategoryService, CategoryService>()
+                .RegisterType<ITypeOfBedService, TypeOfbedService>()
                 .RegisterType<ICategoryStatService, CategoryStatService>()
                 .RegisterType<IListingService, ListingService>()
                 .RegisterType<IListingPictureService, ListingPictureService>()
+                .RegisterType<IDetailBedService, DetailBedService>()
                 .RegisterType<IPictureService, PictureService>()
                 .RegisterType<IOrderService, OrderService>()
                 .RegisterType<ICustomFieldService, CustomFieldService>()
@@ -75,9 +79,9 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IMessageService, MessageService>()
                 .RegisterType<IMessageParticipantService, MessageParticipantService>()
                 .RegisterType<IMessageReadStateService, MessageReadStateService>()
-                .RegisterType<IMessageThreadService, MessageThreadService>()                
+                .RegisterType<IMessageThreadService, MessageThreadService>()
                 .RegisterType<IStoredProcedures, BeYourMarketContext>(new PerRequestLifetimeManager())
-                .RegisterType<SqlDbService, SqlDbService>() 
+                .RegisterType<SqlDbService, SqlDbService>()
                 .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());
 
             container

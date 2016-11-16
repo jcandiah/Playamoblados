@@ -13,7 +13,7 @@
             </h4>
         }
 
-        <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" id="formulario" method="post" role="form">
+        <form action="@Url.Action("PropertyOrder", "Payment", new { returnUrl = Url.Action("Listing", "Manage", new { id = Model.ID }) })" id="formulario" method="post" role="form">
             <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
             <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
             @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
@@ -121,6 +121,7 @@
 
 
 </script>
+
 
 
 

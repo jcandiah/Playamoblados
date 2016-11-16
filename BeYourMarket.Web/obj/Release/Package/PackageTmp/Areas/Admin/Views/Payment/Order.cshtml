@@ -17,17 +17,12 @@
     // Show link only in pending state
     if (status == 1)
     {
-        var user = User.Identity.GetUserId();
-
-        if (user == userProvider)
-        {
             <a class="btn btn-success btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 2);"><i class="fa fa-thumbs-up"></i> [[[Accept]]]</a>
             <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
-        }
-        else
-        {
+    }
+    if (status == 2)
+    {
             <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
-        }
     }
 }
 
@@ -54,7 +49,7 @@
 
 @helper DisplayListing(string title, int ListingID)
 {
-    <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
+    <a>@ListingID</a>
 }
 
 <div class="wraper container-fluid">
@@ -96,16 +91,17 @@
                                            columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+                                               .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
                                            columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Provider]]]");
                                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Receiver]]]");
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 
-                                           columns.Add(x => x.Description).Titled("[[[Description]]]");
+                                           columns.Add(x => x.FromDate).Titled("[[[From]]]");
+                                           columns.Add(x => x.ToDate).Titled("[[[To]]]");
 
-                                           columns.Add(x => x.Quantity).Titled("[[[Quantity]]]");
+                                           columns.Add(x => x.Quantity).Titled("[[[Night]]]");
                                                                                       
                                            columns.Add(x => x.ID).Titled("[[[Order ID]]]");
                                            
@@ -150,7 +146,7 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                $.post('@Url.Action("OrderAction", "Payment")', { id: id, status: status })
+                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status })
                 .done(function (data) {
                     if (data.Success) {
                         location.reload();
