@@ -45,7 +45,7 @@ namespace BeYourMarket.Web.Controllers
 
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
-        private readonly ITypeOfBedService _typeofbed;
+        private readonly ITypeOfBedService _typeOfBedService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldListingService _customFieldListingService;
@@ -97,6 +97,7 @@ namespace BeYourMarket.Web.Controllers
            IListingPictureService listingPictureservice,
            IOrderService orderService,
            IDetailBedService detailBedService,
+           ITypeOfBedService typeOfBedService,
            ICustomFieldService customFieldService,
            ICustomFieldCategoryService customFieldCategoryService,
            ICustomFieldListingService customFieldListingService,
@@ -132,6 +133,7 @@ namespace BeYourMarket.Web.Controllers
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
             _detailBedService = detailBedService;
+            _typeOfBedService = typeOfBedService;
             _unitOfWorkAsync = unitOfWorkAsync;
         }
         #endregion
@@ -315,6 +317,8 @@ namespace BeYourMarket.Web.Controllers
 
             var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
+            var camas = await _detailBedService.Query(x=>x.ListingID == item.ID).Include(x=>x.TypeOfBed).SelectAsync();
+
             var picturesModel = pictures.Select(x =>
                 new PictureModel()
                 {
@@ -337,7 +341,8 @@ namespace BeYourMarket.Web.Controllers
                 Pictures = picturesModel,
                 DatesBooked = datesBooked,
                 User = user,
-                ListingReviews = reviews.ToList()
+                ListingReviews = reviews.ToList(),
+                ListBeds = camas.ToList()
             };
 
             // Update stat count

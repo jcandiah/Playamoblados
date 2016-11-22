@@ -107,8 +107,20 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>[[[Type of property]]]</label>
+                                    @Html.DropDownListFor(p => p.TypeOfProperty,
+                                     new[]
+                                     {
+                                            new SelectListItem{ Value = "Casa", Text = "Casa" },
+                                            new SelectListItem{ Value = "Departamento", Text = "Departamento" },
+                                            new SelectListItem{ Value = "Cabaña", Text = "Cabaña" },
+                                     },
+                                     "[[[Type Of Property]]]", new { @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
                                     <label>[[[Condominiums]]]</label>
-                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control", onchange = "this.form.submit()" })
+                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control" })
                                 </div>
                                 
                                 <div class="form-group">

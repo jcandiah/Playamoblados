@@ -103,5 +103,7 @@ namespace BeYourMarket.Web.Models
         public ListingModelGrid Grid { get; set; }
 
         public Nullable<int> Property { get; set; }
+
+        public string TypeOfProperty { get; set; }
     }
 }

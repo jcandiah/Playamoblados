@@ -242,6 +242,27 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
             #endregion
+            //Search Type of Property
+            #region Busqueda por tipo de propiedad
+            if (!string.IsNullOrEmpty(model.TypeOfProperty))
+            {
+                if (items != null)
+                {
+                    items = items.Where(x => x.TypeOfProperty == model.TypeOfProperty);
+                }
+                else
+                {
+                    items = await _listingService.Query(
+                            x => x.TypeOfProperty == model.TypeOfProperty)
+                            .Include(x => x.ListingPictures)
+                            .Include(x => x.Category)
+                            .Include(x => x.AspNetUser)
+                            .Include(x => x.Orders)
+                            .Include(x => x.ListingReviews)
+                            .SelectAsync();
+                }
+            }
+            #endregion
             //Search ParkingLot
             #region Busqueda Estacionamientos
             if (!string.IsNullOrEmpty(model.ParkingLot.ToString()))

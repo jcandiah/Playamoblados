@@ -256,10 +256,30 @@
                                                 <td>
                                                     @Model.ListingCurrent.Suite
                                                 </td>
-                                            </tr>
+                                            </tr>    
+                                                                                
+                                                <tr class="bg-warning">
+                                                    <td >
+                                                        [[[Detalle camas]]]
+                                                    </td>
+                                                    <td></td>
+                                                    @*<input type="button" class="btn btn-primary btn-sm" value="Ver Detalle" data-toggle="collapse" data-target="#demo"/>*@
+                                                </tr>
+                                                                                        
+                                                @foreach (var cama in this.Model.ListBeds)
+                                                {
+                                                    <tr class="bg-warning">                                                        
+                                                        <td >                                                            
+                                                                @cama.TypeOfBed.Name
+                                                        </td>
+                                                        <td>
+                                                                @cama.Quantity<br />
+                                                        </td>
+                                                    </tr>
+                                                }
 
-                                            @foreach (var item in Model.ListingCurrent.ListingMetas)
-                                            {
+                                                @foreach (var item in Model.ListingCurrent.ListingMetas)
+                                                {
                                                 <tr>
                                                     <td>
                                                         @item.MetaField.Name

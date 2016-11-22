@@ -25,5 +25,7 @@ namespace BeYourMarket.Web.Models
         public List<Order> ListOrder { get; set; }
 
         public List<ApplicationUser> ListUsers { get; set; }
+
+        public List<DetailBed> ListBeds { get; set; }
     }
 }
