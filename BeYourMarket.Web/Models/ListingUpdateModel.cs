@@ -33,6 +33,8 @@ namespace BeYourMarket.Web.Models
 
         public List<TypeOfBed> TypesOfBeds { get; set; }
 
+        public List<DetailBed> DetailBeds { get; set; }
+
         public List<ApplicationUser> Users { get; set; }
 
         public List<AspNetRole> Roles { get; set; }

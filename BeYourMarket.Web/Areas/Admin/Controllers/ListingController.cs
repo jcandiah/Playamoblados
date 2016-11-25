@@ -66,6 +66,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly SqlDbService _sqlDbService;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+
+        private readonly IDetailBedService _detailBedService;
+        private readonly ITypeOfBedService _typeOfBedService;
+
+        private readonly IAspNetUserService _aspNetUserService;
         #endregion
 
         #region Properties
@@ -119,13 +124,16 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldListingService customFieldListingService,
             IContentPageService contentPageService,
             IOrderService orderService,
+           IDetailBedService detailBedService,
+           ITypeOfBedService typeOfBedService,
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             IPictureService pictureService,
             IListingPictureService listingPictureservice,
             IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
-            SqlDbService sqlDbService)
+            SqlDbService sqlDbService,
+            AspNetUserService aspNetUserService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -151,7 +159,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _contentPageService = contentPageService;
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;
+            _detailBedService = detailBedService;
+            _typeOfBedService = typeOfBedService;
             _sqlDbService = sqlDbService;
+            _aspNetUserService = aspNetUserService;
         }
         #endregion
 
@@ -394,7 +405,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             var model = new ListingUpdateModel()
             {
-                Categories = CacheHelper.Categories
+                Categories = CacheHelper.Categories,
+                TypesOfBeds = CacheHelper.TypesOfBeds
             };
 
             if (id.HasValue)
@@ -540,7 +552,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files)
+        public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files, int[] idcama, int[] cantidad)
         {
             if (CacheHelper.Categories.Count == 0)
             {
@@ -550,27 +562,34 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 return RedirectToAction("Listing", new { id = listing.ID });
             }
 
-            bool updateCount = false;
-
+            bool updateCount = false;            
             int nextPictureOrderId = 0;
+
+            var user = await _aspNetUserService.FindAsync(listing.UserID);
 
             // Add new listing
             if (listing.ID == 0)
             {
                 listing.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                 listing.IP = Request.GetVisitorIP();
+                listing.ListingTypeID = 1;
+                listing.Title = "";
                 listing.Expiration = DateTime.MaxValue.AddDays(-1);
-                listing.UserID = User.Identity.GetUserId();
-
+                listing.ContactName = user.FullName;
+                listing.ContactEmail = user.Email;
+                listing.ShowPhone = false;
+                listing.ShowEmail = false;
+                listing.UserID = user.Id;                
                 updateCount = true;
                 _listingService.Insert(listing);
+                listing.Currency = "CLP";
             }
             else
             {
                 // Update listing
                 var listingExisting = await _listingService.FindAsync(listing.ID);
 
-                listingExisting.Title = listing.Title;
+                listingExisting.Title = listing.ID.ToString();
                 listingExisting.Description = listing.Description;
                 listingExisting.CategoryID = listing.CategoryID;
 
@@ -594,7 +613,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Price = listing.Price;
                 listingExisting.Currency = listing.Currency;
 
-                listingExisting.ListingTypeID = listing.ListingTypeID;
+                listingExisting.ListingTypeID = listing.ListingTypeID;                
 
                 listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
@@ -640,6 +659,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             await _unitOfWorkAsync.SaveChangesAsync();
+
 
             // Update photos
             if (Request.Files.Count > 0)
@@ -690,6 +710,19 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 }
             }
 
+            //INSERTANDO CAMAS
+            for (int i = 0; i < idcama.Length; i++)
+            {
+                DetailBed detallecama = new DetailBed();
+                detallecama.TypeOfBedID = idcama[i];
+                detallecama.Quantity = cantidad[i];
+                detallecama.ListingID = listing.ID;
+                _detailBedService.Insert(detallecama);
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+            listing.Title = listing.ID.ToString();
+            _listingService.Update(listing);
             await _unitOfWorkAsync.SaveChangesAsync();
 
             // Update statistics count

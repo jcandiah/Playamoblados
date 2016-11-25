@@ -14,7 +14,7 @@
             <div class="center-block col-md-8">
                 <div class="panel panel-default mrg-t">
                     <div class="panel-body bdr-b panel-header">
-                            <h4>[[[To publish a property, you must complete the fields and contact management to post the information on this page.]]]</h4>
+                        <h4>[[[To publish a property, you must complete the fields and contact management to post the information on this page.]]]</h4>
                         <p class="text-lighten">
                             @CacheHelper.Settings.SignupText
                         </p>
@@ -45,8 +45,8 @@
             </div>*@
 
                                 <div class="form-group">
-                                    <label>[[[Type]]]<span class="text-red">*</span></label>
-                                    @Html.DropDownListFor(p => p.ListingItem.TypeOfProperty,
+                                    <label class="col-md-2 control-label">[[[Type]]]<span class="text-red">*</span></label>
+                                        @Html.DropDownList("TypeOfProperty",
                                          new[]
                                          {
                                               new SelectListItem{ Value = "Departamento", Text = "[[[Aparment]]]" },
@@ -103,7 +103,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        
+
                                         <div class="table-responsive">
                                             <table id="tabla" class="table table-condensed table-striped">
                                                 <thead>
@@ -130,167 +130,191 @@
 
                                 @*Hasta aqui es el showsito*@
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Rooms]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
-                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group col-md-15">
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Rooms]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Rooms Suite]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Rooms Suite]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[M2]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 100" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2">
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[M2]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 100" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2">
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Bathrooms]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 2" onfocus="this.type='number'" id="Bathrooms" name="Bathrooms" value="@Model.ListingItem.Bathrooms" required>
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Bathrooms]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 2" onfocus="this.type='number'" id="Bathrooms" name="Bathrooms" value="@Model.ListingItem.Bathrooms" required>
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Cellars]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Cellar" name="Cellar" value="@Model.ListingItem.Cellar">
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Cellars]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Cellar" name="Cellar" value="@Model.ListingItem.Cellar">
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Parking Lot]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Ej: 1]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Parking Lot]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="[[[Ej: 1]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
+                                        </div>
 
-                                <div class="form-group col-md-4">
-                                    <label>[[[Floor Number]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 4" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber">
-                                </div>
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Floor Number]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 4" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber">
+                                        </div>
 
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Number of parking]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 26A" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking ">
+                                        </div>
 
-
-                                <div class="form-group col-md-4">
-                                    <label>[[[Number of parking]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 26A" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking ">
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label>[[[Number of TV]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>[[[Dish washer]]] </label>
-                                    <input type="checkbox" id="Dishwasher" name="Dishwasher" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "") />
-                                    <input name="Dishwasher" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Washer]]] </label>
-                                    <input type="checkbox" id="Washer" name="Washer" value="true" @(Model.ListingItem.Washer ? "checked" : "") />
-                                    <input name="Washer" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Grill]]]</label>
-                                    <input type="checkbox" id="Grill" name="Grill" value="true" @(Model.ListingItem.Grill ? "checked" : "") />
-                                    <input name="Grill" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Terrace]]] </label>
-                                    <input type="checkbox" id="Terrace" name="Terrace" value="true" @(Model.ListingItem.Terrace ? "checked" : "") />
-                                    <input name="Terrace" type="hidden" value="false" />
-
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Safety Mesh]]] </label>
-                                    <input type="checkbox" id="SafetyMesh" name="SafetyMesh" value="true" @(Model.ListingItem.SafetyMesh ? "checked" : "") />
-                                    <input name="SafetyMesh" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[WIFI]]] </label>
-                                    <input type="checkbox" id="Wifi" name="Wifi" value="true" @(Model.ListingItem.Wifi ? "checked" : "") />
-                                    <input name="Wifi" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[First Line]]] </label>
-                                    <input type="checkbox" id="FirstLine" name="FirstLine" value="true" @(Model.ListingItem.FirstLine ? "checked" : "") />
-                                    <input name="FirstLine" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[TV cable]]] </label>
-                                    <input type="checkbox" id="TV_cable" name="TV_cable" value="true" @(Model.ListingItem.TV_cable ? "checked" : "") />
-                                    <input name="TV_cable" type="hidden" value="false" />
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Number of TV]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
+                                        </div>
+                                    </div>
                                 </div>
 
 
+                                <div class="panel-success panel-body" style="padding-left: 95px">
+                                    <div class="form-group col-md-offset col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Dishwasher" name="Dishwasher" type="checkbox" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Dish washer]]]
+                                        </label>
+                                        <input name="Dishwasher" type="hidden" value="false" />
+                                    </div>
 
-
-
-                            </fieldset>
-
-                            <div id="partialPlaceHolder">
-                                @Html.Partial("_CategoryCustomFields", Model.CustomFields)
-                            </div>
-
-                            <fieldset>
-                                <legend>[[[Upload Pictures]]]</legend>
-                                <div class="form-group">
-                                    <div class="target">
-                                        <input type="file" id="files" name="files" class="file-loading" multiple>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Washer" name="Washer" type="checkbox" value="true" @(Model.ListingItem.Washer ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Washer]]]
+                                        </label>
+                                        <input name="Washer" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Grill" name="Grill" type="checkbox" value="true" @(Model.ListingItem.Grill ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Grill]]]
+                                        </label>
+                                        <input name="Grill" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Terrace" name="Terrace" type="checkbox" value="true" @(Model.ListingItem.Terrace ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Terrace]]]
+                                        </label>
+                                        <input name="Terrace" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="SafetyMesh" name="SafetyMesh" type="checkbox" value="true" @(Model.ListingItem.SafetyMesh ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Safety Mesh]]]
+                                        </label>
+                                        <input name="SafetyMesh" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Wifi" name="Wifi" type="checkbox" value="true" @(Model.ListingItem.Wifi ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[WIFI]]]
+                                        </label>
+                                        <input name="Wifi" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="FirstLine" name="FirstLine" type="checkbox" value="true" @(Model.ListingItem.FirstLine ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[First Line]]]
+                                        </label>
+                                        <input name="FirstLine" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="TV_cable" name="TV_cable" type="checkbox" value="true" @(Model.ListingItem.TV_cable ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[TV cable]]]
+                                        </label>
+                                        <input name="TV_cable" type="hidden" value="false" />
                                     </div>
                                 </div>
                             </fieldset>
 
-                            @*<fieldset>
-                                <legend>[[[Location]]]</legend>
-                                <div class="form-group">
-                                    <label>[[[Location]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Location]]]" id="Location" name="Location" value="@Model.ListingItem.Location">
-                                </div>
+                <div id="partialPlaceHolder">
+                    @Html.Partial("_CategoryCustomFields", Model.CustomFields)
+                </div>
 
-                                <input type="hidden" id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
-                                <input type="hidden" id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
-
-                                <div class="form-group">
-                                    <div id="map-canvas"></div>
-                                </div>                                
-
-                            </fieldset>*@
-
-                            <fieldset>
-                                <legend>[[[Publisher's Info]]]</legend>
-                                <div class="form-group" hidden>
-                                    <label>[[[Full Name]]] <span class="text-red">*</span></label>
-                                    <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>[[[Phone Number]]]</label>
-                                    <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
-                                </div>
-                                @*<div class="form-group">
-                                    <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
-                                    <input name="ShowPhone" type="hidden" value="false" />
-                                </div>*@
-                                <div class="form-group" hidden>
-                                    <label>[[[Email Address]]] <span class="text-red">*</span></label>
-                                    <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
-                                </div>
-                                @*@if (!User.Identity.IsAuthenticated)
-                                {
-                                    <div class="form-group">
-                                        <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
-                                        <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
-                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
-                                    </div>
-                                }*@
-                            </fieldset>
-                            <fieldset>
-                                <button class="btn btn-primary" id="botonfinal" type="button" onclick="antesdesubmit()"><i class="fa fa-save"></i> [[[Request publication]]]</button>
-                                <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
-                            </fieldset>
-                        </form>
-
+                <fieldset>
+                    <legend>[[[Upload Pictures]]]</legend>
+                    <div class="form-group">
+                        <div class="target">
+                            <input type="file" id="files" name="files" class="file-loading" multiple>
+                        </div>
                     </div>
+                </fieldset>
+
+                @*<fieldset>
+                <legend>[[[Location]]]</legend>
+                <div class="form-group">
+                    <label>[[[Location]]]</label>
+                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Location]]]" id="Location" name="Location" value="@Model.ListingItem.Location">
+                </div>
+
+                <input type="hidden" id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
+                <input type="hidden" id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
+
+                <div class="form-group">
+                    <div id="map-canvas"></div>
+                </div>
+
+            </fieldset>*@
+
+                <fieldset>
+                    <legend>[[[Publisher's Info]]]</legend>
+                    <div class="form-group" hidden>
+                        <label>[[[Full Name]]] <span class="text-red">*</span></label>
+                        <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>[[[Phone Number]]]</label>
+                        <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
+                    </div>
+                    @*<div class="form-group">
+                    <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
+                    <input name="ShowPhone" type="hidden" value="false" />
+                </div>*@
+                    <div class="form-group" hidden>
+                        <label>[[[Email Address]]] <span class="text-red">*</span></label>
+                        <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
+                    </div>
+                    @*@if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="form-group">
+                        <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
+                        <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
+                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
+                    </div>
+                }*@
+                </fieldset>
+                <fieldset>
+                    <button class="btn btn-primary" id="botonfinal" type="submit" onclick="antesdesubmit()"><i class="fa fa-save"></i> [[[Request publication]]]</button>
+                    <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                </fieldset>
+                </form>
+
+            </div>
                 </div>
                 <div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div class="modal-dialog" style="padding-top:20%;" role="document">

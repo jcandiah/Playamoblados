@@ -525,7 +525,7 @@ namespace BeYourMarket.Web.Controllers
 
                 var listingExisting = await _listingService.FindAsync(listing.ID);
 
-                listingExisting.Title = listing.Title;
+                listingExisting.Title = listing.ID.ToString();
                 listingExisting.Description = listing.Description;
                 listingExisting.Active = listing.Active;
                 listingExisting.Price = listing.Price;
