@@ -60,6 +60,13 @@ namespace BeYourMarket.Model.Models
         public Nullable<int> Suite { get; set; }
         public string TypeOfProperty { get; set; }
 
+        //Release R 2.1
+        public bool? Smoker { get; set; }
+        public bool? Pets { get; set; }
+        public bool? Children { get; set; }
+        public string ConditionCheckOut { get; set; }
+
+
         //Referencias
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Category Category { get; set; }
