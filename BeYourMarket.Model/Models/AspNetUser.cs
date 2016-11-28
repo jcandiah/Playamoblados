@@ -45,6 +45,13 @@ namespace BeYourMarket.Model.Models
         public string UserName { get; set; }
         public bool Disabled { get; set; }
         public double Rating { get; set; }
+        public string Rut { get; set; }
+        public string AccountType { get; set; }
+        public string NumberAccount { get; set; }
+        public string NameContactPerson { get; set; }
+        public string PhoneContactPerson { get; set; }
+        public string EmailContactPerson { get; set; }
+        public string Bank { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<Listing> Listings { get; set; }
