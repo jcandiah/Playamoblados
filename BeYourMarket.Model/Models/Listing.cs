@@ -61,9 +61,9 @@ namespace BeYourMarket.Model.Models
         public string TypeOfProperty { get; set; }
 
         //Release R 2.1
-        public bool? Smoker { get; set; }
-        public bool? Pets { get; set; }
-        public bool? Children { get; set; }
+        public bool Smoker { get; set; }
+        public bool Pets { get; set; }
+        public bool Children { get; set; }
         public string ConditionCheckOut { get; set; }
 
 
