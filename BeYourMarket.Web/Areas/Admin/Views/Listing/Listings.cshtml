@@ -16,7 +16,7 @@
 }
 
 @helper DisplayDeleteLink(int id, string title) {
-    <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@id, '@title');"><i class="fa fa-remove"></i> [[[Delete]]]</a>
+    <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@id, '@title');"><i class="fa fa-times"></i> [[[Delete]]]</a>
 }
 
 @helper GetCategoryName(int id)
@@ -29,6 +29,16 @@
     <a class="btn btn-warning btn-sm" href="@Url.Action("ListingCalendar","Listing",new { id = id })"><i class="fa fa-calendar"></i> [[[Show calendar]]]</a>
 }
 
+@helper DisplayLockUnlock(int id, string title, bool active) {
+    if (active)
+    {
+            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmBlock(@id, '@title');"><i class="fa fa-ban"></i> [[[Block]]]</a>
+    }
+    else
+    {
+            <a class="btn btn-success btn-sm" href="javascript:void(0);" onclick="confirmUnlock(@id, '@title');"><i class="fa fa-check"></i> [[[Unlock]]]</a>
+    }
+}
 
 <div class="wraper container-fluid">
     <div class="row">
@@ -60,15 +70,20 @@
                              .Encoded(false)
                              .Sanitized(false)
                              .RenderValueAs(x => DisplayUpdateLink(x.ID));
-                           
-                            columns.Add()
+
+                           columns.Add()
+                            .Encoded(false)
+                            .Sanitized(false)
+                            .RenderValueAs(x => DisplayDeleteLink(x.ID, x.Title));
+
+                           columns.Add()
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayDeleteLink(x.ID,x.Title));
+                             .RenderValueAs(x => DisplayLockUnlock(x.ID,x.Title,x.Active));
 
                            columns.Add(x => x.ID);
-                           columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID)).Titled("[[[Category]]]");
-                
+                           columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID)).Titled("[[[Condominium]]]");
+
                            columns.Add(x => x.Active).Titled("[[[Active]]]");
                            columns.Add(x => x.Title).Titled("[[[Title]]]");
                            columns.Add(x => x.ShowEmail).Titled("[[[Show Email]]]");
@@ -104,6 +119,46 @@
             }, function (isConfirm) {
                 if (isConfirm) {
                     post('@Url.Action("ListingDelete","Listing")', { id: id });
+                } else {
+                    swal("[[[Cancelled!]]]", "", "error");
+                }
+            });
+        }
+
+        function confirmBlock(id, title) {
+                swal({
+                    title: "[[[Are you sure?]]]",
+                    text: "[[[You will block the property]]] " + title,
+                    type: "warning",
+                    showCancelButton: true,                    
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "[[[Yes, block it!]]]",
+                    cancelButtonText: "[[[No, cancel please!]]]",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        post('@Url.Action("ListingBlock", "Listing")', { id: id });
+                    } else {
+                        swal("[[[Cancelled!]]]", "", "error");
+                    }
+                });            
+        }
+
+        function confirmUnlock(id, title) {
+            swal({
+                title: "[[[Are you sure?]]]",
+                text: "[[[You will unlock the property]]] " + title,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "[[[Yes, unlock it!]]]",
+                cancelButtonText: "[[[No, cancel please!]]]",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    post('@Url.Action("ListingUnlock", "Listing")', { id: id });
                 } else {
                     swal("[[[Cancelled!]]]", "", "error");
                 }

@@ -908,6 +908,38 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             return RedirectToAction("ListingTypes");
         }
+
+        [HttpPost]
+        public async Task<ActionResult> ListingBlock(int id)
+        {
+            var listingExisting = await _listingService.FindAsync(id);
+
+            listingExisting.Active = false;
+
+            _listingService.Update(listingExisting);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[The listing has been blocked.]]]";
+
+            return RedirectToAction("Listings");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListingUnlock(int id)
+        {
+            var listingExisting = await _listingService.FindAsync(id);
+
+            listingExisting.Active = true;
+
+            _listingService.Update(listingExisting);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[The listing has been unlock.]]]";
+
+            return RedirectToAction("Listings");
+        }
         #endregion
     }
 }

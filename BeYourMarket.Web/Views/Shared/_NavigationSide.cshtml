@@ -96,17 +96,19 @@
                 }
         }
 
-        <li class="divider"><i class="fa fa-th-list"></i> [[[Condominiums]]]</li>
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="divider"><i class="fa fa-th-list"></i> [[[Condominiums]]]</li>
 
-        @DisplayTree(Model.CategoryTree)
-
+            @DisplayTree(Model.CategoryTree)
+        }
         <li class="divider"></li>
         @foreach (var contentPage in Model.ContentPages)
             {
             <li class="@(Html.IsActiveMenuItem("ContentPage", "Home", contentPage.Slug) ? "active" : "")">
                 <a href="@Url.Action("ContentPage", "Home", new { id = contentPage.Slug })"><i class="fa fa-file"></i> @contentPage.Title</a>
             </li>
-            }
+        }
 
         <li class="@(Html.IsActiveMenuItem("Contact","Home") ? "active" : "")">
             <a href="@Url.Action("Contact", "Home")"><i class="fa fa-envelope"></i> [[[Contact us]]]</a>
