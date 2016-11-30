@@ -145,7 +145,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
             var orders = await _orderService.Query(x=>x.AspNetUserReceiver.AspNetRoles.Count==0)
-                .Include(x => x.Listing).Include(x => x.AspNetUserProvider).Include(x => x.AspNetUserReceiver).SelectAsync();
+                .Include(x => x.Listing)
+                .Include(x => x.AspNetUserProvider)
+                .Include(x => x.AspNetUserReceiver)
+                .SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
 
@@ -159,7 +162,23 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> Transaction()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+
+            //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
+            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && x.Status == 2)
+                .Include(x => x.Listing)
+                .Include(x => x.AspNetUserProvider)
+                .Include(x => x.AspNetUserReceiver)
+                .SelectAsync();
+
+            var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
+
+            var model = new OrderModel()
+            {
+                Grid = grid
+            };
+
+            return View(model);
         }
 
         public async Task<ActionResult> PaymentSetting()

@@ -4,7 +4,7 @@
 @model BeYourMarket.Web.Models.OrderModel
 
 @{
-    ViewBag.Title = "[[[Orders]]]";
+    ViewBag.Title = "[[[Orders]]]";    
 }
 
 @section Styles {
@@ -71,7 +71,6 @@
                         @Html.AntiForgeryToken()
                         <h4><i class="fa fa-shopping-cart"></i> [[[Orders]]]</h4>
                         <hr />
-
                     }
 
                     <div class="row">
@@ -98,8 +97,8 @@
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
 
-                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.Created.ToShortDateString());
-                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.Created.ToShortDateString());
+                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
 
                                            columns.Add(x => x.Quantity).Titled("[[[Night]]]");
                                                                                       
