@@ -253,6 +253,41 @@
                     @Html.Partial("_CategoryCustomFields", Model.CustomFields)
                 </div>
 
+                           <fieldset>
+                                <legend>
+                                   [[[Special condition of the rent.]]]
+                                </legend>
+                                <div class="form-group col-md-4">
+                                    <label class="cr-styled">
+                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                        <strong>[[[Accept smoker]]]</strong>
+                                    </label>
+                                    <input name="Grill" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="cr-styled">
+                                        <input id="Pets" name="Pets" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                        <strong>[[[Accept Pets]]]</strong>
+                                    </label>
+                                    <input name="Grill" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="cr-styled">
+                                        <input id="Children" name="Children" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                       <strong> [[[Accept Children]]]</strong>
+                                    </label>
+                                    <input name="Grill" type="hidden" value="false" />
+                                </div>
+
+                               <div class="form-group col-md-12">
+                                   <textarea id="ConditionCheckOut" class="form-control col-md-12" rows="5" name="ConditionCheckOut" placeholder="[[[Enter as you wish to have your property delivered]]]"></textarea>
+                               </div>
+
+                            </fieldset>
+
                 <fieldset>
                     <legend>[[[Upload Pictures]]]</legend>
                     <div class="form-group">
@@ -262,7 +297,7 @@
                     </div>
                 </fieldset>
 
-                @*<fieldset>
+                <fieldset>
                 <legend>[[[Location]]]</legend>
                 <div class="form-group">
                     <label>[[[Location]]]</label>
@@ -276,7 +311,7 @@
                     <div id="map-canvas"></div>
                 </div>
 
-            </fieldset>*@
+            </fieldset>
 
                 <fieldset>
                     <legend>[[[Publisher's Info]]]</legend>
@@ -330,7 +365,8 @@
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&signed_in=true&libraries=places&callback=initMap" async defer></script>
+      @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&callback=initMap" async defer type="text/javascript"></script>*@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>
@@ -545,7 +581,7 @@
  </script>
 
 
-@*<script>
+<script>
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
         function initMap() {
@@ -713,7 +749,7 @@
         map.setCenter(options.position);
     }
 
-</script>*@
+</script>
 
 
 

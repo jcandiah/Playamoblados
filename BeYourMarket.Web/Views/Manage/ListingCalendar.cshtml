@@ -165,7 +165,7 @@
                             }
 
                             //truco pinta calendario para reserva
-                            for (var j = 0; j < settings.datedisabled.length; j++) {                            
+                            for (var j = 0; j < settings.datedisabled.length; j++) {
                                 var d = settings.datedisabled[j].datetime;
                                 if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
 
@@ -175,7 +175,7 @@
                             }
 
                             //pinta calendario para bloqueo playamoblados
-                            for (var j = 0; j < settings.bloqueo.length; j++) {                    
+                            for (var j = 0; j < settings.bloqueo.length; j++) {
                                 var d = settings.bloqueo[j].datetime;
                                 if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
                                     cDay.addClass('c-event-bloqueo').attr('data-event-day', d.getDate());
@@ -310,23 +310,35 @@
 
                 events: [
                    @{
-                   // 1 = bloqueo playamoblado
-                   // 2 = bloqueo
-                   // 3 = reserva
-                   var userCurrent = User.Identity.User();
+                       // 1 = bloqueo playamoblado
+                       // 2 = bloqueo
+                       // 3 = reserva
+                       var userCurrent = User.Identity.User();
 
 
-                   if (User.IsInRole("Administrator"))
-                   {
-                       foreach (var orders in Model.ListOrder.Where(x => x.OrderType == 3 && x.Status != 3))
+                       if (User.IsInRole("Administrator"))
                        {
-
-                           var usuario = Model.ListUsers.First(x => x.Id.Equals(orders.UserReceiver));
-
-                           for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                           foreach (var orders in Model.ListOrder.Where(x => x.OrderType == 3 && x.Status != 3))
                            {
-                               string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1}', datetime: new Date({2},{3},{4}),", usuario.FullName, usuario.Email, date.Year, date.Month - 1, date.Day);
-                              @Html.Raw("{" + valor.ToString() + "},");
+
+                               var usuario = Model.ListUsers.First(x => x.Id.Equals(orders.UserReceiver));
+
+                               if (orders.Status == 1)
+                               {
+
+                                   for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                                   {
+                                       string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1} <br> [[[Status]]] : <strong>{2}</strong>', datetime: new Date({3},{4},{5}),", usuario.FullName, usuario.Email,"Pendiente", date.Year, date.Month - 1, date.Day);
+                                       @Html.Raw("{" + valor.ToString() + "},");
+                                   }
+                               }
+                               if(orders.Status==2)
+                               {
+                                   for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                                   {
+                                       string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1} <br> [[[Status]]] : <strong>{2}</strong>', datetime: new Date({3},{4},{5}),", usuario.FullName, usuario.Email, "Confirmado!", date.Year, date.Month - 1, date.Day);
+                                       @Html.Raw("{" + valor.ToString() + "},");
+                                   }
                                }
                            }
                        }
@@ -378,8 +390,11 @@
                     <div class="panel-heading">
                        Propiedad ID : # @Model.ListingCurrent.Title <span class="fa fa-calendar"></span>
                     </div>
-                    <div class="panel-body">
-                        <div id="calendar"></div>
+                    <div class="panel-body text-center">
+                        <div class="table-responsive">
+                            <div id="calendar"></div>
+                            <br />
+                        </div>
                     </div>
                  </div>              
                 <br />
