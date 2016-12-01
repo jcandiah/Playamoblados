@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link href="~/css/HomePlayamoblado/css/styles.css" rel="stylesheet" />
     <link href="~/css/formstone/lightbox.css" rel="stylesheet" />
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </head>
@@ -65,20 +64,17 @@
                     <h1>Playamoblados</h1>
                     <h3>Reservas&nbsp;&nbsp;Vacacionales</h3>
                 </div>
-
-
             </div>
 
 
             <div style="background-color: rgba(0,0,0,0.5);">
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "intro-text form-inline", @style = "padding:10px;", role = "form" }))
                 {
-                @*<form class="intro-text form-inline" method="get" style="padding:10px;" role="form" action="@Url.Action("Search", "Home")">*@
                     <h4 class="hidden-lg hidden-md hidden-sm ">Reserva tus vacaciones</h4>
                     <div class="form-group">
                         @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
                     </div>
-                        <div class="form-group">                            
+                        <div class="form-group">
                             @Html.TextBoxFor(p => p.string_fromdate, "{0:MM/dd/yyyy}", new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })
                             @*<input type="text" class="form-control datepicker" placeholder="[[[From]]]" id="FromDate" name="FromDate" data-rule-date="true" required>*@
                         </div>
@@ -99,16 +95,15 @@
                         new SelectListItem{ Value = "7", Text = "7 pax" },
                         new SelectListItem{ Value = "8", Text = "8+ pax" }
                  },
-                 "[[[Passengers]]]", new { @class = "form-control" })
+                 "[[[Passengers]]]", new { @class = "form-control", @id = "ddlpasajeros" })
                         </div>
                         <div class="form-group">
                             <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
                         </div>
-                @*</form>*@
                 }
             </div>
         </div>
-       
+
         <video autoplay loop id="video-background" poster="@Url.Content("~/css/HomePlayamoblado/img/MientrasCarga.jpg")" data-wow-delay="0.5s">
             <source src="~/Videos/playamoblados-desktop.webm" type="video/webm" />
             <source src="~/Videos/Fondo.webm" type="video/webm" />
@@ -212,6 +207,7 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
 
+
     @Html.Partial("_LocalizationDatePicker")
     <script type="text/javascript">
             $(document).ready(function () {
@@ -221,6 +217,8 @@
                     language: "es" @*'@Context.GetPrincipalAppLanguageForRequest().ToString()'*@
                 });
             });
+
+
     </script>
 
 </body>

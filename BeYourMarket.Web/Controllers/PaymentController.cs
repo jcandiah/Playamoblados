@@ -5,16 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Model.Models;
 using BeYourMarket.Web.Utilities;
 using BeYourMarket.Service;
 using Repository.Pattern.UnitOfWork;
-using ImageProcessor.Imaging.Formats;
-using System.Drawing;
-using ImageProcessor;
-using System.IO;
 using System.Collections.Generic;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
@@ -50,6 +45,8 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly IEmailTemplateService _emailTemplateService;
         private readonly ICustomFieldListingService _customFieldListingService;
+        private readonly IAspNetUserService _aspNetUserService;
+        private readonly IAspNetRoleService _aspNetRoleService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -101,7 +98,9 @@ namespace BeYourMarket.Web.Controllers
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
             IEmailTemplateService emailTemplateService,
-            IPluginFinder pluginFinder)
+            IPluginFinder pluginFinder,
+            IAspNetUserService aspNetUserService,
+            IAspNetRoleService aspNetRoleService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -118,6 +117,8 @@ namespace BeYourMarket.Web.Controllers
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
+            _aspNetUserService = aspNetUserService;
+            _aspNetRoleService = aspNetRoleService;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -377,7 +378,10 @@ namespace BeYourMarket.Web.Controllers
                             order.Price = listing.Price;
                         }
                         _orderService.Insert(order);
-                        await EnviarCorreo(confirmacion);
+
+                        var provider = await _aspNetUserService.FindAsync(order.UserProvider);
+
+                        await EnviarCorreo(confirmacion, provider.Email);
                     }
                     await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -595,7 +599,6 @@ namespace BeYourMarket.Web.Controllers
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
         }
-        #endregion
 
         //[HttpPost]
         //[AllowAnonymous]
@@ -620,13 +623,14 @@ namespace BeYourMarket.Web.Controllers
 
         //}
 
-        public async Task<ActionResult> EnviarCorreo(ConfirmOrder model)
+        public async Task<ActionResult> EnviarCorreo(ConfirmOrder model, string correoPropietario)
         {
             var user = await UserManager.FindByNameAsync(model.Email);
 
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
 
+            //Aqui se envia el correo al cliente confirmando la orden.
             dynamic email = new Postal.Email("Email");
             email.To = user.Email;
             email.From = CacheHelper.Settings.EmailAddress;
@@ -638,7 +642,59 @@ namespace BeYourMarket.Web.Controllers
             email.Id = model.Id;
             EmailHelper.SendEmail(email);
 
+            var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
+            var templateorder = emailorderquery.Single();
+            var admin = await _aspNetUserService.Query(x => x.AspNetRoles.Any(z => z.Name == "Administrator")).SelectAsync();
+
+            IList<EmailModel> personas = new List<EmailModel>();
+            foreach (var recorrer in admin)
+            {
+                EmailModel persona = new EmailModel()
+                {
+                    Id = recorrer.Id,
+                    Nombre = recorrer.FullName,
+                    Email = recorrer.Email
+                };
+                personas.Add(persona);
+            }
+
+            var listaprop = await _aspNetUserService.Query(x => x.Email.Equals(correoPropietario)).SelectAsync();
+            var prop = listaprop.FirstOrDefault(x => x.Email == correoPropietario);
+
+            EmailModel propietario = new EmailModel()
+            {
+                Id = "1",
+                Nombre = prop.FullName,
+                Email = correoPropietario
+            };
+            personas.Add(propietario);
+
+            EmailModel playamoblados = new EmailModel()
+            {
+                Id = "1",
+                Nombre = "PlayaMoblados",
+                Email = "playamoblados@ratio.cl"
+            };
+            personas.Add(playamoblados);
+
+            //Con esto se envia el correo al propietario, a la administracion y a PM
+            dynamic emailorder = new Postal.Email("Email");                        
+            foreach (var administradores in personas)
+            {
+                emailorder.To = administradores.Email;
+                emailorder.From = CacheHelper.Settings.EmailAddress;
+                emailorder.Subject = templateorder.Subject;
+                emailorder.Body = templateorder.Body;
+                emailorder.Name = administradores.Nombre;
+                emailorder.FromDate = model.FromDate;
+                emailorder.ToDate = model.ToDate;
+                emailorder.Id = model.Id;
+                EmailHelper.SendEmail(emailorder);
+            }
+            
+
             return RedirectToAction("Payment", "Payment", new { id = model.Id });
-        }
+        }       
+        #endregion
     }
 }
