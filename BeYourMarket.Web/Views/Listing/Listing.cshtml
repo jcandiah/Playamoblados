@@ -132,20 +132,16 @@
                                         }
                                     </div>
                                     <!---Pictures-->
-
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    [[[Condominium]]]
-                                                </td>
-                                                <td>
-                                                    <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
-                                                </td>
-                                            </tr>
-                                            @if (Model.ListingCurrent.Price.HasValue)
-                                            {
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <tbody>
                                                 <tr>
+                                                    <td>
+                                                        [[[Condominium]]]
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
+                                                    </td>
                                                     <td>
                                                         [[[Price]]]
                                                     </td>
@@ -153,144 +149,170 @@
                                                         @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
                                                     </td>
                                                 </tr>
-                                            }
-                                            <tr>
-                                                <td>
-                                                    [[[Location]]]
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(x => Model.ListingCurrent.Location)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Type]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.TypeOfProperty
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    ID
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.ID
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    [[[Rooms]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.Rooms
-                                                </td>
-                                            </tr>
 
 
-                                            <tr>
-                                                <td>
-                                                    [[[Capacity]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.Max_Capacity
-                                                </td>
-
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    [[[Bathrooms]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.Bathrooms
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Parking Lot]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.ParkingLot
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    [[[Grill]]]
-                                                </td>
-                                                <td>
-                                                    @(Model.ListingCurrent.Grill ? "Si" : "No")
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Safety Mesh]]]
-                                                </td>
-                                                <td>
-                                                    @(Model.ListingCurrent.SafetyMesh ? "Si" : "No")
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Washer]]]
-                                                </td>
-                                                <td>
-                                                    @(Model.ListingCurrent.Washer ? "Si" : "No")
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Lavavajillas]]]
-                                                </td>
-                                                <td>
-                                                    @(Model.ListingCurrent.Dishwasher ? "Si" : "No")
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Suite Rooms]]]
-                                                </td>
-                                                <td>
-                                                    @Model.ListingCurrent.Suite
-                                                </td>
-                                            </tr>    
-                                                                                
-                                                <tr class="bg-warning">
-                                                    <td >
-                                                        [[[Detalle camas]]]
+                                                <tr>
+                                                    <td>
+                                                        [[[Location]]]
                                                     </td>
+                                                    <td>
+                                                        @Html.DisplayFor(x => Model.ListingCurrent.Location)
+                                                    </td>
+                                                    <td>
+                                                        [[[Type]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.TypeOfProperty
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        ID
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.ID
+                                                    </td>
+                                                    <td>
+                                                        [[[Rooms]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Rooms
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        [[[Capacity]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Max_Capacity
+                                                    </td>
+                                                    <td>
+                                                        [[[Bathrooms]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Bathrooms
+                                                    </td>
+
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>
+                                                        [[[Parking Lot]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.ParkingLot
+                                                    </td>
+                                                    <td>
+                                                        [[[Grill]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.Grill ? "Si" : "No")
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        [[[Safety Mesh]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.SafetyMesh ? "Si" : "No")
+                                                    </td>
+                                                    <td>
+                                                        [[[Washer]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.Washer ? "Si" : "No")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        [[[Lavavajillas]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.Dishwasher ? "Si" : "No")
+                                                    </td>
+                                                    <td>
+                                                        [[[Suite Rooms]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Suite
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <th class="bg-warning">
+                                                        <h3 class="text-center"> [[[Conditions]]]</h3>
+                                                    </th>
+                                                    @if (Model.ListingCurrent.Smoker)
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/fumar.png" /> Acepta fumadores.
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/no-fumar.png" /> No fumadores.
+                                                        </td>
+                                                    }
+                                                    @if (Model.ListingCurrent.Pets)
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/perro.png" /> Acepta animales.
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/no-perro.png" /> No animales.
+                                                        </td>
+                                                    }
                                                     <td></td>
+
                                                     @*<input type="button" class="btn btn-primary btn-sm" value="Ver Detalle" data-toggle="collapse" data-target="#demo"/>*@
                                                 </tr>
-                                                                                        
-                                                @foreach (var cama in this.Model.ListBeds)
-                                                {
-                                                    <tr class="bg-warning">                                                        
-                                                        <td >                                                            
-                                                                @cama.TypeOfBed.Name
-                                                        </td>
-                                                        <td>
-                                                                @cama.Quantity<br />
-                                                        </td>
-                                                    </tr>
-                                                }
+
+
 
                                                 @foreach (var item in Model.ListingCurrent.ListingMetas)
                                                 {
-                                                <tr>
-                                                    <td>
-                                                        @item.MetaField.Name
-                                                    </td>
-                                                    <td>
-                                                        @item.Value
-                                                    </td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                                    <tr>
+                                                        <td>
+                                                            @item.MetaField.Name
+                                                        </td>
+                                                        <td>
+                                                            @item.Value
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  
+            
+                                                    
+                                  <div class="panel">
+                                      <div class="panel-header bg-inverse">
+                                         <h3 class="text-center">[[[Beds]]]</h3> 
+                                      </div>
+                                      <div class="panel-body">
+                                          @foreach (var cama in this.Model.ListBeds.OrderByDescending(x => x.ID))
+                                          {
+                                              <div class="col-md-4">
+                                                  <i class="fa fa-bed fa-2x" aria-hidden="true">&nbsp; <strong>@cama.Quantity</strong> &nbsp; @cama.TypeOfBed.Name</i>
+                                              </div>
+                                          }
+                                      </div>
+                                  </div>                                                      
+                                                 
+                                                
+                                    
 
 
                                     @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)

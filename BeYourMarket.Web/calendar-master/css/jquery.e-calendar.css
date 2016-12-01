@@ -197,7 +197,7 @@
 }
 .calendar {
     cursor: default;
-    width: 600px;
+    /*width: 600px;*/
     height: 270px;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .calendar .c-pad-top {
-    padding-top: 3%;
+    padding-top: 1%;
 
 }
 
