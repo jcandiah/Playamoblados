@@ -3,7 +3,13 @@
 @using Microsoft.Owin.Security;
 @model BeYourMarket.Web.Models.ListingItemModel
 @{
-        ViewBag.Title = "ListingCalendar";
+    ViewBag.Title = "ListingCalendar";
+    var focus = false;
+    if(Session["focus"] !=null)
+    {
+        focus = true;
+        Session["focus"] = null;
+    }
 }
 
 <link href="~/calendar-master/css/jquery.e-calendar.css" rel="stylesheet" />
@@ -514,7 +520,14 @@
                 datesDisabled: [@Html.Raw(datesDisabled.ToString())],
                 language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
             });
-        });
+
+           @if (focus)
+           {
+              @Html.Raw("$('#FromDate').focus();");
+
+           }
+
+           });
 </script>
 
 
