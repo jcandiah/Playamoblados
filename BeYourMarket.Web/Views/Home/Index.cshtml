@@ -13,7 +13,9 @@
     <meta name="description" content="Inscribe tu propiedad" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Codeply">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
@@ -84,18 +86,33 @@
                         </div>
                         <div class="form-group">
                             @Html.DropDownListFor(p => p.Passengers,
-                 new[]
-                 {
-                        new SelectListItem{ Value = "1", Text = "1 pax" },
-                        new SelectListItem{ Value = "2", Text = "2 pax" },
-                        new SelectListItem{ Value = "3", Text = "3 pax" },
-                        new SelectListItem{ Value = "4", Text = "4 pax" },
-                        new SelectListItem{ Value = "5", Text = "5 pax" },
-                        new SelectListItem{ Value = "6", Text = "6 pax" },
-                        new SelectListItem{ Value = "7", Text = "7 pax" },
-                        new SelectListItem{ Value = "8", Text = "8+ pax" }
-                 },
-                 "[[[Passengers]]]", new { @class = "form-control", @id = "ddlpasajeros" })
+                                 new[]
+                                 {
+                                        new SelectListItem{ Value = "1", Text = "1 pax" },
+                                        new SelectListItem{ Value = "2", Text = "2 pax" },
+                                        new SelectListItem{ Value = "3", Text = "3 pax" },
+                                        new SelectListItem{ Value = "4", Text = "4 pax" },
+                                        new SelectListItem{ Value = "5", Text = "5 pax" },
+                                        new SelectListItem{ Value = "6", Text = "6 pax" },
+                                        new SelectListItem{ Value = "7", Text = "7 pax" },
+                                        new SelectListItem{ Value = "8", Text = "8+ pax" }
+                                 },
+                                 "[[[Passengers]]]", new { @class = "form-control"})
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("Niños",
+                                 new[]
+                                 {
+                                        new SelectListItem{ Value = "1", Text = "1 Niño" },
+                                        new SelectListItem{ Value = "2", Text = "2 Niños" },
+                                        new SelectListItem{ Value = "3", Text = "3 Niños" },
+                                        new SelectListItem{ Value = "4", Text = "4 Niños" },
+                                        new SelectListItem{ Value = "5", Text = "5 Niños" },
+                                        new SelectListItem{ Value = "6", Text = "6 Niños" },
+                                        new SelectListItem{ Value = "7", Text = "7 Niños" },
+                                        new SelectListItem{ Value = "8", Text = "8+ Niños" }
+                                 },
+                                 "[[[Children]]]", new { @class = "form-control"})
                         </div>
                         <div class="form-group">
                             <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
@@ -206,7 +223,6 @@
 
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
-
 
     @Html.Partial("_LocalizationDatePicker")
     <script type="text/javascript">

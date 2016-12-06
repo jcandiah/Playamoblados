@@ -85,9 +85,9 @@ namespace BeYourMarket.Web.Controllers
 
             return View(model);
         }
-        public async Task<ActionResult> Search(SearchListingModel model)
+        public async Task<ActionResult> Search(SearchListingModel model, Nullable<int> niños)
         {
-            await GetSearchResult(model);
+            await GetSearchResult(model, niños);
             //Si las listas vienen vacias
             if (model.ListingsPageList.Count() == 0 && model.ListingsPageList2.Count() == 0)
             {
@@ -97,7 +97,7 @@ namespace BeYourMarket.Web.Controllers
             }
             return View("~/Views/Listing/Listings.cshtml", model);
         }
-        private async Task GetSearchResult(SearchListingModel model)
+        private async Task GetSearchResult(SearchListingModel model, Nullable<int> niños)
         {
             IEnumerable<Listing> items = null;
             IEnumerable<Listing> items2 = null;
@@ -193,6 +193,13 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
             #endregion               
+            //Niños
+            if (niños > 0)
+            {
+                items = await _listingService.Query(x => x.Children == true).SelectAsync();
+                items2 = await _listingService.Query(x => x.Children == true).SelectAsync();
+            }
+
             // Category
             #region Busqueda Condominio
             if (model.CategoryID != 0)
