@@ -665,6 +665,7 @@ namespace BeYourMarket.Web.Controllers
             if (listing.Created.Day.Equals(DateTime.Now.Day))
             {
                 TempData[TempDataKeys.UserMessage] = "[[[Listing is updated, contact the provider to activate the service]]]";
+                Session.Add("focus", "Si");
                 return RedirectToAction("listingcalendar", "Manage", new { id = listing.ID });
             }
             else
