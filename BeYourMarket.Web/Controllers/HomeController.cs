@@ -95,6 +95,13 @@ namespace BeYourMarket.Web.Controllers
                 TempData[TempDataKeys.UserMessage] = "[[[La busqueda no arrojo ningún resultado, por favor verifique los campos]]]";
                 return View("~/Views/Listing/Listings.cshtml", model);
             }
+
+            //sesion para conservar fechas
+            if (model.FromDate.Value >= DateTime.Now && model.ToDate.Value >= DateTime.Now)
+            {
+                Session.Add("fechas", model);
+            }
+
             return View("~/Views/Listing/Listings.cshtml", model);
         }
         private async Task GetSearchResult(SearchListingModel model, Nullable<int> niños)
