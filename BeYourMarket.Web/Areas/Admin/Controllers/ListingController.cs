@@ -48,6 +48,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IListingService _listingService;
         private readonly IListingTypeService _listingTypeService;
         private readonly IListingReviewService _listingReviewService;
+        private readonly IListingObservationService _listingObservationService;
 
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
@@ -133,7 +134,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
-            AspNetUserService aspNetUserService)
+            AspNetUserService aspNetUserService,
+            IListingObservationService listingObservationService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -163,6 +165,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _typeOfBedService = typeOfBedService;
             _sqlDbService = sqlDbService;
             _aspNetUserService = aspNetUserService;
+            _listingObservationService = listingObservationService;
         }
         #endregion
 
@@ -910,13 +913,21 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListingBlock(int id)
+        public async Task<ActionResult> ListingBlock(int id, string descripcion)
         {
             var listingExisting = await _listingService.FindAsync(id);
 
             listingExisting.Active = false;
 
             _listingService.Update(listingExisting);
+
+            ListingObservation observaciones = new ListingObservation() {
+                Type = "Desactivar",
+                Description = descripcion,
+                Created = DateTime.Now,
+                ListingID = id
+            };
+            _listingObservationService.Insert(observaciones);
 
             await _unitOfWorkAsync.SaveChangesAsync();
 

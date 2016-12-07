@@ -14,6 +14,7 @@ namespace BeYourMarket.Model.Models
             this.Orders = new List<Order>();
             this.MessageThreads = new List<MessageThread>();
             this.DetailBeds = new List<DetailBed>();
+            this.ListingObservations = new List<ListingObservation>();
         }
 
         public int ID { get; set; }
@@ -78,5 +79,6 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<MessageThread> MessageThreads { get; set; }
         public virtual ICollection<DetailBed> DetailBeds { get; set; }
+        public virtual ICollection<ListingObservation> ListingObservations { get; set; }
     }
 }
