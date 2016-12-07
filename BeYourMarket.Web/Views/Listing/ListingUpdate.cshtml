@@ -365,10 +365,9 @@
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&signed_in=true&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
       @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&callback=initMap" async defer type="text/javascript"></script>*@
     @Scripts.Render("~/bundles/jqueryval")
-
     <script src="~/Scripts/fileinput.min.js"></script>
     @Html.Partial("_LocalizationFileInput")
 
@@ -580,7 +579,6 @@
 
  </script>
 
-
 <script>
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
@@ -591,7 +589,7 @@
                 draggable: isDraggable,
                 scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
                 zoom: 14,
-                center: new google.maps.LatLng(-33.8688, 151.2195),
+                center: new google.maps.LatLng(-33,0456,-71,6204),
             };
 
             @{ var hasLatLng = @Model.ListingItem.Latitude.HasValue && @Model.ListingItem.Longitude.HasValue; }

@@ -1,6 +1,13 @@
-﻿@model BeYourMarket.Model.Models.Listing
+﻿@using BeYourMarket.Web.Models
+@model BeYourMarket.Model.Models.Listing
 @{
     var userCurrent = User.Identity.User();
+    SearchListingModel fechas = null;
+    if (Session["fechas"]!=null)
+    {
+        fechas = (SearchListingModel)Session["fechas"];
+        
+    }
 }
 @if (RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
 {
@@ -20,9 +27,9 @@
             {
                 <div class="input-daterange input-group datepicker form-group" id="datepicker">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" value="@(fechas == null ? "" : fechas.FromDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas == null ? "" : fechas.ToDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
                 </div>
             }
             else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
