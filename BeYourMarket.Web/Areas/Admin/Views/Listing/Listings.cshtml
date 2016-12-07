@@ -32,11 +32,11 @@
 @helper DisplayLockUnlock(int id, string title, bool active) {
     if (active)
     {
-            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="activarModal(@id, @title)"><i class="fa fa-ban"></i> [[[Desactivar]]]</a>
+            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="activarModalBlock(@id, @title)"><i class="fa fa-ban"></i> [[[Desactivar]]]</a>
     }
     else
     {
-            <a class="btn btn-success btn-sm" href="javascript:void(0);" onclick="confirmUnlock(@id, '@title');"><i class="fa fa-check"></i> [[[Activar]]]</a>
+            <a class="btn btn-success btn-sm" href="javascript:void(0);" onclick="activarModalUnlock(@id, '@title');"><i class="fa fa-check"></i> [[[Activar]]]</a>
     }
 }
 
@@ -93,14 +93,13 @@
                        }).Sortable().Filterable().WithPaging(10).Selectable(false)
                         </div>
                     </div>
-
                     <form action="@Url.Action("ListingBlock", "Listing")" method="post" role="form">
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="myModalblock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">¿Esta seguro que desea desactivar la propiedad?</h4>
+                                        <h4 class="modal-title" id="myModalLabel" style="text-align:center">¿Esta seguro que desea desactivar la propiedad?</h4>
                                     </div>
                                     <h4 style="text-align:center">Ingrese el motivo de la desactivacion de la propiedad</h4>
                                     <div class="modal-body">
@@ -108,7 +107,27 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Desactivar</button>
+                                        <button type="submit" class="btn btn-danger">Desactivar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form action="@Url.Action("ListingUnlock", "Listing")" method="post" role="form">
+                        <div class="modal fade" id="myModalUnlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel" style="text-align:center">¿Esta seguro que desea activar la propiedad?</h4>
+                                    </div>
+                                    <h4 style="text-align:center">Ingrese el motivo de la activacion de la propiedad</h4>
+                                    <div class="modal-body">
+                                        <textarea style="width: 100%" class="form-control" name="descripcion" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Activar</button>
                                     </div>
                                 </div>
                             </div>
@@ -145,32 +164,16 @@
             });
         }
 
-        function activarModal(id, title)
+        function activarModalBlock(id, title)
         {
-            console.log(id + "   " + title);
-            $('#myModal').modal('show');
-            $('#myModal').prepend("<input type='hidden' id='id' name='Id' value='" + id + "' />");
-            $('#myModal').prepend("<input type='hidden' id='title' name='Title' value='" + title + "' />");
+            $('#myModalblock').modal('show');
+            $('#myModalblock').prepend("<input type='hidden' id='id' name='Id' value='" + id + "' />");
+            $('#myModalblock').prepend("<input type='hidden' id='title' name='Title' value='" + title + "' />");
         }
-
-        function confirmUnlock(id, title) {
-            swal({
-                title: "[[[Are you sure?]]]",
-                text: "[[[You will unlock the property]]] " + title,
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "[[[Yes, unlock it!]]]",
-                cancelButtonText: "[[[No, cancel please!]]]",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    post('@Url.Action("ListingUnlock", "Listing")', { id: id });
-                } else {
-                    swal("[[[Cancelled!]]]", "", "error");
-                }
-            });
+        function activarModalUnlock(id, title) {
+            $('#myModalUnlock').modal('show');
+            $('#myModalUnlock').prepend("<input type='hidden' id='id' name='Id' value='" + id + "' />");
+            $('#myModalUnlock').prepend("<input type='hidden' id='title' name='Title' value='" + title + "' />");
         }
     </script>
 }

@@ -937,13 +937,22 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListingUnlock(int id)
+        public async Task<ActionResult> ListingUnlock(int id, string descripcion)
         {
             var listingExisting = await _listingService.FindAsync(id);
 
             listingExisting.Active = true;
 
             _listingService.Update(listingExisting);
+
+            ListingObservation observaciones = new ListingObservation()
+            {
+                Type = "Activar",
+                Description = descripcion,
+                Created = DateTime.Now,
+                ListingID = id
+            };
+            _listingObservationService.Insert(observaciones);
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
