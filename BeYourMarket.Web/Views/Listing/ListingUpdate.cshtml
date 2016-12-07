@@ -39,10 +39,10 @@
                                     @Html.Partial("_ListingTypes", Model)
                                 </div>
 
-                                @*<div class="form-group">
-                <label>[[[Title]]] <span class="text-red">*</span></label>
-                <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
-            </div>*@
+                                <div class="form-group">
+                                  <label>[[[Describe Condominium]]] <span class="text-red">*</span></label>
+                                  <textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the condominium]]]" id="DescribeCondominium" name="DescribeCondominium" value="@Model.ListingItem.DescribeCondominium" required></textarea>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">[[[Type]]]<span class="text-red">*</span></label>
@@ -282,8 +282,15 @@
                                     <input name="Grill" type="hidden" value="false" />
                                 </div>
 
-                               <div class="form-group col-md-12">
-                                   <textarea id="ConditionCheckOut" class="form-control col-md-12" rows="5" name="ConditionCheckOut" placeholder="[[[Enter as you wish to have your property delivered]]]"></textarea>
+
+                               <div class="form-group">
+                                   <label>[[[Describe Conditions property]]]</label>
+                                   <textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the conditions of use of your property ]]]" id="ConditionHouse" name="ConditionHouse" value="@Model.ListingItem.ConditionHouse"></textarea>
+                               </div>
+
+                               <div class="form-group">
+                                   <label>[[[Describe the conditions of how you would like to receive your property]]]</label>
+                                   <textarea id="ConditionCheckOut" class="form-control col-md-12" rows="5" name="ConditionCheckOut" placeholder="[[[Describe how you want to have your property returned.]]]" value="@Model.ListingItem.ConditionCheckOut"></textarea>
                                </div>
 
                             </fieldset>
