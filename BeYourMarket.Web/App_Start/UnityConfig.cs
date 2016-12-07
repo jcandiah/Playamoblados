@@ -54,6 +54,7 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<MessageThread>, Repository<MessageThread>>()
                 .RegisterType<IRepositoryAsync<TypeOfBed>, Repository<TypeOfBed>>()
                 .RegisterType<IRepositoryAsync<DetailBed>, Repository<DetailBed>>()
+                .RegisterType<IRepositoryAsync<ListingObservation>, Repository<ListingObservation>>()
 
                 .RegisterType<ISettingService, SettingService>()
                 .RegisterType<ICategoryService, CategoryService>()
@@ -61,6 +62,7 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<ICategoryStatService, CategoryStatService>()
                 .RegisterType<IListingService, ListingService>()
                 .RegisterType<IListingPictureService, ListingPictureService>()
+                .RegisterType<IListingObservationService, ListingObservationService>()
                 .RegisterType<IDetailBedService, DetailBedService>()
                 .RegisterType<IPictureService, PictureService>()
                 .RegisterType<IOrderService, OrderService>()

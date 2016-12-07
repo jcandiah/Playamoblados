@@ -55,6 +55,7 @@ namespace BeYourMarket.Model.Models
         public DbSet<StripeTransaction> StripeTransactions { get; set; }
         public DbSet<DetailBed> DetailBeds { get; set; }
         public DbSet<TypeOfBed> TypesOfBed { get; set; }
+        public DbSet<ListingObservation> ListingObservations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -88,6 +89,7 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new StripeTransactionMap());
             modelBuilder.Configurations.Add(new DetailBedMap());
             modelBuilder.Configurations.Add(new TypeOfBedMap());
+            modelBuilder.Configurations.Add(new ListingObservationMap());
         }
     }
 }
