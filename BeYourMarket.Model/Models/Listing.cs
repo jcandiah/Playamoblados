@@ -67,6 +67,9 @@ namespace BeYourMarket.Model.Models
         public bool Children { get; set; }
         public string ConditionCheckOut { get; set; }
 
+        public string DescribeCondominium{ get; set; }
+        public string ConditionHouse { get; set; }
+
 
         //Referencias
         public virtual AspNetUser AspNetUser { get; set; }

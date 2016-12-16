@@ -59,9 +59,9 @@
 
     <header id="first">
         <div class="header-content">
-            <img src="~/css/HomePlayamoblado/img/logo.png" class="img-responsive hidden-xs" /><br><br>
+            @*<img src="~/css/HomePlayamoblado/img/logo.png" class="img-responsive hidden-xs" /><br><br>*@
+            <img src="~/css/HomePlayamoblado/img/logosintexto.png" style="width:150px; height:150px;" class="img-responsive hidden-xs" /><br><br>
             <div class="inner">
-
                 <div class="hidden-xs" style="text-align:right;">
                     <h1>Playamoblados</h1>
                     <h3>Reservas&nbsp;&nbsp;Vacacionales</h3>
@@ -73,6 +73,9 @@
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "intro-text form-inline", @style = "padding:10px;", role = "form" }))
                 {
                     <h4 class="hidden-lg hidden-md hidden-sm ">Reserva tus vacaciones</h4>
+                    <div class="form-group" style="padding-right: 7%;">
+                        <div style="font-size: 29px;">RESERVA AQUI</div>
+                    </div>
                     <div class="form-group">
                         @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
                     </div>
@@ -88,16 +91,15 @@
                             @Html.DropDownListFor(p => p.Passengers,
                                  new[]
                                  {
-                                        new SelectListItem{ Value = "1", Text = "1 pax" },
-                                        new SelectListItem{ Value = "2", Text = "2 pax" },
-                                        new SelectListItem{ Value = "3", Text = "3 pax" },
-                                        new SelectListItem{ Value = "4", Text = "4 pax" },
-                                        new SelectListItem{ Value = "5", Text = "5 pax" },
-                                        new SelectListItem{ Value = "6", Text = "6 pax" },
-                                        new SelectListItem{ Value = "7", Text = "7 pax" },
-                                        new SelectListItem{ Value = "8", Text = "8+ pax" }
-                                 },
-                                 "[[[Passengers]]]", new { @class = "form-control"})
+                                        new SelectListItem{ Value = "1", Text = "1 Adulto" },
+                                        new SelectListItem{ Value = "2", Text = "2 Adultos" },
+                                        new SelectListItem{ Value = "3", Text = "3 Adultos" },
+                                        new SelectListItem{ Value = "4", Text = "4 Adultos" },
+                                        new SelectListItem{ Value = "5", Text = "5 Adultos" },
+                                        new SelectListItem{ Value = "6", Text = "6 Adultos" },
+                                        new SelectListItem{ Value = "7", Text = "7 Adultos" },
+                                        new SelectListItem{ Value = "8", Text = "8+ Adultos" }
+                                 }, new { @class = "form-control"})
                         </div>
                         <div class="form-group">
                             @Html.DropDownList("Niños",
@@ -117,6 +119,9 @@
                         <div class="form-group">
                             <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
                         </div>
+                        @*<div class="form-group">
+                            <div style="font-size: 29px;">PLAYAMOBLADOS <br />Reservas vacacionales</div>
+                        </div>*@
                 }
             </div>
         </div>
@@ -135,16 +140,16 @@
         <div class="container">
             <h2 style="color:black; font-size:26px;"><p>SERVICIOS BÁSICOS</p></h2>
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Wifi.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Mucama.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/RopaBlanca.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/DescuentosComerciales.png">
                 </div>
             </div>
@@ -161,13 +166,13 @@
         <br>
         <div class="container">
             <h2 style="color:black; font-size:26px;"><p>LUGARES DE DESTINO</p></h2>
-            <div class="col-md-4 col-sm-4  col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Papudo.png">
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Maitencillo.png">
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Zapallar.png">
             </div>
 
