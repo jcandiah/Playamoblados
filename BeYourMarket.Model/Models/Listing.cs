@@ -68,6 +68,8 @@ namespace BeYourMarket.Model.Models
         public string DescribeCondominium{ get; set; }
         public string ConditionHouse { get; set; }
         public bool Elevator { get; set; }
+        public string Stay { get; set; }
+        public string ShortDescription { get; set; }
 
 
         //Referencias
