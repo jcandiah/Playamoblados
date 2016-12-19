@@ -105,5 +105,7 @@ namespace BeYourMarket.Web.Models
         public Nullable<int> Property { get; set; }
 
         public string TypeOfProperty { get; set; }
+
+        public Nullable<int> Niños { get; set; }
     }
 }

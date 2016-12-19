@@ -85,9 +85,9 @@ namespace BeYourMarket.Web.Controllers
 
             return View(model);
         }
-        public async Task<ActionResult> Search(SearchListingModel model, Nullable<int> niños)
+        public async Task<ActionResult> Search(SearchListingModel model)
         {
-            await GetSearchResult(model, niños);
+            await GetSearchResult(model);
             //Si las listas vienen vacias
             if (model.ListingsPageList.Count() == 0 && model.ListingsPageList2.Count() == 0)
             {
@@ -104,12 +104,12 @@ namespace BeYourMarket.Web.Controllers
 
             return View("~/Views/Listing/Listings.cshtml", model);
         }
-        private async Task GetSearchResult(SearchListingModel model, Nullable<int> niños)
+        private async Task GetSearchResult(SearchListingModel model)
         {
             IEnumerable<Listing> items = null;
             IEnumerable<Listing> items2 = null;
-            if (niños == null)
-                niños = 0;
+            if (model.Niños == null)
+                model.Niños = 0;
             // Search Text
             #region Busqueda Texto
             if (!string.IsNullOrEmpty(model.SearchText))
@@ -142,10 +142,8 @@ namespace BeYourMarket.Web.Controllers
                  
             // Search dates
             #region Busqueda Fecha
-            if (!string.IsNullOrEmpty(model.FromDate.ToString()))
+            if (!string.IsNullOrEmpty(model.FromDate.ToString()) && !string.IsNullOrEmpty(model.ToDate.ToString()))
             {
-                if (!string.IsNullOrEmpty(model.ToDate.ToString()))
-                {
                     var Todate2 = model.ToDate.Value.AddDays(2);
                     var FromDate2 = model.FromDate.Value.AddDays(-2);
 
@@ -186,25 +184,11 @@ namespace BeYourMarket.Web.Controllers
                                 .Include(x => x.ListingReviews)
                                 .Include(x => x.Orders)
                                 .SelectAsync();
-                    }
-                }
-                else
-                {
-                    var FromDate2 = model.FromDate.Value.AddDays(-2);
-                    //Si solo viene FROM DATE filtra los datos desde la fecha ingresada
-                    items = await _listingService.Query(
-                            x => x.Orders.Where(y => y.ToDate >= FromDate2).Count() == 0)
-                            .Include(x => x.ListingPictures)
-                            .Include(x => x.Category)
-                            .Include(x => x.AspNetUser)
-                            .Include(x => x.ListingReviews)
-                            .Include(x => x.Orders)
-                            .SelectAsync();
-                }
+                    }                
             }
             #endregion               
             //Niños
-            if (niños > 0)
+            if (model.Niños > 0)
             {
                 items = await _listingService.Query(x => x.Children == true)
                     .Include(x => x.ListingPictures)
@@ -254,12 +238,27 @@ namespace BeYourMarket.Web.Controllers
             {
                 if (items != null)
                 {
-                    items = items.Where(x => x.Max_Capacity >= model.Passengers + niños);
+                    items = items.Where(x => x.Max_Capacity >= model.Passengers + model.Niños);
                 }
                 else
                 {
                     items = await _listingService.Query(
-                            x => x.Max_Capacity >= model.Passengers + niños)
+                            x => x.Max_Capacity >= model.Passengers + model.Niños)
+                            .Include(x => x.ListingPictures)
+                            .Include(x => x.Category)
+                            .Include(x => x.AspNetUser)
+                            .Include(x => x.Orders)
+                            .Include(x => x.ListingReviews)
+                            .SelectAsync();
+                }
+                if (items2 != null)
+                {
+                    items2 = items2.Where(x => x.Max_Capacity >= model.Passengers + model.Niños);
+                }
+                else
+                {
+                    items2 = await _listingService.Query(
+                            x => x.Max_Capacity >= model.Passengers + model.Niños)
                             .Include(x => x.ListingPictures)
                             .Include(x => x.Category)
                             .Include(x => x.AspNetUser)
@@ -429,7 +428,15 @@ namespace BeYourMarket.Web.Controllers
             var itemsModelList = new List<ListingItemModel>();
             var itemsModelList2 = new List<ListingItemModel>();
 
-            //foreach (var item in items.Where(x => x.Active && x.Enabled).OrderByDescending(x => x.Created))
+           foreach(var varitem in items)
+            {
+                //if(items2.Contains(varitem))
+                //{
+                //    items2.ToList().Remove(varitem);
+                //}
+                items2 = items2.Where(x=>x.ID != varitem.ID);
+            }
+            
             foreach (var item in items.Where(x => x.Active && x.Enabled).OrderBy(x => x.Price))
             {
                 itemsModelList.Add(new ListingItemModel()

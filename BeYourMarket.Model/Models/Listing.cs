@@ -60,15 +60,14 @@ namespace BeYourMarket.Model.Models
         public bool FirstLine { get; set;}
         public Nullable<int> Suite { get; set; }
         public string TypeOfProperty { get; set; }
-
         //Release R 2.1
         public bool Smoker { get; set; }
         public bool Pets { get; set; }
         public bool Children { get; set; }
         public string ConditionCheckOut { get; set; }
-
         public string DescribeCondominium{ get; set; }
         public string ConditionHouse { get; set; }
+        public bool Elevator { get; set; }
 
 
         //Referencias
