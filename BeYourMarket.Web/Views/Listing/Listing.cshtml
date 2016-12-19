@@ -28,7 +28,7 @@
                         <div class="section panel-header">
                             <div class="col-md-12">
                                 <h3>
-                                    ID : @Model.ListingCurrent.Title
+                                    CODIGO PROPIEDAD : @Model.ListingCurrent.Title
                                     <span class="score @Model.ListingCurrent.RatingClass text-md"></span>
                                     <!-- Show edit button if administrator or the user who create the listing -->
                                     @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
@@ -71,11 +71,7 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade active in" id="description">
                                 <div class="panel panel-default bdr-t-none">
-                                    <div class="panel-body">
-                                        <h4>
-                                            @Model.ListingCurrent.Description
-                                        </h4>
-                                    </div>
+                                   
 
                                     <!---Pictures-->
                                     @*<div class="panel-heading bdr-t">
@@ -113,16 +109,11 @@
                                             </div>
 
                                             <div class="panel-body">
-                                                <div class="row">
-                                                    @foreach (var thumbnail in Model.Pictures)
-                                                    {
-                                                        <div class="col-xs-6 col-md-2">
-                                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
-                                                                <img alt="Thumbnail" src="@thumbnail.Url" style="width: 100%; display: block;">
-                                                            </a>
-                                                        </div>
-                                                    }
-                                                </div>
+                                             
+                                                    <h4>
+                                                        @Model.ListingCurrent.Description
+                                                    </h4>
+                                               
 
                                             </div>
                                         }
@@ -135,60 +126,63 @@
                                     <div class="table-responsive">
                                         <table class="table table-striped">
                                             <tbody>
+
+
                                                 <tr>
+                                                    <td>
+                                                        CODIGO PROPIEDAD
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.ID
+                                                    </td>
                                                     <td>
                                                         [[[Condominium]]]
                                                     </td>
                                                     <td>
                                                         <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
                                                     </td>
-                                                    <td>
-                                                        [[[Price]]]
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
-                                                    </td>
+                                                 
                                                 </tr>
-
-
                                                 <tr>
-                                                    <td>
-                                                        [[[Location]]]
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(x => Model.ListingCurrent.Location)
-                                                    </td>
                                                     <td>
                                                         [[[Type]]]
                                                     </td>
                                                     <td>
                                                         @Model.ListingCurrent.TypeOfProperty
                                                     </td>
+
+                                                    <td>
+                                                        [[[Capacity]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Max_Capacity
+                                                    </td>
                                                 </tr>
 
+
                                                 <tr>
-                                                    <td>
-                                                        ID
-                                                    </td>
-                                                    <td>
-                                                        @Model.ListingCurrent.ID
-                                                    </td>
                                                     <td>
                                                         [[[Rooms]]]
                                                     </td>
                                                     <td>
                                                         @Model.ListingCurrent.Rooms
                                                     </td>
+                                                    <td>
+                                                        [[[Beds]]]
+                                                    </td>
+                                                    <td>
+                                                        @Model.ListingCurrent.Beds
+                                                    </td>
                                                 </tr>
 
 
 
                                                 <tr>
                                                     <td>
-                                                        [[[Capacity]]]
+                                                        [[[Suite Rooms]]]
                                                     </td>
                                                     <td>
-                                                        @Model.ListingCurrent.Max_Capacity
+                                                        @Model.ListingCurrent.Suite
                                                     </td>
                                                     <td>
                                                         [[[Bathrooms]]]
@@ -202,25 +196,10 @@
 
                                                 <tr>
                                                     <td>
-                                                        [[[Parking Lot]]]
+                                                        [[[Lavavajillas]]]
                                                     </td>
                                                     <td>
-                                                        @Model.ListingCurrent.ParkingLot
-                                                    </td>
-                                                    <td>
-                                                        [[[Grill]]]
-                                                    </td>
-                                                    <td>
-                                                        @(Model.ListingCurrent.Grill ? "Si" : "No")
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        [[[Safety Mesh]]]
-                                                    </td>
-                                                    <td>
-                                                        @(Model.ListingCurrent.SafetyMesh ? "Si" : "No")
+                                                        @(Model.ListingCurrent.Dishwasher ? "Si" : "No")
                                                     </td>
                                                     <td>
                                                         [[[Washer]]]
@@ -229,18 +208,33 @@
                                                         @(Model.ListingCurrent.Washer ? "Si" : "No")
                                                     </td>
                                                 </tr>
+
                                                 <tr>
                                                     <td>
-                                                        [[[Lavavajillas]]]
+                                                        [[[Grill]]]
                                                     </td>
                                                     <td>
-                                                        @(Model.ListingCurrent.Dishwasher ? "Si" : "No")
+                                                        @(Model.ListingCurrent.Grill ? "Si" : "No")
                                                     </td>
                                                     <td>
-                                                        [[[Suite Rooms]]]
+                                                        [[[TV cable]]]
                                                     </td>
                                                     <td>
-                                                        @Model.ListingCurrent.Suite
+                                                        @(Model.ListingCurrent.TV_cable ? "Si" : "No")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        [[[Wi fi]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.Wifi ? "Si" : "No")
+                                                    </td>
+                                                    <td>
+                                                        [[[Elevator]]]
+                                                    </td>
+                                                    <td>
+                                                       
                                                     </td>
                                                 </tr>
 
