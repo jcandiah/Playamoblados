@@ -78,7 +78,6 @@ namespace BeYourMarket.Model.Models.Mapping
             this.HasRequired(t => t.ListingType)
                 .WithMany(t => t.Listings)
                 .HasForeignKey(d => d.ListingTypeID).WillCascadeOnDelete();
-
         }
     }
 }

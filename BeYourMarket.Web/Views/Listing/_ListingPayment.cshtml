@@ -9,7 +9,7 @@
         
     }
 }
-@if (RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
+@if(RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
 {
 
     <div class="panel panel-default panel-body ">
@@ -19,67 +19,62 @@
                 @Html.DisplayFor(x => x.PriceFormatted) @Model.ListingType.PriceUnitLabel
             </h4>
         }
-
-        <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" id="formulario" method="post" role="form">
-            <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
-            <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
-            @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
-            {
-                <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" value="@(fechas == null ? "" : fechas.FromDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas == null ? "" : fechas.ToDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
-                </div>
-            }
-            else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
-            {
-                <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
-            }
-            @*@if (!User.Identity.IsAuthenticated)
+            <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id = Model.ID }) })" id="formulario" method="post" role="form">
+                <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
+                <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
+                @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
                 {
-                    <a class="btn btn-success btn-bl9ock btn-block btn-lg" href="">Reservar</a>
-                }*@
-            @if (!User.IsInRole("Administrator"))
-            {
-                if (User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID)
+                    <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" value="@(fechas == null ? "" : fechas.FromDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas == null ? "" : fechas.ToDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
+                    </div>
+                }
+                else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
                 {
-                    <button type="submit" class="btn btn-primary btn-bl9ock btn-block btn-lg">Bloquear</button>
+                    <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+                }
+                @if (!User.IsInRole("Administrator"))
+                {
+                    if (User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID)
+                    {
+                        <button type="submit" class="btn btn-primary btn-bl9ock btn-block btn-lg">Bloquear</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-success btn-bl9ock btn-block btn-lg" type="button" onclick="confirmOrder()">Reservar</button>
+                    }
                 }
                 else
                 {
-                    <button class="btn btn-success btn-bl9ock btn-block btn-lg" type="button" onclick="confirmDelete()">Reservar</button>
+                    <button type="button" class="btn btn-success btn-bl9ock btn-block btn-lg" onclick="AbrirModal('#ListingID')" data-toggle="modal" data-whatever="mdo">Bloquear</button>
                 }
-            }
-            else
-            {
-                <button type="button" class="btn btn-success btn-bl9ock btn-block btn-lg" onclick="AbrirModal()" data-toggle="modal" data-whatever="mdo">Bloquear</button>
-            }
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">Agregue una descripcion al bloqueo</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="message-tex" class="control-label">Descripcion:</label>
-                                <textarea class="form-control" id="Message" name="Message"></textarea>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Agregue una descripcion al bloqueo</h4>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-default btn-lg" style="width: 49%" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" style="width: 49%" class="btn btn-success btn-lg">Ingresar bloqueo</button>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="message-tex" class="control-label">Descripcion:</label>
+                                    <textarea class="form-control" id="Message" name="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default btn-lg" style="width: 49%" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" style="width: 49%" class="btn btn-success btn-lg">Ingresar bloqueo</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>   
     </div>
     <div class="alert alert-success" role="alert">*Al momento de realizar su arriendo, debe tener en cuenta que el ingreso es a las 15:00 PM de el dia de arriendo y la salida es a las 11:00 AM del dia de termino</div>
 }
+
 <script type="text/javascript">
     function AbrirModal() {
 
@@ -100,33 +95,19 @@
         }
     }
 
-
-
-    function confirmDelete(fromdate, todate) {
-        if (document.getElementById("FromDate").value != "" || document.getElementById("ToDate").value != "") {
+    function confirmOrder()
+    {
+        if (document.getElementById("FromDate").value != "" && document.getElementById("ToDate").value != "") {
+            document.getElementById("formulario").submit();
+        }
+        else {
             swal({
-                title: "Estas seguro que deseas reservar la propiedad: " + @Model.Title + "\n desde: " + document.getElementById("FromDate").value + "\n hasta: " + document.getElementById("ToDate").value,
-                text: "Al confirmar se redirigira al formulario de pago",
-                type: "warning",
-                showCancelButton: true,
+                title: "Debes ingresar las fechas en las que deseas reservar",
+                closeOnConfirm: true,
                 confirmButtonColor: "#5cb85c",
-                confirmButtonText: "[[[Confirm]]]",
-                cancelButtonText: "[[[No, cancel]]]",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    //post('');
-                    document.getElementById("formulario").submit();
-                } else {
-                    swal("[[[Cancelled!]]]", "", "error");
-                }
             });
         }
     }
-
-
-
 </script>
 
 

@@ -47,6 +47,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldListingService _customFieldListingService;
         private readonly IAspNetUserService _aspNetUserService;
         private readonly IAspNetRoleService _aspNetRoleService;
+        private readonly IDetailBedService _detailBedService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -100,7 +101,8 @@ namespace BeYourMarket.Web.Controllers
             IEmailTemplateService emailTemplateService,
             IPluginFinder pluginFinder,
             IAspNetUserService aspNetUserService,
-            IAspNetRoleService aspNetRoleService)
+            IAspNetRoleService aspNetRoleService,
+            IDetailBedService detailBedService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -112,6 +114,7 @@ namespace BeYourMarket.Web.Controllers
             _listingPictureservice = ListingPictureservice;
             _listingStatservice = listingStatservice;
             _listingReviewService = listingReviewService;
+            _detailBedService = detailBedService;
 
             _orderService = orderService;
             _customFieldService = customFieldService;
@@ -346,7 +349,7 @@ namespace BeYourMarket.Web.Controllers
                         order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                         order.Created = DateTime.Now;
                         order.Modified = DateTime.Now;
-                        order.Status = (int)Enum_OrderStatus.Pending;
+                        order.Status = (int)Enum_OrderStatus.Created;
                         order.UserProvider = listing.UserID;
                         order.UserReceiver = userCurrent.Id;
                         order.ListingTypeID = order.ListingTypeID;
@@ -362,7 +365,7 @@ namespace BeYourMarket.Web.Controllers
                                 order.ToDate.Value.ToShortDateString()));
 
                             order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
-                            order.Price = order.Quantity * listing.Price;                            
+                            order.Price = order.Quantity * listing.Price;
                         }
                         else if (order.Quantity.HasValue)
                         {
@@ -377,16 +380,17 @@ namespace BeYourMarket.Web.Controllers
                             order.Quantity = 1;
                             order.Price = listing.Price;
                         }
+
                         _orderService.Insert(order);
 
                         var provider = await _aspNetUserService.FindAsync(order.UserProvider);
 
-                        await EnviarCorreo(confirmacion, provider.Email);
+                        //await EnviarCorreo(confirmacion, provider.Email);
                     }
                     await _unitOfWorkAsync.SaveChangesAsync();
 
                     ClearCache();
-                    return RedirectToAction("Payment", "Payment", new { id = order.ID });
+                    return RedirectToAction("ConfirmOrder", "Payment", new { id = order.ID });
                 }
                 else
                 {
@@ -545,7 +549,7 @@ namespace BeYourMarket.Web.Controllers
             }
 
 
-            
+
             if (order.ID == 0)
             {
                 order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
@@ -678,7 +682,7 @@ namespace BeYourMarket.Web.Controllers
             personas.Add(playamoblados);
 
             //Con esto se envia el correo al propietario, a la administracion y a PM
-            dynamic emailorder = new Postal.Email("Email");                        
+            dynamic emailorder = new Postal.Email("Email");
             foreach (var administradores in personas)
             {
                 emailorder.To = administradores.Email;
@@ -691,10 +695,82 @@ namespace BeYourMarket.Web.Controllers
                 emailorder.Id = model.Id;
                 EmailHelper.SendEmail(emailorder);
             }
-            
+
 
             return RedirectToAction("Payment", "Payment", new { id = model.Id });
-        }       
+        }
+
+        public async Task<ActionResult> ConfirmOrder(int id)
+        {
+            var selectQuery = await _orderService.Query(x => x.ID == id)
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.ListingType)
+                .Include(x => x.Listing.ListingPictures)
+                .SelectAsync();
+
+            var order = selectQuery.FirstOrDefault();
+
+            if (order == null)
+                return new HttpNotFoundResult();
+
+            var model = new PaymentModel()
+            {
+                ListingOrder = order
+            };
+
+            ClearCache();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmOrderAction(int id)
+        {
+            var selectQuery = await _orderService.Query(x => x.ID == id)
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.ListingType)
+                .Include(x => x.Listing.ListingPictures)
+                .SelectAsync();
+
+            var order = selectQuery.FirstOrDefault();
+
+            if (order == null)
+                return new HttpNotFoundResult();
+
+            order.Status = (int)Enum_OrderStatus.Pending;
+
+            _orderService.Update(order);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            return View("~/Views/Payment/Congratulations.cshtml");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> CancelOrderAction(int id)
+        {
+            var selectQuery = await _orderService.Query(x => x.ID == id)
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.ListingType)
+                .Include(x => x.Listing.ListingPictures)
+                .SelectAsync();
+
+            var order = selectQuery.FirstOrDefault();
+
+            if (order == null)
+                return new HttpNotFoundResult();
+
+            order.Status = (int)Enum_OrderStatus.Cancelled;
+
+            _orderService.Update(order);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            //return View("~/Views/Listing/Listing.cshtml", itemModel);
+            return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+        }
         #endregion
     }
 }

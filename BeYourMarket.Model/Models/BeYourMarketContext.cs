@@ -56,6 +56,7 @@ namespace BeYourMarket.Model.Models
         public DbSet<DetailBed> DetailBeds { get; set; }
         public DbSet<TypeOfBed> TypesOfBed { get; set; }
         public DbSet<ListingObservation> ListingObservations { get; set; }
+        public DbSet<ListingPrice> ListingPrices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -90,6 +91,7 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new DetailBedMap());
             modelBuilder.Configurations.Add(new TypeOfBedMap());
             modelBuilder.Configurations.Add(new ListingObservationMap());
+            modelBuilder.Configurations.Add(new ListingPriceMap());
         }
     }
 }
