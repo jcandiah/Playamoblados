@@ -19,20 +19,60 @@
             <div class="panel-heading form-group">
                 <div><label class="panel-title"> Cod Propiedad: @Model.ListingOrder.ListingID</label></div>
             </div>                    
-        <div class="panel-success panel-info row">
-            <div class="panel-info">
-                <div class="form-group col-md-offset-1 col-md-2">Desde: @Model.ListingOrder.FromDate.Value.ToShortDateString()</div>
-                <div class="form-group col-md-2">Hasta: @Model.ListingOrder.ToDate.Value.ToShortDateString()</div>
-                <div class="form-group col-md-2">Pasajeros: </div>
-                <div class="form-group col-md-2">Adultos: </div>
-                <div class="form-group col-md-2">Niños: </div>
-            </div>
+        <div class="panel panel-body">
+                <table class="table table-responsive">
+                    <tr>
+                        <td>Desde:</td>
+                        <td>Hasta: </td>
+                        <td>Pasajeros:</td>
+                        <td>Adultos:</td>
+                        <td>Niños:</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.ListingOrder.FromDate.Value.ToShortDateString()</td>
+                        <td>@Model.ListingOrder.ToDate.Value.ToShortDateString()</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
         </div>    
         <div class="panel-body alert-info" style="text-align: center">                    
-            <div class="panel-title form-inline">
-                <div>Arriendo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>: CLP $@Model.ListingOrder.Price</div>
-                <div>Servicio <i class="glyphicon glyphicon-question-sign" id="qstServicio"></i>: CLP $ </div>
-                <div>Aseo <i class="glyphicon glyphicon-question-sign" id="qstAseo"></i>: CLP $</div>                
+            <div class="panel form-inline">
+                <table class="table">
+                    <tr>
+                        <td> 
+                            Arriendo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>: 
+                        </td>
+                        <td>
+                            CLP $@Model.ListingOrder.Price
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Servicio <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $@Model.ListingOrder.Price
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Aseo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $@Model.ListingOrder.Price
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $@Model.ListingOrder.Price
+                        </td>
+                    </tr>
+                </table>               
             </div>
         </div>     
         <div class="panel-body alert-link" style="text-align: center">
@@ -42,7 +82,7 @@
         </div>
         <div class="panel-body alert-link" style="text-align: center">
             <div class="panel-title form-inline">
-                <div><input class="checkbox" style="display:initial;"  type="checkbox" onclick="ActivarBoton()" id="chkActivar"/>Declaro y acepto las normas de la casa, capacidad máxima de pasajeros y las condiciones referidas al deposito de seguridad.</div>
+                <div><input class="checkbox" style="display:initial; margin-right: 10px"  type="checkbox" onclick="ActivarBoton()" id="chkActivar"/>Declaro y acepto las normas de la casa, capacidad máxima de pasajeros y las condiciones referidas al deposito de seguridad.</div>
             </div>
         </div> 
         <div class="table-responsive">

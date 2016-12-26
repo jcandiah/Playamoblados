@@ -55,6 +55,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
         private readonly IPluginFinder _pluginFinder;
+        private readonly IListingPriceService _listingPriceService;
 
         public ApplicationSignInManager SignInManager
         {
@@ -102,7 +103,8 @@ namespace BeYourMarket.Web.Controllers
             IPluginFinder pluginFinder,
             IAspNetUserService aspNetUserService,
             IAspNetRoleService aspNetRoleService,
-            IDetailBedService detailBedService)
+            IDetailBedService detailBedService,
+            IListingPriceService listingPriceService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -130,6 +132,7 @@ namespace BeYourMarket.Web.Controllers
 
             _unitOfWorkAsync = unitOfWorkAsync;
             _emailTemplateService = emailTemplateService;
+            _listingPriceService = listingPriceService;
         }
         #endregion
 
@@ -355,6 +358,27 @@ namespace BeYourMarket.Web.Controllers
                         order.ListingTypeID = order.ListingTypeID;
                         order.Currency = listing.Currency;
                         order.OrderType = 3;
+                        order.Price = 0;
+                        var listingPrice = await _listingPriceService.Query(x => x.ListingID == order.ListingID).SelectAsync();
+                        var precioEnero = listingPrice.FirstOrDefault(x=>x.FromDate.Month.Equals(01));
+                        var precioFebrero = listingPrice.FirstOrDefault(x=>x.FromDate.Month.Equals(02));
+
+                        for (DateTime date = order.FromDate.Value; date <= order.ToDate.Value.AddDays(-1); date = date.Date.AddDays(1))
+                        {
+                            if (date >= precioEnero.FromDate && date <= precioEnero.ToDate)
+                            {
+                                order.Price = order.Price + precioEnero.Price;
+                            }
+                            else if (date >= precioFebrero.FromDate && date <= precioFebrero.ToDate)
+                            {
+                                order.Price = order.Price + precioFebrero.Price;
+                            }
+                            else
+                            {
+                                order.Price = order.Price + listing.Price;
+                            }
+                        }
+
                         if (order.ToDate.HasValue && order.FromDate.HasValue)
                         {
                             order.Description = HttpContext.ParseAndTranslate(
@@ -365,7 +389,7 @@ namespace BeYourMarket.Web.Controllers
                                 order.ToDate.Value.ToShortDateString()));
 
                             order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
-                            order.Price = order.Quantity * listing.Price;
+                            //order.Price = order.Quantity * listing.Price;
                         }
                         else if (order.Quantity.HasValue)
                         {
@@ -378,7 +402,6 @@ namespace BeYourMarket.Web.Controllers
                             // Default
                             order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
                             order.Quantity = 1;
-                            order.Price = listing.Price;
                         }
 
                         _orderService.Insert(order);
