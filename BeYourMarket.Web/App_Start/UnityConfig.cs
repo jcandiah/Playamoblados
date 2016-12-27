@@ -55,6 +55,7 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<TypeOfBed>, Repository<TypeOfBed>>()
                 .RegisterType<IRepositoryAsync<DetailBed>, Repository<DetailBed>>()
                 .RegisterType<IRepositoryAsync<ListingObservation>, Repository<ListingObservation>>()
+                .RegisterType<IRepositoryAsync<ListingPrice>, Repository<ListingPrice>>()
 
                 .RegisterType<ISettingService, SettingService>()
                 .RegisterType<ICategoryService, CategoryService>()
@@ -84,7 +85,8 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IMessageThreadService, MessageThreadService>()
                 .RegisterType<IStoredProcedures, BeYourMarketContext>(new PerRequestLifetimeManager())
                 .RegisterType<SqlDbService, SqlDbService>()
-                .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());
+                .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager())
+                .RegisterType<IListingPriceService, ListingPriceService>();
 
             container
                 .RegisterType<IHookService, HookService>()

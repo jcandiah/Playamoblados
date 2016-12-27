@@ -111,7 +111,7 @@
                                             <div class="panel-body">
                                              
                                                     <h4>
-                                                        @Model.ListingCurrent.Description
+                                                        @Model.ListingCurrent.ShortDescription
                                                     </h4>
                                                
 
@@ -121,6 +121,9 @@
                                         {
                                             <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                                         }
+                                        <div class="panel-body">
+                                            <h3>@Model.ListingCurrent.Description</h3>
+                                        </div>
                                     </div>
                                     <!---Pictures-->
                                     <div class="table-responsive">
@@ -273,9 +276,9 @@
                                                 </tr>
                                                 <tr>
                                                     <th class="bg-warning">
-                                                        <h3 class="text-center"> [[[Conditions property]]]</h3>
+                                                        <h3 class="text-center"> [[[Stay]]]</h3>
                                                     </th>
-                                                    <td>@Model.ListingCurrent.ConditionHouse</td>
+                                                    <td>@Model.ListingCurrent.Stay</td>
                                                 </tr>
 
 

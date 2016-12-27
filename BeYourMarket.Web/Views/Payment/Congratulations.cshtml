@@ -1,0 +1,37 @@
+﻿
+
+@{
+    ViewBag.Title = "Congratulations";
+}
+
+
+
+<img src="~/Images/Community/playamobladosLogo.jpg" style="width: 300px" class="img-responsive" />
+<h1 style="text-align: center">Congratulations!!!</h1>
+<h2 style="text-align: center">Tu reserva esta siendo procesada.</h2>
+<h2 style="text-align: center">Te contactaremos en las proximas 24 horas.</h2>
+
+<div class="text-aqua">
+    Se le redireccionará a la página principal en <span id="segundos">3</span>, o presione el siguiente botón para volver
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var x = 3;
+        @*function redireccionarPagina() {
+            window.location = "@Url.Action("Index", "Home")";
+        }
+        setTimeout("redireccionarPagina()", 3000);*@
+
+        setInterval(function () {
+            if (x > 0) {
+                x--;
+                $('#segundos').html(x);
+            } else {
+                window.location = "@Url.Action("Index", "Home")";
+            }
+        }, 1000);
+    </script>
+}
+
