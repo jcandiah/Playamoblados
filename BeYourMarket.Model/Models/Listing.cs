@@ -72,6 +72,8 @@ namespace BeYourMarket.Model.Models
         public string Stay { get; set; }
         public string ShortDescription { get; set; }
 
+        public Nullable<int> CleanlinessPrice { get; set; }
+
 
         //Referencias
         public virtual AspNetUser AspNetUser { get; set; }
