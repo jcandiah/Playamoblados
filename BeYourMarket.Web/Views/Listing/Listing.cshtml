@@ -31,7 +31,7 @@
                                     CODIGO PROPIEDAD : @Model.ListingCurrent.Title
                                     <span class="score @Model.ListingCurrent.RatingClass text-md"></span>
                                     <!-- Show edit button if administrator or the user who create the listing -->
-                                    @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
+                                    @if (Model.ListingCurrent.UserID == User.Identity.GetUserId())
                                     {
                                         <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing", new { id = Model.ListingCurrent.ID, area = "" })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
                                     }
@@ -246,25 +246,25 @@
                                                     @if (Model.ListingCurrent.Smoker)
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/fumar.png" /> Acepta fumadores.
+                                                            <img src="~/Images/Iconos/fumar.png"  style="width:40px;" /> Acepta fumadores.
                                                         </td>
                                                     }
                                                     else
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/no-fumar.png" /> No fumadores.
+                                                            <img src="~/Images/Iconos/no-fumar.png"  style="width:40px;"/> No fumadores.
                                                         </td>
                                                     }
                                                     @if (Model.ListingCurrent.Pets)
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/perro.png" /> Acepta animales.
+                                                            <img src="~/Images/Iconos/perro.png" style="width:40px;"/> Acepta animales.
                                                         </td>
                                                     }
                                                     else
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/no-perro.png" /> No animales.
+                                                            <img src="~/Images/Iconos/no-perro.png"  style="width:40px;" /> No animales.
                                                         </td>
                                                     }
                                                     <td></td>
@@ -304,7 +304,8 @@
                                           @foreach (var cama in this.Model.ListBeds.OrderByDescending(x => x.ID))
                                           {
                                               <div class="col-md-4">
-                                                  <i class="fa fa-bed fa-2x" aria-hidden="true">&nbsp; <strong>@cama.Quantity</strong> &nbsp; @cama.TypeOfBed.Name</i>
+                                                  <i class="fa fa-bed fa-2x" aria-hidden="true"> &nbsp;</i> <strong style="font-size:larger">@cama.Quantity</strong>&nbsp;&nbsp;
+                                                  <div style="font-size:large"> @cama.TypeOfBed.Name</div>
                                               </div>
                                           }
                                       </div>
@@ -446,6 +447,6 @@
             </script>
         </text>
     }
-
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&libraries=places&callback=initMap" async defer></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&signed_in=true&libraries=places&callback=initMap" async defer></script>
 }

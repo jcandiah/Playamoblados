@@ -257,6 +257,9 @@ namespace BeYourMarket.Web.Controllers
 
         private async Task<ListingUpdateModel> PopulateListingUpdateModel(Listing listing, ListingUpdateModel model)
         {
+
+            // ACA ENTRA AL ACTUALIZAR
+
             model.ListingItem = listing;
 
             // Custom fields
@@ -268,7 +271,7 @@ namespace BeYourMarket.Web.Controllers
                 MetaCategories = customFieldCategories
             };
 
-            model.CustomFields = customFieldModel;
+             model.CustomFields = customFieldModel;
             model.UserID = listing.UserID;
             model.CategoryID = listing.CategoryID;
             model.ListingTypeID = listing.ListingTypeID;
