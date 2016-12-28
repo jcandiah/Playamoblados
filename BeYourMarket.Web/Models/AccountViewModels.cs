@@ -137,5 +137,77 @@ namespace BeYourMarket.Web.Models
 
         [Display(Name = "[[[ToDate]]]")]
         public string ToDate { get; set; }
+
+        [Display(Name = "[[[Adults]]]")]
+        public string Adults { get; set; }
+
+        [Display(Name = "[[[Children]]]")]
+        public string Children { get; set; }
+
+        [Display(Name = "[[[Rent]]]")]
+        public double? Rent { get; set; }
+
+        [Display(Name = "[[[Service]]]")]
+        public double? Service { get; set; }
+
+        [Display(Name = "[[[CleanlinessPrice]]]")]
+        public double? CleanlinessPrice { get; set; }
+
+        [Display(Name = "[[[Total]]]")]
+        public double? Total { get; set; }
+
+        [Display(Name = "[[[Description]]]")]
+        public string Description { get; set; }
+
+        [Display(Name = "[[[ShortDescription]]]")]
+        public string ShortDescription { get; set; }
+
+        [Display(Name = "[[[Condominium]]]")]
+        public string Condominium { get; set; }
+
+        [Display(Name = "[[[TypeOfProperty]]]")]
+        public string TypeOfProperty { get; set; }
+
+        [Display(Name = "[[[Capacity]]]")]
+        public int Capacity { get; set; }
+
+        [Display(Name = "[[[Rooms]]]")]
+        public int? Rooms { get; set; }
+
+        [Display(Name = "[[[Beds]]]")]
+        public int? Beds { get; set; }
+
+        [Display(Name = "[[[SuiteRooms]]]")]
+        public int? SuiteRooms { get; set; }
+
+        [Display(Name = "[[[Bathrooms]]]")]
+        public int? Bathrooms { get; set; }
+
+        [Display(Name = "[[[Dishwasher]]]")]
+        public bool Dishwasher { get; set; }
+
+        [Display(Name = "[[[Washer]]]")]
+        public bool Washer { get; set; }
+
+        [Display(Name = "[[[Grill]]]")]
+        public bool Grill { get; set; }
+
+        [Display(Name = "[[[TvCable]]]")]
+        public bool TvCable { get; set; }
+
+        [Display(Name = "[[[Wifi]]]")]
+        public bool Wifi { get; set; }
+
+        [Display(Name = "[[[Elevator]]]")]
+        public bool Elevator { get; set; }
+
+        [Display(Name = "[[[FloorNumber]]]")]
+        public int? FloorNumber { get; set; }
+
+        [Display(Name = "[[[Stay]]]")]
+        public string Stay { get; set; }
+
+        [Display(Name = "[[[ConditionHouse]]]")]
+        public string ConditionHouse { get; set; }
     }
 }

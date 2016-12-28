@@ -292,13 +292,6 @@ namespace BeYourMarket.Web.Controllers
 
             var userCurrent = User.Identity.User();
 
-            ConfirmOrder confirmacion = new ConfirmOrder();
-            confirmacion.Id = order.ListingID;
-            confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
-            confirmacion.FromDate = order.FromDate.Value.ToString("dd-MM-yyyy");
-            confirmacion.ToDate = order.ToDate.Value.ToString("dd-MM-yyyy");
-            confirmacion.Email = userCurrent.Email;
-
             //validar que los dias no esten reservados
             List<DateTime> FechasCocinadas = new List<DateTime>();
             for (DateTime date = order.FromDate.Value; date < order.ToDate.Value; date = date.Date.AddDays(1))
@@ -663,10 +656,33 @@ namespace BeYourMarket.Web.Controllers
             email.From = CacheHelper.Settings.EmailAddress;
             email.Subject = emailTemplate.Subject;
             email.Body = emailTemplate.Body;
-            email.Name = model.Name;
+            email.Id = model.Id;
+            email.Name = model.Name;           
             email.FromDate = model.FromDate;
             email.ToDate = model.ToDate;
-            email.Id = model.Id;
+            email.Adults = model.Adults;
+            email.Children = model.Children;
+            email.Rent = model.Rent;
+            email.Service = model.Service;
+            email.Total = model.Rent + model.CleanlinessPrice + model.Service;
+            email.ShortDescription = model.ShortDescription;
+            email.Description = model.Description;
+            email.Consominium = model.Condominium;
+            email.TypeOfProperty = model.TypeOfProperty;
+            email.Capacity = model.Capacity;
+            email.Rooms = model.Rooms;
+            email.Beds = model.Beds;
+            email.SuiteRooms = model.SuiteRooms;
+            email.Bathrooms = model.Bathrooms;
+            email.Dishwasher = model.Dishwasher;
+            email.Washer = model.Washer;
+            email.Grill = model.Grill;
+            email.TvCable = model.TvCable;
+            email.Wifi = model.Wifi;
+            email.Elevator = model.Elevator;
+            email.FloorNumber = model.FloorNumber;
+            email.Stay = model.Stay;
+            email.ConditionHouse = model.ConditionHouse;
             EmailHelper.SendEmail(email);
 
             var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
@@ -764,6 +780,34 @@ namespace BeYourMarket.Web.Controllers
             order.Status = (int)Enum_OrderStatus.Pending;
 
             _orderService.Update(order);
+
+            var userCurrent = User.Identity.User();
+            var props = await _aspNetUserService.Query(x => x.Id == order.UserProvider.ToString()).SelectAsync();
+            var propietario = props.FirstOrDefault();
+            ConfirmOrder confirmacion = new ConfirmOrder();
+            confirmacion.Id = order.ListingID;
+            confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
+            confirmacion.FromDate = order.FromDate.Value.ToString("dd-MM-yyyy");
+            confirmacion.ToDate = order.ToDate.Value.ToString("dd-MM-yyyy");
+            confirmacion.Email = userCurrent.Email;
+            confirmacion.Rent = order.Price;
+            confirmacion.CleanlinessPrice = order.Listing.CleanlinessPrice;
+            confirmacion.Condominium = order.Listing.ListingType.Name;
+            confirmacion.TypeOfProperty = order.Listing.TypeOfProperty;
+            confirmacion.Capacity = order.Listing.Max_Capacity;
+            confirmacion.Rooms = order.Listing.Rooms;
+            confirmacion.Beds = order.Listing.Beds;
+            confirmacion.SuiteRooms = order.Listing.Suite;
+            confirmacion.Bathrooms = order.Listing.Bathrooms;
+            confirmacion.Dishwasher = order.Listing.Dishwasher;
+            confirmacion.Washer = order.Listing.Washer;
+            confirmacion.Grill = order.Listing.Grill;
+            confirmacion.TvCable = order.Listing.TV_cable;
+            confirmacion.Wifi = order.Listing.Wifi;
+            confirmacion.Elevator = order.Listing.Elevator;
+            confirmacion.Stay = order.Listing.Stay;
+            confirmacion.ConditionHouse = order.Listing.ConditionHouse;
+            await EnviarCorreo(confirmacion, propietario.Email);
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
