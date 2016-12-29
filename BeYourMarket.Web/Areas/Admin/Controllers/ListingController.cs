@@ -564,7 +564,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 return RedirectToAction("Listing", new { id = listing.ID });
             }
-
+            int actualiza = 0;
             bool updateCount = false;            
             int nextPictureOrderId = 0;
 
@@ -600,8 +600,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Active = listing.Active;
                 listingExisting.Premium = listing.Premium;
 
-                listingExisting.ContactEmail = listing.ContactEmail;
-                listingExisting.ContactName = listing.ContactName;
+                //listingExisting.ContactEmail = listing.ContactEmail;
+                //listingExisting.ContactName = listing.ContactName;
                 listingExisting.ContactPhone = listing.ContactPhone;
 
                 listingExisting.Latitude = listing.Latitude;
@@ -616,11 +616,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Price = listing.Price;
                 listingExisting.Currency = listing.Currency;
 
-                listingExisting.ListingTypeID = listing.ListingTypeID;                
+                //listingExisting.ListingTypeID = listing.ListingTypeID;                
 
                 listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
                 _listingService.Update(listingExisting);
+                actualiza = 1;
             }
 
             // Delete existing fields on item
@@ -714,19 +715,26 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             //INSERTANDO CAMAS
-            for (int i = 0; i < idcama.Length; i++)
+            if (idcama.Length != 0)
             {
-                DetailBed detallecama = new DetailBed();
-                detallecama.TypeOfBedID = idcama[i];
-                detallecama.Quantity = cantidad[i];
-                detallecama.ListingID = listing.ID;
-                _detailBedService.Insert(detallecama);
+                for (int i = 0; i < idcama.Length; i++)
+                {
+                    DetailBed detallecama = new DetailBed();
+                    detallecama.TypeOfBedID = idcama[i];
+                    detallecama.Quantity = cantidad[i];
+                    detallecama.ListingID = listing.ID;
+                    _detailBedService.Insert(detallecama);
+                }
             }
 
             await _unitOfWorkAsync.SaveChangesAsync();
-            listing.Title = listing.ID.ToString();
-            _listingService.Update(listing);
-            await _unitOfWorkAsync.SaveChangesAsync();
+
+            if (actualiza == 0)
+            {
+                listing.Title = listing.ID.ToString();
+                _listingService.Update(listing);
+                await _unitOfWorkAsync.SaveChangesAsync();
+            }
 
             // Update statistics count
             if (updateCount)
