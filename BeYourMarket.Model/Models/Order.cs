@@ -28,6 +28,8 @@ namespace BeYourMarket.Model.Models
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
         public Nullable<int> OrderType { get; set; }
+        public Nullable<int> Adults { get; set; }
+        public Nullable<int> Children { get; set; }        
 
         //Referencias 
 

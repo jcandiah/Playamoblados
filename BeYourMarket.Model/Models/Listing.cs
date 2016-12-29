@@ -71,9 +71,8 @@ namespace BeYourMarket.Model.Models
         public bool Elevator { get; set; }
         public string Stay { get; set; }
         public string ShortDescription { get; set; }
-
         public Nullable<int> CleanlinessPrice { get; set; }
-
+        public Nullable<int> Warranty { get; set; }
 
         //Referencias
         public virtual AspNetUser AspNetUser { get; set; }
