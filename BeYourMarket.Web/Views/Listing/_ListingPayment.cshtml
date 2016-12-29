@@ -30,7 +30,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas == null ? "" : fechas.ToDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
                     </div>
-                    if (!User.IsInRole("Administrator") && userCurrent.Id != Model.UserID)
+                    if (userCurrent.Id != Model.UserID)
                     {
                     <div class="form-group">
                         <span class="input-group">
