@@ -237,10 +237,37 @@
                                                         [[[Elevator]]]
                                                     </td>
                                                     <td>
-                                                       
+                                                       @(Model.ListingCurrent.Elevator ? "Si" : "No")
                                                     </td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td>
+                                                        [[[Quantity of parking]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.ParkingLot)
+                                                    </td>
+                                                    <td>
+                                                        [[[Number of parking]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.NroOfParking)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        [[[Warranty]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.Warranty)
+                                                    </td>
+                                                    <td>
+                                                        [[[Safety Mesh]]]
+                                                    </td>
+                                                    <td>
+                                                        @(Model.ListingCurrent.SafetyMesh ? "Si" : "No")
+                                                    </td>
+                                                </tr>
 
                                                 <tr>
                                                     <th class="bg-warning">

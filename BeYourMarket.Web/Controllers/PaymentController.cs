@@ -388,7 +388,6 @@ namespace BeYourMarket.Web.Controllers
                         {
                             order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
                             order.Quantity = order.Quantity.Value - 1;
-                            order.Price = listing.Price;
                         }
                         else
                         {
@@ -837,6 +836,15 @@ namespace BeYourMarket.Web.Controllers
 
             //return View("~/Views/Listing/Listing.cshtml", itemModel);
             return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> DeleteOrder(int id)
+        {
+            var order = _orderService.Query(x => x.ID == id).Select().FirstOrDefault();
+            _orderService.Delete(order);
+            await _unitOfWorkAsync.SaveChangesAsync();
+            return Json(true);
         }
         #endregion
     }

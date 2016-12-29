@@ -4,9 +4,9 @@
 @model BeYourMarket.Web.Models.OrderModel
 
 @{
-    ViewBag.Title = "[[[Orders]]]";    
+    ViewBag.Title = "[[[Orders]]]";
 }
-
+    
 @section Styles {
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />
     <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
@@ -95,7 +95,7 @@
                                            columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Property]]]");
                                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
-                                           columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
+                                           columns.Add(x => x.PriceFormatted + x.Listing.CleanlinessPrice).Titled("[[[Value]]]");
 
                                            columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
                                            columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());

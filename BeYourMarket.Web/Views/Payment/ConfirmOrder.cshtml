@@ -11,11 +11,12 @@
 @{
     ViewBag.Title = "ConfirmOrder";
     var pasajeros = Model.ListingOrder.Adults.Value + Model.ListingOrder.Children.Value;
+    var total = Model.ListingOrder.Price + Model.ListingOrder.Listing.CleanlinessPrice;
 }
-<img src="~/Images/logosintexto.png" style="text-align: left; width: 100px; height: 100px" class="img-rounded img-responsive"/>
+<img src="~/Images/logosintexto.png" style="text-align: left; width: 100px; height: 100px" class="img-rounded img-responsive" />
 <h1 style="text-align:center">[[[Confirm your reservation request]]]</h1>
 
-<body onload="deshabilitaRetroceso()">
+<body>
     <div class="panel panel-default" style="width: 70%; margin-left: 15%">
         <div class="panel-heading form-group">
             <div><label class="panel-title"> Cod Propiedad: @Model.ListingOrder.ListingID</label></div>
@@ -38,88 +39,86 @@
                 </tr>
             </table>
         </div>
-            <div class="panel-body alert-info" style="text-align: center">
-                <div class="panel form-inline">
-                    <table class="table">
-                        <tr>
-                            <td>
-                                Arriendo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
-                            </td>
-                            <td>
-                                CLP $@Model.ListingOrder.Price
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Servicio <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
-                            </td>
-                            <td>
-                                CLP $@Model.ListingOrder.Price
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Aseo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
-                            </td>
-                            <td>
-                                CLP $@Model.ListingOrder.Price
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Total <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
-                            </td>
-                            <td>
-                                CLP $@Model.ListingOrder.Price
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="panel-body alert-link" style="text-align: center">
-                <div class="panel-title form-inline">
-                    <div></div>
-                </div>
-            </div>
-            <div class="panel-body alert-link" style="text-align: center">
-                <div class="panel-title form-inline">
-                    <div><input class="checkbox" style="display:initial; margin-right: 10px" type="checkbox" onclick="ActivarBoton()" id="chkActivar" />Declaro y acepto las normas de la casa, capacidad máxima de pasajeros y las condiciones referidas al deposito de seguridad.</div>
-                </div>
-            </div>
-            <div class="table-responsive">
+        <div class="panel-body alert-info" style="text-align: center">
+            <div class="panel form-inline">
                 <table class="table">
                     <tr>
-                        <td class="text-center">
-                            @using (Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form" }))
-                            {
-                                <div class=""><button class="btn btn-lg btn-success" type="submit" id="btnConfirm" disabled>Confirmar</button></div>
-                            }
+                        <td>
+                            Arriendo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
                         </td>
-                        <td class="text-center">
-                            @using (Html.BeginForm("CancelOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form" }))
-                            {
-                                <div class=""><button class="btn btn-lg btn-danger" type="submit">Cancelar</button></div>
-                            }
+                        <td>
+                            CLP $@Model.ListingOrder.Price
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Servicio <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Aseo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $@Model.ListingOrder.Listing.CleanlinessPrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                        </td>
+                        <td>
+                            CLP $@total
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
+        <div class="panel-body alert-link" style="text-align: center">
+            <div class="panel-title form-inline">
+                <div></div>
+            </div>
+        </div>
+        <div class="panel-body alert-link" style="text-align: center">
+            <div class="panel-title form-inline">
+                <div><input class="checkbox" style="display:initial; margin-right: 10px" type="checkbox" onclick="ActivarBoton()" id="chkActivar" />Declaro y acepto las normas de la casa, capacidad máxima de pasajeros y las condiciones referidas al deposito de seguridad.</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <td class="text-center">
+                        @using (Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "confirmForm", name = "confirmForm" }))
+                        {
+                            <div class=""><button class="btn btn-lg btn-success" type="submit" id="btnConfirm" disabled>Confirmar</button></div>
+                        }
+                    </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("CancelOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "cancelForm", name = "cancelForm" }))
+                        {
+                            <div class=""><button class="btn btn-lg btn-danger" type="submit">Cancelar</button></div>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-        @*<div id="pop-up" hidden>
+    @*<div id="pop-up" hidden>
             <h3>Pop-up div Successfully Displayed</h3>
             <p>
                 This div only appears when the trigger link is hovered over.
                 Otherwise it is hidden from view.
             </p>
         </div>*@
-    </body>
+</body>
 
 <script type="text/javascript">
-    
-
-    function ActivarBoton()
-    {
+    var actionButton = false;
+    function ActivarBoton() {
         if (chkActivar.checked) {
             $('#btnConfirm').attr('disabled', false);
         }
@@ -127,26 +126,25 @@
             $('#btnConfirm').attr('disabled', true);
         }
     }
+    $('#confirmForm').submit(function (event) {
+        actionButton = true;
+        //event.preventDefault();
+    });
+    $('#cancelForm').submit(function (event) {
+        actionButton = true;
+        //event.preventDefault();
+    });
 
-    function deshabilitaRetroceso() {
-        window.location.hash = "Again-No-back-button"
-        window.onhashchange = function () { window.location.hash = "no-back-button"; }
-    }
-    
     window.onbeforeunload = function () {
-        window.location.hash = "Again-No-back-button"
-        window.onhashchange = function () { window.location.hash = "no-back-button"; }
-        return "¿Estás seguro que deseas salir de la actual página?"
+        if (!actionButton) {
+            return "¿Estás seguro que deseas salir de la actual página?"
+        }
     }
-
-    //if ($("#qstArriendo").hover) {
-    //    $("#qstArriendo").hover(function () {
-    //        $('div#pop-up').show();
-    //    });
-    //}
-    //else {
-    //    $("#qstArriendo").mouseout(function () {
-    //        $('div#pop-up').hidden();
-    //    });
-    //}
+    window.onunload = function () {
+        if (!actionButton) {
+            $.post('@Url.Action("DeleteOrder", "Payment", new { id = Model.ListingOrder.ID })', function (data) {
+                console.log(data);
+            });
+        }
+    }
 </script>
