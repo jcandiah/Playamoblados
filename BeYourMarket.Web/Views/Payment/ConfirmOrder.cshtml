@@ -11,7 +11,8 @@
 @{
     ViewBag.Title = "ConfirmOrder";
     var pasajeros = Model.ListingOrder.Adults.Value + Model.ListingOrder.Children.Value;
-    var total = Model.ListingOrder.Price + Model.ListingOrder.Listing.CleanlinessPrice;
+    var servicio = Model.ListingOrder.Price * 0.04;
+    var total = Model.ListingOrder.Price + Model.ListingOrder.Listing.CleanlinessPrice + servicio;
 }
 <img src="~/Images/logosintexto.png" style="text-align: left; width: 100px; height: 100px" class="img-rounded img-responsive" />
 <h1 style="text-align:center">[[[Confirm your reservation request]]]</h1>
@@ -55,7 +56,7 @@
                             Servicio <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
                         </td>
                         <td>
-                            CLP $
+                            CLP $@servicio
                         </td>
                     </tr>
                     <tr>

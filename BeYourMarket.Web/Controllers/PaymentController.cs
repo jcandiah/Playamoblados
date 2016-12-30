@@ -645,44 +645,96 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> EnviarCorreo(ConfirmOrder model, string correoPropietario)
         {
             var user = await UserManager.FindByNameAsync(model.Email);
+            #region Email fallido
+            //var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
+            //var emailTemplate = emailTemplateQuery.Single();
 
+            ////Aqui se envia el correo al cliente confirmando la orden.
+            //dynamic email = new Postal.Email("Email");
+            //email.To = user.Email;
+            //email.From = CacheHelper.Settings.EmailAddress;
+            //email.Subject = emailTemplate.Subject;
+            //email.Body = emailTemplate.Body;
+            //email.Id = model.Id;
+            //email.Name = model.Name;           
+            //email.FromDate = model.FromDate;
+            //email.ToDate = model.ToDate;
+            //email.Adults = model.Adults;
+            //email.Children = model.Children;
+            //email.Rent = model.Rent;
+            //email.Service = model.Service;
+            //email.Total = model.Rent + model.CleanlinessPrice + model.Service;
+            //email.ShortDescription = model.ShortDescription;
+            //email.Description = model.Description;
+            //email.Condominium = model.Condominium;
+            //email.TypeOfProperty = model.TypeOfProperty;
+            //email.Capacity = model.Capacity;
+            //email.Rooms = model.Rooms;
+            //email.Beds = model.Beds;
+            //email.SuiteRooms = model.SuiteRooms;
+            //email.Bathrooms = model.Bathrooms;
+            //email.Dishwasher = model.Dishwasher;
+            //email.Washer = model.Washer;
+            //email.Grill = model.Grill;
+            //email.TvCable = model.TvCable;
+            //email.Wifi = model.Wifi;
+            //email.Elevator = model.Elevator;
+            //email.FloorNumber = model.FloorNumber;
+            //email.Stay = model.Stay;
+            //email.ConditionHouse = model.ConditionHouse;
+            //EmailHelper.SendEmail(email);
+            #endregion
+
+            var administrator = _aspNetUserService.Query(x=>x.AspNetRoles.Any(y=>y.Name.Equals("Administrator"))).Select().FirstOrDefault();
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
 
-            //Aqui se envia el correo al cliente confirmando la orden.
-            dynamic email = new Postal.Email("Email");
-            email.To = user.Email;
-            email.From = CacheHelper.Settings.EmailAddress;
-            email.Subject = emailTemplate.Subject;
-            email.Body = emailTemplate.Body;
-            email.Id = model.Id;
-            email.Name = model.Name;           
-            email.FromDate = model.FromDate;
-            email.ToDate = model.ToDate;
-            email.Adults = model.Adults;
-            email.Children = model.Children;
-            email.Rent = model.Rent;
-            email.Service = model.Service;
-            email.Total = model.Rent + model.CleanlinessPrice + model.Service;
-            email.ShortDescription = model.ShortDescription;
-            email.Description = model.Description;
-            email.Consominium = model.Condominium;
-            email.TypeOfProperty = model.TypeOfProperty;
-            email.Capacity = model.Capacity;
-            email.Rooms = model.Rooms;
-            email.Beds = model.Beds;
-            email.SuiteRooms = model.SuiteRooms;
-            email.Bathrooms = model.Bathrooms;
-            email.Dishwasher = model.Dishwasher;
-            email.Washer = model.Washer;
-            email.Grill = model.Grill;
-            email.TvCable = model.TvCable;
-            email.Wifi = model.Wifi;
-            email.Elevator = model.Elevator;
-            email.FloorNumber = model.FloorNumber;
-            email.Stay = model.Stay;
-            email.ConditionHouse = model.ConditionHouse;
-            EmailHelper.SendEmail(email);
+            var message = new MessageSendModel()
+            {
+                UserFrom = administrator.Id,
+                UserTo = user.Id,
+                Subject = emailTemplate.Subject,
+                Body = emailTemplate.Body
+            };
+
+            await MessageHelper.SendMessage(message);
+
+            if (emailTemplate != null)
+            {
+                dynamic email = new Postal.Email("Email");
+                email.To = user.Email;
+                email.From = CacheHelper.Settings.EmailAddress;
+                email.Subject = emailTemplate.Subject;
+                email.Body = emailTemplate.Body;
+                email.Id = model.Id;
+                email.Name = model.Name;
+                email.FromDate = model.FromDate;
+                email.ToDate = model.ToDate;
+                email.Adults = model.Adults;
+                email.Children = model.Children;
+                email.Rent = model.Rent;
+                email.Service = model.Service;
+                email.Total = model.Rent + model.CleanlinessPrice + model.Service;
+                email.ShortDescription = model.ShortDescription;
+                email.Description = model.Description;
+                email.Condominium = model.Condominium;
+                email.TypeOfProperty = model.TypeOfProperty;
+                email.Capacity = model.Capacity;
+                email.Rooms = model.Rooms;
+                email.Beds = model.Beds;
+                email.SuiteRooms = model.SuiteRooms;
+                email.Bathrooms = model.Bathrooms;
+                email.Dishwasher = model.Dishwasher;
+                email.Washer = model.Washer;
+                email.Grill = model.Grill;
+                email.TvCable = model.TvCable;
+                email.Wifi = model.Wifi;
+                email.Elevator = model.Elevator;
+                email.FloorNumber = model.FloorNumber;
+                email.Stay = model.Stay;
+                email.ConditionHouse = model.ConditionHouse;
+                EmailHelper.SendEmail(email);
+            }
 
             var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
             var templateorder = emailorderquery.Single();
@@ -730,7 +782,7 @@ namespace BeYourMarket.Web.Controllers
                 emailorder.Name = administradores.Nombre;
                 emailorder.FromDate = model.FromDate;
                 emailorder.ToDate = model.ToDate;
-                emailorder.Id = model.Id;
+                emailorder.Id = model.Id;                
                 EmailHelper.SendEmail(emailorder);
             }
 
@@ -781,8 +833,9 @@ namespace BeYourMarket.Web.Controllers
             _orderService.Update(order);
 
             var userCurrent = User.Identity.User();
-            var props = await _aspNetUserService.Query(x => x.Id == order.UserProvider.ToString()).SelectAsync();
-            var propietario = props.FirstOrDefault();
+            var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider.ToString()).Select().FirstOrDefault();
+            var condominium = _categoryService.Query(x=>x.ID == order.Listing.CategoryID).Select().FirstOrDefault();
+
             ConfirmOrder confirmacion = new ConfirmOrder();
             confirmacion.Id = order.ListingID;
             confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
@@ -791,7 +844,7 @@ namespace BeYourMarket.Web.Controllers
             confirmacion.Email = userCurrent.Email;
             confirmacion.Rent = order.Price;
             confirmacion.CleanlinessPrice = order.Listing.CleanlinessPrice;
-            confirmacion.Condominium = order.Listing.ListingType.Name;
+            confirmacion.Condominium = condominium.Name;
             confirmacion.TypeOfProperty = order.Listing.TypeOfProperty;
             confirmacion.Capacity = order.Listing.Max_Capacity;
             confirmacion.Rooms = order.Listing.Rooms;
@@ -806,6 +859,7 @@ namespace BeYourMarket.Web.Controllers
             confirmacion.Elevator = order.Listing.Elevator;
             confirmacion.Stay = order.Listing.Stay;
             confirmacion.ConditionHouse = order.Listing.ConditionHouse;
+            confirmacion.Description = order.Listing.Description;
             await EnviarCorreo(confirmacion, propietario.Email);
 
             await _unitOfWorkAsync.SaveChangesAsync();

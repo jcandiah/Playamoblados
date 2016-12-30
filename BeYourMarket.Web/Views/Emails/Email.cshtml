@@ -7,7 +7,38 @@
     var body = (string)ViewBag.Body;
     var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
     var siteName = CacheHelper.Settings.Name;
-    body = TokenStringFormat.Format(body, new { CallbackUrl = ViewBag.CallbackUrl, Message = ViewBag.Message, SiteUrl = baseUrl, SiteName = siteName, Name = ViewBag.Name, Id = ViewBag.Id, FromDate = ViewBag.FromDate, ToDate = ViewBag.ToDate });
+    body = TokenStringFormat.Format(body, new { CallbackUrl = ViewBag.CallbackUrl,
+                                                Message = ViewBag.Message,
+                                                SiteUrl = baseUrl,
+                                                SiteName = siteName,
+                                                Name = ViewBag.Name,
+                                                Id = ViewBag.Id,
+                                                FromDate = ViewBag.FromDate,
+                                                ToDate = ViewBag.ToDate,
+                                                Adults = ViewBag.Adults,
+                                                Children = ViewBag.Children,
+                                                Rent = ViewBag.Rent,
+                                                Service = ViewBag.Service,
+                                                CleanlinessPrice = ViewBag.CleanlinessPrice,
+                                                Total = ViewBag.Total,
+                                                Description = ViewBag.Description,
+                                                ShortDescription = ViewBag.ShortDescription,
+                                                Condominium = ViewBag.Condominium,
+                                                TypeOfProperty = ViewBag.TypeOfProperty,
+                                                Capacity = ViewBag.Capacity,
+                                                Rooms = ViewBag.Rooms,
+                                                Beds = ViewBag.Beds,
+                                                SuiteRooms = ViewBag.SuiteRooms,
+                                                Bathrooms = ViewBag.Bathrooms,
+                                                Dishwasher = ViewBag.Dishwasher,
+                                                Washer = ViewBag.Washer,
+                                                Grill = ViewBag.Grill,
+                                                TvCable = ViewBag.TvCable,
+                                                Wifi = ViewBag.Wifi,
+                                                Elevator = ViewBag.Elevator,
+                                                FloorNumber = ViewBag.FloorNumber,
+                                                Stay = ViewBag.Stay,
+                                                ConditionHouse = ViewBag.ConditionHouse, });
 }
 
 @Html.Raw(body)
