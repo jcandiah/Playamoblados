@@ -1,9 +1,41 @@
-﻿@{
+﻿@using GridMvc.Html
+@using Microsoft.AspNet.Identity
+
+@model BeYourMarket.Web.Models.OrderModel
+
+@{
     ViewBag.Title = "[[[Transactions]]]";
 }
 
 @section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
 
+@helper DisplayStatus(int status)
+{
+    switch (status)
+    {
+        case 0:
+        case 1:
+                <span class="label label-info">[[[Pending]]]</span>
+            break;
+        case 2:
+                <span class="label label-success">[[[Completed]]]</span>
+            break;
+        case 3:
+                <span class="label label-danger">[[[Cancelled]]]</span>
+            break;
+
+        default:
+                @status
+            break;
+    }
+}
+
+@helper DisplayListing(string title, int ListingID)
+{
+    <a>@ListingID</a>
 }
 
 <div class="wraper container-fluid">
@@ -18,10 +50,49 @@
                     <div class="alert alert-info">
                         <p>[[[Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured.]]]</p>
                     </div>
+
+
+                    @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4><i class="fa fa-shopping-cart"></i> [[[Transactions]]]</h4>
+                        <hr />
+
+                    }
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
+                       {
+                           columns.Add(x => x.Status)
+                               .Encoded(false)
+                               .Sanitized(false)
+                               .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
+
+                           columns.Add(x => x.Listing.Title)
+                               .Encoded(false)
+                               .Sanitized(false)
+                               .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+
+                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Property]]]");
+                           columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
+
+                           columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
+
+                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+
+                           columns.Add(x => x.Quantity).Titled("[[[Night]]]");
+
+                           columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+
+                           columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
+
+
+                       }).WithPaging(10).Sortable().Filterable().Selectable(false)
+                        </div>
+                    </div>
                 </div>
-
-                @Html.DoAction(HookName.TransactionOverview)
-
             </div>
         </div>
     </div>

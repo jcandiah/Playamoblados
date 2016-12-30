@@ -13,14 +13,15 @@
     <meta name="description" content="Inscribe tu propiedad" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Codeply">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link href="~/css/HomePlayamoblado/css/styles.css" rel="stylesheet" />
     <link href="~/css/formstone/lightbox.css" rel="stylesheet" />
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </head>
@@ -42,8 +43,8 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
-                        <a type="button" class="btn btn-default2" style="padding: 13px;" href="@if (User.Identity.IsAuthenticated) {@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })} else {@Url.Action("Login", "Account") } ">Inscribe tu propiedad</a>
+                    <li>                        
+                        <a type="button" class="btn btn-default2" style="padding: 13px;" href="@Url.Action("ListingUpdate", "Listing")">Inscribe tu propiedad</a>
                     </li>
                     <li>
                         <a href="#">Quiénes somos</a>
@@ -58,57 +59,73 @@
 
     <header id="first">
         <div class="header-content">
-            <img src="~/css/HomePlayamoblado/img/logo.png" class="img-responsive hidden-xs" /><br><br>
+            @*<img src="~/css/HomePlayamoblado/img/logo.png" class="img-responsive hidden-xs" /><br><br>*@
+            <img src="~/css/HomePlayamoblado/img/logosintexto.png" style="width:150px; height:150px;" class="img-responsive hidden-xs" /><br><br>
             <div class="inner">
-
                 <div class="hidden-xs" style="text-align:right;">
                     <h1>Playamoblados</h1>
                     <h3>Reservas&nbsp;&nbsp;Vacacionales</h3>
                 </div>
-
-
             </div>
 
 
             <div style="background-color: rgba(0,0,0,0.5);">
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "intro-text form-inline", @style = "padding:10px;", role = "form" }))
                 {
-                @*<form class="intro-text form-inline" method="get" style="padding:10px;" role="form" action="@Url.Action("Search", "Home")">*@
                     <h4 class="hidden-lg hidden-md hidden-sm ">Reserva tus vacaciones</h4>
-                    <div class="form-group">
-                        @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Search]]]", @class = "form-control" })
+                    <div class="form-group" style="padding-right: 7%;">
+                        <div style="font-size: 29px;">RESERVA AQUI</div>
                     </div>
-                        <div class="form-group">                            
-                            @Html.TextBoxFor(p => p.string_fromdate, "{0:MM/dd/yyyy}", new { @placeholder = "[[[From]]]", @class = "form-control datepicker" })
+                    <div class="form-group">
+                        @Html.TextBoxFor(p => p.SearchText, new { @placeholder = "[[[Locality]]]", @class = "form-control" })
+                    </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(p => p.string_fromdate, "{0:MM/dd/yyyy}", new { @placeholder = "[[[Check in]]]", @class = "form-control datepicker" })
                             @*<input type="text" class="form-control datepicker" placeholder="[[[From]]]" id="FromDate" name="FromDate" data-rule-date="true" required>*@
                         </div>
                         <div class="form-group">
-                            @Html.TextBoxFor(p => p.string_todate, "{0:MM/dd/yyyy}", new { @placeholder = "[[[To]]]", @class = "form-control datepicker" })
+                            @Html.TextBoxFor(p => p.string_todate, "{0:MM/dd/yyyy}", new { @placeholder = "[[[Check out]]]", @class = "form-control datepicker" })
                             @*<input type="text" class="form-control datepicker" placeholder="[[[To]]]" id="ToDate" name="ToDate" data-rule-date="true" required>*@
                         </div>
                         <div class="form-group">
                             @Html.DropDownListFor(p => p.Passengers,
-                 new[]
-                 {
-                        new SelectListItem{ Value = "1", Text = "1 pax" },
-                        new SelectListItem{ Value = "2", Text = "2 pax" },
-                        new SelectListItem{ Value = "3", Text = "3 pax" },
-                        new SelectListItem{ Value = "4", Text = "4 pax" },
-                        new SelectListItem{ Value = "5", Text = "5 pax" },
-                        new SelectListItem{ Value = "6", Text = "6 pax" },
-                        new SelectListItem{ Value = "7", Text = "7 pax" },
-                        new SelectListItem{ Value = "8", Text = "8+ pax" }
-                 },
-                 "[[[Passengers]]]", new { @class = "form-control" })
+                                 new[]
+                                 {
+                                        new SelectListItem{ Value = "1", Text = "1 Adulto" },
+                                        new SelectListItem{ Value = "2", Text = "2 Adultos" },
+                                        new SelectListItem{ Value = "3", Text = "3 Adultos" },
+                                        new SelectListItem{ Value = "4", Text = "4 Adultos" },
+                                        new SelectListItem{ Value = "5", Text = "5 Adultos" },
+                                        new SelectListItem{ Value = "6", Text = "6 Adultos" },
+                                        new SelectListItem{ Value = "7", Text = "7 Adultos" },
+                                        new SelectListItem{ Value = "8", Text = "8+ Adultos" }
+                                 }, new { @class = "form-control"})
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(p=>p.Niños,
+                                 new[]
+                                 {
+                                        new SelectListItem{ Value = "1", Text = "1 Niño" },
+                                        new SelectListItem{ Value = "2", Text = "2 Niños" },
+                                        new SelectListItem{ Value = "3", Text = "3 Niños" },
+                                        new SelectListItem{ Value = "4", Text = "4 Niños" },
+                                        new SelectListItem{ Value = "5", Text = "5 Niños" },
+                                        new SelectListItem{ Value = "6", Text = "6 Niños" },
+                                        new SelectListItem{ Value = "7", Text = "7 Niños" },
+                                        new SelectListItem{ Value = "8", Text = "8+ Niños" }
+                                 },
+                                 "[[[Children]]]", new { @class = "form-control"})
                         </div>
                         <div class="form-group">
                             <button id="btbBuscar" type="submit" class="btn btn-lg btn-success" style="height: 50px;">Buscar</button>
                         </div>
-                @*</form>*@
+                        @*<div class="form-group">
+                            <div style="font-size: 29px;">PLAYAMOBLADOS <br />Reservas vacacionales</div>
+                        </div>*@
                 }
             </div>
         </div>
-       
+
         <video autoplay loop id="video-background" poster="@Url.Content("~/css/HomePlayamoblado/img/MientrasCarga.jpg")" data-wow-delay="0.5s">
             <source src="~/Videos/playamoblados-desktop.webm" type="video/webm" />
             <source src="~/Videos/Fondo.webm" type="video/webm" />
@@ -123,16 +140,16 @@
         <div class="container">
             <h2 style="color:black; font-size:26px;"><p>SERVICIOS BÁSICOS</p></h2>
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Wifi.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Mucama.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/RopaBlanca.png">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-3 col-sm-6">
                     <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/DescuentosComerciales.png">
                 </div>
             </div>
@@ -149,13 +166,13 @@
         <br>
         <div class="container">
             <h2 style="color:black; font-size:26px;"><p>LUGARES DE DESTINO</p></h2>
-            <div class="col-md-4 col-sm-4  col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Papudo.png">
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Maitencillo.png">
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="col-md-4 col-sm-4">
                 <img class="img-responsive img-hover" src="~/css/HomePlayamoblado/img/Zapallar.png">
             </div>
 
@@ -221,6 +238,8 @@
                     language: "es" @*'@Context.GetPrincipalAppLanguageForRequest().ToString()'*@
                 });
             });
+
+
     </script>
 
 </body>

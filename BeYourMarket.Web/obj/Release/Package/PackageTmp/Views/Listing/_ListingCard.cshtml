@@ -6,14 +6,14 @@
             <img alt="@Model.ListingCurrent.Title" src="@Model.UrlPicture">
             @if (Model.ListingCurrent.Price.HasValue)
             {
-                <span class="card-img-label">@Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)</span>
+                <span class="card-img-label" style="background-color: grey">@Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)</span>
             }
         </a>
     </div>
 
     <div class="card-content">
        
-            <img class="thumb-md img-profile-card img-circle" src="~/Images/Sample/Profile/profile.jpg"   />            
+            @*<img class="thumb-md img-profile-card img-circle" src="~/Images/Sample/Profile/profile.jpg"   />*@            
        
 
         <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingCurrent.ID })">
@@ -23,7 +23,7 @@
                 @Html.Raw(Model.ListingCurrent.Description)
             </p>
             <p>
-                <span class="score @Model.ListingCurrent.RatingClass text-sm"></span> @Model.ListingCurrent.ListingReviews.Count [[[Reviews]]]
+                <span class="score @Model.ListingCurrent.RatingClass text-sm"></span> @Model.ListingCurrent.ListingReviews.Count [[[Qualifications]]]
             </p>
         </a>
     </div>

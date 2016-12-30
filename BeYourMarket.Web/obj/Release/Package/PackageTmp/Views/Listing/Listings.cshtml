@@ -76,7 +76,7 @@
                 </div>           
                 <div class="panel-header bdr-b">
                     <div class="container-fluid">
-                        <div class="" col-md-12">
+                        <div class="col-md-12">
                             <h5 class="pull-left mrg-t">
                             @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)
                             </h5>
@@ -97,96 +97,79 @@
                 <div class="search-widget panel panel-default">
                     <form method="get" action="@Url.Action("Search", "Home", new { })">
                         <div class="panel-heading">
-                            [[[Refine Search]]]
+                            [[[Advanced Search]]]
                         </div>
                         <div class="panel-body">
                             <fieldset>
-                                <div class="form-group">
-                                    <label>[[[Number of property]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" id="Property" class="form-control" name="Property" placeholder="[[[Number of property]]]" value="@Model.Property">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[Condominiums]]]</label>
-                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control", onchange = "this.form.submit()" })
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>[[[Passengers]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Passengers]]]" name="Passengers" value="@Model.Passengers">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[Parking Lot]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Location" placeholder="[[[Parking Lot]]]" name="ParkingLot" value="@Model.ParkingLot">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[Bathrooms]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Location" placeholder="[[[Bathrooms]]]" name="Bathrooms" value="@Model.Bathrooms">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[Rooms]]]</label>
-                                    <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Location" placeholder="[[[Rooms]]]" name="Rooms" value="@Model.Rooms">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[M2]]]</label>
-                                    <div class="row">
-                                        <div>
-                                            <div class="col-xs-6">
-                                                <label>[[[From]]]</label>
+                                <div class="panel">
+                                    <div class="form-group">
+                                        <label>[[[Search Locality]]]</label>
+                                        <input type="search" class="form-control" placeholder="[[[Search Locality]]]" id="SearchText" name="SearchText" value="@Model.SearchText">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>[[[Fecha]]]</label>
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-xs-6">
+                                                    <label>[[[Check in]]]</label>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label>[[[Check out]]]</label>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-6">
-                                                <label>[[[To]]]</label>
+                                            <div class="col-xs-6 range-from">
+                                                @Html.TextBoxFor(x => x.string_fromdate, new { @class = "form-control datepicker", @placeholder = "[[[Check in]]]", @value = "@Model.FromDate" })
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6 range-from">
-                                            <input type="text" onfocus="this.type='number'" min="1" id="txtSearch" class="form-control" placeholder="[[[From]]]" name="M2From" value="@Model.M2From">
-                                        </div>
-                                        <div class="col-xs-6 range-to">
-                                            <input type="text" onfocus="this.type='number'" min="1" id="txtSearch" class="form-control" placeholder="[[[To]]]" name="M2To" value="@Model.M2To">
+                                            <div class="col-xs-6 range-to">
+                                                @Html.TextBoxFor(x => x.string_todate, new { @class = "form-control datepicker", @placeholder = "[[[Check out]]]", @value = "@Model.ToDate" })
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>[[[Fecha]]]</label>
-                                    <div class="row">
-                                        <div>
-                                            <div class="col-xs-6">
-                                                <label>[[[From]]]</label>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <label>[[[To]]]</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 range-from">
-                                            @Html.TextBoxFor(x => x.string_fromdate, new { @class = "form-control datepicker", @placeholder ="[[[From]]]", @value = "@Model.FromDate" })
-                                        </div>
-                                        <div class="col-xs-6 range-to">
-                                            @Html.TextBoxFor(x => x.string_todate, new { @class = "form-control datepicker", @placeholder= "[[[To]]]", @value = "@Model.ToDate" })
-                                        </div>
+                                    <div class="form-group">
+                                        <label>[[[Number of Adults]]]</label>
+                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Adults]]]" name="Passengers" value="@Model.Passengers">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>[[[Number of Kids]]]</label>
+                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Kids]]]" name="Passengers" value="@Model.Niños">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>[[[Price]]]</label>
-                                    <div class="row">
-                                        <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
-                                        <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="[[[To]]]" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
+                                <div class="panel">
+                                    <div class="form-group">
+                                        <label>[[[Type of property]]]</label>
+                                        @Html.DropDownListFor(p => p.TypeOfProperty,
+                                             new[]
+                                             {
+                                                    new SelectListItem{ Value = "Casa", Text = "Casa" },
+                                                    new SelectListItem{ Value = "Departamento", Text = "Departamento" },
+                                                    new SelectListItem{ Value = "Cabaña", Text = "Cabaña" },
+                                             },
+                                             "[[[Type Of Property]]]", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>[[[Price]]]</label>
+                                        <div class="row">
+                                            <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
+                                            <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="[[[To]]]" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>[[[Rooms]]]</label>
+                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Location" placeholder="[[[Rooms]]]" name="Rooms" value="@Model.Rooms">
+                                    </div>  
+                                    <div class="form-group">
+                                        <label>[[[Bathrooms]]]</label>
+                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Location" placeholder="[[[Bathrooms]]]" name="Bathrooms" value="@Model.Bathrooms">
+                                    </div>       
+                                    <div class="form-group">
+                                        <label>[[[Condominiums]]]</label>
+                                        @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Condominium]]]", new { @class = "form-control" })
+                                    </div>                           
+                                    <div class="form-group">
+                                        <label>[[[Code of property]]]</label>
+                                        <input type="text" onfocus="this.type='number'" min="1" id="Property" class="form-control" name="Property" placeholder="[[[Code of property]]]" value="@Model.Property">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>[[[Search Text]]]</label>
-                                    <input type="search" class="form-control" placeholder="[[[Search text]]]" id="SearchText" name="SearchText" value="@Model.SearchText">
-                                </div>
-
-                                @*<input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
-                            <label for="PhotoOnly">[[[Only show listings with photos]]]</label>*@
-
                                 @Html.HiddenFor(x => x.SortView)
                             </fieldset>
 

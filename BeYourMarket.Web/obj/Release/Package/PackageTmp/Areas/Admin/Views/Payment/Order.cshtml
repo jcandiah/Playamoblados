@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = "[[[Orders]]]";
 }
-
+    
 @section Styles {
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />
     <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
@@ -71,7 +71,6 @@
                         @Html.AntiForgeryToken()
                         <h4><i class="fa fa-shopping-cart"></i> [[[Orders]]]</h4>
                         <hr />
-
                     }
 
                     <div class="row">
@@ -93,13 +92,13 @@
                                                .Sanitized(false)
                                                .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
-                                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Provider]]]");
-                                           columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Receiver]]]");
+                                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Property]]]");
+                                           columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
-                                           columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
+                                           columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
 
-                                           columns.Add(x => x.FromDate).Titled("[[[From]]]");
-                                           columns.Add(x => x.ToDate).Titled("[[[To]]]");
+                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
 
                                            columns.Add(x => x.Quantity).Titled("[[[Night]]]");
                                                                                       

@@ -14,7 +14,7 @@
             <div class="center-block col-md-8">
                 <div class="panel panel-default mrg-t">
                     <div class="panel-body bdr-b panel-header">
-                            <h4>[[[To publish a property, you must complete the fields and contact management to post the information on this page.]]]</h4>
+                        <h4>[[[To publish a property, you must complete the fields and contact management to post the information on this page.]]]</h4>
                         <p class="text-lighten">
                             @CacheHelper.Settings.SignupText
                         </p>
@@ -32,7 +32,7 @@
 
                             <fieldset>
                                 <legend>[[[Listing Details]]]</legend>
-                                <label>[[[Category]]]</label>
+                                <label>[[[Condominium]]]</label>
                                 @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg m-b-10" })
 
                                 <div id="listingTypesPlaceHolder">
@@ -40,24 +40,26 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>[[[Title]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
+                                  <label>[[[Describe Condominium]]] <span class="text-red">*</span></label>
+                                  <textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the condominium]]]" id="DescribeCondominium" name="DescribeCondominium" value="@Model.ListingItem.DescribeCondominium" required></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>[[[Type]]]<span class="text-red">*</span></label>
-                                    @Html.DropDownListFor(p => p.ListingItem.TypeOfProperty,
+                                    <label class="col-md-2 control-label">[[[Type]]]<span class="text-red">*</span></label>
+                                        @Html.DropDownList("TypeOfProperty",
                                          new[]
                                          {
                                               new SelectListItem{ Value = "Departamento", Text = "[[[Aparment]]]" },
-                                                new SelectListItem{ Value = "Casa", Text = "[[[Home]]]" }
+                                                new SelectListItem{ Value = "Casa", Text = "[[[Home]]]" },
+                                                new SelectListItem { Value = "Cabana", Text = "[[[Cabin]]]" },
+                                                new SelectListItem { Value = "Otro", Text = "[[[Other]]]" }
                                          },
                                           new { @class = "form-control" })
                                 </div>
 
                                 <div class="form-group">
-                                    <label>[[[Description]]] <span class="text-red">*</span></label>
-                                    <textarea class="form-control" rows="5" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
+                                    <label>[[[Comercial Description]]] <span class="text-red">*</span></label>
+                                    <textarea class="form-control" rows="5" placeholder="[[[Specify property information, for example the number of rooms, bathrooms, if you have parking, beds and types bed etc ...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                                 </div>
 
                                 @if (Model.ListingTypes.FirstOrDefault().PriceEnabled)
@@ -65,196 +67,305 @@
                                     <div class="form-group" id="priceGroup">
                                         <label>[[[Price]]]</label>
                                         <div class="input-group">
-                                            <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
+                                            <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="Ej: 60000" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
                                             <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
                                         </div>
                                     </div>
                                 }
+
                                 @*<div class="form-group">
-                                    <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
-                                    <input name="Active" type="hidden" value="false" />
-                                </div>*@
+                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
+                <input name="Active" type="hidden" value="false" />
+            </div>*@
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[Rooms]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Rooms]]]" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
+                                <div class="form-group">
+                                    <label>[[[Max. passenger capacity]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="Ej: 7" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
                                 </div>
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[Rooms Suite]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Suite]]]" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
+                                @*El showsito*@
+
+                                <div id="panel" class="panel panel-success">
+
+                                    <div class="panel-heading text-center">
+
+                                        <div class="form-group">
+                                            <div class="alert alert-info" role="alert">Agrega camas de tu propiedad</div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <td>@Html.DropDownListFor(m => m.TypesOfBeds, new SelectList(Model.TypesOfBeds, "ID", "Name"), new { @class = "form-control" })</td>
+                                                    <td><input type="text" onfocus="this.type='number'" id="cantidadcama" name="cantidadcama" min="0" max="15" placeholder="Cantidad" class="form-control" /></td>
+                                                    <td><button type="button" id="add" name="add" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table id="tabla" class="table table-condensed table-striped">
+                                                <thead>
+                                                    <tr class="bg-success">
+
+                                                        <th>#</th>
+                                                        <th>#Id cama</th>
+                                                        <th>[[[Size]]]</th>
+                                                        <th>[[[Quantity]]]</th>
+                                                        <th>#</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+
+                                            </table>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-3">[[[Total Beds]]]</label>
+                                            <input type="text" class="form-control input-lg col-md-9" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds" readonly="readonly" required>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[Beds]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter number of Beds]]]" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds">
+                                @*Hasta aqui es el showsito*@
+
+                                <div class="panel-body">
+                                    <div class="form-group col-md-15">
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Rooms]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="Rooms" name="Rooms" value="@Model.ListingItem.Rooms" required>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Rooms Suite]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Suite" name="Suite" value="@Model.ListingItem.Suite">
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[M2]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 100" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2">
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Bathrooms]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 2" onfocus="this.type='number'" id="Bathrooms" name="Bathrooms" value="@Model.ListingItem.Bathrooms" required>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Cellars]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 0" onfocus="this.type='number'" id="Cellar" name="Cellar" value="@Model.ListingItem.Cellar">
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Parking Lot]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="[[[Ej: 1]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Floor Number]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 4" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber">
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Number of parking]]]</label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 26A" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking ">
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>[[[Number of TV]]] <span class="text-red">*</span></label>
+                                            <input type="text" class="form-control input-lg" placeholder="Ej: 3" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-3">
-                                    <label>[[[M2]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter M2]]]" onfocus="this.type='number'" id="M2" name="M2" value="@Model.ListingItem.M2" required>
-                                </div>
 
+                                <div class="panel-success panel-body" style="padding-left: 95px">
+                                    <div class="form-group col-md-offset col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Dishwasher" name="Dishwasher" type="checkbox" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Dish washer]]]
+                                        </label>
+                                        <input name="Dishwasher" type="hidden" value="false" />
+                                    </div>
+
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Washer" name="Washer" type="checkbox" value="true" @(Model.ListingItem.Washer ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Washer]]]
+                                        </label>
+                                        <input name="Washer" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Grill" name="Grill" type="checkbox" value="true" @(Model.ListingItem.Grill ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Grill]]]
+                                        </label>
+                                        <input name="Grill" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Terrace" name="Terrace" type="checkbox" value="true" @(Model.ListingItem.Terrace ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Terrace]]]
+                                        </label>
+                                        <input name="Terrace" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="SafetyMesh" name="SafetyMesh" type="checkbox" value="true" @(Model.ListingItem.SafetyMesh ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[Safety Mesh]]]
+                                        </label>
+                                        <input name="SafetyMesh" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="Wifi" name="Wifi" type="checkbox" value="true" @(Model.ListingItem.Wifi ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[WIFI]]]
+                                        </label>
+                                        <input name="Wifi" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="FirstLine" name="FirstLine" type="checkbox" value="true" @(Model.ListingItem.FirstLine ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[First Line]]]
+                                        </label>
+                                        <input name="FirstLine" type="hidden" value="false" />
+                                    </div>
+                                    <div class="form-group col-md-offset-1 col-md-2">
+                                        <label class="cr-styled">
+                                            <input id="TV_cable" name="TV_cable" type="checkbox" value="true" @(Model.ListingItem.TV_cable ? "checked" : "")>
+                                            <i class="fa"></i>
+                                            [[[TV cable]]]
+                                        </label>
+                                        <input name="TV_cable" type="hidden" value="false" />
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                <div id="partialPlaceHolder">
+                    @Html.Partial("_CategoryCustomFields", Model.CustomFields)
+                </div>
+
+                           <fieldset>
+                                <legend>
+                                   [[[Special condition of the rent.]]]
+                                </legend>
                                 <div class="form-group col-md-4">
-                                    <label>[[[Bathrooms]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of bathrooms]]]" onfocus="this.type='number'" id="Bathrooms" name="Bathrooms" value="@Model.ListingItem.Bathrooms" required>
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label>[[[Cellars]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of cellars]]]" onfocus="this.type='number'" id="Cellar" name="Cellar" value="@Model.ListingItem.Cellar" required>
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label>[[[Parking Lot]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter numbers of Parking Lot]]]" onfocus="this.type='number'" id="ParkingLot" name="ParkingLot" value="@Model.ListingItem.ParkingLot" required>
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>[[[Floor Number]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter floor number]]]" onfocus="this.type='number'" id="FloorNumber" name="FloorNumber" value="@Model.ListingItem.FloorNumber" >
-                                </div>
-
-                                @*DEAQUILONUEVO*@
-
-                                <div class="form-group col-md-3">
-                                    <label>[[[Max. Capacity]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Max capacity]]]" onfocus="this.type='number'" id="Max_Capacity" name="Max_Capacity" value="@Model.ListingItem.Max_Capacity" required>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Number of parking]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of parking]]]" onfocus="this.type='number'" id="NroOfParking" name="NroOfParking" value="@Model.ListingItem.NroOfParking " >
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>[[[Number of TV]]] <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Number of TV]]]" onfocus="this.type='number'" id="TV" name="TV" value="@Model.ListingItem.Tv">
-                                </div>
-                               
-                                <div class="form-group col-md-3">
-                                    <label>[[[Dish washer]]] </label>
-                                    <input type="checkbox" id="Dishwasher" name="Dishwasher" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "") />
-                                    <input name="Dishwasher" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Washer]]] </label>
-                                    <input type="checkbox" id="Washer" name="Washer" value="true" @(Model.ListingItem.Washer ? "checked" : "") />
-                                    <input name="Washer" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Grill]]]</label>
-                                    <input type="checkbox" id="Grill" name="Grill" value="true" @(Model.ListingItem.Grill ? "checked" : "") />
+                                    <label class="cr-styled">
+                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                        <strong>[[[Accept smoker]]]</strong>
+                                    </label>
                                     <input name="Grill" type="hidden" value="false" />
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Terrace]]] </label>
-                                    <input type="checkbox" id="Terrace" name="Terrace" value="true" @(Model.ListingItem.Terrace ? "checked" : "") />
-                                    <input name="Terrace" type="hidden" value="false" />
-                                   
+                                <div class="form-group col-md-4">
+                                    <label class="cr-styled">
+                                        <input id="Pets" name="Pets" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                        <strong>[[[Accept Pets]]]</strong>
+                                    </label>
+                                    <input name="Grill" type="hidden" value="false" />
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[Safety Mesh]]] </label>
-                                    <input type="checkbox" id="SafetyMesh" name="SafetyMesh" value="true" @(Model.ListingItem.SafetyMesh ? "checked" : "") />
-                                    <input name="SafetyMesh" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[WIFI]]] </label>
-                                    <input type="checkbox" id="Wifi" name="Wifi" value="true" @(Model.ListingItem.Wifi ? "checked" : "") />
-                                    <input name="Wifi" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[First Line]]] </label>
-                                    <input type="checkbox" id="FirstLine" name="FirstLine" value="true" @(Model.ListingItem.FirstLine ? "checked" : "") />
-                                    <input name="FirstLine" type="hidden" value="false" />
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>[[[TV cable]]] </label>
-                                    <input type="checkbox" id="TV_cable" name="TV_cable" value="true" @(Model.ListingItem.TV_cable ? "checked" : "") />
-                                    <input name="TV_cable" type="hidden" value="false" />
+                                <div class="form-group col-md-4">
+                                    <label class="cr-styled">
+                                        <input id="Children" name="Children" type="checkbox" value="true" checked>
+                                        <i class="fa"></i>
+                                       <strong> [[[Accept Children]]]</strong>
+                                    </label>
+                                    <input name="Grill" type="hidden" value="false" />
                                 </div>
 
 
+                               <div class="form-group">
+                                   <label>[[[Describe Conditions property]]]</label>
+                                   <textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the conditions of use of your property ]]]" id="ConditionHouse" name="ConditionHouse" value="@Model.ListingItem.ConditionHouse"></textarea>
+                               </div>
 
-                               
+                               <div class="form-group">
+                                   <label>[[[Describe the conditions of how you would like to receive your property]]]</label>
+                                   <textarea id="ConditionCheckOut" class="form-control col-md-12" rows="5" name="ConditionCheckOut" placeholder="[[[Describe how you want to have your property returned.]]]" value="@Model.ListingItem.ConditionCheckOut"></textarea>
+                               </div>
 
                             </fieldset>
 
-                            <div id="partialPlaceHolder">
-                                @Html.Partial("_CategoryCustomFields", Model.CustomFields)
-                            </div>
+                <fieldset>
+                    <legend>[[[Upload Pictures]]]</legend>
+                    <div class="form-group">
+                        <div class="target">
+                            <input type="file" id="files" name="files" class="file-loading" multiple>
+                        </div>
+                    </div>
+                </fieldset>
 
-                            <fieldset>
-                                <legend>[[[Upload Pictures]]]</legend>
-                                <div class="form-group">
-                                    <div class="target">
-                                        <input type="file" id="files" name="files" class="file-loading" multiple>
-                                    </div>
-                                </div>
-                            </fieldset>
+                <fieldset>
+                <legend>[[[Location]]]</legend>
+                <div class="form-group">
+                    <label>[[[Location]]]</label>
+                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Location]]]" id="Location" name="Location" value="@Model.ListingItem.Location">
+                </div>
 
-                            <fieldset>
-                                <legend>[[[Location]]]</legend>
-                                <div class="form-group">
-                                    <label>[[[Location]]]</label>
-                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Location]]]" id="Location" name="Location" value="@Model.ListingItem.Location">
-                                </div>
+                <input type="hidden"  id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
+                <input type="hidden"  id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
 
-                                <input type="hidden" id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
-                                <input type="hidden" id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
 
-                                <div class="form-group">
-                                    <div id="map-canvas"></div>
-                                </div>                                
+                @*<div class="form-group">
+                    <div id="map-canvas"></div>
+                </div>*@
 
-                            </fieldset>
+            </fieldset>
 
-                            <fieldset>
-                                <legend>[[[Publisher's Info]]]</legend>
-                                <div class="form-group" hidden>
-                                    <label>[[[Full Name]]] <span class="text-red">*</span></label>
-                                    <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>[[[Phone Number]]]</label>
-                                    <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
-                                </div>
-                                @*<div class="form-group">
-                                    <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
-                                    <input name="ShowPhone" type="hidden" value="false" />
-                                </div>*@
-                                <div class="form-group" hidden>
-                                    <label>[[[Email Address]]] <span class="text-red">*</span></label>
-                                    <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
-                                </div>
-                                @*@if (!User.Identity.IsAuthenticated)
-                                {
-                                    <div class="form-group">
-                                        <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
-                                        <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
-                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
-                                    </div>
-                                }*@
-                            </fieldset>
-                            <fieldset>
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Request publication]]]</button>
-                                <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
-                            </fieldset>
-                        </form>
+                <fieldset>
+                    <legend>[[[Publisher's Info]]]</legend>
+                    <div class="form-group" hidden>
+                        <label>[[[Full Name]]] <span class="text-red">*</span></label>
+                        <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>[[[Phone Number]]]</label>
+                        <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
+                    </div>
+                   
 
+                    <div class="form-group" hidden>
+                        <label>[[[Email Address]]] <span class="text-red">*</span></label>
+                        <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
+                    </div>
+             
+
+                </fieldset>
+                <fieldset>
+                    <button class="btn btn-primary" id="botonfinal" type="submit" onclick="antesdesubmit()"><i class="fa fa-save"></i> [[[Request publication]]]</button>
+                    <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                </fieldset>
+                </form>
+
+            </div>
+                </div>
+                <div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog" style="padding-top:20%;" role="document">
+                        <div class="modal-content" style="padding:5px;">
+                            <p style="font-size:large;">Porfavor, ingresar cantidad de camas.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
-    @Scripts.Render("~/bundles/jqueryval")
-
+    @*<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>*@
+      @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&callback=initMap" async defer type="text/javascript"></script>*@
+      @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8UGXt2DMrg2jJ2bGo7OLCbWWcpPpjc0&libraries=places&callback=initMap" async defer></script>
+    @Scripts.Render("~/bundles/jqueryval")*@
     <script src="~/Scripts/fileinput.min.js"></script>
     @Html.Partial("_LocalizationFileInput")
 
@@ -334,173 +445,243 @@
         });
     </script>
 
-    <script>
-        //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
-        //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        function initMap() {
-            var isDraggable = $(document).width() > 480 ? true : false; // If document (your website) is wider than 480px, isDraggable = true, else isDraggable = false
 
-            var mapOptions = {
-                draggable: isDraggable,
-                scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
-                zoom: 14,
-                center: new google.maps.LatLng(-33.8688, 151.2195),
-            };
-
-            @{ var hasLatLng = @Model.ListingItem.Latitude.HasValue && @Model.ListingItem.Longitude.HasValue; }
-            var hasLatLng = @hasLatLng.ToString().ToLowerInvariant();
-
-            @if (hasLatLng){
-                <text>
-            mapOptions = {
-                center: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
-                zoom: 14
-            };
-            </text>
-            };
-
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-              mapOptions);
-
-            @if (hasLatLng){
-                <text>
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
-                map: map
-            });
-
-            marker.setVisible(true);
-            </text>
-            }
-
-            geocoder = new google.maps.Geocoder();
-
-            var input = (document.getElementById('Location'));
-
-            // Try HTML5 geolocation
-            if (@Model.ListingItem.ID == 0){
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = new google.maps.LatLng(position.coords.latitude,
-                                                         position.coords.longitude);
-
-                        geocoder.geocode({ 'latLng': pos }, function (results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                if (results[1]) {
-                                    map.setZoom(14);
-                                    map.setCenter(pos);
-
-                                    marker = new google.maps.Marker({
-                                        position: pos,
-                                        map: map,
-                                        content: results[1].formatted_address
-                                    });
-                                    infowindow.setContent(results[1].formatted_address);
-                                    infowindow.open(map, marker);
-
-                                    $('#Location').val(results[1].formatted_address);
-                                    $('#Latitude').val(pos.lat());
-                                    $('#Longitude').val(pos.lng());
-
-                                } else {
-                                    alert('No results found');
-                                }
-                            } else {
-                                alert('Geocoder failed due to: ' + status);
-                            }
-                        });
-                    }, function () {
-                        handleNoGeolocation(true);
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    handleNoGeolocation(false);
-                }
-            }
-
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.bindTo('bounds', map);
-
-            var infowindow = new google.maps.InfoWindow();
-            var marker = new google.maps.Marker({
-                map: map,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
-
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                infowindow.close();
-                marker.setVisible(false);
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    window.alert("Autocomplete's returned place contains no geometry");
-                    return;
-                }
-
-                // Set lat/long
-                $('#Latitude').val(place.geometry.location.lat());
-                $('#Longitude').val(place.geometry.location.lng());
-
-                // If the place has a geometry, then present it on a map.
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                    map.setZoom(12);
-                }
-                marker.setIcon(({
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(35, 35)
-                }));
-                marker.setPosition(place.geometry.location);
-                marker.setVisible(true);
-
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                      (place.address_components[0] && place.address_components[0].short_name || ''),
-                      (place.address_components[1] && place.address_components[1].short_name || ''),
-                      (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
-
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-                infowindow.open(map, marker);
-            });
-
-            google.maps.event.addDomListener(input, 'keydown', function (e) {
-                if (e.keyCode == 13) {
-                    if (e.preventDefault) {
-                        e.preventDefault();
-                    }
-                    else {
-                        // Since the google event handler framework does not handle
-                        e.cancelBubble = true;
-                        e.returnValue = false;
-                    }
-                }
-            });
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        if($('#Beds').val(''))
+        {
+            $('#Beds').val('0');
         }
+        var idparcial = 0;
+        /**
+         * Funcion para añadir una nueva columna en la tabla
+         */
+        $("#add").click(function(){
 
-        function handleNoGeolocation(errorFlag) {
-            if (errorFlag) {
-                var content = 'Error: The Geolocation service failed.';
-            } else {
-                var content = 'Error: Your browser doesn\'t support geolocation.';
+            if($("#tabla tbody tr").length==0)
+            {
+                idparcial=0;
             }
 
-            var options = {
-                map: map,
-                position: new google.maps.LatLng(60, 105),
-                content: content
-            };
+            var cantidad = $('#cantidadcama').val();
 
-            var infowindow = new google.maps.InfoWindow(options);
-            map.setCenter(options.position);
+            if(cantidad == '')
+            {
+                $('#modal').modal('show');
+                $('#cantidadcama').focus();
+                return false;
+            }
+
+            if(cantidad < 0 || cantidad > 15)
+            {
+                return false;
+            }
+
+
+
+            var edito=0;
+            var tds=$("#tabla tr:first td").length;
+            var trs=$("#tabla tr").length;
+            var nuevaFila="<tr>";
+            var idcama = $('#TypesOfBeds').val();
+            var nombrecama = $('#TypesOfBeds option:selected').html();
+
+            $('#tabla tbody tr').each(function() {
+                var idcamatabla = $(this).find("td").eq(1).html();
+                if(idcama==idcamatabla)
+                {
+                    $(this).find("td").eq(3).text(parseInt($(this).find("td").eq(3).html()) + parseInt(cantidad));                    
+                    edito=1;
+                }
+            });
+            if(edito==1)
+            {    
+                var totalcama =0;
+                $('#tabla tbody tr').each(function() {              
+                    totalcama += parseInt($(this).find("td").eq(3).html());               
+                });
+                $('#Beds').val(totalcama);
+
+
+                $('#cantidadcama').val('');
+                return false;
+            }
+                   
+                    nuevaFila+="<td>"+ idparcial +"</td>";                    
+                    nuevaFila+="<td>"+ idcama +"</td>";
+                    nuevaFila+="<td>"+ nombrecama +"</td>";
+                    nuevaFila+="<td>"+ cantidad +"</td>";
+                    nuevaFila+="<td><button type='button' onclick='eliminar("+idparcial+");' class='btn btn-danger btn-sm' id="+idparcial+"><span class='glyphicon glyphicon-remove'></span></button></td>"
+                    idparcial++;
+            nuevaFila+="</tr>";
+            $("#tabla").append(nuevaFila);
+        
+            $('#cantidadcama').val('');
+            $('#TypesOfBeds').val(1);
+            ModificarTotal();
+
+        });
+
+
+
+    });
+    function ModificarTotal()
+    {
+        var totalcama =0;
+        $('#tabla tbody tr').each(function() {              
+            totalcama += parseInt($(this).find("td").eq(3).html());               
+        });
+        $('#Beds').val(totalcama);
+    }
+
+    function eliminar(id)
+    {
+        $('#tabla tbody tr').each(function() {
+            var idparcial = $(this).find("td").eq(0).html();
+            console.log(idparcial + "  " + id);
+            if(idparcial==id)
+            {
+                $(this).remove()
+            }
+        });
+        var totalcama =0;
+        $('#tabla tbody tr').each(function() {              
+            totalcama += parseInt($(this).find("td").eq(3).html());               
+        });
+        $('#Beds').val(totalcama);
+        //document.getElementById("tabla").deleteRow(id);
+    }
+
+
+
+    function antesdesubmit()
+    {
+        if($('#tabla tbody tr').length>0)
+        {
+
+            $('#tabla tbody tr').each(function() {              
+                var cantidad=parseInt($(this).find("td").eq(3).html());   //totalCama 
+                var idcama=parseInt($(this).find("td").eq(1).html());   //idcama 
+                $('#tabla tbody').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
+                $('#tabla tbody').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
+                //document.getElementById("listingUpdateForm").submit();
+
+
+                $("#botonfinal").submit();
+            });
         }
-    </script>
+        else
+        {
+            $("#panel").css("border","1px solid #f00");
+            $("#cantidadcama").focus();
+        }
+    }
+
+ </script>
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDRoi7UE7F4AjiqJZ6zqwh5TMvYxgAIVKc&v=3.exp&libraries=places'></script>
+<script>
+    google.maps.event.addDomListener(window, 'load', intilize);
+    function intilize() {
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById("Location"));
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+            var place = autocomplete.getPlace();
+            //var location = "Address: " + place.formatted_address + "<br/>";
+            //location += "Latitude: " + place.geometry.location.lat() + "<br/>";
+            //location += "Longitude: " + place.geometry.location.lng();
+            //document.getElementById('lblresult').innerHTML = location
+            $('#Longitude').val(place.geometry.location.lng());
+            $('#Latitude').val(place.geometry.location.lat());
+
+
+            $('#Latitude').val($('#Latitude').val().replace('.', ','));
+            $('#Longitude').val($('#Longitude').val().replace('.', ','));
+            //initMap();
+        });
+
+    };
+
+
+
+    ////function initMap() {
+    ////    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+    ////        center: { lat: parseInt($('#Latitude').val()), lng: parseInt($('#Longitude').val()) },
+    ////        zoom: 13
+    ////    });
+        //var input = /**type {!HTMLInputElement} */(
+        //    document.getElementById('Location'));
+
+        //var types = document.getElementById('type-selector');
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        ////var autocomplete = new google.maps.places.Autocomplete(input);
+        ////autocomplete.bindTo('bounds', map);
+
+        //var infowindow = new google.maps.InfoWindow();
+        //var marker = new google.maps.Marker({
+        //    map: map,
+        //    anchorPoint: new google.maps.Point(0, -29)
+        //});
+
+    //    autocomplete.addListener('place_changed', function () {
+    //        infowindow.close();
+    //        marker.setVisible(false);
+    //        var place = autocomplete.getPlace();
+    //        if (!place.geometry) {
+    //            window.alert("Autocomplete's returned place contains no geometry");
+    //            return;
+    //        }
+
+    //        // If the place has a geometry, then present it on a map.
+    //        if (place.geometry.viewport) {
+    //            map.fitBounds(place.geometry.viewport);
+    //        } else {
+    //            map.setCenter(place.geometry.location);
+    //            map.setZoom(17);  // Why 17? Because it looks good.
+    //        }
+    //        marker.setIcon(/**type {google.maps.Icon} */({
+    //            url: place.icon,
+    //            size: new google.maps.Size(71, 71),
+    //            origin: new google.maps.Point(0, 0),
+    //            anchor: new google.maps.Point(17, 34),
+    //            scaledSize: new google.maps.Size(35, 35)
+    //        }));
+    //        marker.setPosition(place.geometry.location);
+    //        marker.setVisible(true);
+
+    //        var address = '';
+    //        if (place.address_components) {
+    //            address = [
+    //              (place.address_components[0] && place.address_components[0].short_name || ''),
+    //              (place.address_components[1] && place.address_components[1].short_name || ''),
+    //              (place.address_components[2] && place.address_components[2].short_name || '')
+    //            ].join(' ');
+    //        }
+
+    //        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    //        infowindow.open(map, marker);
+    //    });
+
+    //    // Sets a listener on a radio button to change the filter type on Places
+    //    // Autocomplete.
+    //    function setupClickListener(id, types) {
+    //        var radioButton = document.getElementById(id);
+    //        radioButton.addEventListener('click', function () {
+    //            autocomplete.setTypes(types);
+    //        });
+    //    }
+
+    //    setupClickListener('changetype-all', []);
+    //    setupClickListener('changetype-address', ['address']);
+    //    setupClickListener('changetype-establishment', ['establishment']);
+    //    setupClickListener('changetype-geocode', ['geocode']);
+
+
+    //}
+</script>
+
+
 
 }
