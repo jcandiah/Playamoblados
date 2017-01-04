@@ -24,8 +24,8 @@ namespace BeYourMarket.Web.Utilities
         {
             var httpContext = Elmah.ErrorSignal.FromCurrentContext();
 
-            Task.Factory.StartNew(() =>
-            {
+            //Task.Factory.StartNew(() =>
+            //{
                 try
                 {
                     //skip email if there is no settings
@@ -66,7 +66,7 @@ namespace BeYourMarket.Web.Utilities
                     //http://stackoverflow.com/questions/7441062/how-to-use-elmah-to-manually-log-errors
                     httpContext.Raise(ex);
                 }
-            });
+            //});
         }
     }
 }

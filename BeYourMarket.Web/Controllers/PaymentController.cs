@@ -22,6 +22,7 @@ using BeYourMarket.Core.Controllers;
 using BeYourMarket.Service.Models;
 using BeYourMarket.Web.Extensions;
 using i18n;
+using Twilio;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -282,6 +283,13 @@ namespace BeYourMarket.Web.Controllers
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
+			if ((order.Children + order.Adults) > listing.Max_Capacity)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = string.Format("[[[The maximum capacity of person of this property is {0}]]]",listing.Max_Capacity);
+
+				return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+			}
 
             if (listing == null)
                 return new HttpNotFoundResult();
@@ -689,16 +697,6 @@ namespace BeYourMarket.Web.Controllers
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
 
-            var message = new MessageSendModel()
-            {
-                UserFrom = administrator.Id,
-                UserTo = user.Id,
-                Subject = emailTemplate.Subject,
-                Body = emailTemplate.Body
-            };
-
-            await MessageHelper.SendMessage(message);
-
             if (emailTemplate != null)
             {
                 dynamic email = new Postal.Email("Email");
@@ -714,6 +712,7 @@ namespace BeYourMarket.Web.Controllers
                 email.Children = model.Children;
                 email.Rent = model.Rent;
                 email.Service = model.Service;
+				email.CleanlinessPrice = model.CleanlinessPrice;
                 email.Total = model.Rent + model.CleanlinessPrice + model.Service;
                 email.ShortDescription = model.ShortDescription;
                 email.Description = model.Description;
@@ -752,8 +751,7 @@ namespace BeYourMarket.Web.Controllers
                 personas.Add(persona);
             }
 
-            var listaprop = await _aspNetUserService.Query(x => x.Email.Equals(correoPropietario)).SelectAsync();
-            var prop = listaprop.FirstOrDefault(x => x.Email == correoPropietario);
+			var prop = _aspNetUserService.Query(x => x.Email.Equals(correoPropietario)).Select().FirstOrDefault();
 
             EmailModel propietario = new EmailModel()
             {
@@ -770,6 +768,16 @@ namespace BeYourMarket.Web.Controllers
                 Email = "playamoblados@ratio.cl"
             };
             personas.Add(playamoblados);
+			if (prop.EmailContactPerson != null && prop.EmailContactPerson != prop.Email)
+			{
+				EmailModel contacto = new EmailModel()
+				{
+					Id = "1",
+					Nombre = prop.EmailContactPerson,
+					Email = prop.EmailContactPerson
+				};
+				personas.Add(playamoblados);
+			}
 
             //Con esto se envia el correo al propietario, a la administracion y a PM
             dynamic emailorder = new Postal.Email("Email");
@@ -785,7 +793,6 @@ namespace BeYourMarket.Web.Controllers
                 emailorder.Id = model.Id;                
                 EmailHelper.SendEmail(emailorder);
             }
-
 
             return RedirectToAction("Payment", "Payment", new { id = model.Id });
         }
@@ -813,56 +820,73 @@ namespace BeYourMarket.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmOrderAction(int id)
-        {
-            var selectQuery = await _orderService.Query(x => x.ID == id)
-                .Include(x => x.Listing)
-                .Include(x => x.Listing.ListingType)
-                .Include(x => x.Listing.ListingPictures)
-                .SelectAsync();
+		[HttpPost]
+		[AllowAnonymous]
+		public async Task<ActionResult> ConfirmOrderAction(int id, int adultos, int niños)
+		{
+			var selectQuery = await _orderService.Query(x => x.ID == id)
+				.Include(x => x.Listing)
+				.Include(x => x.Listing.ListingType)
+				.Include(x => x.Listing.ListingPictures)
+				.SelectAsync();
 
-            var order = selectQuery.FirstOrDefault();
+			var order = selectQuery.FirstOrDefault();
 
-            if (order == null)
-                return new HttpNotFoundResult();
+			if (order == null)
+				return new HttpNotFoundResult();
 
-            order.Status = (int)Enum_OrderStatus.Pending;
+			order.Status = (int)Enum_OrderStatus.Pending;
 
-            _orderService.Update(order);
+			_orderService.Update(order);
 
-            var userCurrent = User.Identity.User();
-            var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider.ToString()).Select().FirstOrDefault();
-            var condominium = _categoryService.Query(x=>x.ID == order.Listing.CategoryID).Select().FirstOrDefault();
+			var userCurrent = User.Identity.User();
+			var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider.ToString()).Select().FirstOrDefault();
+			var condominium = _categoryService.Query(x => x.ID == order.Listing.CategoryID).Select().FirstOrDefault();
 
-            ConfirmOrder confirmacion = new ConfirmOrder();
-            confirmacion.Id = order.ListingID;
-            confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
-            confirmacion.FromDate = order.FromDate.Value.ToString("dd-MM-yyyy");
-            confirmacion.ToDate = order.ToDate.Value.ToString("dd-MM-yyyy");
-            confirmacion.Email = userCurrent.Email;
-            confirmacion.Rent = order.Price;
-            confirmacion.CleanlinessPrice = order.Listing.CleanlinessPrice;
-            confirmacion.Condominium = condominium.Name;
-            confirmacion.TypeOfProperty = order.Listing.TypeOfProperty;
-            confirmacion.Capacity = order.Listing.Max_Capacity;
-            confirmacion.Rooms = order.Listing.Rooms;
-            confirmacion.Beds = order.Listing.Beds;
-            confirmacion.SuiteRooms = order.Listing.Suite;
-            confirmacion.Bathrooms = order.Listing.Bathrooms;
-            confirmacion.Dishwasher = order.Listing.Dishwasher;
-            confirmacion.Washer = order.Listing.Washer;
-            confirmacion.Grill = order.Listing.Grill;
-            confirmacion.TvCable = order.Listing.TV_cable;
-            confirmacion.Wifi = order.Listing.Wifi;
-            confirmacion.Elevator = order.Listing.Elevator;
-            confirmacion.Stay = order.Listing.Stay;
-            confirmacion.ConditionHouse = order.Listing.ConditionHouse;
-            confirmacion.Description = order.Listing.Description;
-            await EnviarCorreo(confirmacion, propietario.Email);
+			ConfirmOrder confirmacion = new ConfirmOrder();
+			confirmacion.Id = order.ListingID;
+			confirmacion.Name = userCurrent.FirstName + " " + userCurrent.LastName;
+			confirmacion.FromDate = order.FromDate.Value.ToString("dd-MM-yyyy");
+			confirmacion.ToDate = order.ToDate.Value.ToString("dd-MM-yyyy");
+			confirmacion.Email = userCurrent.Email;
+			confirmacion.Rent = order.Price;
+			confirmacion.Service = order.Price * 0.04;
+			confirmacion.CleanlinessPrice = order.Listing.CleanlinessPrice;
+			confirmacion.Total = confirmacion.Rent + confirmacion.Service + confirmacion.CleanlinessPrice;
+			confirmacion.Condominium = condominium.Name;
+			confirmacion.TypeOfProperty = order.Listing.TypeOfProperty;
+			confirmacion.Capacity = order.Listing.Max_Capacity;
+			confirmacion.Rooms = order.Listing.Rooms;
+			confirmacion.Beds = order.Listing.Beds;
+			confirmacion.SuiteRooms = order.Listing.Suite;
+			confirmacion.Bathrooms = order.Listing.Bathrooms;
+			confirmacion.FloorNumber = order.Listing.FloorNumber;
+			confirmacion.Adults = adultos;
+			confirmacion.Children = niños;
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+			confirmacion.Dishwasher = order.Listing.Dishwasher ? "Si" : "No";
+			confirmacion.Washer = order.Listing.Washer ? "Si" : "No";
+			confirmacion.Grill = order.Listing.Grill ? "Si" : "No";
+			confirmacion.TvCable = order.Listing.TV_cable ? "Si" : "No";
+			confirmacion.Wifi = order.Listing.Wifi ? "Si" : "No";
+			confirmacion.Elevator = order.Listing.Elevator ? "Si" : "No";
+
+			confirmacion.Stay = order.Listing.Stay;
+			confirmacion.ConditionHouse = order.Listing.ConditionHouse;
+			confirmacion.Description = order.Listing.Description;
+			confirmacion.ShortDescription = order.Listing.ShortDescription;
+			await EnviarCorreo(confirmacion, propietario.Email);
+
+			var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+
+			var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
+			var message = twilio.SendMessage(
+				BeYourMarketConfigurationManager.TwilioPhoneNumber,
+				pasajero.PhoneNumber,
+				"Hello from C#"
+				);
+
+			await _unitOfWorkAsync.SaveChangesAsync();
 
             return View("~/Views/Payment/Congratulations.cshtml");
         }

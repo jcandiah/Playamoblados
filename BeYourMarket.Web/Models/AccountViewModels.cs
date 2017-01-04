@@ -139,10 +139,10 @@ namespace BeYourMarket.Web.Models
         public string ToDate { get; set; }
 
         [Display(Name = "[[[Adults]]]")]
-        public string Adults { get; set; }
+        public int? Adults { get; set; }
 
         [Display(Name = "[[[Children]]]")]
-        public string Children { get; set; }
+        public int? Children { get; set; }
 
         [Display(Name = "[[[Rent]]]")]
         public double? Rent { get; set; }
@@ -184,22 +184,22 @@ namespace BeYourMarket.Web.Models
         public int? Bathrooms { get; set; }
 
         [Display(Name = "[[[Dishwasher]]]")]
-        public bool Dishwasher { get; set; }
+        public string Dishwasher { get; set; }
 
         [Display(Name = "[[[Washer]]]")]
-        public bool Washer { get; set; }
+        public string Washer { get; set; }
 
         [Display(Name = "[[[Grill]]]")]
-        public bool Grill { get; set; }
+        public string Grill { get; set; }
 
         [Display(Name = "[[[TvCable]]]")]
-        public bool TvCable { get; set; }
+        public string TvCable { get; set; }
 
         [Display(Name = "[[[Wifi]]]")]
-        public bool Wifi { get; set; }
+        public string Wifi { get; set; }
 
         [Display(Name = "[[[Elevator]]]")]
-        public bool Elevator { get; set; }
+        public string Elevator { get; set; }
 
         [Display(Name = "[[[FloorNumber]]]")]
         public int? FloorNumber { get; set; }

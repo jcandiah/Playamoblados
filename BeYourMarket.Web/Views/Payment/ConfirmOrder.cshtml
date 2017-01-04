@@ -92,7 +92,7 @@
             <table class="table">
                 <tr>
                     <td class="text-center">
-                        @using (Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "confirmForm", name = "confirmForm" }))
+                        @using (Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID, niños = Model.ListingOrder.Children, adultos = Model.ListingOrder.Adults }, FormMethod.Post, new { role = "form", id = "confirmForm", name = "confirmForm" }))
                         {
                             <div class=""><button class="btn btn-lg btn-success" type="submit" id="btnConfirm" disabled>Confirmar</button></div>
                         }

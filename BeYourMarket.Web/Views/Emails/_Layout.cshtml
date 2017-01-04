@@ -7,6 +7,7 @@ Subject: @ViewBag.Subject
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <title>@ViewBag.Subject</title>
     <style>
         /* -------------------------------------
@@ -181,8 +182,9 @@ Subject: @ViewBag.Subject
                             <td>
                                 @RenderBody()
 
-                                <p>Thanks, have a lovely day.</p>
+                                <p>Saludos,</p>
                                 <p><a href="@Request.Url.GetLeftPart(UriPartial.Authority)">@CacheHelper.Settings.Name</a></p>
+								<img src="http://playamoblados-dev.azurewebsites.net/images/community/playamobladosLogo.jpg" alt="Playamoblados"/>
                             </td>
                         </tr>
                     </table>

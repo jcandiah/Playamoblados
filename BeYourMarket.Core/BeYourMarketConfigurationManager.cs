@@ -34,7 +34,15 @@ namespace BeYourMarket.Core
             }
         }
 
-        public static bool AutomaticMigrationDataLossAllowed
+		public static string TwilioPhoneNumber
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["TwilioPhoneNumber"].ToString();
+			}
+		}
+
+		public static bool AutomaticMigrationDataLossAllowed
         {
             get
             {
