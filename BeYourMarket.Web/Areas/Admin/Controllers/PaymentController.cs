@@ -148,8 +148,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var userId = User.Identity.GetUserId();
 
             //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
-            var orders = await _orderService.Query(x=>x.AspNetUserReceiver.AspNetRoles.Count==0)
-                .Include(x => x.Listing)
+            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && (x.Status == 1 || x.Status == 0))
+                 .Include(x => x.Listing)
                 .Include(x => x.AspNetUserProvider)
                 .Include(x => x.AspNetUserReceiver)
                 .SelectAsync();
@@ -275,24 +275,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-			//if (status == 2)
-			//{
-			//	var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
-			//	var templateorder = emailorderquery.Single();
-			//	var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
-
-			//	dynamic emailorder = new Postal.Email("Email");
-			//	emailorder.To = pasajero.Email;
-			//	emailorder.From = CacheHelper.Settings.EmailAddress;
-			//	emailorder.Subject = templateorder.Subject;
-			//	emailorder.Body = templateorder.Body;
-			//	emailorder.Name = pasajero.FirstName + pasajero.LastName;
-			//	emailorder.FromDate = order.FromDate;
-			//	emailorder.ToDate = order.ToDate;
-			//	emailorder.Id = order.ID;
-			//	EmailHelper.SendEmail(emailorder);
-			//}
-
 			var result = new
             {
                 Success = true,
@@ -301,6 +283,57 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-            #endregion
+
+        [HttpPost]
+        public async Task<ActionResult> OrderActionNewReserva(int id, int status, int percent)
+        {
+            var order = await _orderService.FindAsync(id);
+            order.Status = status;
+
+            if (status == 2)
+            {
+                order.Percent = percent;
+                int valor = Convert.ToInt32(order.Price.Value);
+                int abono = (percent * valor) / 100;
+                order.Abono = abono;
+            }
+
+            _orderService.Update(order);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+
+            if (status == 2)
+            {
+                var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
+                var templateorder = emailorderquery.Single();
+                var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+
+                dynamic emailorder = new Postal.Email("Email");
+                emailorder.To = pasajero.Email;
+                emailorder.From = CacheHelper.Settings.EmailAddress;
+                emailorder.Subject = templateorder.Subject;
+                emailorder.Body = templateorder.Body;
+                emailorder.Name = pasajero.FirstName + pasajero.LastName;
+                emailorder.FromDate = order.FromDate;
+                emailorder.ToDate = order.ToDate;
+                emailorder.Id = order.ID;
+                EmailHelper.SendEmail(emailorder);
+            }
+
+
+            var result = new
+            {
+                Success = true,
+                Message = "Hola"
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+
         }
+
+
+        #endregion
+    }
 }
