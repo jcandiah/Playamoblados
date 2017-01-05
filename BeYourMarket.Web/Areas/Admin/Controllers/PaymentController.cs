@@ -30,6 +30,7 @@ using BeYourMarket.Core.Plugins;
 using BeYourMarket.Core.Controllers;
 using BeYourMarket.Core;
 using Microsoft.Practices.Unity;
+using Twilio;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -274,6 +275,43 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _orderService.Update(order);
 
             await _unitOfWorkAsync.SaveChangesAsync();
+
+			if (status == 4)
+			{
+				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
+				var templateorder = emailorderquery.Single();
+				var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+				var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
+
+				dynamic emailorderpasajero = new Postal.Email("Email");
+				emailorderpasajero.To = pasajero.Email;
+				emailorderpasajero.From = CacheHelper.Settings.EmailAddress;
+				emailorderpasajero.Subject = templateorder.Subject;
+				emailorderpasajero.Body = templateorder.Body;
+				emailorderpasajero.Name = pasajero.FirstName + pasajero.LastName;
+				emailorderpasajero.FromDate = order.FromDate;
+				emailorderpasajero.ToDate = order.ToDate;
+				emailorderpasajero.Id = order.ListingID;
+				EmailHelper.SendEmail(emailorderpasajero);
+
+				dynamic emailorderpropietario = new Postal.Email("Email");
+				emailorderpropietario.To = propietario.Email;
+				emailorderpropietario.From = CacheHelper.Settings.EmailAddress;
+				emailorderpropietario.Subject = templateorder.Subject;
+				emailorderpropietario.Body = templateorder.Body;
+				emailorderpropietario.Name = propietario.FirstName + propietario.LastName;
+				emailorderpropietario.FromDate = order.FromDate;
+				emailorderpropietario.ToDate = order.ToDate;
+				emailorderpropietario.Id = order.ListingID;
+				EmailHelper.SendEmail(emailorderpropietario);
+
+				var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
+				var message = twilio.SendMessage(
+					BeYourMarketConfigurationManager.TwilioPhoneNumber,
+					propietario.PhoneNumber,
+					string.Format("Estimado {0}. Se ha confirmado el arriendo de su propiedad desde {1} hasta {2}", propietario.FullName, order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString())
+					);
+			}
 
 			var result = new
             {

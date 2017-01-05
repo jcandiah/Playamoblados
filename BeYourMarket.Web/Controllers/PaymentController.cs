@@ -877,13 +877,11 @@ namespace BeYourMarket.Web.Controllers
 			confirmacion.ShortDescription = order.Listing.ShortDescription;
 			await EnviarCorreo(confirmacion, propietario.Email);
 
-			var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
-
 			var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
 			var message = twilio.SendMessage(
 				BeYourMarketConfigurationManager.TwilioPhoneNumber,
-				pasajero.PhoneNumber,
-				"Hello from C#"
+				propietario.PhoneNumber,
+				string.Format("Estimado {0}. Hemos recibido una reserva por su propiedad desde {1} hasta {2}", propietario.FullName, order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString())
 				);
 
 			 await _unitOfWorkAsync.SaveChangesAsync();
