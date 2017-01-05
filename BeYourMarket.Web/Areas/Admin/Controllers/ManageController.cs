@@ -243,12 +243,20 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             existingUser.FirstName = user.FirstName;
             existingUser.LastName = user.LastName;
             existingUser.Gender = user.Gender;
+            existingUser.Rut = user.Rut; // nuevo
             existingUser.PhoneNumber = user.PhoneNumber;
             existingUser.PhoneNumberConfirmed = user.PhoneNumberConfirmed;
             existingUser.Email = user.Email;
             existingUser.EmailConfirmed = user.EmailConfirmed;
             existingUser.AcceptEmail = user.AcceptEmail;
             existingUser.Disabled = user.Disabled;
+
+            existingUser.Bank = user.Bank;
+            existingUser.AccountType = user.AccountType;
+            existingUser.NumberAccount = user.NumberAccount;
+            existingUser.NameContactPerson = user.NameContactPerson;
+            existingUser.EmailContactPerson = user.EmailContactPerson;
+            existingUser.PhoneContactPerson = user.PhoneContactPerson;
 
             // roles handling
             if (user.RoleAdministrator)

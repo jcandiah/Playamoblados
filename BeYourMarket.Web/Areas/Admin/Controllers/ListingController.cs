@@ -611,6 +611,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.ShowPhone = listing.ShowPhone;
                 listingExisting.ShowEmail = listing.ShowEmail;
 
+                listingExisting.Beds = listing.Beds;
+                listingExisting.Rooms = listing.Rooms;
+                listingExisting.Children = listing.Children;
+
+
                 listingExisting.UserID = listing.UserID;
 
                 listingExisting.Price = listing.Price;

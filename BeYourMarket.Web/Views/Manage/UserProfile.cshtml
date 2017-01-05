@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Tipo de cuenta]]]</label>
+                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Type account]]]</label>
                                         <div class="col-md-10">
                                             @Html.DropDownListFor(p => p.AccountType,
                                                 new[]
@@ -100,7 +100,7 @@
                                                     new SelectListItem{ Value = "Cuenta Corriente", Text = "Cuenta Corriente" },
                                                     new SelectListItem{ Value = "Cuenta de Ahorro", Text = "Cuenta de Ahorro" },
                                                     new SelectListItem{ Value = "Cuenta Vista", Text = "Cuenta Vista" },
-                                                }, "[[[Tipo de cuenta]]]", new { @class = "form-control" })
+                                                }, "[[[Type account]]]", new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
