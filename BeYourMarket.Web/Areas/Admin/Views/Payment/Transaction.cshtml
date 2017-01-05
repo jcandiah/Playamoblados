@@ -15,16 +15,9 @@
 @helper DisplayStatus(int status)
 {
     switch (status)
-    {
-        case 0:
-        case 1:
-                <span class="label label-info">[[[Pending]]]</span>
-            break;
-        case 2:
-                <span class="label label-success">[[[Completed]]]</span>
-            break;
-        case 3:
-                <span class="label label-danger">[[[Cancelled]]]</span>
+    {        
+        case 4:
+                <span class="label label-success">[[[PayFor]]]</span>
             break;
 
         default:

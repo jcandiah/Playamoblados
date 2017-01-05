@@ -43,8 +43,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         private readonly ISettingService _settingService;
         private readonly ISettingDictionaryService _settingDictionaryService;
+		private readonly IAspNetUserService _aspNetUserService;
 
-        private readonly ICategoryService _categoryService;
+		private readonly ICategoryService _categoryService;
         private readonly IListingService _listingService;
 
         private readonly ICustomFieldService _customFieldService;
@@ -116,7 +117,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
-            IPluginFinder pluginFinder)
+            IPluginFinder pluginFinder,
+			IAspNetUserService aspNetUserService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -135,6 +137,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _sqlDbService = sqlDbService;
 
             _pluginFinder = pluginFinder;
+
+			_aspNetUserService = aspNetUserService;
         }
         #endregion
 
@@ -165,7 +169,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var userId = User.Identity.GetUserId();
 
             //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
-            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && x.Status == 2)
+            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && x.Status == 4)
                 .Include(x => x.Listing)
                 .Include(x => x.AspNetUserProvider)
                 .Include(x => x.AspNetUserReceiver)
@@ -181,7 +185,27 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> PaymentSetting()
+		public async Task<ActionResult> PendingPayment()
+		{
+			var userId = User.Identity.GetUserId();
+
+			var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && x.Status == 2)
+				.Include(x => x.Listing)
+				.Include(x => x.AspNetUserProvider)
+				.Include(x => x.AspNetUserReceiver)
+				.SelectAsync();
+
+			var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
+
+			var model = new OrderModel()
+			{
+				Grid = grid
+			};
+
+			return View(model);
+		}
+
+		public async Task<ActionResult> PaymentSetting()
         {
             // Get payment info
             var model = new PaymentSettingModel()
@@ -251,7 +275,25 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-            var result = new
+			//if (status == 2)
+			//{
+			//	var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
+			//	var templateorder = emailorderquery.Single();
+			//	var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+
+			//	dynamic emailorder = new Postal.Email("Email");
+			//	emailorder.To = pasajero.Email;
+			//	emailorder.From = CacheHelper.Settings.EmailAddress;
+			//	emailorder.Subject = templateorder.Subject;
+			//	emailorder.Body = templateorder.Body;
+			//	emailorder.Name = pasajero.FirstName + pasajero.LastName;
+			//	emailorder.FromDate = order.FromDate;
+			//	emailorder.ToDate = order.ToDate;
+			//	emailorder.Id = order.ID;
+			//	EmailHelper.SendEmail(emailorder);
+			//}
+
+			var result = new
             {
                 Success = true,
                 Message = "Hola"

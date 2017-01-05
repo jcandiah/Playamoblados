@@ -18,7 +18,8 @@ namespace BeYourMarket.Model.Enum
         Created = 0,
         Pending,
         Confirmed,
-        Cancelled
+        Cancelled,
+		PayFor
     }
 
     public enum Enum_MetaFieldControlType
