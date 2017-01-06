@@ -278,38 +278,42 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
 			if (status == 4)
 			{
-				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
+				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "payorder").SelectAsync();
 				var templateorder = emailorderquery.Single();
 				var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
 				var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
+				var propiedad = await _listingService.FindAsync(order.ListingID);
 
-				dynamic emailorderpasajero = new Postal.Email("Email");
-				emailorderpasajero.To = pasajero.Email;
-				emailorderpasajero.From = CacheHelper.Settings.EmailAddress;
-				emailorderpasajero.Subject = templateorder.Subject;
-				emailorderpasajero.Body = templateorder.Body;
-				emailorderpasajero.Name = pasajero.FirstName + pasajero.LastName;
-				emailorderpasajero.FromDate = order.FromDate;
-				emailorderpasajero.ToDate = order.ToDate;
-				emailorderpasajero.Id = order.ListingID;
-				EmailHelper.SendEmail(emailorderpasajero);
+				//dynamic emailorderpasajero = new Postal.Email("Email");
+				//emailorderpasajero.To = pasajero.Email;
+				//emailorderpasajero.From = CacheHelper.Settings.EmailAddress;
+				//emailorderpasajero.Subject = templateorder.Subject;
+				//emailorderpasajero.Body = templateorder.Body;
+				//emailorderpasajero.Name = pasajero.FirstName + pasajero.LastName;
+				//emailorderpasajero.FromDate = order.FromDate;
+				//emailorderpasajero.ToDate = order.ToDate;
+				//emailorderpasajero.Id = order.ListingID;
+				//EmailHelper.SendEmail(emailorderpasajero);
+
+				var servicio = order.Price * 0.04;
 
 				dynamic emailorderpropietario = new Postal.Email("Email");
 				emailorderpropietario.To = propietario.Email;
 				emailorderpropietario.From = CacheHelper.Settings.EmailAddress;
 				emailorderpropietario.Subject = templateorder.Subject;
 				emailorderpropietario.Body = templateorder.Body;
-				emailorderpropietario.Name = propietario.FirstName + propietario.LastName;
 				emailorderpropietario.FromDate = order.FromDate;
 				emailorderpropietario.ToDate = order.ToDate;
 				emailorderpropietario.Id = order.ListingID;
-				EmailHelper.SendEmail(emailorderpropietario);
+				emailorderpropietario.Tarifa = propiedad.Price;				
+				emailorderpropietario.Total = order.Price + propiedad.CleanlinessPrice + servicio;
+                EmailHelper.SendEmail(emailorderpropietario);
 
 				var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
 				var message = twilio.SendMessage(
 					BeYourMarketConfigurationManager.TwilioPhoneNumber,
 					propietario.PhoneNumber,
-					string.Format("Estimado {0}. Se ha confirmado el arriendo de su propiedad desde {1} hasta {2}", propietario.FullName, order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString())
+					string.Format(string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0}. Mayores detalles en su correo.", ""))
 					);
 			}
 
@@ -346,6 +350,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
                 var templateorder = emailorderquery.Single();
                 var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+				var propiedad = await _listingService.FindAsync(order.ListingID);
+				var condominio = await _categoryService.FindAsync(propiedad.CategoryID);
 
                 dynamic emailorder = new Postal.Email("Email");
                 emailorder.To = pasajero.Email;
@@ -353,9 +359,16 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 emailorder.Subject = templateorder.Subject;
                 emailorder.Body = templateorder.Body;
                 emailorder.Name = pasajero.FirstName + pasajero.LastName;
-                emailorder.FromDate = order.FromDate;
+				emailorder.Address = propiedad.Address;
+				emailorder.Condominium = condominio.Name;
+				emailorder.Period = string.Format("Desde el {0} hasta el {1}", order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString());
+				emailorder.Tarifa = propiedad.Price;
+				emailorder.Abono = order.Abono;
+				emailorder.Garantia = propiedad.Warranty;
+				emailorder.FromDate = order.FromDate;
                 emailorder.ToDate = order.ToDate;
-                emailorder.Id = order.ID;
+                emailorder.Id = order.ListingID;
+				//Falta agregar la Orden de trabajo
                 EmailHelper.SendEmail(emailorder);
             }
 
