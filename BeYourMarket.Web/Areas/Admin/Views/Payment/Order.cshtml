@@ -129,7 +129,7 @@
             var valorentero = 1;
             if (status == 2) {
 
-                         swal({
+                swal({
                 title: "Indicar Porcentaje (%) de abono!",
                 text: "Escribe el porcentaje de abono que pagara el pasajero",
                 type: "input",
@@ -147,6 +147,7 @@
                     swal.showInputError("Escribir solo numeros!");
                     return false
                 }
+
                 swal("Estupendo!", "El Abono quedo en un : " + inputValue+"%", "success");
 
                 $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: inputValue })
@@ -158,11 +159,11 @@
                     }
                 })
 
-                location.reload();
+                //location.reload();
             });
 
             }
-            else if (status == 3) {
+            if (status == 3) {
 
                   swal({
             title: "[[[Are you sure?]]]",
@@ -176,7 +177,8 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: 0 })
+                //swal('@Url.Action("OrderActionNewReserva", "Payment")');
+                $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: '0' })
                 .done(function (data) {
                     if (data.Success) {
                         location.reload();
@@ -192,9 +194,8 @@
             }
         });
 
-            } else {
-                return;
             }
+
 
 
     }
