@@ -652,47 +652,7 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> EnviarCorreo(ConfirmOrder model, string correoPropietario)
         {
-            var user = await UserManager.FindByNameAsync(model.Email);
-            #region Email fallido
-            //var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
-            //var emailTemplate = emailTemplateQuery.Single();
-
-            ////Aqui se envia el correo al cliente confirmando la orden.
-            //dynamic email = new Postal.Email("Email");
-            //email.To = user.Email;
-            //email.From = CacheHelper.Settings.EmailAddress;
-            //email.Subject = emailTemplate.Subject;
-            //email.Body = emailTemplate.Body;
-            //email.Id = model.Id;
-            //email.Name = model.Name;           
-            //email.FromDate = model.FromDate;
-            //email.ToDate = model.ToDate;
-            //email.Adults = model.Adults;
-            //email.Children = model.Children;
-            //email.Rent = model.Rent;
-            //email.Service = model.Service;
-            //email.Total = model.Rent + model.CleanlinessPrice + model.Service;
-            //email.ShortDescription = model.ShortDescription;
-            //email.Description = model.Description;
-            //email.Condominium = model.Condominium;
-            //email.TypeOfProperty = model.TypeOfProperty;
-            //email.Capacity = model.Capacity;
-            //email.Rooms = model.Rooms;
-            //email.Beds = model.Beds;
-            //email.SuiteRooms = model.SuiteRooms;
-            //email.Bathrooms = model.Bathrooms;
-            //email.Dishwasher = model.Dishwasher;
-            //email.Washer = model.Washer;
-            //email.Grill = model.Grill;
-            //email.TvCable = model.TvCable;
-            //email.Wifi = model.Wifi;
-            //email.Elevator = model.Elevator;
-            //email.FloorNumber = model.FloorNumber;
-            //email.Stay = model.Stay;
-            //email.ConditionHouse = model.ConditionHouse;
-            //EmailHelper.SendEmail(email);
-            #endregion
-
+            var user = await UserManager.FindByNameAsync(model.Email);           
             var administrator = _aspNetUserService.Query(x=>x.AspNetRoles.Any(y=>y.Name.Equals("Administrator"))).Select().FirstOrDefault();
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
@@ -794,7 +754,10 @@ namespace BeYourMarket.Web.Controllers
                 EmailHelper.SendEmail(emailorder);
             }
 
-            return RedirectToAction("Payment", "Payment", new { id = model.Id });
+			//if(prop.PhoneNumberConfirmed)
+				SMSHelper.SendSMS(prop.PhoneNumber, string.Format("Estimado {0} hemos recibido una reserva por su propiedad desde {1} hasta {2} Mayores detalles en su correo", prop.FullName, model.FromDate, model.ToDate));
+
+			return RedirectToAction("Payment", "Payment", new { id = model.Id });
         }
 
         public async Task<ActionResult> ConfirmOrder(int id)

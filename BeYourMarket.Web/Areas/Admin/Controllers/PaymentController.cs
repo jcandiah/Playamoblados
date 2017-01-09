@@ -305,16 +305,13 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorderpropietario.FromDate = order.FromDate;
 				emailorderpropietario.ToDate = order.ToDate;
 				emailorderpropietario.Id = order.ListingID;
-				emailorderpropietario.Tarifa = propiedad.Price;				
+				emailorderpropietario.Tarifa = propiedad.Price;
 				emailorderpropietario.Total = order.Price + propiedad.CleanlinessPrice + servicio;
-                EmailHelper.SendEmail(emailorderpropietario);
+				EmailHelper.SendEmail(emailorderpropietario);
 
-				var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
-				var message = twilio.SendMessage(
-					BeYourMarketConfigurationManager.TwilioPhoneNumber,
-					propietario.PhoneNumber,
-					string.Format(string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0}. Mayores detalles en su correo.", ""))
-					);
+				//if (propietario.PhoneNumberConfirmed)
+					SMSHelper.SendSMS(propietario.PhoneNumber, string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0} Mayores detalles en su correo.", ""));
+
 			}
 
 			var result = new
