@@ -17,6 +17,7 @@ namespace BeYourMarket.Web.Models
             CustomFields = new CustomFieldListingModel();
             Roles = new List<AspNetRole>();
             TypesOfBeds = new List<TypeOfBed>();
+            DetailBeds = new List<DetailBed>();
         }
 
         public int CategoryID { get; set; }

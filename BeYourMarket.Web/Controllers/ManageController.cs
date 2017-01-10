@@ -658,7 +658,14 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Dashboard(string searchText)
         {
             var userId = User.Identity.GetUserId();
-            var items = await _listingService.Query(x => x.UserID == userId).Include(x => x.ListingPictures).SelectAsync();
+
+            var items = await _listingService.Query(x => x.Enabled).Include(x => x.ListingPictures).SelectAsync();
+
+            if (!User.IsInRole("Administrator"))
+            {
+                items = await _listingService.Query(x => x.UserID == userId).Include(x => x.ListingPictures).SelectAsync();
+            }
+            
 
             // Filter string
             if (!string.IsNullOrEmpty(searchText))
