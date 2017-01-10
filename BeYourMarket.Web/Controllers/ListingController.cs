@@ -285,94 +285,115 @@ namespace BeYourMarket.Web.Controllers
             return model;
         }
 
-        [AllowAnonymous]
-        public async Task<ActionResult> Listing(int id)
-        {
-            var itemQuery = await _listingService.Query(x => x.ID == id)
-                .Include(x => x.Category)
-                .Include(x => x.ListingMetas)
-                .Include(x => x.ListingMetas.Select(y => y.MetaField))
-                .Include(x => x.ListingStats)
-                .Include(x => x.ListingType)
-                .SelectAsync();
+		[AllowAnonymous]
+		public async Task<ActionResult> Listing(int id, string fromDate, string toDate, int? adults, int? children)
+		{
+			SearchListingModel fechas;
+			if (Session["fechas"] == null)
+			{
+				fechas = new SearchListingModel
+				{
+					string_fromdate = string.IsNullOrEmpty(fromDate) ? "" : fromDate,
+					string_todate = string.IsNullOrEmpty(toDate) ? "" : toDate,
+					Passengers = adults ?? 1,
+					Niños = children ?? 0
+				};
+			}
+			else
+			{
+				fechas = (SearchListingModel)Session["fechas"];
+				fechas.string_fromdate = string.IsNullOrEmpty(fromDate) ? "" : fromDate;
+				fechas.string_todate = string.IsNullOrEmpty(toDate) ? "" : toDate;
+				fechas.Passengers = adults ?? 1;
+				fechas.Niños = children ?? 0;
+			}
+			Session["fechas"] = fechas;
 
-            var item = itemQuery.FirstOrDefault();
+			var itemQuery = await _listingService.Query(x => x.ID == id)
+				.Include(x => x.Category)
+				.Include(x => x.ListingMetas)
+				.Include(x => x.ListingMetas.Select(y => y.MetaField))
+				.Include(x => x.ListingStats)
+				.Include(x => x.ListingType)
+				.SelectAsync();
 
-            if (item == null)
-                return new HttpNotFoundResult();
+			var item = itemQuery.FirstOrDefault();
 
-            var orders = _orderService.Queryable()
-                .Where(x => x.ListingID == id
-                    //&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
-                    && (x.Status != (int)Enum_OrderStatus.Cancelled)
-                    && (x.FromDate.HasValue && x.ToDate.HasValue)
-                    && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
-                    .ToList();
+			if (item == null)
+				return new HttpNotFoundResult();
 
-            List<DateTime> datesBooked = new List<DateTime>();
-            foreach (var order in orders)
-            {
-                for (DateTime date = order.FromDate.Value; date < order.ToDate.Value; date = date.Date.AddDays(1))
-                {
-                    datesBooked.Add(date);
-                }
-            }
+			var orders = _orderService.Queryable()
+				.Where(x => x.ListingID == id
+					//&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
+					&& (x.Status != (int)Enum_OrderStatus.Cancelled)
+					&& (x.FromDate.HasValue && x.ToDate.HasValue)
+					&& (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
+					.ToList();
 
-            var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+			List<DateTime> datesBooked = new List<DateTime>();
+			foreach (var order in orders)
+			{
+				for (DateTime date = order.FromDate.Value; date < order.ToDate.Value; date = date.Date.AddDays(1))
+				{
+					datesBooked.Add(date);
+				}
+			}
 
-            var camas = await _detailBedService.Query(x=>x.ListingID == item.ID).Include(x=>x.TypeOfBed).SelectAsync();
+			var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
-            var picturesModel = pictures.Select(x =>
-                new PictureModel()
-                {
-                    ID = x.PictureID,
-                    Url = ImageHelper.GetListingImagePath(x.PictureID),
-                    ListingID = x.ListingID,
-                    Ordering = x.Ordering
-                }).OrderBy(x => x.Ordering).ToList();
+			var camas = await _detailBedService.Query(x => x.ListingID == item.ID).Include(x => x.TypeOfBed).SelectAsync();
 
-            var reviews = await _listingReviewService
-                .Query(x => x.UserTo == item.UserID)
-                .Include(x => x.AspNetUserFrom)
-                .SelectAsync();
+			var picturesModel = pictures.Select(x =>
+				new PictureModel()
+				{
+					ID = x.PictureID,
+					Url = ImageHelper.GetListingImagePath(x.PictureID),
+					ListingID = x.ListingID,
+					Ordering = x.Ordering
+				}).OrderBy(x => x.Ordering).ToList();
 
-            var user = await UserManager.FindByIdAsync(item.UserID);
+			var reviews = await _listingReviewService
+				.Query(x => x.UserTo == item.UserID)
+				.Include(x => x.AspNetUserFrom)
+				.SelectAsync();
 
-            var itemModel = new ListingItemModel()
-            {
-                ListingCurrent = item,
-                Pictures = picturesModel,
-                DatesBooked = datesBooked,
-                User = user,
-                ListingReviews = reviews.ToList(),
-                ListBeds = camas.ToList()
-            };
+			var user = await UserManager.FindByIdAsync(item.UserID);
 
-            // Update stat count
-            var itemStat = item.ListingStats.FirstOrDefault();
-            if (itemStat == null)
-            {
-                _ListingStatservice.Insert(new ListingStat()
-                {
-                    ListingID = id,
-                    CountView = 1,
-                    Created = DateTime.Now,
-                    ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-                });
-            }
-            else
-            {
-                itemStat.CountView++;
-                itemStat.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
-                _ListingStatservice.Update(itemStat);
-            }
+			var itemModel = new ListingItemModel()
+			{
+				ListingCurrent = item,
+				Pictures = picturesModel,
+				DatesBooked = datesBooked,
+				User = user,
+				ListingReviews = reviews.ToList(),
+				ListBeds = camas.ToList()
+			};
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+			// Update stat count
+			var itemStat = item.ListingStats.FirstOrDefault();
+			if (itemStat == null)
+			{
+				_ListingStatservice.Insert(new ListingStat()
+				{
+					ListingID = id,
+					CountView = 1,
+					Created = DateTime.Now,
+					ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+				});
+			}
+			else
+			{
+				itemStat.CountView++;
+				itemStat.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+				_ListingStatservice.Update(itemStat);
+			}
 
-            return View("~/Views/Listing/Listing.cshtml", itemModel);
-        }
+			await _unitOfWorkAsync.SaveChangesAsync();
 
-        private void AddErrors(IdentityResult result)
+			return View("~/Views/Listing/Listing.cshtml", itemModel);
+		}
+
+		private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
