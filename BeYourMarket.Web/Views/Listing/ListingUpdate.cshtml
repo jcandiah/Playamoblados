@@ -2,10 +2,12 @@
 
 @{
     ViewBag.Title = "[[[Listing Update]]]";
+    int cont = 0;
 }
 
 @section Styles {
     <link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    
 }
 
 <div class="main-section">
@@ -116,7 +118,21 @@
                                                         <th>#</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody></tbody>
+                                                <tbody>
+                                                 
+                                                    @foreach (var item in Model.DetailBeds)
+                                                    {
+                                                        <tr>
+                                                            <td>@cont</td>
+                                                            <td>@item.TypeOfBedID</td>
+                                                            <td>@item.TypeOfBed.Name</td>
+                                                            <td>@item.Quantity</td>
+                                                            <td><button type='button' onclick='eliminar(@cont);' class='btn btn-danger btn-sm' id="+idparcial+"><span class='glyphicon glyphicon-remove'></span></button></td>
+                                                            @{cont = cont + 1;}
+                                                        </tr>
+                                                    }
+
+                                                </tbody>
 
                                             </table>
                                         </div>
@@ -124,6 +140,9 @@
                                         <div class="form-group">
                                             <label class="col-md-3">[[[Total Beds]]]</label>
                                             <input type="text" class="form-control input-lg col-md-9" onfocus="this.type='number'" id="Beds" name="Beds" value="@Model.ListingItem.Beds" readonly="readonly" required>
+                                        </div>
+                                        <div id="inputescoltados">
+
                                         </div>
                                     </div>
                                 </div>
@@ -259,7 +278,7 @@
                                 </legend>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
+                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" @(Model.ListingItem.Smoker ? "checked" : "")>
                                         <i class="fa"></i>
                                         <strong>[[[Accept smoker]]]</strong>
                                     </label>
@@ -267,7 +286,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Pets" name="Pets" type="checkbox" value="true" checked>
+                                        <input id="Pets" name="Pets" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
                                         <i class="fa"></i>
                                         <strong>[[[Accept Pets]]]</strong>
                                     </label>
@@ -275,7 +294,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Children" name="Children" type="checkbox" value="true" checked>
+                                        <input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
                                         <i class="fa"></i>
                                        <strong> [[[Accept Children]]]</strong>
                                     </label>
@@ -448,11 +467,13 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        if($('#Beds').val(''))
+        var camas = $('#Beds').val();
+        if(camas == '')
         {
             $('#Beds').val('0');
         }
-        var idparcial = 0;
+        
+        var idparcial = @Model.DetailBeds.Count;
         /**
          * Funcion para añadir una nueva columna en la tabla
          */
@@ -538,7 +559,7 @@
     {
         $('#tabla tbody tr').each(function() {
             var idparcial = $(this).find("td").eq(0).html();
-            console.log(idparcial + "  " + id);
+          
             if(idparcial==id)
             {
                 $(this).remove()
@@ -562,10 +583,10 @@
             $('#tabla tbody tr').each(function() {              
                 var cantidad=parseInt($(this).find("td").eq(3).html());   //totalCama 
                 var idcama=parseInt($(this).find("td").eq(1).html());   //idcama 
-                $('#tabla tbody').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
-                $('#tabla tbody').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
+                $('#inputescoltados').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
+                $('#inputescoltados').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
                 //document.getElementById("listingUpdateForm").submit();
-
+                console.log("a");
 
                 $("#botonfinal").submit();
             });

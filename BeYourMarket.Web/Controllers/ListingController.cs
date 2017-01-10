@@ -182,78 +182,78 @@ namespace BeYourMarket.Web.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
-        public async Task<ActionResult> ListingUpdate(int? id)
-        {
-            if (CacheHelper.Categories.Count == 0)
-            {
-                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
-            }
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ListingUpdate(int? id)
+        //{
+        //    if (CacheHelper.Categories.Count == 0)
+        //    {
+        //        TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+        //        TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
+        //    }
 
-            Listing listing;
+        //    Listing listing;
 
-            var userId = User.Identity.GetUserId();
-            var user = await UserManager.FindByIdAsync(userId);
+        //    var userId = User.Identity.GetUserId();
+        //    var user = await UserManager.FindByIdAsync(userId);
 
-            var model = new ListingUpdateModel()
-            {
-                Categories = CacheHelper.Categories
-            };
+        //    var model = new ListingUpdateModel()
+        //    {
+        //        Categories = CacheHelper.Categories
+        //    };
 
-            if (id.HasValue)
-            {
-                // return unauthorized if not authenticated
-                if (!User.Identity.IsAuthenticated)
-                    return new HttpUnauthorizedResult();
+        //    if (id.HasValue)
+        //    {
+        //        // return unauthorized if not authenticated
+        //        if (!User.Identity.IsAuthenticated)
+        //            return new HttpUnauthorizedResult();
 
-                if (await NotMeListing(id.Value))
-                    return new HttpUnauthorizedResult();
+        //        if (await NotMeListing(id.Value))
+        //            return new HttpUnauthorizedResult();
 
-                listing = await _listingService.FindAsync(id);
+        //        listing = await _listingService.FindAsync(id);
 
-                if (listing == null)
-                    return new HttpNotFoundResult();
+        //        if (listing == null)
+        //            return new HttpNotFoundResult();
 
-                // Pictures
-                var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+        //        // Pictures
+        //        var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
-                var picturesModel = pictures.Select(x =>
-                    new PictureModel()
-                    {
-                        ID = x.PictureID,
-                        Url = ImageHelper.GetListingImagePath(x.PictureID),
-                        ListingID = x.ListingID,
-                        Ordering = x.Ordering
-                    }).OrderBy(x => x.Ordering).ToList();
+        //        var picturesModel = pictures.Select(x =>
+        //            new PictureModel()
+        //            {
+        //                ID = x.PictureID,
+        //                Url = ImageHelper.GetListingImagePath(x.PictureID),
+        //                ListingID = x.ListingID,
+        //                Ordering = x.Ordering
+        //            }).OrderBy(x => x.Ordering).ToList();
 
-                model.Pictures = picturesModel;
-            }
-            else
-            {
-                listing = new Listing()
-                {
-                    CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
-                    Created = DateTime.Now.Date,
-                    LastUpdated = DateTime.Now.Date,
-                    Expiration = DateTime.MaxValue,
-                    Enabled = true,
-                    Active = true,
-                };
+        //        model.Pictures = picturesModel;
+        //    }
+        //    else
+        //    {
+        //        listing = new Listing()
+        //        {
+        //            CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
+        //            Created = DateTime.Now.Date,
+        //            LastUpdated = DateTime.Now.Date,
+        //            Expiration = DateTime.MaxValue,
+        //            Enabled = true,
+        //            Active = true,
+        //        };
 
-                if (User.Identity.IsAuthenticated)
-                {
-                    listing.ContactEmail = user.Email;
-                    listing.ContactName = string.Format("{0} {1}", user.FirstName, user.LastName);
-                    listing.ContactPhone = user.PhoneNumber;
-                }
-            }
+        //        if (User.Identity.IsAuthenticated)
+        //        {
+        //            listing.ContactEmail = user.Email;
+        //            listing.ContactName = string.Format("{0} {1}", user.FirstName, user.LastName);
+        //            listing.ContactPhone = user.PhoneNumber;
+        //        }
+        //    }
 
-            // Populate model with listing
-            await PopulateListingUpdateModel(listing, model);
+        //    // Populate model with listing
+        //    await PopulateListingUpdateModel(listing, model);
 
-            return View("~/Views/Listing/ListingUpdate.cshtml", model);
-        }
+        //    return View("~/Views/Listing/ListingUpdate.cshtml", model);
+        //}
 
         private async Task<ListingUpdateModel> PopulateListingUpdateModel(Listing listing, ListingUpdateModel model)
         {
@@ -382,7 +382,7 @@ namespace BeYourMarket.Web.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult> ListingUpdate()
+        public async Task<ActionResult> ListingUpdate(int? id)
         {
             if (CacheHelper.Categories.Count == 0)
             {
@@ -396,25 +396,63 @@ namespace BeYourMarket.Web.Controllers
             var model = new ListingUpdateModel()
             {
                 Categories = CacheHelper.Categories,
-                TypesOfBeds = CacheHelper.TypesOfBeds               
+                TypesOfBeds = CacheHelper.TypesOfBeds                   
             };
 
             var listacama = CacheHelper.TypesOfBeds;
 
             ViewBag.combobox = new SelectList(listacama, "Id", "Name");
+            Listing listing;
 
-            Listing listing = new Listing()
+            if (id.HasValue)
             {
-                CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
-                ContactEmail = user.Email,
-                ContactName = string.Format("{0} {1}", user.FirstName, user.LastName),
-                ContactPhone = user.PhoneNumber,
-                Created = DateTime.Now.Date,
-                LastUpdated = DateTime.Now.Date,
-                Expiration = DateTime.MaxValue,
-                Enabled = false,
-                Active = false,
-            };
+                //return unauthorized if not authenticated
+                if (!User.Identity.IsAuthenticated)
+                    return new HttpUnauthorizedResult();
+
+                if (await NotMeListing(id.Value))
+                    return new HttpUnauthorizedResult();
+
+                listing = await _listingService.FindAsync(id);
+                //listing = await _listingService.Query(x => x.ID == id).Include(x => x.DetailBeds);
+
+
+                if (listing == null)
+                    return new HttpNotFoundResult();
+
+                // Pictures
+                var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+
+                var picturesModel = pictures.Select(x =>
+                    new PictureModel()
+                    {
+                        ID = x.PictureID,
+                        Url = ImageHelper.GetListingImagePath(x.PictureID),
+                        ListingID = x.ListingID,
+                        Ordering = x.Ordering
+                    }).OrderBy(x => x.Ordering).ToList();
+
+                model.Pictures = picturesModel;
+               var detallecama = await _detailBedService.Query(x => x.ListingID == id).Include(x=>x.TypeOfBed).SelectAsync();
+                model.DetailBeds = detallecama.ToList();
+            }
+            else
+            {
+               listing = new Listing()
+                {
+                    CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
+                    ContactEmail = user.Email,
+                    ContactName = string.Format("{0} {1}", user.FirstName, user.LastName),
+                    ContactPhone = user.PhoneNumber,
+                    Created = DateTime.Now.Date,
+                    LastUpdated = DateTime.Now.Date,
+                    Expiration = DateTime.MaxValue,
+                    Enabled = false,
+                    Active = false,
+                };
+            }
+
+
 
             // Populate model with listing
             await PopulateListingUpdateModel(listing, model);
@@ -517,7 +555,7 @@ namespace BeYourMarket.Web.Controllers
                 listing.Enabled = true;
                 listing.Active = false;
                 listing.Currency = CacheHelper.Settings.Currency;
-             
+
                 updateCount = true;
                 _listingService.Insert(listing);
             }
@@ -549,16 +587,59 @@ namespace BeYourMarket.Web.Controllers
 
                 listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
+                //nuevos campos
+                listingExisting.Bathrooms = listing.Bathrooms;
+                listingExisting.Beds = listing.Beds;
+                listingExisting.Cellar = listing.Cellar;
+                listingExisting.Children = listing.Children;
+                listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
+                listingExisting.ConditionCheckOut = listing.ConditionCheckOut;
+                listingExisting.ConditionHouse = listing.ConditionHouse;
+                listingExisting.DescribeCondominium = listing.DescribeCondominium;
+                listingExisting.Description = listing.Description;
+                listingExisting.Dishwasher = listing.Dishwasher;
+                listingExisting.Elevator = listing.Elevator;
+                listingExisting.FirstLine = listing.FirstLine;
+                listingExisting.FloorNumber = listing.FloorNumber;
+                listingExisting.Grill = listing.Grill;
+                listingExisting.M2 = listing.M2;
+                listingExisting.Max_Capacity = listing.Max_Capacity;
+                listingExisting.NroOfParking = listing.NroOfParking;
+                listingExisting.ParkingLot = listing.ParkingLot;
+                listingExisting.Pets = listing.Pets;
+                listingExisting.Rooms = listing.Rooms;
+                listingExisting.SafetyMesh = listing.SafetyMesh;
+                listingExisting.ShortDescription = listing.ShortDescription;
+                listingExisting.Smoker = listing.Smoker;
+                listingExisting.Stay = listing.Stay;
+                listingExisting.Suite = listing.Suite;
+                listingExisting.Terrace = listing.Terrace;
+                listingExisting.Tv = listing.Tv;
+                listingExisting.TV_cable = listing.TV_cable;
+                listingExisting.TypeOfProperty = listing.TypeOfProperty;
+                listingExisting.Warranty = listing.Warranty;
+                listingExisting.Washer = listing.Washer;
+                listingExisting.Wifi = listing.Wifi;
+
                 _listingService.Update(listingExisting);
             }
 
 
-            // Delete existing fields on item
+            // Elimina las fotos
             var customFieldItemQuery = await _customFieldListingService.Query(x => x.ListingID == listing.ID).SelectAsync();
             var customFieldIds = customFieldItemQuery.Select(x => x.ID).ToList();
             foreach (var customFieldId in customFieldIds)
             {
                 await _customFieldListingService.DeleteAsync(customFieldId);
+            }
+
+            // Elimina las camas
+
+           var listacama= await _detailBedService.Query(x => x.ListingID == listing.ID).SelectAsync();
+            var lista = listacama.Select(x=>x.ID).ToList();
+            foreach(var id in lista)
+            {
+                await _detailBedService.DeleteAsync(id);
             }
 
             // Get custom fields
@@ -592,9 +673,13 @@ namespace BeYourMarket.Web.Controllers
 
             //ACA PONGO EL TITULO COMO ID
             await _unitOfWorkAsync.SaveChangesAsync();
-            listing.Title = listing.ID.ToString();
-            _listingService.Update(listing);
-            await _unitOfWorkAsync.SaveChangesAsync();
+
+            if (updateCount)
+            {
+                listing.Title = listing.ID.ToString();
+                _listingService.Update(listing);
+                await _unitOfWorkAsync.SaveChangesAsync();
+            }
 
 
             if (Request.Files.Count > 0)
@@ -648,15 +733,35 @@ namespace BeYourMarket.Web.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             //INSERTANDO CAMAS
-            
-            for (int i = 0; i < idcama.Length; i++)
+            if (idcama.Length != 0)
             {
-                DetailBed detallecama = new DetailBed();
-                detallecama.TypeOfBedID = idcama[i];
-                detallecama.Quantity = cantidad[i];
-                detallecama.ListingID = listing.ID;
-                _detailBedService.Insert(detallecama);
-            }
+                List<int> listaid = new List<int>();
+                for (int i = 0; i < idcama.Length; i++)
+                {
+                    if (listaid.Count != 0) //entra aca cuando no es la primera recorrida
+                    {
+                        if (!listaid.Contains(idcama[i]))
+                        {
+                            DetailBed detallecama = new DetailBed();
+                            detallecama.TypeOfBedID = idcama[i];
+                            detallecama.Quantity = cantidad[i];
+                            detallecama.ListingID = listing.ID;
+                            _detailBedService.Insert(detallecama);
+                            listaid.Add(idcama[i]);
+                        }
+                    }
+                    else //entra primero por no tener ninguna cama en la listaid 
+                    {
+                        DetailBed detallecama = new DetailBed();
+                        detallecama.TypeOfBedID = idcama[i];
+                        detallecama.Quantity = cantidad[i];
+                        detallecama.ListingID = listing.ID;
+                        listaid.Add(idcama[i]);
+                        _detailBedService.Insert(detallecama);
+                    }
+                }
+            }   //fin insertando cama
+
 
             await _unitOfWorkAsync.SaveChangesAsync();
             // Update statistics count
@@ -812,9 +917,21 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<bool> NotMeListing(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var item = await _listingService.FindAsync(id);
-            return item.UserID != userId;
+            bool flag = true;
+           
+            if(User.IsInRole("Administrator") || User.IsInRole("Owner"))
+            {
+                if (User.IsInRole("Owner"))
+                {
+                    var userId = User.Identity.GetUserId();
+                    var item = await _listingService.FindAsync(id);
+                    return item.UserID != userId;
+                }
+
+                return false;
+            }
+            //return item.UserID != userId;
+            return flag;
         }
 
         /// <summary>
