@@ -127,11 +127,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>[[[Number of Adults]]]</label>
-                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Adults]]]" name="Passengers" value="@Model.Passengers">
+										@Html.TextBoxFor(x => x.Passengers, new { @class = "form-control", @placeholder = "[[[Number of Adults]]]", @value = "@Model.ToDate", @min = "1", @onclick= "this.type='number'" })
+                                        @*<input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Adults]]]" name="Passengers" value="@Model.Passengers">*@
                                     </div>
                                     <div class="form-group">
                                         <label>[[[Number of Kids]]]</label>
-                                        <input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Kids]]]" name="Passengers" value="@Model.Niños">
+										@Html.TextBoxFor(x => x.Niños, new { @class = "form-control", @placeholder = "[[[Number of Kids]]]", @value = "@Model.ToDate", @min = "1", @onclick = "this.type='number'" })
+                                        @*<input type="text" onfocus="this.type='number'" min="1" class="form-control" id="Passengers" placeholder="[[[Number of Kids]]]" name="Passengers" value="@Model.Niños">*@
                                     </div>
                                 </div>
                                 <div class="panel">
@@ -149,8 +151,8 @@
                                     <div class="form-group">
                                         <label>[[[Price]]]</label>
                                         <div class="row">
-                                            <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
-                                            <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="[[[To]]]" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
+                                            <div class="col-xs-6 range-from"><input type="number" class="form-control" min="0" placeholder="[[[From]]]" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
+                                            <div class="col-xs-6 range-to"><input type="number" class="form-control" min="0" placeholder="[[[To]]]" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">

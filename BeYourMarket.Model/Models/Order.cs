@@ -32,11 +32,12 @@ namespace BeYourMarket.Model.Models
         public Nullable<int> Children { get; set; }  
         
         public int? Percent { get; set; }
-        public int? Abono { get; set; }      
+        public int? Abono { get; set; }
 
-        //Referencias 
+		public double? Total { get; set; }
+		//Referencias 
 
-        public virtual AspNetUser AspNetUserProvider { get; set; }
+		public virtual AspNetUser AspNetUserProvider { get; set; }
         public virtual AspNetUser AspNetUserReceiver { get; set; }
         public virtual ICollection<ListingReview> ListingReviews { get; set; }
         public virtual Listing Listing { get; set; }

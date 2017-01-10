@@ -296,7 +296,7 @@ namespace BeYourMarket.Web.Controllers
 
             // Redirect if not authenticated
             if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }) });
+                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }), FromDate = order.FromDate, ToDate = order.ToDate, Adults = order.Adults, Children = order.Children });
 
             var userCurrent = User.Identity.User();
 
@@ -360,6 +360,7 @@ namespace BeYourMarket.Web.Controllers
                         order.Currency = listing.Currency;
                         order.OrderType = 3;
                         order.Price = 0;
+						order.Quantity = 0;
                         var listingPrice = await _listingPriceService.Query(x => x.ListingID == order.ListingID).SelectAsync();
                         var precioEnero = listingPrice.FirstOrDefault(x=>x.FromDate.Month.Equals(01));
                         var precioFebrero = listingPrice.FirstOrDefault(x=>x.FromDate.Month.Equals(02));
@@ -369,40 +370,29 @@ namespace BeYourMarket.Web.Controllers
                             if (date >= precioEnero.FromDate && date <= precioEnero.ToDate)
                             {
                                 order.Price = order.Price + precioEnero.Price;
+								order.Quantity = order.Quantity + 1;
                             }
                             else if (date >= precioFebrero.FromDate && date <= precioFebrero.ToDate)
                             {
                                 order.Price = order.Price + precioFebrero.Price;
-                            }
+								order.Quantity = order.Quantity + 1;
+							}
                             else
                             {
                                 order.Price = order.Price + listing.Price;
-                            }
+								order.Quantity = order.Quantity + 1;
+							}
                         }
 
-                        if (order.ToDate.HasValue && order.FromDate.HasValue)
-                        {
-                            order.Description = HttpContext.ParseAndTranslate(
-                                string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
-                                listing.Title,
-                                listing.ID,
-                                order.FromDate.Value.ToShortDateString(),
-                                order.ToDate.Value.ToShortDateString()));
+						var servicio = order.Price * 0.04;
+						order.Total = order.Price + listing.CleanlinessPrice + servicio;
 
-                            order.Quantity = order.ToDate.Value.Subtract(order.FromDate.Value.Date).Days;
-                            //order.Price = order.Quantity * listing.Price;
-                        }
-                        else if (order.Quantity.HasValue)
-                        {
-                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                            order.Quantity = order.Quantity.Value - 1;
-                        }
-                        else
-                        {
-                            // Default
-                            order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
-                            order.Quantity = 1;
-                        }
+						order.Description = HttpContext.ParseAndTranslate(
+                            string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
+                            listing.Title,
+                            listing.ID,
+                            order.FromDate.Value.ToShortDateString(),
+                            order.ToDate.Value.ToShortDateString()));                          
 
                         _orderService.Insert(order);
 
@@ -840,12 +830,8 @@ namespace BeYourMarket.Web.Controllers
 			confirmacion.ShortDescription = order.Listing.ShortDescription;
 			await EnviarCorreo(confirmacion, propietario.Email);
 
-			var twilio = new TwilioRestClient(BeYourMarketConfigurationManager.TwilioSid, BeYourMarketConfigurationManager.TwilioToken);
-			var message = twilio.SendMessage(
-				BeYourMarketConfigurationManager.TwilioPhoneNumber,
-				propietario.PhoneNumber,
-				string.Format("Estimado {0}. Hemos recibido una reserva por su propiedad desde {1} hasta {2}", propietario.FullName, order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString())
-				);
+			SMSHelper.SendSMS(propietario.PhoneNumber,
+				string.Format("Estimado {0}. Hemos recibido una reserva por su propiedad desde {1} hasta {2}", propietario.FullName, order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString()));
 
 			 await _unitOfWorkAsync.SaveChangesAsync();
 

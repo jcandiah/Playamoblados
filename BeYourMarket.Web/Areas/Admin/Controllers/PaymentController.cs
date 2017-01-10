@@ -149,7 +149,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var userId = User.Identity.GetUserId();
 
             //var orders = await _orderService.Query(x=>x.UserProvider!=x.UserReceiver && x.UserReceiver != User.Identity)
-            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && (x.Status == 1 || x.Status == 0))
+            var orders = await _orderService.Query(x => x.AspNetUserReceiver.AspNetRoles.Count == 0 && (x.Status == 1))
                  .Include(x => x.Listing)
                 .Include(x => x.AspNetUserProvider)
                 .Include(x => x.AspNetUserReceiver)

@@ -2,7 +2,13 @@
 @model LoginViewModel
 
 @{
-    ViewBag.Title = "[[[Login]]]";
+	ViewBag.Title = "[[[Login]]]";
+	SearchListingModel fechas = null;
+	if (Session["fechas"] != null)
+	{
+		fechas = (SearchListingModel)Session["fechas"];
+
+	}
 }
 
 
@@ -22,7 +28,7 @@
 
                 <div class="panel-body">
 
-                    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", id = "loginForm" }))
+                    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl, fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate, adults = ViewBag.Adults, children = ViewBag.Children }, FormMethod.Post, new { role = "form", id = "loginForm" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

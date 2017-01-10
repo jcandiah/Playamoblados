@@ -147,16 +147,17 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var model = CacheHelper.Statistics;
             model.TransactionCount = 0;
 
-            // Get transaction count
-            var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
-            foreach (var descriptor in descriptors)
-            {
-                var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
-                var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
-                model.TransactionCount += controller.GetTransactionCount();
-            }
-
-            return View("Dashboard", model);
+			// Get transaction count
+			//var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
+			//foreach (var descriptor in descriptors)
+			//{
+			//    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
+			//    var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+			//    model.TransactionCount += controller.GetTransactionCount();
+			//}
+			model.TransactionCount = _orderService.Query(x => x.Status == 4).Select().Count();
+			model.OrderCount = _orderService.Query(x => x.Status == 1 || x.Status == 2).Select().Count();
+			return View("Dashboard", model);
         }
 
         [AllowAnonymous]

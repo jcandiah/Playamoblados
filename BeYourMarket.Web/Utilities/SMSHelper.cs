@@ -8,6 +8,7 @@ namespace BeYourMarket.Web.Utilities
 	{
 		public static void SendSMS(string to, string body)
 		{
+			var httpContext = Elmah.ErrorSignal.FromCurrentContext();
 			Task.Factory.StartNew(() =>
 			{
 				try
@@ -19,7 +20,7 @@ namespace BeYourMarket.Web.Utilities
 				}
 				catch (Exception ex)
 				{
-					throw ex;
+					httpContext.Raise(ex);
 				}
 			});
 		}
