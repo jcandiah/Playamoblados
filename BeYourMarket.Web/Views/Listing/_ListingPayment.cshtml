@@ -7,6 +7,10 @@
     {
         fechas = (SearchListingModel)Session["fechas"];
     }
+    else
+    {
+        fechas = new SearchListingModel();
+    }
 }
 @if (RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
 {

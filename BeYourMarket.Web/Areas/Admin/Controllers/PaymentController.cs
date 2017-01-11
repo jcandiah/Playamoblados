@@ -342,8 +342,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorder.Tarifa = propiedad.Price;
 				emailorder.Abono = order.Abono;
 				emailorder.Garantia = propiedad.Warranty;
-				emailorder.FromDate = order.FromDate;
-                emailorder.ToDate = order.ToDate;
+				emailorder.FromDate = order.FromDate.Value.ToShortDateString();
+                emailorder.ToDate = order.ToDate.Value.ToShortDateString();
                 emailorder.Id = order.ListingID;
 				//Falta agregar la Orden de trabajo
                 EmailHelper.SendEmail(emailorder);
