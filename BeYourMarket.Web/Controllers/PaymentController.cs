@@ -629,140 +629,126 @@ namespace BeYourMarket.Web.Controllers
             Response.Cache.SetNoStore();
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<ActionResult> ConfirmarPago(Order order)
-        //{
-        //    var listing = await _listingService.FindAsync(order.ListingID);
-        //    var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
-        //    var userCurrent = User.Identity.User();
+		//[HttpPost]
+		//[AllowAnonymous]
+		//public async Task<ActionResult> ConfirmarPago(Order order)
+		//{
+		//    var listing = await _listingService.FindAsync(order.ListingID);
+		//    var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
+		//    var userCurrent = User.Identity.User();
 
-        //    order.OrderType = 3;
+		//    order.OrderType = 3;
 
 
-        //    _orderService.Insert(order);            
+		//    _orderService.Insert(order);            
 
-        //    await _unitOfWorkAsync.SaveChangesAsync();
+		//    await _unitOfWorkAsync.SaveChangesAsync();
 
-        //    ClearCache();
+		//    ClearCache();
 
-        //    ClearCache();
-        //    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
-        //    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
+		//    ClearCache();
+		//    TempData[TempDataKeys.UserMessage] = "[[[You booked your stay correctly!]]]";
+		//    return RedirectToAction("Listing", "Listing", new { id = listing.ID });
 
-        //}
+		//}
 
-        public async Task<ActionResult> EnviarCorreo(ConfirmOrder model, string correoPropietario)
-        {
-            var user = await UserManager.FindByNameAsync(model.Email);           
-            var administrator = _aspNetUserService.Query(x=>x.AspNetRoles.Any(y=>y.Name.Equals("Administrator"))).Select().FirstOrDefault();
-            var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
-            var emailTemplate = emailTemplateQuery.Single();
+		public async Task<ActionResult> EnviarCorreo(ConfirmOrder model, string correoPropietario)
+		{
+			var user = await UserManager.FindByNameAsync(model.Email);
 
-            if (emailTemplate != null)
-            {
-                dynamic email = new Postal.Email("Email");
-                email.To = user.Email;
-                email.From = CacheHelper.Settings.EmailAddress;
-                email.Subject = emailTemplate.Subject;
-                email.Body = emailTemplate.Body;
-                email.Id = model.Id;
-                email.Name = model.Name;
-                email.FromDate = model.FromDate;
-                email.ToDate = model.ToDate;
-                email.Adults = model.Adults;
-                email.Children = model.Children;
-                email.Rent = model.Rent;
-                email.Service = model.Service;
-				email.CleanlinessPrice = model.CleanlinessPrice;
-                email.Total = model.Rent + model.CleanlinessPrice + model.Service;
-                email.ShortDescription = model.ShortDescription;
-                email.Description = model.Description;
-                email.Condominium = model.Condominium;
-                email.TypeOfProperty = model.TypeOfProperty;
-                email.Capacity = model.Capacity;
-                email.Rooms = model.Rooms;
-                email.Beds = model.Beds;
-                email.SuiteRooms = model.SuiteRooms;
-                email.Bathrooms = model.Bathrooms;
-                email.Dishwasher = model.Dishwasher;
-                email.Washer = model.Washer;
-                email.Grill = model.Grill;
-                email.TvCable = model.TvCable;
-                email.Wifi = model.Wifi;
-                email.Elevator = model.Elevator;
-                email.FloorNumber = model.FloorNumber;
-                email.Stay = model.Stay;
-                email.ConditionHouse = model.ConditionHouse;
-                EmailHelper.SendEmail(email);
-            }
+			//Aqui enviamos el correo al pasajero
+			#region Correo Pasajero    
+			var administrator = _aspNetUserService.Query(x => x.AspNetRoles.Any(y => y.Name.Equals("Administrator"))).Select().FirstOrDefault();
+			var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "confirmorder").SelectAsync();
+			var emailTemplate = emailTemplateQuery.Single();
 
-            var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
-            var templateorder = emailorderquery.Single();
-            var admin = await _aspNetUserService.Query(x => x.AspNetRoles.Any(z => z.Name == "Administrator")).SelectAsync();
-
-            IList<EmailModel> personas = new List<EmailModel>();
-            foreach (var recorrer in admin)
-            {
-                EmailModel persona = new EmailModel()
-                {
-                    Id = recorrer.Id,
-                    Nombre = recorrer.FullName,
-                    Email = recorrer.Email
-                };
-                personas.Add(persona);
-            }
-
-			var prop = _aspNetUserService.Query(x => x.Email.Equals(correoPropietario)).Select().FirstOrDefault();
-
-            EmailModel propietario = new EmailModel()
-            {
-                Id = "1",
-                Nombre = prop.FullName,
-                Email = correoPropietario
-            };
-            personas.Add(propietario);
-
-            EmailModel playamoblados = new EmailModel()
-            {
-                Id = "1",
-                Nombre = "PlayaMoblados",
-                Email = "playamoblados@ratio.cl"
-            };
-            personas.Add(playamoblados);
-			if (prop.EmailContactPerson != null && prop.EmailContactPerson != prop.Email)
+			if (emailTemplate != null)
 			{
-				EmailModel contacto = new EmailModel()
-				{
-					Id = "1",
-					Nombre = prop.EmailContactPerson,
-					Email = prop.EmailContactPerson
-				};
-				personas.Add(playamoblados);
+				dynamic email = new Postal.Email("Email");
+				email.To = user.Email;
+				email.From = CacheHelper.Settings.EmailAddress;
+				email.Subject = emailTemplate.Subject;
+				email.Body = emailTemplate.Body;
+				email.Id = model.Id;
+				email.Name = model.Name;
+				email.FromDate = model.FromDate;
+				email.ToDate = model.ToDate;
+				email.Adults = model.Adults;
+				email.Children = model.Children;
+				email.Rent = model.Rent;
+				email.Service = model.Service;
+				email.CleanlinessPrice = model.CleanlinessPrice;
+				email.Total = model.Rent + model.CleanlinessPrice + model.Service;
+				email.ShortDescription = model.ShortDescription;
+				email.Description = model.Description;
+				email.Condominium = model.Condominium;
+				email.TypeOfProperty = model.TypeOfProperty;
+				email.Capacity = model.Capacity;
+				email.Rooms = model.Rooms;
+				email.Beds = model.Beds;
+				email.SuiteRooms = model.SuiteRooms;
+				email.Bathrooms = model.Bathrooms;
+				email.Dishwasher = model.Dishwasher;
+				email.Washer = model.Washer;
+				email.Grill = model.Grill;
+				email.TvCable = model.TvCable;
+				email.Wifi = model.Wifi;
+				email.Elevator = model.Elevator;
+				email.FloorNumber = model.FloorNumber;
+				email.Stay = model.Stay;
+				email.ConditionHouse = model.ConditionHouse;
+				EmailHelper.SendEmail(email);
 			}
+			#endregion
 
-            //Con esto se envia el correo al propietario, a la administracion y a PM
-            dynamic emailorder = new Postal.Email("Email");
-            foreach (var administradores in personas)
-            {
-                emailorder.To = administradores.Email;
-                emailorder.From = CacheHelper.Settings.EmailAddress;
-                emailorder.Subject = templateorder.Subject;
-                emailorder.Body = templateorder.Body;
-                emailorder.Name = administradores.Nombre;
-                emailorder.FromDate = model.FromDate;
-                emailorder.ToDate = model.ToDate;
-                emailorder.Id = model.Id;                
-                EmailHelper.SendEmail(emailorder);
-            }
+			//Con esto se envia el correo a la administracion y a PM
+			#region Correo PM y Admin
+			var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
+			var templateorder = emailorderquery.Single();
+			var admin = await _aspNetUserService.Query(x => x.AspNetRoles.Any(z => z.Name == "Administrator")).SelectAsync();
 
+			dynamic emailorder = new Postal.Email("Email");
+			foreach (var administradores in admin)
+			{
+				emailorder.To = administradores.Email;
+				emailorder.From = CacheHelper.Settings.EmailAddress;
+				emailorder.Subject = templateorder.Subject;
+				emailorder.Body = templateorder.Body;
+				emailorder.Name = administradores.FullName;
+				emailorder.FromDate = model.FromDate;
+				emailorder.ToDate = model.ToDate;
+				emailorder.Id = model.Id;
+				EmailHelper.SendEmail(emailorder);
+			}
+			#endregion
+
+			//Aqui enviamos el correo y sms al propietario
+			#region Correo Propietario
+			var emailOwnerQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "emailowner").SelectAsync();
+			var emailOwner = emailOwnerQuery.Single();
+			var propietario = _aspNetUserService.Query(x => x.Email.Equals(correoPropietario)).Select().FirstOrDefault();
+			var order = _orderService.Query(x => x.ID == model.OrderId).Select().FirstOrDefault();
+			var propiedad = await _listingService.FindAsync(order.ListingID);
+			dynamic ownermail = new Postal.Email("Email");
+			ownermail.To = propietario.Email;
+			ownermail.From = CacheHelper.Settings.EmailAddress;
+			ownermail.Subject = emailOwner.Subject;
+			ownermail.Body = emailOwner.Body;
+			ownermail.Name = propietario.FullName;
+			ownermail.FromDate = model.FromDate;
+			ownermail.ToDate = model.ToDate;
+			ownermail.Tarifa = propiedad.Price;
+			ownermail.Total = order.Total;
+			ownermail.Passengers = order.Adults + order.Children;
+			ownermail.Id = model.Id;
+			EmailHelper.SendEmail(ownermail);
 			//if(prop.PhoneNumberConfirmed)
-				SMSHelper.SendSMS(prop.PhoneNumber, string.Format("Estimado {0} hemos recibido una reserva por su propiedad desde {1} hasta {2} Mayores detalles en su correo", prop.FullName, model.FromDate, model.ToDate));
-
+			SMSHelper.SendSMS(propietario.PhoneNumber, string.Format("Estimado {0} hemos recibido una reserva por su propiedad desde {1} hasta {2} Mayores detalles en su correo", propietario.FullName, model.FromDate, model.ToDate));
+			#endregion
 			return RedirectToAction("Payment", "Payment", new { id = model.Id });
-        }
+		}
 
-        public async Task<ActionResult> ConfirmOrder(int id)
+		public async Task<ActionResult> ConfirmOrder(int id)
         {
             var selectQuery = await _orderService.Query(x => x.ID == id)
                 .Include(x => x.Listing)
@@ -828,7 +814,7 @@ namespace BeYourMarket.Web.Controllers
 			confirmacion.FloorNumber = order.Listing.FloorNumber;
 			confirmacion.Adults = adultos;
 			confirmacion.Children = niños;
-
+			confirmacion.OrderId = order.ID;
 			confirmacion.Dishwasher = order.Listing.Dishwasher ? "Si" : "No";
 			confirmacion.Washer = order.Listing.Washer ? "Si" : "No";
 			confirmacion.Grill = order.Listing.Grill ? "Si" : "No";

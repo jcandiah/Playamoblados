@@ -1,40 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using BeYourMarket.Service;
 using System.Threading.Tasks;
-using BeYourMarket.Model.Models;
 using Repository.Pattern.UnitOfWork;
-using BeYourMarket.Web.Extensions;
 using BeYourMarket.Web.Models.Grids;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
-using ImageProcessor.Imaging.Formats;
-using System.Drawing;
-using ImageProcessor;
-using System.IO;
-using System.Text;
-using BeYourMarket.Model.Enum;
 using RestSharp;
 using BeYourMarket.Web.Areas.Admin.Models;
-using Postal;
-using System.Net.Mail;
-using System.Net;
-using BeYourMarket.Service.Models;
 using BeYourMarket.Core.Plugins;
 using BeYourMarket.Core.Controllers;
 using BeYourMarket.Core;
 using Microsoft.Practices.Unity;
-using Twilio;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+	[Authorize(Roles = "Administrator")]
     public class PaymentController : Controller
     {
         #region Fields
@@ -284,17 +269,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
 				var propiedad = await _listingService.FindAsync(order.ListingID);
 
-				//dynamic emailorderpasajero = new Postal.Email("Email");
-				//emailorderpasajero.To = pasajero.Email;
-				//emailorderpasajero.From = CacheHelper.Settings.EmailAddress;
-				//emailorderpasajero.Subject = templateorder.Subject;
-				//emailorderpasajero.Body = templateorder.Body;
-				//emailorderpasajero.Name = pasajero.FirstName + pasajero.LastName;
-				//emailorderpasajero.FromDate = order.FromDate;
-				//emailorderpasajero.ToDate = order.ToDate;
-				//emailorderpasajero.Id = order.ListingID;
-				//EmailHelper.SendEmail(emailorderpasajero);
-
 				var servicio = order.Price * 0.04;
 
 				dynamic emailorderpropietario = new Postal.Email("Email");
@@ -302,8 +276,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorderpropietario.From = CacheHelper.Settings.EmailAddress;
 				emailorderpropietario.Subject = templateorder.Subject;
 				emailorderpropietario.Body = templateorder.Body;
-				emailorderpropietario.FromDate = order.FromDate;
-				emailorderpropietario.ToDate = order.ToDate;
+				emailorderpropietario.FromDate = order.FromDate.Value.ToShortDateString();
+				emailorderpropietario.ToDate = order.ToDate.Value.ToShortDateString();
 				emailorderpropietario.Id = order.ListingID;
 				emailorderpropietario.Tarifa = propiedad.Price;
 				emailorderpropietario.Total = order.Price + propiedad.CleanlinessPrice + servicio;
@@ -342,21 +316,27 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
 
-            if (status == 2)
-            {
-                var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
-                var templateorder = emailorderquery.Single();
-                var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+			if (status == 2)
+			{
+				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
+				var templateorder = emailorderquery.Single();
+				var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
 				var propiedad = await _listingService.FindAsync(order.ListingID);
 				var condominio = await _categoryService.FindAsync(propiedad.CategoryID);
 
-                dynamic emailorder = new Postal.Email("Email");
-                emailorder.To = pasajero.Email;
-                emailorder.From = CacheHelper.Settings.EmailAddress;
-                emailorder.Subject = templateorder.Subject;
-                emailorder.Body = templateorder.Body;
-                emailorder.Name = pasajero.FirstName + pasajero.LastName;
-				emailorder.Address = propiedad.Address;
+				dynamic emailorder = new Postal.Email("Email");
+				emailorder.To = pasajero.Email;
+				emailorder.From = CacheHelper.Settings.EmailAddress;
+				emailorder.Subject = templateorder.Subject;
+				emailorder.Body = templateorder.Body;
+				emailorder.Name = pasajero.FirstName + pasajero.LastName;
+				emailorder.Adults = order.Adults;
+				emailorder.Children = order.Children;
+				emailorder.Rent = order.Price;
+                emailorder.CleanlinessPrice = propiedad.CleanlinessPrice;
+				emailorder.Service = propiedad.Price * 0.04;
+				emailorder.Total = order.Total;
+                emailorder.Address = propiedad.Address;
 				emailorder.Condominium = condominio.Name;
 				emailorder.Period = string.Format("Desde el {0} hasta el {1}", order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString());
 				emailorder.Tarifa = propiedad.Price;

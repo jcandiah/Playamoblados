@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BeYourMarket.Core;
 using Twilio;
+
 namespace BeYourMarket.Web.Utilities
 {
 	public static class SMSHelper
@@ -9,8 +10,8 @@ namespace BeYourMarket.Web.Utilities
 		public static void SendSMS(string to, string body)
 		{
 			var httpContext = Elmah.ErrorSignal.FromCurrentContext();
-			Task.Factory.StartNew(() =>
-			{
+			//Task.Factory.StartNew(() =>
+			//{
 				try
 				{
 					string AccountSid = BeYourMarketConfigurationManager.TwilioSid;
@@ -22,7 +23,7 @@ namespace BeYourMarket.Web.Utilities
 				{
 					httpContext.Raise(ex);
 				}
-			});
+			//});
 		}
 	}
 }

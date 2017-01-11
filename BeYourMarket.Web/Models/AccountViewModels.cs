@@ -209,5 +209,8 @@ namespace BeYourMarket.Web.Models
 
         [Display(Name = "[[[ConditionHouse]]]")]
         public string ConditionHouse { get; set; }
-    }
+
+		[Display(Name = "[[[OrderId]]]")]
+		public int OrderId { get; set; }
+	}
 }
