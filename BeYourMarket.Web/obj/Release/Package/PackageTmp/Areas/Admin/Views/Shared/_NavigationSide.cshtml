@@ -8,64 +8,65 @@
 
 @helper DisplayGroupAttribute(string menu)
 {
-    var groupDashboard = new string[] {
-            "dashboard",
-            "index"
-        };
+var groupDashboard = new string[] {
+			"dashboard",
+			"index"
+		};
 
-    var groupSettings = new string[] {
-            "settings",
-            "settingsemail",
-            "emailtemplates",
-            "settingslanguage",
-        };
+var groupSettings = new string[] {
+			"settings",
+			"settingsemail",
+			"emailtemplates",
+			"settingslanguage",
+		};
 
-    var groupUsers = new string[] {
-            "users"
-        };
+var groupUsers = new string[] {
+			"users"
+		};
 
-    var groupListings = new string[] {
-            "listings",
-            "listingupdate",
-            "listingtypes",
-            "categories",
-            "categoryupdate",
-            "customfields",
-            "customfieldupdate"
-        };
+var groupListings = new string[] {
+			"listings",
+			"listingupdate",
+			"listingtypes",
+			"categories",
+			"categoryupdate",
+			"customfields",
+			"customfieldupdate"
+		};
 
-    var groupDesign = new string[] {
-            "appearance",
-            "codestyle",
-            "codescript"            
-        };
+var groupDesign = new string[] {
+			"appearance",
+			"codestyle",
+			"codescript"
+		};
 
-    var groupPages = new string[] {
-            "contentpages",
-            "contentpageupdate"
-        };
+var groupPages = new string[] {
+			"contentpages",
+			"contentpageupdate"
+		};
 
-    var groupPayments = new string[] {
-            "paymentsetting",
-            "order",
-            "transaction"
-        };
+var groupPayments = new string[] {
+			"paymentsetting",
+			"order",
+			"transaction",
+			"pendingpayment"
+		};
 
-    var groupPlugins = new string[] {
-            "plugins"
-        };
+var groupPlugins = new string[] {
+			"plugins"
+		};
 
-    var groupDictionary = new Dictionary<string, string[]>();
-    groupDictionary.Add("dashboard", groupDashboard);
-    groupDictionary.Add("settings", groupSettings);
-    groupDictionary.Add("users", groupUsers);
-    groupDictionary.Add("listings", groupListings);
-    groupDictionary.Add("design", groupDesign);
-    groupDictionary.Add("contentpages", groupPages);
-    groupDictionary.Add("payments", groupPayments);
-    groupDictionary.Add("plugins", groupPlugins);
+var groupDictionary = new Dictionary<string, string[]>();
+groupDictionary.Add("dashboard", groupDashboard);
+groupDictionary.Add("settings", groupSettings);
+groupDictionary.Add("users", groupUsers);
+groupDictionary.Add("listings", groupListings);
+groupDictionary.Add("design", groupDesign);
+groupDictionary.Add("contentpages", groupPages);
+groupDictionary.Add("payments", groupPayments);
+groupDictionary.Add("plugins", groupPlugins);
 
-    var attribute = groupDictionary[menu].Contains(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()) ? "active" : null;
+var attribute = groupDictionary[menu].Contains(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()) ? "active" : null;
 
     @attribute
 }
@@ -119,12 +120,15 @@
                 <li class="@DisplayAttribute("order")">
                     <a href="@Url.Action("Order", "Payment")">[[[Orders]]]</a>
                 </li>
+				<li class="@DisplayAttribute("pendingpayment")">
+					<a href="@Url.Action("PendingPayment", "Payment")">[[[Pending Payments]]]</a>
+				</li>
                 <li class="@DisplayAttribute("transaction")">
-                    <a href="@Url.Action("Transaction", "Payment")">[[[Transactions]]]</a>
+                    <a href="@Url.Action("Transaction", "Payment")">[[[Transaction]]]</a>
                 </li>
-                <li class="@DisplayAttribute("paymentsetting")">
+                @*<li class="@DisplayAttribute("paymentsetting")">
                     <a href="@Url.Action("PaymentSetting", "Payment")">[[[Payment Settings]]]</a>
-                </li>
+                </li>*@
             </ul>
         </li>
 

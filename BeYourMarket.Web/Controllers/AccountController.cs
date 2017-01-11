@@ -78,13 +78,9 @@ namespace BeYourMarket.Web.Controllers
 		//
 		// GET: /Account/Login
 		[AllowAnonymous]
-		public ActionResult Login(string returnUrl, DateTime? fromDate, DateTime? toDate, int? adults, int? children)
+		public ActionResult Login(string returnUrl)
 		{
 			ViewBag.ReturnUrl = returnUrl;
-			ViewBag.FromDate = fromDate;
-			ViewBag.ToDate = toDate;
-			ViewBag.Adults = adults;
-			ViewBag.Children = children;
 			return View();
 		}
 
@@ -93,15 +89,10 @@ namespace BeYourMarket.Web.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, DateTime? fromDate, DateTime? toDate, int? adults, int? children)
+		public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
 		{
 
 			ViewBag.ReturnUrl = returnUrl;
-			ViewBag.FromDate = fromDate;
-			ViewBag.ToDate = toDate;
-			ViewBag.Adults = adults;
-			ViewBag.Children = children;
-
 			if (!ModelState.IsValid)
 			{
 				return View(model);
@@ -150,24 +141,7 @@ namespace BeYourMarket.Web.Controllers
 							return RedirectToAction("Index", "Home");
 					}
 
-					var queryStr = "";
-					if (fromDate.HasValue)
-					{
-						queryStr += (string.IsNullOrEmpty(queryStr) ? "?" : "&") + "FromDate=" + fromDate.Value.ToShortDateString();
-					}
-					if (toDate.HasValue)
-					{
-						queryStr += (string.IsNullOrEmpty(queryStr) ? "?" : "&") + "ToDate=" + toDate.Value.ToShortDateString();
-					}
-					if (adults.HasValue)
-					{
-						queryStr += (string.IsNullOrEmpty(queryStr) ? "?" : "&") + "Adults=" + adults.Value;
-					}
-					if (children.HasValue)
-					{
-						queryStr += (string.IsNullOrEmpty(queryStr) ? "?" : "&") + "Children=" + children.Value;
-					}
-					return RedirectToLocal(returnUrl + queryStr);
+					return RedirectToLocal(returnUrl);
 				case SignInStatus.LockedOut:
 					return View("Lockout");
 				case SignInStatus.RequiresVerification:

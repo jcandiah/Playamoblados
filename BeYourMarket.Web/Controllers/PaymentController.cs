@@ -286,7 +286,7 @@ namespace BeYourMarket.Web.Controllers
 			if ((order.Children + order.Adults) > listing.Max_Capacity)
 			{
 				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-				TempData[TempDataKeys.UserMessage] = string.Format("[[[The maximum capacity of person of this property is {0}]]]",listing.Max_Capacity);
+				TempData[TempDataKeys.UserMessage] = string.Format("La maxima capacidad de pasajeros es de  {0}",listing.Max_Capacity);
 
 				return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
 			}
@@ -296,8 +296,20 @@ namespace BeYourMarket.Web.Controllers
 
             // Redirect if not authenticated
             if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }), FromDate = order.FromDate, ToDate = order.ToDate, Adults = order.Adults, Children = order.Children });
+            {
+                if (Session["fechas"] != null)
+                {
+                    SearchListingModel fecha = (SearchListingModel)Session["fechas"];
+                    fecha.FromDate = order.FromDate;
+                    fecha.ToDate = order.ToDate;
+                   
+                    fecha.Niños = order.Children;
+                    fecha.Passengers = order.Adults;
 
+                    Session["fechas"] = fecha;
+                }
+                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }), FromDate = order.FromDate, ToDate = order.ToDate, Adults = order.Adults, Children = order.Children });
+            }
             var userCurrent = User.Identity.User();
 
             //validar que los dias no esten reservados

@@ -90,12 +90,12 @@
                                            columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+                                               .Titled("[[[ID Property]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
-                                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Property]]]");
+                                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
                                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
-                                           columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
+                                           columns.Add(x => x.Total).Titled("[[[Value]]]");
 
                                            columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
                                            columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
@@ -126,16 +126,48 @@
     <script type="text/javascript">
         function confirmOrderAction(id, status) {
             var message;
+            var valorentero = 1;
             if (status == 2) {
-                message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to accept the order]]]"))"
-            } else if (status == 3) {
-                message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to cancel the order]]]"))"
-            } else {
-                return;
+
+                swal({
+                title: "Indicar Porcentaje (%) de abono!",
+                text: "Escribe el porcentaje de abono que pagara el pasajero",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                inputPlaceholder: "EJ : 20"
+            }, function (inputValue) {
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("No puede quedar el campo en blanco!");
+                    return false
+                }
+                if(isNaN(inputValue))
+                {
+                    swal.showInputError("Escribir solo numeros!");
+                    return false
+                }
+
+                swal("Estupendo!", "El Abono quedo en un : " + inputValue+"%", "success");
+
+                $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: inputValue })
+                .done(function (data) {
+                    if (data.Success) {
+                        location.reload();
+                    } else {
+                        swal("[[[Failed]]]", data.Message, "error");
+                    }
+                })
+
+                //location.reload();
+            });
+
             }
-        swal({
+            if (status == 3) {
+
+                  swal({
             title: "[[[Are you sure?]]]",
-            text: message,
+            text: "Cancelar Reserva",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -145,7 +177,8 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status })
+                //swal('@Url.Action("OrderActionNewReserva", "Payment")');
+                $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: '0' })
                 .done(function (data) {
                     if (data.Success) {
                         location.reload();
@@ -160,6 +193,11 @@
                 swal("[[[Cancelled]]]", "", "error");
             }
         });
+
+            }
+
+
+
     }
 </script>
 }

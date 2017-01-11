@@ -286,29 +286,8 @@ namespace BeYourMarket.Web.Controllers
         }
 
 		[AllowAnonymous]
-		public async Task<ActionResult> Listing(int id, string fromDate, string toDate, int? adults, int? children)
+		public async Task<ActionResult> Listing(int id)
 		{
-			SearchListingModel fechas;
-			if (Session["fechas"] == null)
-			{
-				fechas = new SearchListingModel
-				{
-					string_fromdate = string.IsNullOrEmpty(fromDate) ? "" : fromDate,
-					string_todate = string.IsNullOrEmpty(toDate) ? "" : toDate,
-					Passengers = adults ?? 1,
-					Niños = children ?? 0
-				};
-			}
-			else
-			{
-				fechas = (SearchListingModel)Session["fechas"];
-				fechas.string_fromdate = string.IsNullOrEmpty(fromDate) ? "" : fromDate;
-				fechas.string_todate = string.IsNullOrEmpty(toDate) ? "" : toDate;
-				fechas.Passengers = adults ?? 1;
-				fechas.Niños = children ?? 0;
-			}
-			Session["fechas"] = fechas;
-
 			var itemQuery = await _listingService.Query(x => x.ID == id)
 				.Include(x => x.Category)
 				.Include(x => x.ListingMetas)

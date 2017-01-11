@@ -96,11 +96,25 @@ namespace BeYourMarket.Web.Controllers
                 return View("~/Views/Listing/Listings.cshtml", model);
             }
 
-            //sesion para conservar fechas
-            if (model.FromDate.Value >= DateTime.Now && model.ToDate.Value >= DateTime.Now)
+           if(!string.IsNullOrEmpty(model.string_fromdate))
             {
-                Session.Add("fechas", model);
+                model.FromDate = Convert.ToDateTime(model.string_fromdate);
             }
+           else
+            {
+                model.ToDate = null;
+            }
+                
+            if(!string.IsNullOrEmpty(model.string_todate))
+            {
+                model.ToDate = Convert.ToDateTime(model.string_todate);
+            }
+            else
+            {
+                model.ToDate = null;
+            }
+                Session.Add("fechas", model);
+            
 
             return View("~/Views/Listing/Listings.cshtml", model);
         }

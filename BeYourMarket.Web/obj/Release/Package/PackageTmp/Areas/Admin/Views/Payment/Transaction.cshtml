@@ -15,16 +15,9 @@
 @helper DisplayStatus(int status)
 {
     switch (status)
-    {
-        case 0:
-        case 1:
-                <span class="label label-info">[[[Pending]]]</span>
-            break;
-        case 2:
-                <span class="label label-success">[[[Completed]]]</span>
-            break;
-        case 3:
-                <span class="label label-danger">[[[Cancelled]]]</span>
+    {        
+        case 4:
+                <span class="label label-success">[[[PayFor]]]</span>
             break;
 
         default:
@@ -72,12 +65,12 @@
                            columns.Add(x => x.Listing.Title)
                                .Encoded(false)
                                .Sanitized(false)
-                               .Titled("[[[ID]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+                               .Titled("[[[ID Property]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
-                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Property]]]");
+                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
-                           columns.Add(x => x.PriceFormatted).Titled("[[[Value]]]");
+                           columns.Add(x => x.Total).Titled("[[[Value]]]");
 
                            columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
                            columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());

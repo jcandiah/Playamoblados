@@ -19,43 +19,10 @@ namespace BeYourMarket.Web.Models
         public string string_fromdate { get; set; }
         public string string_todate { get; set; }
 
-        private DateTime? _fromDate;
 
-        public DateTime? FromDate
-        {
-            get
-            {
-                if(string.IsNullOrEmpty(string_fromdate))
-                {
-                    return new DateTime(2000, 1, 1);
-                }
-                return DateTime.Parse(string_fromdate);
-            }
+        public DateTime? FromDate { get; set; }
 
-            set
-            {
-                var valor = DateTime.Parse(string_fromdate);
-                _fromDate = DateTime.Parse(string_fromdate);
-            }
-        }
-        private Nullable<DateTime> _toDate;
-
-        public DateTime? ToDate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(string_todate))
-                {
-                    return new DateTime(2000, 1, 1);
-                }
-                return DateTime.Parse(string_todate);
-            }
-
-            set
-            {
-                _toDate = DateTime.Parse(string_todate);
-            }
-        }
+        public DateTime? ToDate { get; set; }
 
 
         public Nullable<int> Passengers { get; set; }
