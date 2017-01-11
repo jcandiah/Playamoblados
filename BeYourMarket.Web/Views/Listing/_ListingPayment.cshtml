@@ -25,9 +25,9 @@
                 {
                 <div class="input-daterange input-group datepicker form-group" id="datepicker">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" value="@(fechas == null ? "" : fechas.FromDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
+                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" value="@(fechas.FromDate.HasValue ? fechas.FromDate.Value.ToShortDateString() : "")" data-rule-required="true" data-rule-date="true" />
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas == null ? "" : fechas.ToDate.Value.ToShortDateString())" data-rule-required="true" data-rule-date="true" />
+                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" value="@(fechas.ToDate.HasValue ? fechas.ToDate.Value.ToShortDateString() : "")" data-rule-required="true" data-rule-date="true" />
                 </div>
                 if (!(User.Identity.IsAuthenticated && userCurrent.Id == Model.UserID))
                 {
