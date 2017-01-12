@@ -283,6 +283,13 @@ namespace BeYourMarket.Web.Controllers
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
+			if (order.ToDate < order.FromDate)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[The date of check out can't be less than the check in date]]]";
+
+				return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
+			}
 			if ((order.Children + order.Adults) > listing.Max_Capacity)
 			{
 				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
