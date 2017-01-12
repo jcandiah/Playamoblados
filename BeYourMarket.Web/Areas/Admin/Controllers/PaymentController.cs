@@ -253,10 +253,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> OrderActionNew(int id, int status)
+        public async Task<ActionResult> OrderActionNew(int id, int status,int ot)
         {
             var order = await _orderService.FindAsync(id);
             order.Status = status;
+            order.OT = ot;
             _orderService.Update(order);
 
             await _unitOfWorkAsync.SaveChangesAsync();

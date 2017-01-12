@@ -119,43 +119,83 @@ switch (status)
 
 	<script type="text/javascript">
 	function confirmOrderAction(id, status) {
-		var message;
-		if (status == 4) {
-			message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to pay the order]]]"))"
-		} else if (status == 3) {
-			message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to cancel the order]]]"))"
-		} else {
-			return;
-		}
-		swal({
-			title: "[[[Are you sure?]]]",
-			text: message,
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "[[[Yes!]]]",
-			cancelButtonText: "[[[No!]]]",
-			closeOnConfirm: false,
-			closeOnCancel: false
-		}, function (isConfirm) {
-			if (isConfirm) {
-				$.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status })
+	    var message;
+	    var valorentero = 1;
+	    console.log(status);
+
+	    if(status==4)
+	    {
+	        swal({
+	            title: "OT",
+	            text: "Indicar Orden de trabajo!",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                inputPlaceholder: "EJ : 5"
+            }, function (inputValue) {
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("No puede quedar el campo en blanco!");
+                    return false
+                }
+                if(isNaN(inputValue))
+                {
+                    swal.showInputError("Escribir solo numeros!");
+                    return false
+                }
+
+                swal("Estupendo!", "La orden de trabajo quedo en : " + inputValue, "success");
+
+                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status, ot: inputValue })
                 .done(function (data) {
-                	console.log(data);
-                	if (data.Success) {
-                		location.reload();
-                	} else {
-                		swal("[[[Failed]]]", data.Message, "error");
-                	}
+                    if (data.Success) {
+                        location.reload();
+                    } else {
+                        swal("[[[Failed]]]", data.Message, "error");
+                    }
                 })
-                .fail(function (xhr, textStatus, errorThrown) {
-                	swal("[[[Failed]]]", xhr.responseText, "error");
-                })
-			} else {
-				swal("[[[Cancelled]]]", "", "error");
-			}
-		});
+
+                //location.reload();
+            });
+	    }
+
+	    if(status==3)
+	    {
+	        swal({
+	            title: "[[[Are you sure?]]]",
+	            text: "Cancelar Reserva",
+	            type: "warning",
+	            showCancelButton: true,
+	            confirmButtonColor: "#DD6B55",
+	            confirmButtonText: "[[[Yes!]]]",
+	            cancelButtonText: "[[[No!]]]",
+	            closeOnConfirm: false,
+	            closeOnCancel: false
+	        }, function (isConfirm) {
+	            if (isConfirm) {
+	                //swal('@Url.Action("OrderActionNew", "Payment")');
+	                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status, ot: '0' })
+                    .done(function (data) {
+                        if (data.Success) {
+                            location.reload();
+                        } else {
+                            swal("[[[Failed]]]", data.Message, "error");
+                        }
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        swal("[[[Failed]]]", xhr.responseText, "error");
+                    })
+	            } else {
+	                swal("[[[Cancelled]]]", "", "error");
+	            }
+	        });
+	    }
+        
 	}
+
+
+
+
 	</script>
 }
 
