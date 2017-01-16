@@ -253,11 +253,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> OrderActionNew(int id, int status,int ot)
+        public async Task<ActionResult> OrderActionNew(int id, int status)
         {
             var order = await _orderService.FindAsync(id);
             order.Status = status;
-            order.OT = ot;
             _orderService.Update(order);
 
             await _unitOfWorkAsync.SaveChangesAsync();
@@ -299,10 +298,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> OrderActionNewReserva(int id, int status, int percent)
+        public async Task<ActionResult> OrderActionNewReserva(int id, int status, int ot, int percent)
         {
             var order = await _orderService.FindAsync(id);
             order.Status = status;
+            order.OT = ot;
 
             if (status == 2)
             {
