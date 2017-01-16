@@ -307,7 +307,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (status == 2)
             {
                 order.Percent = percent;
-                int valor = Convert.ToInt32(order.Price.Value);
+                int valor = Convert.ToInt32(order.Total.Value);
                 int abono = (percent * valor) / 100;
                 order.Abono = abono;
             }
