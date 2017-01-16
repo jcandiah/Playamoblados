@@ -281,6 +281,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorderpropietario.Id = order.ListingID;
 				emailorderpropietario.Tarifa = propiedad.Price;
 				emailorderpropietario.Total = order.Price + propiedad.CleanlinessPrice + servicio;
+				emailorderpropietario.OT = order.OT;
+				emailorderpropietario.Abono = order.Abono;
 				EmailHelper.SendEmail(emailorderpropietario);
 
 				//if (propietario.PhoneNumberConfirmed)
