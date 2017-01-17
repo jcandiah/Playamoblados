@@ -745,7 +745,7 @@ namespace BeYourMarket.Web.Controllers
 			ownermail.FromDate = model.FromDate;
 			ownermail.ToDate = model.ToDate;
 			ownermail.Tarifa = propiedad.Price;
-			ownermail.Total = order.Total;
+			ownermail.Total = order.Price;
 			ownermail.Passengers = order.Adults + order.Children;
 			ownermail.Id = model.Id;
 			EmailHelper.SendEmail(ownermail);

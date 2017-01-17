@@ -280,7 +280,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorderpropietario.ToDate = order.ToDate.Value.ToShortDateString();
 				emailorderpropietario.Id = order.ListingID;
 				emailorderpropietario.Tarifa = propiedad.Price;
-				emailorderpropietario.Total = order.Price + propiedad.CleanlinessPrice + servicio;
+				emailorderpropietario.Total = order.Price;
 				emailorderpropietario.OT = order.OT;
 				emailorderpropietario.Abono = order.Abono;
 				EmailHelper.SendEmail(emailorderpropietario);
@@ -337,7 +337,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorder.Children = order.Children;
 				emailorder.Rent = order.Price;
                 emailorder.CleanlinessPrice = propiedad.CleanlinessPrice;
-				emailorder.Service = propiedad.Price * 0.04;
+				emailorder.Service = order.Price * 0.04;
 				emailorder.Total = order.Total;
                 emailorder.Address = propiedad.Address;
 				emailorder.Condominium = condominio.Name;
@@ -348,8 +348,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorder.FromDate = order.FromDate.Value.ToShortDateString();
                 emailorder.ToDate = order.ToDate.Value.ToShortDateString();
                 emailorder.Id = order.ListingID;
+				emailorder.OT = order.OT;
+				emailorder.Percent = order.Percent;
 				//Falta agregar la Orden de trabajo
-                EmailHelper.SendEmail(emailorder);
+				EmailHelper.SendEmail(emailorder);
             }
 
 
