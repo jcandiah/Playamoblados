@@ -281,9 +281,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailorderpropietario.Id = order.ListingID;
 				emailorderpropietario.Tarifa = propiedad.Price;
 				emailorderpropietario.Total = order.Price;
-				emailorderpropietario.OT = order.OT;
-				emailorderpropietario.Abono = order.Abono;
-				EmailHelper.SendEmail(emailorderpropietario);
+                emailorderpropietario.OT = order.OT;
+                emailorderpropietario.Abono = order.Percent;
+                EmailHelper.SendEmail(emailorderpropietario);
 
 				//if (propietario.PhoneNumberConfirmed)
 					SMSHelper.SendSMS(propietario.PhoneNumber, string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0} Mayores detalles en su correo.", ""));
