@@ -271,7 +271,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				var finishorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "finishorder").SelectAsync();
 				var templatefinishorder = finishorderquery.Single();
 				dynamic emailordenpagada = new Postal.Email("Email");
-				emailordenpagada.To = propietario.Email;
+				emailordenpagada.To = pasajero.Email;
 				emailordenpagada.From = CacheHelper.Settings.EmailAddress;
 				emailordenpagada.Subject = templatefinishorder.Subject;
 				emailordenpagada.Body = templatefinishorder.Body;
