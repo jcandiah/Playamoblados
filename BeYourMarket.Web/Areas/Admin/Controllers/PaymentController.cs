@@ -261,13 +261,27 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
+			var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+			var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
+			var propiedad = await _listingService.FindAsync(order.ListingID);
+
 			if (status == 4)
 			{
+				//Email a Pasajero 
+				var finishorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "finishorder").SelectAsync();
+				var templatefinishorder = finishorderquery.Single();
+				dynamic emailordenpagada = new Postal.Email("Email");
+				emailordenpagada.To = propietario.Email;
+				emailordenpagada.From = CacheHelper.Settings.EmailAddress;
+				emailordenpagada.Subject = templatefinishorder.Subject;
+				emailordenpagada.Body = templatefinishorder.Body;
+				emailordenpagada.Name = pasajero.FullName;
+				emailordenpagada.OT = order.OT;
+				EmailHelper.SendEmail(emailordenpagada);
+
+				//Email y telefono a Propietario 
 				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "payorder").SelectAsync();
 				var templateorder = emailorderquery.Single();
-				var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
-				var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
-				var propiedad = await _listingService.FindAsync(order.ListingID);
 
 				var servicio = order.Price * 0.04;
 
@@ -286,7 +300,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 EmailHelper.SendEmail(emailorderpropietario);
 
 				//if (propietario.PhoneNumberConfirmed)
-					SMSHelper.SendSMS(propietario.PhoneNumber, string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0} Mayores detalles en su correo.", ""));
+					SMSHelper.SendSMS(propietario.PhoneNumber, string.Format("La reserva ha sido confirmada exitosamente. La OT Asociada es la numero {0} Mayores detalles en su correo.", order.OT));
 
 			}
 
