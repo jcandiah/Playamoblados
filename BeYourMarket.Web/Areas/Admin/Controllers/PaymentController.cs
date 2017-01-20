@@ -271,12 +271,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 												.Include(x=>x.TypeOfBed).Select().ToList();
 
 			string htmlcamas = "<br><table>";
-			htmlcamas += "<th><td>Cantidad</td><td>Plaza</td><th>";
+			htmlcamas += "<tr><th>Cantidad</th><th>Plaza</th><tr>";
 			foreach (var cama in camas)
 			{
 				htmlcamas += "<tr>";
-				htmlcamas += " <td>"+ cama.Quantity +"</td>";
-				htmlcamas += " <td>" + cama.TypeOfBed.Name + "</td>";
+				htmlcamas += " <th>"+ cama.Quantity +"</th>";
+				htmlcamas += " <th>" + cama.TypeOfBed.Name + "</th>";
 				htmlcamas += "</tr>";
 			}
 			htmlcamas = htmlcamas + " </table> <br>";

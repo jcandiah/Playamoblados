@@ -10,10 +10,10 @@ namespace BeYourMarket.Web.Utilities
 		public static void SendSMS(string to, string body)
 		{
 			var httpContext = Elmah.ErrorSignal.FromCurrentContext();
-			//Task.Factory.StartNew(() =>
-			//{
+			Task.Factory.StartNew(() =>
+			{
 				try
-				{
+			{
 					string AccountSid = BeYourMarketConfigurationManager.TwilioSid;
 					string AuthToken = BeYourMarketConfigurationManager.TwilioToken;
 					var twilio = new TwilioRestClient(AccountSid, AuthToken);
@@ -23,7 +23,7 @@ namespace BeYourMarket.Web.Utilities
 				{
 					httpContext.Raise(ex);
 				}
-			//});
+			});
 		}
 	}
 }
