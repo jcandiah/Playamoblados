@@ -20,97 +20,100 @@ using Microsoft.Practices.Unity;
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
 	[Authorize(Roles = "Administrator")]
-    public class PaymentController : Controller
-    {
-        #region Fields
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private ApplicationRoleManager _roleManager;
+	public class PaymentController : Controller
+	{
+		#region Fields
+		private ApplicationSignInManager _signInManager;
+		private ApplicationUserManager _userManager;
+		private ApplicationRoleManager _roleManager;
 
-        private readonly ISettingService _settingService;
-        private readonly ISettingDictionaryService _settingDictionaryService;
+		private readonly ISettingService _settingService;
+		private readonly ISettingDictionaryService _settingDictionaryService;
 		private readonly IAspNetUserService _aspNetUserService;
 
 		private readonly ICategoryService _categoryService;
-        private readonly IListingService _listingService;
+		private readonly IListingService _listingService;
+		private readonly IDetailBedService _detailBedService;
 
-        private readonly ICustomFieldService _customFieldService;
-        private readonly ICustomFieldCategoryService _customFieldCategoryService;
+		private readonly ICustomFieldService _customFieldService;
+		private readonly ICustomFieldCategoryService _customFieldCategoryService;
 
-        private readonly IContentPageService _contentPageService;
+		private readonly IContentPageService _contentPageService;
 
-        private readonly IOrderService _orderService;
+		private readonly IOrderService _orderService;
 
-        private readonly IEmailTemplateService _emailTemplateService;
+		private readonly IEmailTemplateService _emailTemplateService;
 
-        private readonly DataCacheService _dataCacheService;
-        private readonly SqlDbService _sqlDbService;
+		private readonly DataCacheService _dataCacheService;
+		private readonly SqlDbService _sqlDbService;
 
-        private readonly IPluginFinder _pluginFinder;
+		private readonly IPluginFinder _pluginFinder;
 
-        private readonly IUnitOfWorkAsync _unitOfWorkAsync;
-        #endregion
+		private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+		#endregion
 
-        #region Properties
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
+		#region Properties
+		public ApplicationSignInManager SignInManager
+		{
+			get
+			{
+				return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+			}
+			private set
+			{
+				_signInManager = value;
+			}
+		}
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+		public ApplicationUserManager UserManager
+		{
+			get
+			{
+				return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+			}
+			private set
+			{
+				_userManager = value;
+			}
+		}
 
-        public ApplicationRoleManager RoleManager
-        {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
-        }
-        #endregion
+		public ApplicationRoleManager RoleManager
+		{
+			get
+			{
+				return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+			}
+			private set
+			{
+				_roleManager = value;
+			}
+		}
+		#endregion
 
-        #region Constructor
-        public PaymentController(
-            IUnitOfWorkAsync unitOfWorkAsync,
-            ISettingService settingService,
-            ICategoryService categoryService,
-            IListingService listingService,
-            ICustomFieldService customFieldService,
-            ICustomFieldCategoryService customFieldCategoryService,
-            IContentPageService contentPageService,
-            IOrderService orderService,
-            ISettingDictionaryService settingDictionaryService,
-            IEmailTemplateService emailTemplateService,
-            DataCacheService dataCacheService,
-            SqlDbService sqlDbService,
-            IPluginFinder pluginFinder,
-			IAspNetUserService aspNetUserService)
+		#region Constructor
+		public PaymentController(
+			IUnitOfWorkAsync unitOfWorkAsync,
+			ISettingService settingService,
+			ICategoryService categoryService,
+			IListingService listingService,
+			ICustomFieldService customFieldService,
+			ICustomFieldCategoryService customFieldCategoryService,
+			IContentPageService contentPageService,
+			IOrderService orderService,
+			ISettingDictionaryService settingDictionaryService,
+			IEmailTemplateService emailTemplateService,
+			DataCacheService dataCacheService,
+			SqlDbService sqlDbService,
+			IPluginFinder pluginFinder,
+			IAspNetUserService aspNetUserService,
+			IDetailBedService detailBedService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
             _listingService = listingService;
+			_detailBedService = detailBedService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
 
@@ -252,18 +255,31 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> OrderActionNew(int id, int status)
-        {
-            var order = await _orderService.FindAsync(id);
-            order.Status = status;
-            _orderService.Update(order);
+		[HttpPost]
+		public async Task<ActionResult> OrderActionNew(int id, int status)
+		{
+			var order = await _orderService.FindAsync(id);
+			order.Status = status;
+			_orderService.Update(order);
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+			await _unitOfWorkAsync.SaveChangesAsync();
 
 			var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
 			var propietario = _aspNetUserService.Query(x => x.Id == order.UserProvider).Select().FirstOrDefault();
 			var propiedad = await _listingService.FindAsync(order.ListingID);
+			var camas = _detailBedService.Query(x => x.ListingID == order.ListingID)
+												.Include(x=>x.TypeOfBed).Select().ToList();
+
+			string htmlcamas = "<br><table>";
+			htmlcamas += "<th><td>Cantidad</td><td>Plaza</td><th>";
+			foreach (var cama in camas)
+			{
+				htmlcamas += "<tr>";
+				htmlcamas += " <td>"+ cama.Quantity +"</td>";
+				htmlcamas += " <td>" + cama.TypeOfBed.Name + "</td>";
+				htmlcamas += "</tr>";
+			}
+			htmlcamas = htmlcamas + " </table> <br>";
 
 			if (status == 4)
 			{
@@ -277,6 +293,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				emailordenpagada.Body = templatefinishorder.Body;
 				emailordenpagada.Name = pasajero.FullName;
 				emailordenpagada.OT = order.OT;
+				emailordenpagada.Camas = htmlcamas;
 				EmailHelper.SendEmail(emailordenpagada);
 
 				//Email y telefono a Propietario 
