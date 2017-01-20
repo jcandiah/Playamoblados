@@ -360,6 +360,14 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border: solid 1px gray;
+}
+.c-event-pasajero:hover {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px gray;
 }
 
 .c-event-reserva {
@@ -367,6 +375,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border: solid 1px gray;
 }
 
 .c-event-bloqueo {
@@ -374,4 +383,5 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border: solid 1px gray;
 }
