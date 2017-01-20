@@ -342,6 +342,14 @@
                                {
                                    for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
                                    {
+                                       string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1} <br> [[[Status]]] : <strong>{2}</strong>', datetime: new Date({3},{4},{5}),", usuario.FullName, usuario.Email, "Pendiente de pago!", date.Year, date.Month - 1, date.Day);
+                                       @Html.Raw("{" + valor.ToString() + "},");
+                                   }
+                               }
+                                 if(orders.Status==4)
+                               {
+                                   for (DateTime date = orders.FromDate.Value; date < orders.ToDate.Value; date = date.Date.AddDays(1))
+                                   {
                                        string valor = string.Format("title:'{0}', description: '[[[Email Contact: ]]] {1} <br> [[[Status]]] : <strong>{2}</strong>', datetime: new Date({3},{4},{5}),", usuario.FullName, usuario.Email, "Confirmado!", date.Year, date.Month - 1, date.Day);
                                        @Html.Raw("{" + valor.ToString() + "},");
                                    }
