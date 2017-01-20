@@ -710,7 +710,7 @@ namespace BeYourMarket.Web.Controllers
 
 			//Con esto se envia el correo a la administracion y a PM
 			#region Correo PM y Admin
-			var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "orderhome").SelectAsync();
+			var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "blockedproperty").SelectAsync();
 			var templateorder = emailorderquery.Single();
 			var admin = await _aspNetUserService.Query(x => x.AspNetRoles.Any(z => z.Name == "Administrator")).SelectAsync();
 
