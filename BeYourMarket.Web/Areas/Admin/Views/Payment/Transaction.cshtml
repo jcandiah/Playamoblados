@@ -14,13 +14,14 @@
 
 @helper DisplayStatus(int status)
 {
-    switch (status)
-    {        
-        case 4:
+switch (status)
+{
+    case 4:
                 <span class="label label-success">[[[PayFor]]]</span>
-            break;
+                
+        break;
 
-        default:
+    default:
                 @status
             break;
     }
@@ -38,13 +39,13 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">[[[Transactions]]]</h3>
                 </div>
-
+               
                 <div class="panel-body">
                     <div class="alert alert-info">
                         <p>[[[Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured.]]]</p>
                     </div>
 
-
+                    
                     @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
@@ -52,20 +53,17 @@
                         <hr />
 
                     }
-
+                    <a href="#" id="linkexcel" onClick="boton();">GENERAR EXCEL</a>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
                        {
-                           columns.Add(x => x.Status)
-                               .Encoded(false)
-                               .Sanitized(false)
-                               .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
+                           columns.Add(x => x.Status).Titled("[[[Status]]]").RenderValueAs(x => x.Status == 4 ? "Pagado" : "").Css("bg-success");
+                                //.Encoded(false)
+                                //.Sanitized(false)
+                                //.Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
 
-                           columns.Add(x => x.Listing.Title)
-                               .Encoded(false)
-                               .Sanitized(false)
-                               .Titled("[[[ID Property]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
+                           columns.Add(x => x.Listing.ID).Titled("[[[ID Property]]]");
 
                            columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
@@ -93,5 +91,15 @@
 
 @section Scripts {
     <script src="~/Scripts/gridmvc.min.js"></script>
+<script src="~/js/tableexport/Export2Excel.js"></script>
+<script src="~/js/tableexport/tableexport-2.1.js"></script>
+
+ <script>
+     function boton()
+     {
+         $('table').tableExport({ type: 'scv', escape: 'false' });
+         $('#linkexcel').hide();
+     }
+    </script>
     @Html.Partial("_LocalizationGridMvc")
 }

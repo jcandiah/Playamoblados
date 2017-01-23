@@ -30,13 +30,14 @@
                     </div>
 
                     <hr />
-
+                    <a href="#" id="linkexcel" onClick="boton();">GENERAR EXCEL</a>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>[[[Email]]]</th>
+                                        <th>Nombre</th>
                                         <th>[[[Email Confirmed]]]</th>
                                         <th>[[[Phone Number]]]</th>
                                         <th>[[[Phone Number Confirmed]]]</th>
@@ -50,9 +51,10 @@
                                     {
                                         <tr>
                                             <td>@user.Email</td>
-                                            <td>@RazorHelper.DisplayYesNo(user.EmailConfirmed)</td>
+                                            <td>@user.FullName</td>
+                                            <td>@(user.EmailConfirmed ? "Si" : "No")</td>
                                             <td>@user.PhoneNumber</td>
-                                            <td>@RazorHelper.DisplayYesNo(user.PhoneNumberConfirmed)</td>
+                                            <td>@(user.PhoneNumberConfirmed ? "Si" : "No")</td>
                                             <td>
                                                 <a class="btn btn-primary m-b-5" href="@Url.Action("UserUpdate", "Manage", new { id = user.Id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
                                             </td>
@@ -99,6 +101,128 @@
                 swal("Deleted!", "[[[User is deleted.]]]", "success");
             });
         }
+</script>
+<script src="~/js/tableexport/Export2Excel.js"></script>
+@*<script src="~/js/tableexport/tableexport-2.1.js"></script>*@
+
+<script>
+    (function ($) {
+
+        $.fn.tableExport = function (options) {
+
+            var settings = $.extend({}, $.fn.tableExport.defaults, options),
+                colDelim = '"' + settings.separator + '"',      // user-defined separator (default is ",")
+                rowDelim = '"\r\n"',                            // Windows new line character
+                spacing = settings.spacing ? "btn-toolbar" : "",
+                eventEl = "." + settings.defaultClass;
+
+            return [this.each(function () {
+                var $el = $(this),
+                    $rows = settings.headings ? $el.find('tr') : $el.find('tr:has(td)'),
+
+                    data = '"' + $rows.map(function (i, val) {
+                        var $cols = $(val).find('th, td');
+                        return $cols.map(function (i, val) {
+                            return $(val).text().replace(/"/g, '""')
+                        }).get().join(colDelim);
+                    }).get().join(rowDelim) + '"',
+
+                    data2 = $rows.map(function (i, val) {
+                        var $cols = $(val).find('th, td');
+                        return $cols.map(function (i, val) {
+                            return $(val).text()
+                        });
+                    }).get(),
+
+                    dataType = "#",
+                    dataObject = "",
+                    fileName = settings.fileName,
+                    $caption = $el.find('caption:not(.head)');
+
+                switch (fileName) {
+                    case "id":
+                        fileName = $el.attr('id');
+                        break;
+                    case "name":
+                        fileName = $el.data('name');
+                        break;
+                }
+
+                switch (settings.type) {
+                    case "xlsx":
+                        dataObject = JSON.stringify({
+                            data: data2,
+                            name: fileName
+                        });
+                        break;
+                    case "csv":
+                    default:
+                        dataType = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
+                        fileName += ".csv";
+                        break;
+                    case "txt":
+                        data = $.fn.tableExport.txtFormat(data, settings.stripQuotes);
+                        dataType = 'data:text/plain;charset=utf-8,' + encodeURIComponent(data);
+                        fileName += ".txt";
+                        break;
+                }
+
+                var exportButton = "<a id='Exportar' href='" + dataType + "' data-obj='" + dataObject + "' download='" + fileName + "' role='button' class='" + settings.defaultClass + " " + settings.defaultTheme + " " + settings.addClass + "'>" + settings.buttonContent + "</a>";
+
+                $caption.length ? $caption.append(exportButton) : $el.prepend('<caption class="' + spacing + ' ' + settings.position + '">' + exportButton + '</caption>');
+
+            }), $.fn.tableExport.addEvent(eventEl)];
+        };
+
+        // Define the plugin default properties.
+        $.fn.tableExport.defaults = {
+            separator: ";",                         // [String] column separator, [default: ","]
+            headings: true,                         // [Boolean], display table headings (th elements) in the first row, [default: true]
+            buttonContent: "Guardar Excel...",                // [String], text/html to display in the export button, [default: "Export file"]
+            addClass: "",                           // [String], additional button classes to add, [default: ""]
+            defaultClass: "btn",                    // [String], the default button class, [default: "btn"]
+            defaultTheme: "btn-warning",            // [String], the default button theme, [default: "btn-default"]
+            type: "csv",                            // [xlsx, csv, txt], type of file, [default: "csv"]
+            fileName: "Usuarios Playamoblados",                     // [id, name, String], filename for the downloaded file, [default: "export"]
+            position: "bottom",                     // [top, bottom], position of the caption element relative to table, [default: "bottom"]
+            spacing: true,                          // [Boolean], display spacing between buttons, [default: true]
+            stripQuotes: true                       // [Boolean], remove containing double quotes (.txt files ONLY), [default: true]
+        };
+
+        // Define the format for .txt files.
+        $.fn.tableExport.txtFormat = function (txt, strip) {
+            if (strip) {
+                return txt.replace(/"(?!")/g, '');
+            }    // strips surrounding double quotes
+            return txt.replace(/""/g, '"');
+        };
+
+        // Define the event listener for the export button.
+        $.fn.tableExport.addEvent = function (el) {
+            return [$(el).off('click'), $(el).on("click", function (e) {
+                if ($(this).data("obj")) {
+                    e.preventDefault();
+                    var object = $(this).data("obj"),
+                        data2 = object.data,
+                        fileName = object.name;
+                    export2xlsx(data2, fileName);
+                }
+            })];
+        }
+
+    }(jQuery));
+
+
+
+
+
+
+
+     function boton()
+     {
+         $('table').tableExport({ type: 'scv', escape: 'false' });
+         $('#linkexcel').hide();
+     }
 </script>
 }
 

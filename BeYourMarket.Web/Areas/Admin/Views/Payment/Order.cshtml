@@ -197,7 +197,7 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                //swal('@Url.Action("OrderActionNewReserva", "Payment")');
+                swal.disableButtons();
                 $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: '0' })
                 .done(function (data) {
                     if (data.Success) {

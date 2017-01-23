@@ -155,7 +155,7 @@ switch (status)
 	            closeOnCancel: false
 	        }, function (isConfirm) {
 	            if (isConfirm) {
-	                //swal('@Url.Action("OrderActionNew", "Payment")');
+	                swal.disableButtons();
 	                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status, ot: '0' })
                     .done(function (data) {
                         if (data.Success) {
