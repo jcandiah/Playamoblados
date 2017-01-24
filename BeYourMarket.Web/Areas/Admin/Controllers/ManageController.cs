@@ -1,43 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using BeYourMarket.Service;
 using System.Threading.Tasks;
 using BeYourMarket.Model.Models;
 using Repository.Pattern.UnitOfWork;
-using BeYourMarket.Web.Extensions;
-using BeYourMarket.Web.Models.Grids;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
-using ImageProcessor.Imaging.Formats;
-using System.Drawing;
-using ImageProcessor;
-using System.IO;
 using System.Text;
 using BeYourMarket.Model.Enum;
 using RestSharp;
 using BeYourMarket.Web.Areas.Admin.Models;
-using Postal;
-using System.Net.Mail;
-using System.Net;
-using BeYourMarket.Service.Models;
 using i18n;
 using i18n.Helpers;
 using BeYourMarket.Core.Web;
 using BeYourMarket.Core.Plugins;
-using BeYourMarket.Core;
-using BeYourMarket.Core.Controllers;
-using Microsoft.Practices.Unity;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+	[Authorize(Roles = "Administrator")]
     public class ManageController : Controller
     {
         #region Fields
@@ -66,6 +53,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IPluginFinder _pluginFinder;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+
+        private readonly AspNetUserService _aspNetUserService;
         #endregion
 
         #region Properties
@@ -120,7 +109,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
-            IPluginFinder pluginFinder)
+            IPluginFinder pluginFinder,
+            AspNetUserService aspNetUserService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -138,6 +128,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
             _pluginFinder = pluginFinder;
+            _aspNetUserService = aspNetUserService;
         }
         #endregion
 
@@ -585,6 +576,127 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));
         }
 
+		public async Task<ActionResult> ExportarOrders(int id)
+		{
+			IEnumerable<Order> lista = null;
+			var estado = "";
+			switch(id)
+			{
+				case 1:
+					lista = await _orderService.Query(x => x.Status == 1)
+							.Include(x => x.Listing)
+							.Include(x => x.AspNetUserProvider)
+							.Include(x => x.AspNetUserReceiver)
+							.SelectAsync();
+					estado = "Pendiente";
+					break;
+				case 2:
+					lista = await _orderService.Query(x => x.Status == 2)
+							.Include(x => x.Listing)
+							.Include(x => x.AspNetUserProvider)
+							.Include(x => x.AspNetUserReceiver)
+							.SelectAsync();
+					estado = "Completada";
+					break;
+				case 4:
+					lista = await _orderService.Query(x => x.Status == 4)
+							.Include(x => x.Listing)
+							.Include(x => x.AspNetUserProvider)
+							.Include(x => x.AspNetUserReceiver)
+							.SelectAsync();
+					estado = "Pagada";
+					break;
+			}
+			if (lista.Count() > 0)
+			{
+				string header = @"""Estado"";""ID Propiedad"";""Propietario"";""Pasajero"";""Valor"";""Desde"";""Hasta"";""Noches"";""ID Reserva"";""Creado""";
+				StringBuilder sb = new StringBuilder();
+				sb.AppendLine(header);
+
+				foreach (var i in lista)
+				{
+					sb.AppendLine(string.Join(";",
+						string.Format(@"""{0}""", estado),
+						string.Format(@"""{0}""", i.ListingID),
+						string.Format(@"""{0}""", i.AspNetUserProvider.Email),
+						string.Format(@"""{0}""", i.AspNetUserReceiver.Email),
+						string.Format(@"""{0}""", i.Total),
+						string.Format(@"""{0}""", i.FromDate),
+						string.Format(@"""{0}""", i.ToDate),
+						string.Format(@"""{0}""", i.Quantity),
+						string.Format(@"""{0}""", i.ID),
+						string.Format(@"""{0}""", i.Created)));
+				}
+
+				// Download Here
+				HttpContext context = System.Web.HttpContext.Current;
+				context.Response.Write(sb.ToString());
+				context.Response.ContentType = "text/csv";
+				if (id == 1)
+					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pendientes.csv");
+				if (id == 2)
+					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Completadas.csv");
+				if (id == 4)
+					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pagadas.csv");
+				context.Response.End();
+			}
+			else
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[No items to export.]]]";
+				if (id == 1)
+					return RedirectToAction("Order", "Payment");
+				if (id == 2)
+					return RedirectToAction("PendingPayment", "Payment");
+				if(id == 4)
+					return RedirectToAction("Transaction", "Payment");
+			}
+
+			if (id == 1)
+				return RedirectToAction("Order", "Payment");
+			if (id == 2)
+				return RedirectToAction("PendingPayment", "Payment");
+			else
+				return RedirectToAction("Transaction", "Payment");
+		}
+
+        public async Task<ActionResult> ExportarUsuarios()
+        {
+            IEnumerable<AspNetUser> lista = await _aspNetUserService.Query().SelectAsync();
+            if (lista.Count() > 0)
+            {
+                string header = @"""Nombre"";""Email"";""Email Confirmado"";""Telefono"";""Telefono confirmado"";""Genero"";""Rut""";
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(header);
+
+                foreach (var i in lista)
+                {
+                    sb.AppendLine(string.Join(";",
+                        string.Format(@"""{0}""", i.FullName),
+                        string.Format(@"""{0}""", i.Email),
+                        string.Format(@"""{0}""", i.EmailConfirmed ? "Si" : "No"),
+                        string.Format(@"""{0}""", i.PhoneNumber),
+                        string.Format(@"""{0}""", i.PhoneNumberConfirmed ? "Si" : "No"),
+                        string.Format(@"""{0}""", i.Gender == "F" ? "Femenino" : "Masculino"),
+                        string.Format(@"""{0}""", i.Rut)));
+                }
+
+                // Download Here
+                HttpContext context = System.Web.HttpContext.Current;
+                context.Response.Write(sb.ToString());
+                context.Response.ContentType = "text/csv";
+                context.Response.AddHeader("Content-Disposition", "attachment; filename= Usuarios.csv");
+                context.Response.End();
+            }
+            else
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[No items to export.]]]";
+                return RedirectToAction("Users", "Manage");
+            }
+
+            return RedirectToAction("Users", "Manage");
+        }
         #endregion
     }
 }
