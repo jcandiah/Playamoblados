@@ -724,6 +724,9 @@ namespace BeYourMarket.Web.Controllers
 
         public ActionResult ListingCalendar(int id)
         {
+           var userid= User.Identity.GetUserId();
+            var userlogin = UserManager.FindById(userid);
+
             var itemQuery =  _listingService.Query(x => x.ID == id)
                                             .Include(x => x.Category)
                                             .Include(x => x.ListingMetas)
@@ -738,12 +741,20 @@ namespace BeYourMarket.Web.Controllers
             if (item == null)
                 return new HttpNotFoundResult();
 
+            if (item.UserID != userid)
+            {
+                if (!User.IsInRole("Administrator"))
+                {
+                    return new HttpNotFoundResult();
+                }
+            }
+
             var orders = _orderService.Queryable()
                 .Where(x => x.ListingID == id
                     //&& (x.Status != (int)Enum_OrderStatus.Pending || x.Status != (int)Enum_OrderStatus.Confirmed)
                     && (x.Status != (int)Enum_OrderStatus.Cancelled)
-                    && (x.FromDate.HasValue && x.ToDate.HasValue)
-                    && (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
+                    && (x.FromDate.HasValue && x.ToDate.HasValue))
+                    //&& (x.FromDate >= DateTime.Now || x.ToDate >= DateTime.Now))
                     .ToList();
 
 
