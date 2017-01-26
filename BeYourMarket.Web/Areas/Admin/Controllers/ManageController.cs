@@ -608,7 +608,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 			}
 			if (lista.Count() > 0)
 			{
-				string header = @"""Estado"";""ID Propiedad"";""Propietario"";""Pasajero"";""Valor"";""Desde"";""Hasta"";""Noches"";""ID Reserva"";""Creado""";
+				string header = @"""Estado"";""ID Propiedad"";""Propietario"";""Pasajero"";""Valor"";""Abono"";""Desde"";""Hasta"";""Noches"";""ID Reserva"";""Creado""";
 				StringBuilder sb = new StringBuilder();
 				sb.AppendLine(header);
 
@@ -620,6 +620,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 						string.Format(@"""{0}""", i.AspNetUserProvider.Email),
 						string.Format(@"""{0}""", i.AspNetUserReceiver.Email),
 						string.Format(@"""{0}""", i.Total),
+						string.Format(@"""{0}""", i.Abono),
 						string.Format(@"""{0}""", i.FromDate),
 						string.Format(@"""{0}""", i.ToDate),
 						string.Format(@"""{0}""", i.Quantity),

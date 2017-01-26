@@ -618,13 +618,27 @@ namespace BeYourMarket.Web.Controllers
                     order.Quantity = 1;
                     order.Price = 0;
                 }
-
-                _orderService.Insert(order);
+				_orderService.Insert(order);
             }
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-            ClearCache();
+			//Envio de correo a propietario 
+			var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "bloqueopropietario").SelectAsync();
+			var emailTemplate = emailTemplateQuery.Single();
+
+			dynamic email = new Postal.Email("Email");
+			email.To = userCurrent.Email;
+			email.From = CacheHelper.Settings.EmailAddress;
+			email.Subject = emailTemplate.Subject;
+			email.Body = emailTemplate.Body;
+			email.Id = order.ListingID;
+			email.Name = userCurrent.FullName;
+			email.FromDate = order.FromDate.Value.ToShortDateString();
+			email.ToDate = order.ToDate.Value.ToShortDateString();
+			EmailHelper.SendEmail(email);
+
+			ClearCache();
             TempData[TempDataKeys.UserMessage] = string.Format("[[[Has bloqueado correctamenter tu propiedad entre las fechas {0} y {1}]]]", order.FromDate.Value.ToString("dd-MM-yyyy"), order.ToDate.Value.ToString("dd-MM-yyyy"));
             return RedirectToAction("Listing", "Manage", new { id = listing.ID });
         }

@@ -96,6 +96,7 @@ switch (status)
                            columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
                            columns.Add(x => x.Total).Titled("[[[Value]]]");
+						   columns.Add(x => x.Abono).Titled("[[[Abono]]]");
 
                            columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
                            columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
