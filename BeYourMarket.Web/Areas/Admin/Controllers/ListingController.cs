@@ -600,9 +600,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Active = listing.Active;
                 listingExisting.Premium = listing.Premium;
 
-                //listingExisting.ContactEmail = listing.ContactEmail;
-                //listingExisting.ContactName = listing.ContactName;
-                listingExisting.ContactPhone = listing.ContactPhone;
+                var propietario = UserManager.FindById(listing.UserID);
+                listingExisting.ContactEmail = propietario.Email;
+                listingExisting.ContactName = propietario.FullName;
+                listingExisting.ContactPhone = propietario.PhoneNumber;
 
                 listingExisting.Latitude = listing.Latitude;
                 listingExisting.Longitude = listing.Longitude;
