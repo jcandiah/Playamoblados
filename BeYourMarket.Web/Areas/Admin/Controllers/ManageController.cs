@@ -153,7 +153,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             model.TransactionCount = coladortrans.Count;
 
             //colador order
-            var coladorordercount = _orderService.Queryable().Where(x=> x.Status ==2).ToList();
+            var coladorordercount = _orderService.Queryable().Where(x=> x.Status ==2 || x.Status==1).ToList();
             coladorordercount = coladorordercount.Where(x => x.OrderType == 3).ToList();
             model.OrderCount = coladorordercount.Count;
             return View("Dashboard", model);
