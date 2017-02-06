@@ -432,6 +432,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     }).OrderBy(x => x.Ordering).ToList();
 
                 model.Pictures = picturesModel;
+                var detallecama = await _detailBedService.Query(x => x.ListingID == id).Include(x => x.TypeOfBed).SelectAsync();
+                model.DetailBeds = detallecama.ToList();
             }
             else
                 item = new Listing()
@@ -622,6 +624,26 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Price = listing.Price;
                 listingExisting.Currency = listing.Currency;
 
+                listingExisting.Tv = listing.Tv;
+                listingExisting.TV_cable = listing.TV_cable;
+                listingExisting.Wifi = listing.Wifi;
+                listingExisting.Grill = listing.Grill;
+                listingExisting.Dishwasher = listing.Dishwasher;
+                listingExisting.Elevator = listing.Elevator;
+                listingExisting.ShortDescription = listing.ShortDescription;
+                listingExisting.SafetyMesh = listing.SafetyMesh;
+                listingExisting.Smoker = listing.Smoker;
+                listingExisting.Pets = listing.Pets;
+                listingExisting.Terrace = listing.Terrace;
+                listingExisting.DescribeCondominium = listing.DescribeCondominium;
+                listingExisting.FirstLine = listing.FirstLine;
+                listingExisting.FloorNumber = listing.FloorNumber;
+                listingExisting.M2 = listing.M2;
+                listingExisting.Max_Capacity = listing.Max_Capacity;
+                listingExisting.NroOfParking = listing.NroOfParking;
+                listingExisting.Suite = listing.Suite;
+                listingExisting.Washer = listing.Washer;
+                
                 //listingExisting.ListingTypeID = listing.ListingTypeID;                
 
                 listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
@@ -637,6 +659,16 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 await _customFieldListingService.DeleteAsync(customFieldId);
             }
+
+            // Elimina las camas
+
+            var listacama = await _detailBedService.Query(x => x.ListingID == listing.ID).SelectAsync();
+            var lista = listacama.Select(x => x.ID).ToList();
+            foreach (var id in lista)
+            {
+                await _detailBedService.DeleteAsync(id);
+            }
+
 
             // Get custom fields
             var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == listing.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
@@ -719,19 +751,35 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     }
                 }
             }
-
             //INSERTANDO CAMAS
-            if (idcama != null)
+            if (idcama.Length != 0)
             {
+                List<int> listaid = new List<int>();
                 for (int i = 0; i < idcama.Length; i++)
                 {
-                    DetailBed detallecama = new DetailBed();
-                    detallecama.TypeOfBedID = idcama[i];
-                    detallecama.Quantity = cantidad[i];
-                    detallecama.ListingID = listing.ID;
-                    _detailBedService.Insert(detallecama);
+                    if (listaid.Count != 0) //entra aca cuando no es la primera recorrida
+                    {
+                        if (!listaid.Contains(idcama[i]))
+                        {
+                            DetailBed detallecama = new DetailBed();
+                            detallecama.TypeOfBedID = idcama[i];
+                            detallecama.Quantity = cantidad[i];
+                            detallecama.ListingID = listing.ID;
+                            _detailBedService.Insert(detallecama);
+                            listaid.Add(idcama[i]);
+                        }
+                    }
+                    else //entra primero por no tener ninguna cama en la listaid 
+                    {
+                        DetailBed detallecama = new DetailBed();
+                        detallecama.TypeOfBedID = idcama[i];
+                        detallecama.Quantity = cantidad[i];
+                        detallecama.ListingID = listing.ID;
+                        listaid.Add(idcama[i]);
+                        _detailBedService.Insert(detallecama);
+                    }
                 }
-            }
+            }   //fin insertando cama
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
