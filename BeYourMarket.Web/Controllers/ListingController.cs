@@ -587,14 +587,14 @@ namespace BeYourMarket.Web.Controllers
                 listingExisting.CategoryID = listing.CategoryID;
                 listingExisting.ListingTypeID = listing.ListingTypeID;
 
-                listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                
 
                 //nuevos campos
                 listingExisting.Bathrooms = listing.Bathrooms;
                 listingExisting.Beds = listing.Beds;
                 listingExisting.Cellar = listing.Cellar;
                 listingExisting.Children = listing.Children;
-                listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
+                //listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
                 listingExisting.ConditionCheckOut = listing.ConditionCheckOut;
                 listingExisting.ConditionHouse = listing.ConditionHouse;
                 listingExisting.DescribeCondominium = listing.DescribeCondominium;
@@ -613,17 +613,19 @@ namespace BeYourMarket.Web.Controllers
                 listingExisting.SafetyMesh = listing.SafetyMesh;
                 listingExisting.ShortDescription = listing.ShortDescription;
                 listingExisting.Smoker = listing.Smoker;
-                listingExisting.Stay = listing.Stay;
+                //listingExisting.Stay = listing.Stay;
                 listingExisting.Suite = listing.Suite;
                 listingExisting.Terrace = listing.Terrace;
                 listingExisting.Tv = listing.Tv;
                 listingExisting.TV_cable = listing.TV_cable;
                 listingExisting.TypeOfProperty = listing.TypeOfProperty;
-                listingExisting.Warranty = listing.Warranty;
+                //listingExisting.Warranty = listing.Warranty;
                 listingExisting.Washer = listing.Washer;
                 listingExisting.Wifi = listing.Wifi;
 
+                listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
                 _listingService.Update(listingExisting);
+                await _unitOfWorkAsync.SaveChangesAsync();
             }
 
 
