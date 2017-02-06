@@ -32,7 +32,8 @@ namespace BeYourMarket.Web.Controllers
         #region Fields
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+		private AspNetUserService _aspNetUserService;
+			 
         private readonly ISettingService _settingService;
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
@@ -110,7 +111,8 @@ namespace BeYourMarket.Web.Controllers
            IMessageParticipantService messageParticipantService,
            IMessageReadStateService messageReadStateService,
            DataCacheService dataCacheService,
-           SqlDbService sqlDbService)
+           SqlDbService sqlDbService,
+		   AspNetUserService aspNerUserService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -135,6 +137,7 @@ namespace BeYourMarket.Web.Controllers
             _detailBedService = detailBedService;
             _typeOfBedService = typeOfBedService;
             _unitOfWorkAsync = unitOfWorkAsync;
+			_aspNetUserService = aspNerUserService;
         }
         #endregion
 
@@ -568,7 +571,6 @@ namespace BeYourMarket.Web.Controllers
 
                 listingExisting.Title = listing.ID.ToString();
                 listingExisting.Description = listing.Description;
-                listingExisting.Active = listing.Active;
                 listingExisting.Price = listing.Price;
 
                 listingExisting.ContactEmail = listing.ContactEmail;
@@ -762,8 +764,24 @@ namespace BeYourMarket.Web.Controllers
                 }
             }   //fin insertando cama
 
+			//Enviar correo de aviso a administrador
+			var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "listingupdate").SelectAsync();
+			var templateorder = emailorderquery.Single();
+			var admin = await _aspNetUserService.Query(x => x.AspNetRoles.Any(z => z.Name == "Administrator")).SelectAsync();
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+			dynamic emailorder = new Postal.Email("Email");
+			foreach (var administradores in admin)
+			{
+				emailorder.To = administradores.Email;
+				emailorder.From = CacheHelper.Settings.EmailAddress;
+				emailorder.Subject = templateorder.Subject;
+				emailorder.Body = templateorder.Body;
+				emailorder.Name = administradores.FullName;
+				emailorder.Id = listing.ID;	
+				EmailHelper.SendEmail(emailorder);
+			}
+
+			await _unitOfWorkAsync.SaveChangesAsync();
             // Update statistics count
             if (updateCount)
             {
