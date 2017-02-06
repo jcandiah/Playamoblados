@@ -473,7 +473,10 @@
             $('#Beds').val('0');
         }
         
+        ModificarTotal();
+
         var idparcial = @Model.DetailBeds.Count;
+        console.log(idparcial);
         /**
          * Funcion para añadir una nueva columna en la tabla
          */
@@ -586,7 +589,7 @@
                 $('#inputescoltados').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
                 $('#inputescoltados').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
                 //document.getElementById("listingUpdateForm").submit();
-                console.log("a");
+             
 
                 $("#botonfinal").submit();
             });

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "[[[Listing Update]]]";
+    int cont = 0;
 }
 
 @section Styles {
@@ -133,7 +134,20 @@
                                                 <th>#</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                            @foreach (var item in Model.DetailBeds)
+                                            {
+                                                <tr>
+                                                    <td>@cont</td>
+                                                    <td>@item.TypeOfBedID</td>
+                                                    <td>@item.TypeOfBed.Name</td>
+                                                    <td>@item.Quantity</td>
+                                                    <td><button type='button' onclick='eliminar(@cont);' class='btn btn-danger btn-sm' id="+idparcial+"><span class='glyphicon glyphicon-remove'></span></button></td>
+                                                    @{cont = cont + 1;}
+                                                </tr>
+                                                        }
+
+                                        </tbody>
 
                                     </table>
                                 </div>
@@ -429,9 +443,9 @@
                 $('#Beds').val('0');
             }
             var idparcial = 0;
-            /**
-             * Funcion para añadir una nueva columna en la tabla
-             */
+            ModificarTotal();
+            var idparcial = @Model.DetailBeds.Count;
+            console.log(idparcial);
             $("#add").click(function(){
 
                 if($("#tabla tbody tr").length==0)
@@ -466,15 +480,15 @@
                     var idcamatabla = $(this).find("td").eq(1).html();
                     if(idcama==idcamatabla)
                     {
-                        $(this).find("td").eq(3).text(parseInt($(this).find("td").eq(3).html()) + parseInt(cantidad));                    
+                        $(this).find("td").eq(3).text(parseInt($(this).find("td").eq(3).html()) + parseInt(cantidad));
                         edito=1;
                     }
                 });
                 if(edito==1)
-                {    
+                {
                     var totalcama =0;
-                    $('#tabla tbody tr').each(function() {              
-                        totalcama += parseInt($(this).find("td").eq(3).html());               
+                    $('#tabla tbody tr').each(function() {
+                        totalcama += parseInt($(this).find("td").eq(3).html());
                     });
                     $('#Beds').val(totalcama);
 
@@ -482,8 +496,8 @@
                     $('#cantidadcama').val('');
                     return false;
                 }
-                   
-                nuevaFila+="<td>"+ idparcial +"</td>";                    
+
+                nuevaFila+="<td>"+ idparcial +"</td>";
                 nuevaFila+="<td>"+ idcama +"</td>";
                 nuevaFila+="<td>"+ nombrecama +"</td>";
                 nuevaFila+="<td>"+ cantidad +"</td>";
@@ -491,7 +505,7 @@
                 idparcial++;
                 nuevaFila+="</tr>";
                 $("#tabla").append(nuevaFila);
-        
+
                 $('#cantidadcama').val('');
                 $('#TypesOfBeds').val(1);
                 ModificarTotal();
@@ -505,16 +519,7 @@
         {
             var totalcama =0;
             $('#tabla tbody tr').each(function() {
-                var tipo = $(this).find("td").eq(2).html();
-                if(tipo=='Camarote' || tipo =='Cama Nido')
-                {
-                    totalcama += parseInt($(this).find("td").eq(3).html()) *2;  
-                }
-                else
-                {
-                    totalcama += parseInt($(this).find("td").eq(3).html());  
-                }
-                              
+                totalcama += parseInt($(this).find("td").eq(3).html());
             });
             $('#Beds').val(totalcama);
         }
@@ -530,8 +535,8 @@
                 }
             });
             var totalcama =0;
-            $('#tabla tbody tr').each(function() {              
-                totalcama += parseInt($(this).find("td").eq(3).html());               
+            $('#tabla tbody tr').each(function() {
+                totalcama += parseInt($(this).find("td").eq(3).html());
             });
             $('#Beds').val(totalcama);
             //document.getElementById("tabla").deleteRow(id);
@@ -544,9 +549,9 @@
             if($('#tabla tbody tr').length>0)
             {
 
-                $('#tabla tbody tr').each(function() {              
-                    var cantidad=parseInt($(this).find("td").eq(3).html());   //totalCama 
-                    var idcama=parseInt($(this).find("td").eq(1).html());   //idcama 
+                $('#tabla tbody tr').each(function() {
+                    var cantidad=parseInt($(this).find("td").eq(3).html());   //totalCama
+                    var idcama=parseInt($(this).find("td").eq(1).html());   //idcama
                     $('#tabla tbody').prepend("<input type='hidden' id='idcama' name='idcama' value='"+idcama+"' />");
                     $('#tabla tbody').prepend("<input type='hidden' id='cantidad' name='cantidad' value='"+cantidad+"' />");
                     //document.getElementById("listingUpdateForm").submit();
@@ -560,175 +565,110 @@
             }
         }
     </script>
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDRoi7UE7F4AjiqJZ6zqwh5TMvYxgAIVKc&v=3.exp&libraries=places'></script>
+   <script>
+    google.maps.event.addDomListener(window, 'load', intilize);
+    function intilize() {
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById("Location"));
 
-    <script>
-        //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
-        //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        function initMap() {
-            var isDraggable = $(document).width() > 480 ? true : false; // If document (your website) is wider than 480px, isDraggable = true, else isDraggable = false
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
 
-            var mapOptions = {
-                draggable: isDraggable,
-                scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
-                zoom: 14,
-                center: new google.maps.LatLng(-33.8688, 151.2195),
-            };
-
-            @{ var hasLatLng = @Model.ListingItem.Latitude.HasValue && @Model.ListingItem.Longitude.HasValue; }
-            var hasLatLng = @hasLatLng.ToString().ToLowerInvariant();
-
-            @if (hasLatLng){
-                <text>
-            mapOptions = {
-                center: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
-                zoom: 14
-            };
-            </text>
-            };
-
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-              mapOptions);
-
-            @if (hasLatLng){
-                <text>
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(@Model.ListingItem.Latitude, @Model.ListingItem.Longitude),
-                map: map
-            });
-
-            marker.setVisible(true);
-            </text>
-            }
-
-            geocoder = new google.maps.Geocoder();
-
-            var input = (document.getElementById('Location'));
-
-            // Try HTML5 geolocation
-            if (@Model.ListingItem.ID == 0){
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = new google.maps.LatLng(position.coords.latitude,
-                                                         position.coords.longitude);
+            var place = autocomplete.getPlace();
+            //var location = "Address: " + place.formatted_address + "<br/>";
+            //location += "Latitude: " + place.geometry.location.lat() + "<br/>";
+            //location += "Longitude: " + place.geometry.location.lng();
+            //document.getElementById('lblresult').innerHTML = location
+            $('#Longitude').val(place.geometry.location.lng());
+            $('#Latitude').val(place.geometry.location.lat());
 
 
-                        geocoder.geocode({ 'latLng': pos }, function (results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                if (results[1]) {
-                                    map.setZoom(14);
-                                    map.setCenter(pos);
+            $('#Latitude').val($('#Latitude').val().replace('.', ','));
+            $('#Longitude').val($('#Longitude').val().replace('.', ','));
+            //initMap();
+        });
 
-                                    marker = new google.maps.Marker({
-                                        position: pos,
-                                        map: map,
-                                        content: results[1].formatted_address
-                                    });
-                                    infowindow.setContent(results[1].formatted_address);
-                                    infowindow.open(map, marker);
+    };
 
-                                    $('#Location').val(results[1].formatted_address);
-                                    $('#Latitude').val(pos.lat());
-                                    $('#Longitude').val(pos.lng());                                    
 
-                                } else {
-                                    alert('No results found');
-                                }
-                            } else {
-                                alert('Geocoder failed due to: ' + status);
-                            }
-                        });
-                    }, function () {
-                        handleNoGeolocation(true);
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    handleNoGeolocation(false);
-                }
-            }
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.bindTo('bounds', map);
+    ////function initMap() {
+    ////    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+    ////        center: { lat: parseInt($('#Latitude').val()), lng: parseInt($('#Longitude').val()) },
+    ////        zoom: 13
+    ////    });
+        //var input = /**type {!HTMLInputElement} */(
+        //    document.getElementById('Location'));
 
-            var infowindow = new google.maps.InfoWindow();
-            var marker = new google.maps.Marker({
-                map: map,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
+        //var types = document.getElementById('type-selector');
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                infowindow.close();
-                marker.setVisible(false);
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    window.alert("Autocomplete's returned place contains no geometry");
-                    return;
-                }
+        ////var autocomplete = new google.maps.places.Autocomplete(input);
+        ////autocomplete.bindTo('bounds', map);
 
-                // Set lat/long
-                $('#Latitude').val(place.geometry.location.lat());
-                $('#Longitude').val(place.geometry.location.lng());
+        //var infowindow = new google.maps.InfoWindow();
+        //var marker = new google.maps.Marker({
+        //    map: map,
+        //    anchorPoint: new google.maps.Point(0, -29)
+        //});
 
-                // If the place has a geometry, then present it on a map.
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                    map.setZoom(12);
-                }
-                marker.setIcon(({
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(35, 35)
-                }));
-                marker.setPosition(place.geometry.location);
-                marker.setVisible(true);
+    //    autocomplete.addListener('place_changed', function () {
+    //        infowindow.close();
+    //        marker.setVisible(false);
+    //        var place = autocomplete.getPlace();
+    //        if (!place.geometry) {
+    //            window.alert("Autocomplete's returned place contains no geometry");
+    //            return;
+    //        }
 
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                      (place.address_components[0] && place.address_components[0].short_name || ''),
-                      (place.address_components[1] && place.address_components[1].short_name || ''),
-                      (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
+    //        // If the place has a geometry, then present it on a map.
+    //        if (place.geometry.viewport) {
+    //            map.fitBounds(place.geometry.viewport);
+    //        } else {
+    //            map.setCenter(place.geometry.location);
+    //            map.setZoom(17);  // Why 17? Because it looks good.
+    //        }
+    //        marker.setIcon(/**type {google.maps.Icon} */({
+    //            url: place.icon,
+    //            size: new google.maps.Size(71, 71),
+    //            origin: new google.maps.Point(0, 0),
+    //            anchor: new google.maps.Point(17, 34),
+    //            scaledSize: new google.maps.Size(35, 35)
+    //        }));
+    //        marker.setPosition(place.geometry.location);
+    //        marker.setVisible(true);
 
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-                infowindow.open(map, marker);
-            });
+    //        var address = '';
+    //        if (place.address_components) {
+    //            address = [
+    //              (place.address_components[0] && place.address_components[0].short_name || ''),
+    //              (place.address_components[1] && place.address_components[1].short_name || ''),
+    //              (place.address_components[2] && place.address_components[2].short_name || '')
+    //            ].join(' ');
+    //        }
 
-            google.maps.event.addDomListener(input, 'keydown', function (e) {
-                if (e.keyCode == 13) {
-                    if (e.preventDefault) {
-                        e.preventDefault();
-                    }
-                    else {
-                        // Since the google event handler framework does not handle
-                        e.cancelBubble = true;
-                        e.returnValue = false;
-                    }
-                }
-            });
+    //        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    //        infowindow.open(map, marker);
+    //    });
 
-        }
+    //    // Sets a listener on a radio button to change the filter type on Places
+    //    // Autocomplete.
+    //    function setupClickListener(id, types) {
+    //        var radioButton = document.getElementById(id);
+    //        radioButton.addEventListener('click', function () {
+    //            autocomplete.setTypes(types);
+    //        });
+    //    }
 
-        function handleNoGeolocation(errorFlag) {
-            if (errorFlag) {
-                var content = 'Error: The Geolocation service failed.';
-            } else {
-                var content = 'Error: Your browser doesn\'t support geolocation.';
-            }
+    //    setupClickListener('changetype-all', []);
+    //    setupClickListener('changetype-address', ['address']);
+    //    setupClickListener('changetype-establishment', ['establishment']);
+    //    setupClickListener('changetype-geocode', ['geocode']);
 
-            var options = {
-                map: map,
-                position: new google.maps.LatLng(60, 105),
-                content: content
-            };
 
-            var infowindow = new google.maps.InfoWindow(options);
-            map.setCenter(options.position);
-        }        
+    //}
+</script>
+
     </script>
 }
 
