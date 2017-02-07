@@ -348,16 +348,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _orderService.Update(order);
 
             await _unitOfWorkAsync.SaveChangesAsync();
-
+			var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
+			var propiedad = await _listingService.FindAsync(order.ListingID);
+			var condominio = await _categoryService.FindAsync(propiedad.CategoryID);
 
 			if (status == 2)
 			{
 				var emailorderquery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "pagoabono").SelectAsync();
 				var templateorder = emailorderquery.Single();
-				var pasajero = _aspNetUserService.Query(x => x.Id == order.UserReceiver).Select().FirstOrDefault();
-				var propiedad = await _listingService.FindAsync(order.ListingID);
-				var condominio = await _categoryService.FindAsync(propiedad.CategoryID);
-
 				dynamic emailorder = new Postal.Email("Email");
 				emailorder.To = pasajero.Email;
 				emailorder.From = CacheHelper.Settings.EmailAddress;
@@ -385,6 +383,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				EmailHelper.SendEmail(emailorder);
             }
 
+			//Generar SpreadSheet
+			SpreadsheetHelper.WriteOt(order, propiedad, pasajero);
 
             var result = new
             {
