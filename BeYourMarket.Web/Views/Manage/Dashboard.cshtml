@@ -45,11 +45,24 @@
                                             </p>
                                         </div>
                                         <div class="col-xs-4">
-                                            <div class="pull-right">
-                                                <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i><span class="hidden-xs">[[[Edit]]]</span></a>
-                                                <a class="btn btn-warning btn-sm" href="@Url.Action("ListingCalendar", "Manage", new { id= item.ListingCurrent.ID })"><i class="fa fa-calendar"></i><span class="hidden-xs">[[[Calendar]]]</span></a>
-                                            </div>
+											<div class="pull-right">
+												<a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i><span class="hidden-xs">[[[Edit]]]</span></a>
+												<a class="btn btn-warning btn-sm" href="@Url.Action("ListingCalendar", "Manage", new { id= item.ListingCurrent.ID })"><i class="fa fa-calendar"></i><span class="hidden-xs">[[[Calendar]]]</span></a>
+											</div>
                                         </div>
+										<br />
+										<div class="col-xs-4" style="text-align:center;">
+											<div class="pull-right">
+												@if (item.ListingCurrent.Active)
+												{
+													<p style="color:green; font-size: 18px;"><span class="glyphicon glyphicon-ok"></span>Propiedad Activa</p>
+												}
+												else
+												{
+													<p style="color:red; font-size: 18px;"><span class="glyphicon glyphicon-remove"></span>Propiedad Inactiva</p>
+												}
+											</div>
+										</div>
                                     </li>
                                 }
                             </ul>
