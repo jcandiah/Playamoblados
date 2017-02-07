@@ -752,7 +752,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 }
             }
             //INSERTANDO CAMAS
-            if (idcama.Length != 0)
+            if (idcama != null)
             {
                 List<int> listaid = new List<int>();
                 for (int i = 0; i < idcama.Length; i++)

@@ -625,7 +625,7 @@ namespace BeYourMarket.Web.Controllers
 
                 listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
                 _listingService.Update(listingExisting);
-                await _unitOfWorkAsync.SaveChangesAsync();
+               
             }
 
 
@@ -737,7 +737,7 @@ namespace BeYourMarket.Web.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             //INSERTANDO CAMAS
-            if (idcama.Length != 0)
+            if (idcama != null)
             {
                 List<int> listaid = new List<int>();
                 for (int i = 0; i < idcama.Length; i++)
