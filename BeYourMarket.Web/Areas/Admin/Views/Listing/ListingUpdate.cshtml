@@ -519,7 +519,15 @@
         {
             var totalcama =0;
             $('#tabla tbody tr').each(function() {
-                totalcama += parseInt($(this).find("td").eq(3).html());
+                var tipo = $(this).find("td").eq(2).html();
+                if(tipo=='Camarote' || tipo =='Cama Nido')
+                {
+                    totalcama += parseInt($(this).find("td").eq(3).html()) *2;  
+                }
+                else
+                {
+                    totalcama += parseInt($(this).find("td").eq(3).html());  
+                }   
             });
             $('#Beds').val(totalcama);
         }

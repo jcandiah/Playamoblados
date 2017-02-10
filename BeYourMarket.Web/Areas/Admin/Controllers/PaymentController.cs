@@ -384,7 +384,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
 			//Generar SpreadSheet
-			SpreadsheetHelper.WriteOt(order, propiedad, pasajero);
+			SpreadsheetHelper.WriteOtOAuth(order, propiedad, pasajero);
 
             var result = new
             {

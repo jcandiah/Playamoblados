@@ -280,7 +280,7 @@
                                     <label class="cr-styled">
                                         <input id="Smoker" name="Smoker" type="checkbox" value="true" @(Model.ListingItem.Smoker ? "checked" : "")>
                                         <i class="fa"></i>
-                                        <strong>[[[Accept smoker]]]</strong>
+                                        <strong>[[[No accept smoker]]]</strong>
                                     </label>
                                     <input name="Grill" type="hidden" value="false" />
                                 </div>
@@ -288,7 +288,7 @@
                                     <label class="cr-styled">
                                         <input id="Pets" name="Pets" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
                                         <i class="fa"></i>
-                                        <strong>[[[Accept Pets]]]</strong>
+                                        <strong>[[[No accept Pets]]]</strong>
                                     </label>
                                     <input name="Grill" type="hidden" value="false" />
                                 </div>
@@ -296,7 +296,7 @@
                                     <label class="cr-styled">
                                         <input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
                                         <i class="fa"></i>
-                                       <strong> [[[Accept Children]]]</strong>
+                                       <strong> [[[No accept Children]]]</strong>
                                     </label>
                                     <input name="Grill" type="hidden" value="false" />
                                 </div>
@@ -552,8 +552,16 @@
     function ModificarTotal()
     {
         var totalcama =0;
-        $('#tabla tbody tr').each(function() {              
-            totalcama += parseInt($(this).find("td").eq(3).html());               
+        $('#tabla tbody tr').each(function() {  
+            var tipo = $(this).find("td").eq(2).html();
+            if(tipo=='Camarote' || tipo =='Cama Nido')
+            {
+                totalcama += parseInt($(this).find("td").eq(3).html()) *2;  
+            }
+            else
+            {
+                totalcama += parseInt($(this).find("td").eq(3).html());  
+            }             
         });
         $('#Beds').val(totalcama);
     }

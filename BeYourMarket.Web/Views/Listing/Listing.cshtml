@@ -273,29 +273,31 @@
                                                     <th class="bg-warning">
                                                         <h3 class="text-center"> Normas de la casa</h3>
                                                     </th>
-                                                    @if (Model.ListingCurrent.Smoker)
+                                                    @if (Model.ListingCurrent.Smoker) //si es true no acepta fumadores
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/fumar.png"  style="width:40px;" /> Acepta fumadores.
+                                                            <img src="~/Images/Iconos/no-fumar.png" style="width:40px;" /> No fumadores.   
+                                                        </td>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/fumar.png" style="width:40px;" /> Acepta fumadores.
+                                                        </td>
+                                                    }
+                                                    @if (Model.ListingCurrent.Pets) //si es true no acepta animales
+                                                    {
+                                                        <td>
+                                                            <img src="~/Images/Iconos/no-perro.png" style="width:40px;" /> No animales.
                                                         </td>
                                                     }
                                                     else
                                                     {
                                                         <td>
-                                                            <img src="~/Images/Iconos/no-fumar.png"  style="width:40px;"/> No fumadores.
+                                                            <img src="~/Images/Iconos/perro.png" style="width:40px;" /> Acepta animales.
                                                         </td>
-                                                    }
-                                                    @if (Model.ListingCurrent.Pets)
-                                                    {
-                                                        <td>
-                                                            <img src="~/Images/Iconos/perro.png" style="width:40px;"/> Acepta animales.
-                                                        </td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>
-                                                            <img src="~/Images/Iconos/no-perro.png"  style="width:40px;" /> No animales.
-                                                        </td>
+                                                       
                                                     }
                                                     <td></td>
 
