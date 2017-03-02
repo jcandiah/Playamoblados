@@ -508,7 +508,15 @@ namespace BeYourMarket.Web.Controllers
 					return View("ExternalLoginFailure");
 				}
 				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-				var result = await UserManager.CreateAsync(user);
+                user.RegisterDate = DateTime.Now;
+                user.FirstName = info.ExternalIdentity.Name;
+                user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+				user.LastAccessDate = DateTime.Now;
+                user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+                user.EmailConfirmed = true;
+
+
+                var result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{
 					result = await UserManager.AddLoginAsync(user.Id, info.Login);

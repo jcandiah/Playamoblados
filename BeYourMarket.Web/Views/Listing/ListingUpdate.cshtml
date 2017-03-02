@@ -278,27 +278,27 @@
                                 </legend>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" @(Model.ListingItem.Smoker ? "checked" : "")>
+                                        <input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
                                         <i class="fa"></i>
-                                        <strong>[[[No accept smoker]]]</strong>
+                                        <strong>Se admiten fumadoras</strong>
                                     </label>
-                                    <input name="Grill" type="hidden" value="false" />
+                                    <input name="Smoker" type="hidden" value="false" />
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Pets" name="Pets" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
+                                        <input id="Pets" name="Pets" type="checkbox" value="true" checked>
                                         <i class="fa"></i>
-                                        <strong>[[[No accept Pets]]]</strong>
+                                        <strong>Se admiten mascotas</strong>
                                     </label>
-                                    <input name="Grill" type="hidden" value="false" />
+                                    <input name="Pets" type="hidden" value="false" />
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
                                         <input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
                                         <i class="fa"></i>
-                                       <strong> [[[No accept Children]]]</strong>
+                                       <strong>Propiedad no apta para niños</strong>
                                     </label>
-                                    <input name="Grill" type="hidden" value="false" />
+                                    <input name="Children" type="hidden" value="false" />
                                 </div>
 
 
@@ -463,6 +463,24 @@
             });
         });
     </script>
+
+
+<script>
+    var id =  @Html.Raw(Model.ListingItem.ID.ToString());
+    if(id != 0)
+    {
+        var pets = @Html.Raw((Model.ListingItem.Pets ? "0" : "1"));
+        if(pets == 1)
+        {
+            $('#Pets').attr('checked', false);
+        }
+        var smoker = @Html.Raw((Model.ListingItem.Smoker ? "0" : "1"));
+        if(smoker == 1)
+        {
+            $('#Smoker').attr('checked', false);
+        }
+    }
+</script>
 
 
 <script type="text/javascript">

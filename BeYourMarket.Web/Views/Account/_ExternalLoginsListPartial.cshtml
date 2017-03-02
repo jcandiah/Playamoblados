@@ -18,8 +18,17 @@
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
                 <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="@string.Format("[[[Log in using your {0} account]]]", p.Caption)">@p.AuthenticationType</button>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        if (p.AuthenticationType.Equals("Facebook"))
+                        {
+                            <button type="submit" class="btn btn-social btn-facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="@string.Format("[[[Log in using your {0} account]]]", p.Caption)"><span class="fa fa-facebook"></span> Iniciar sesion con facebook</button>
+                        }
+                        if (p.AuthenticationType.Equals("Google"))
+                        {
+                            <button type="submit" class="btn btn-social btn-google" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="@string.Format("[[[Log in using your {0} account]]]", p.Caption)"><span class="fa fa-google"></span> Iniciar sesion con Google</button>
+                        }
+                    <br /><br />
                     }
                 </p>
             </div>

@@ -56,15 +56,15 @@ namespace BeYourMarket.Web
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "739442096211558",
+               appSecret: "c883b4696aef4a0ac786a78be08ca7ee");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "761074618703-4v52omiu4jfa372vfnjqihug3l0abcmi.apps.googleusercontent.com",
+                ClientSecret = "hQ1BY5_4EtTusuh3l9IPhPKE"
+            });
         }
     }
 }
