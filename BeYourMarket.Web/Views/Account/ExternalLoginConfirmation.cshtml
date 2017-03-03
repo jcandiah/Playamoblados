@@ -5,7 +5,7 @@
 <div class="main-section">
     <div class="container-fluid">
      
-        <h3>Asosiar tu cuenta de @ViewBag.LoginProvider .</h3>
+        <h3>Asociar tu cuenta de @ViewBag.LoginProvider .</h3>
 
         @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
