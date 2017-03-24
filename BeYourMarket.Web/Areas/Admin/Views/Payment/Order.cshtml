@@ -78,35 +78,35 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
-                       {
-                           columns.Add()
-                             .Encoded(false)
-                             .Sanitized(false)
-                             .RenderValueAs(x => DisplayUpdateLink(x.ID, x.UserProvider, x.Status));
+					   {
+						   columns.Add()
+							 .Encoded(false)
+							 .Sanitized(false)
+							 .RenderValueAs(x => DisplayUpdateLink(x.ID, x.UserProvider, x.Status));
 
-                           columns.Add(x => x.Status).Titled("[[[Status]]]").RenderValueAs(x => x.Status == 1 ? "Pendiente" : "").Css("bg-info");
+						   columns.Add(x => x.Status).Titled("[[[Status]]]").RenderValueAs(x => x.Status == 1 ? "Pendiente" : "").Css("bg-info");
 
-                           columns.Add(x => x.Listing.Title)
-                               .Encoded(false)
-                               .Sanitized(false)
-                               .Titled("[[[ID Property]]]");
+						   columns.Add(x => x.Listing.Title)
+							   .Encoded(false)
+							   .Sanitized(false)
+							   .Titled("[[[ID Property]]]");
 
-                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
-                           columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
+						   columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
+						   columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
 
-                           columns.Add(x => x.Total).Titled("[[[Value]]]");
+						   columns.Add(x => x.Total).Titled("[[[Value]]]");
 
-                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
-                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+						   columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+						   columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
 
-                           columns.Add(x => x.Quantity).Titled("[[[Night]]]");
+						   columns.Add(x => x.Quantity).Titled("[[[Night]]]");
 
-                           columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+						   columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+						   
+						   columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToString());
 
-                           columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
 
-
-                       }).WithPaging(10).Sortable().Filterable().Selectable(false)
+					   }).WithPaging(10).Sortable().Filterable().Selectable(false)
                         </div>
                     </div>
 

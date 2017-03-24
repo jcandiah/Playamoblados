@@ -16,7 +16,6 @@ using i18n;
 using BeYourMarket.Model.Enum;
 using System.Collections.Generic;
 using BeYourMarket.Model.Models;
-using Facebook;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -28,6 +27,7 @@ namespace BeYourMarket.Web.Controllers
 		private ApplicationUserManager _userManager;
 		private ApplicationRoleManager _roleManager;
 		private readonly IEmailTemplateService _emailTemplateService;
+		private readonly IAspNetUserService _AspNetUserService;
 		#endregion
 
 		#region Properties
@@ -69,9 +69,11 @@ namespace BeYourMarket.Web.Controllers
 		#endregion
 
 		#region Constructor
-		public AccountController(IEmailTemplateService emailTemplateService)
+		public AccountController(IEmailTemplateService emailTemplateService,
+								 IAspNetUserService aspNetUserService)
 		{
 			_emailTemplateService = emailTemplateService;
+			_AspNetUserService = aspNetUserService;
 		}
 		#endregion
 
@@ -467,26 +469,63 @@ namespace BeYourMarket.Web.Controllers
 			var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 			if (loginInfo == null)
 			{
-				return RedirectToAction("Login");
+				return View("ExternalLoginFailure");
 			}
 
-			// Sign in the user with this external login provider if the user already has a login
-			var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-			switch (result)
+			var userExisting = _AspNetUserService.Query(x=> x.Email.Equals(loginInfo.Email)).Select().FirstOrDefault();
+			if (userExisting != null)
 			{
-				case SignInStatus.Success:
-					return RedirectToLocal(returnUrl);
-				case SignInStatus.LockedOut:
-					return View("Lockout");
-				case SignInStatus.RequiresVerification:
-					return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-				case SignInStatus.Failure:
-				default:
-					// If the user does not have an account, then prompt the user to create an account
-					ViewBag.ReturnUrl = returnUrl;
-					ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-					return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[Este usuario se creo en Playamoblados, por favor ingrese su respectivo correo y contraseña.]]]";
+				return View("Login");
 			}
+			else {
+				// Sign in the user with this external login provider if the user already has a login
+				var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+				switch (result)
+				{
+					case SignInStatus.Success:
+						return RedirectToLocal(returnUrl);
+					case SignInStatus.LockedOut:
+						return View("Lockout");
+					case SignInStatus.RequiresVerification:
+						return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+					case SignInStatus.Failure:
+					default:
+						// If the user does not have an account, then prompt the user to create an account
+						ViewBag.ReturnUrl = returnUrl;
+						ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+						if (loginInfo.Login.LoginProvider.Equals("Google"))
+						{
+							var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email };
+							user.RegisterDate = DateTime.Now;
+							user.FirstName = loginInfo.ExternalIdentity.Name;
+							user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+							user.LastAccessDate = DateTime.Now;
+							user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+							user.EmailConfirmed = true;
+
+							var created = await UserManager.CreateAsync(user);
+
+							if (created.Succeeded)
+							{
+								created = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+								if (created.Succeeded)
+								{
+									await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+									return RedirectToLocal(returnUrl);
+								}
+								AddErrors(created);
+							}
+							break;
+						}
+						else
+						{
+							return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+						}
+				}		
+			}			
+			return View("Login");
 		}
 
 		//

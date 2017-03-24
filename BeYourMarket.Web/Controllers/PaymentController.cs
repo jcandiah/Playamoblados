@@ -276,10 +276,10 @@ namespace BeYourMarket.Web.Controllers
             var listing = await _listingService.FindAsync(order.ListingID);
             var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
 
-            if (order.FromDate == order.ToDate)
+            if ((order.ToDate.Value - order.FromDate.Value).Days < 2)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "[[[You cant book just to one day, minimun two day.]]]";
+                TempData[TempDataKeys.UserMessage] = "[[[The minium quantity for order is two nights]]]";
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }

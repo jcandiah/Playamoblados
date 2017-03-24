@@ -22,7 +22,8 @@
                     Para inscribir tu propiedad debes iniciar sesión aqui, si aún no te registras @Html.ActionLink("[[[Hazlo aqui]]]", "Register", new { })
                 </div>
             }
-            <div class="panel panel-default mrg-t">
+			@Html.Partial("_UserMessage")
+            <div class="panel panel-default mrg-t">				
                 <div class="panel-body bdr-b panel-header">
                     <h4>[[[Login to your account]]]</h4>
                 </div>
