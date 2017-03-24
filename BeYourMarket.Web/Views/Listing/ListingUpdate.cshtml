@@ -58,7 +58,10 @@
                                          }, Model.ListingItem.TypeOfProperty,
                                           new { @class = "form-control" })
                                 </div>
-
+								<div class="form-group">
+									<label>[[[Short Description]]] <span class="text-red">*</span></label>
+									<textarea class="form-control" rows="3" placeholder="[[[Short Description]]]" id="ShortDescription" name="ShortDescription" maxlength="150">@Model.ListingItem.ShortDescription</textarea>
+								</div>
                                 <div class="form-group">
                                     <label>[[[Comercial Description]]] <span class="text-red">*</span></label>
                                     <textarea class="form-control" rows="5" placeholder="[[[Specify property information, for example the number of rooms, bathrooms, if you have parking, beds and types bed etc ...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>

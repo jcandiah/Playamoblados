@@ -643,10 +643,13 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.NroOfParking = listing.NroOfParking;
                 listingExisting.Suite = listing.Suite;
                 listingExisting.Washer = listing.Washer;
-                
-                //listingExisting.ListingTypeID = listing.ListingTypeID;                
+				listingExisting.Warranty = listing.Warranty;
+				listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
+				listingExisting.Address = listing.Address;
 
-                listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+				//listingExisting.ListingTypeID = listing.ListingTypeID;                
+
+				listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
                 _listingService.Update(listingExisting);
                 actualiza = 1;

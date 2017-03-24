@@ -32,12 +32,17 @@
                         }
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">[[[Category]]]<span class="text-red">*</span></label>
+                            <label class="col-md-2 control-label">[[[Condominium]]]<span class="text-red">*</span></label>
                             <div class="col-md-10">
                                 @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control" })
                             </div>
                         </div>
-
+						<div class="form-group">
+							<label class="col-md-2 control-label">[[[Describe Condominium]]]</label>
+							<div class="col-md-10">
+								<textarea class="form-control input-lg" rows="4" placeholder="[[[Describe the condominium]]]"  id="DescribeCondominium" name="DescribeCondominium" required>@Model.ListingItem.DescribeCondominium</textarea>
+							</div>
+						</div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Type]]]<span class="text-red">*</span></label>
                             <div class="col-md-10">
@@ -52,7 +57,18 @@
                                           new { @class = "form-control" })
                             </div>
                         </div>
-
+						<div class="form-group">
+							<label class="col-md-2 control-label">[[[Short Description]]]</label>
+							<div class="col-md-10">
+								<textarea class="form-control input-lg" rows="2" placeholder="Short Description..." id="ShortDescription" name="ShortDescription" maxlength="150" required>@Model.ListingItem.ShortDescription</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">[[[Address]]]</label>
+							<div class="col-md-10">
+								<input  type="text" class="form-control input-lg" rows="1" placeholder="Address..." id="Address" name="Address" maxlength="50" required>@Model.ListingItem.Address</input>
+							</div>
+						</div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Description]]]</label>
                             <div class="col-md-10">
@@ -61,11 +77,11 @@
                         </div>
 
                         @*<div class="form-group">
-                        <label class="col-md-2 control-label">[[[Contact Name]]]</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="ContactName" name="ContactName" value="@Model.ListingItem.ContactName" required>
-                        </div>
-                    </div>
+							<label class="col-md-2 control-label">[[[Contact Name]]]</label>
+							<div class="col-md-10">
+								<input type="text" class="form-control" id="ContactName" name="ContactName" value="@Model.ListingItem.ContactName" required>
+							</div>
+						</div>
 
                     <div class="form-group">
                         <label class="col-md-2 control-label">[[[Contact Email]]]</label>
@@ -87,6 +103,20 @@
                                 <input type="number" min="0" class="form-control" id="Price" name="Price" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
                             </div>
                         </div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">[[[Warranty]]]</label>
+							<div class="col-md-10">
+								<input type="number" min="0" class="form-control" id="Warranty" name="Warranty" value="@Model.ListingItem.Warranty" data-rule-number="true" data-rule-min="0">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">[[[Cleanliness Price]]]</label>
+							<div class="col-md-10">
+								<input type="number" min="0" class="form-control" id="CleanlinessPrice" name="CleanlinessPrice" value="@Model.ListingItem.CleanlinessPrice" data-rule-number="true" data-rule-min="0">
+							</div>
+						</div>
 
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Max. passenger capacity]]]<span class="text-red">*</span></label>
@@ -289,23 +319,64 @@
                     </div>
                 </div>
 
-                        <div class="form-group" style="padding-left: 410px">
-                                <div class="form-group col-md-offset-2 col-md-3">
-                                    <label class="cr-styled">
-                                        <input id="Active" name="Active" type="checkbox" value="true" checked="@Model.ListingItem.Active">
-                                        <i class="fa"></i>
-                                        [[[Active]]]
-                                    </label>
-                                </div>
+				<div class="form-group" style="padding-left: 410px">
+					<div class="form-group col-md-offset-2 col-md-3">
+						<label class="cr-styled">
+							<input id="Active" name="Active" type="checkbox" value="true" checked="@Model.ListingItem.Active">
+							<i class="fa"></i>
+							[[[Active]]]
+						</label>
+					</div>
 
-                                <div class="form-group col-md-offset-2 col-md-3">
-                                    <label class="cr-styled">
-                                        <input id="Enabled" name="Enabled" type="checkbox" value="true" checked="@Model.ListingItem.Enabled">
-                                        <i class="fa"></i>
-                                        [[[Enabled]]]
-                                    </label>
-                                </div>
-                        </div>
+					<div class="form-group col-md-offset-2 col-md-3">
+						<label class="cr-styled">
+							<input id="Enabled" name="Enabled" type="checkbox" value="true" checked="@Model.ListingItem.Enabled">
+							<i class="fa"></i>
+							[[[Enabled]]]
+						</label>
+					</div>
+				</div>
+
+				<fieldset>
+					<legend>
+						[[[Special condition of the rent.]]]
+					</legend>
+					<div class="form-group col-md-4">
+						<label class="cr-styled">
+							<input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
+							<i class="fa"></i>
+							<strong>Se admiten fumadoras</strong>
+						</label>
+						<input name="Smoker" type="hidden" value="false" />
+					</div>
+					<div class="form-group col-md-4">
+						<label class="cr-styled">
+							<input id="Pets" name="Pets" type="checkbox" value="true" checked>
+							<i class="fa"></i>
+							<strong>Se admiten mascotas</strong>
+						</label>
+						<input name="Pets" type="hidden" value="false" />
+					</div>
+					<div class="form-group col-md-4">
+						<label class="cr-styled">
+							<input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
+							<i class="fa"></i>
+							<strong>Propiedad no apta para niños</strong>
+						</label>
+						<input name="Children" type="hidden" value="false" />
+					</div>
+
+					<div class="form-group">
+						<label>[[[Describe Conditions property]]]</label>
+						<textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the conditions of use of your property ]]]" id="ConditionHouse" name="ConditionHouse">@Model.ListingItem.ConditionHouse</textarea>
+					</div>
+
+					<div class="form-group">
+						<label>[[[Describe the conditions of how you would like to receive your property]]]</label>
+						<textarea id="ConditionCheckOut" class="form-control col-md-12" rows="5" name="ConditionCheckOut" placeholder="[[[Describe how you want to have your property returned.]]]">@Model.ListingItem.ConditionCheckOut</textarea>
+					</div>
+
+				</fieldset>
 
                 @*<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
