@@ -8,6 +8,10 @@ namespace BeYourMarket.Web.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Nro° Telefono")]
+        public string Telefono { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -88,6 +92,9 @@ namespace BeYourMarket.Web.Models
 
         [Display(Name = "[[[Gender]]]")]
         public string Gender { get; set; }
+
+        [Display(Name = "Nro° Telefono")]
+        public string Phone { get; set; }
     }
 
     public class ResetPasswordViewModel

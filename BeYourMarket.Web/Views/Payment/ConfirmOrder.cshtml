@@ -44,34 +44,34 @@
                 <table class="table">
                     <tr>
                         <td>
-                            Arriendo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                            Arriendo <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Precio"></i>:
                         </td>
                         <td>
-                            CLP $@Model.ListingOrder.Price
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Servicio <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
-                        </td>
-                        <td>
-                            CLP $@servicio
+                            CLP @string.Format("{0} {1:N0}", "$", Model.ListingOrder.Price)
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Aseo <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                            Servicio <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Servicio"></i>:
                         </td>
                         <td>
-                            CLP $@Model.ListingOrder.Listing.CleanlinessPrice
+                            CLP @string.Format("{0} {1:N0}", "$", servicio)
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Total <i class="glyphicon glyphicon-question-sign" id="qstArriendo"></i>:
+                            Aseo<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Aseo"></i>:
                         </td>
                         <td>
-                            CLP $@Model.ListingOrder.Total
+                            CLP @string.Format("{0} {1:N0}", "$",Model.ListingOrder.Listing.CleanlinessPrice)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Total"></i>:
+                        </td>
+                        <td>
+                            CLP @string.Format("{0} {1:N0}", "$", Model.ListingOrder.Total)
                         </td>
                     </tr>
                 </table>
@@ -91,13 +91,14 @@
             <table class="table">
                 <tr>
                     <td class="text-center">
-                        @using (Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID, niños = Model.ListingOrder.Children, adultos = Model.ListingOrder.Adults }, FormMethod.Post, new { role = "form", id = "confirmForm", name = "confirmForm" }))
+                        @using(Html.BeginForm("ConfirmOrderAction", "Payment", new { id = Model.ListingOrder.ID, niños = Model.ListingOrder.Children, adultos = Model.ListingOrder.Adults
+                                }, FormMethod.Post, new { role = "form", id = "confirmForm", name = "confirmForm" }))
                         {
                             <div class=""><button class="btn btn-lg btn-success" type="submit" id="btnConfirm" disabled>Confirmar</button></div>
                         }
                     </td>
                     <td class="text-center">
-                        @using (Html.BeginForm("CancelOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "cancelForm", name = "cancelForm" }))
+                        @using(Html.BeginForm("CancelOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "cancelForm", name = "cancelForm" }))
                         {
                             <div class=""><button class="btn btn-lg btn-danger" type="submit">Cancelar</button></div>
                         }
@@ -147,4 +148,9 @@
             });
         }
     }
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
