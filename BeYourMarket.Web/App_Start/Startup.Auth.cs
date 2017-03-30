@@ -62,9 +62,9 @@ namespace BeYourMarket.Web
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "565807602518-68pclptsm87ra5v7umc37jiejpsqnom9.apps.googleusercontent.com",
-                ClientSecret = "KGfAlCvZj-a6C5PuZUiPBShZ"
-            });
+                ClientId = "565807602518-pprnsi7ovpsjaust6gavqebj1mtr54hb.apps.googleusercontent.com",
+                ClientSecret = "zWm2WNTzDxG1CJh8N43euo2s"
+			});
         }
     }
 }
