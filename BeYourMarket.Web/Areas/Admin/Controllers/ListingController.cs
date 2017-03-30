@@ -1025,6 +1025,62 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Listings");
         }
-        #endregion
-    }
+		#endregion
+
+		//Exportar Propiedades a CSV
+		public async Task<ActionResult> ExportarPropiedades()
+		{
+			IEnumerable<Listing> lista = await _listingService.Query().SelectAsync();
+			if (lista.Count() > 0)
+			{
+				string header = @"""ID"";""Titulo"";""Descripcion Corta"";""Direccion"";""Precio"";""Condominio"";""Tipo de propiedad"";""Capacidad"";""Habitaciones"";""Banos"";""Cantidad de estacionamientos"";""Numeracion de estacionamiento"";""M2"";""Cantidad de camas"";""Piezas Suite"";""Lavavajillas"";""Lavadora"";""Parrilla"";""TV cable"";""Wi fi"";""Ascensor"";""Malla de seguridad""";
+                StringBuilder sb = new StringBuilder();
+				sb.AppendLine(header);
+
+				foreach (var i in lista)
+				{
+					var condominium = _categoryService.Query(x => x.ID == i.CategoryID).Select().FirstOrDefault();
+					sb.AppendLine(string.Join(";",
+						string.Format(@"""{0}""", i.ID),
+						string.Format(@"""{0}""", i.Title),
+						string.Format(@"""{0}""", i.ShortDescription),
+						string.Format(@"""{0}""", i.Address),
+						string.Format(@"""{0}""", i.Price),
+						string.Format(@"""{0}""", condominium.Name),
+						string.Format(@"""{0}""", i.TypeOfProperty),
+						string.Format(@"""{0}""", i.Max_Capacity),
+						string.Format(@"""{0}""", i.Rooms),
+						string.Format(@"""{0}""", i.Bathrooms),
+						string.Format(@"""{0}""", i.ParkingLot),
+						string.Format(@"""{0}""", i.NroOfParking),
+						string.Format(@"""{0}""", i.M2),
+						string.Format(@"""{0}""", i.Beds),
+						string.Format(@"""{0}""", i.Suite),
+						string.Format(@"""{0}""", i.Dishwasher ? "Si" : "No"),
+						string.Format(@"""{0}""", i.Washer ? "Si" : "No"),
+						string.Format(@"""{0}""", i.Grill ? "Si" : "No"),
+						string.Format(@"""{0}""", i.TV_cable ? "Si" : "No"),
+						string.Format(@"""{0}""", i.Wifi ? "Si" : "No"),
+						string.Format(@"""{0}""", i.Elevator ? "Si" : "No"),
+						string.Format(@"""{0}""", i.SafetyMesh ? "Si" : "No")));
+				}
+
+				// Download Here
+				HttpContext context = System.Web.HttpContext.Current;
+				context.Response.Write(sb.ToString());
+				context.Response.ContentType = "text/csv";
+				context.Response.AddHeader("Content-Disposition", "attachment; filename= Propiedades.csv");
+				context.Response.End();
+			}
+			else
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[No items to export.]]]";
+				return RedirectToAction("Users", "Manage");
+			}
+
+			return RedirectToAction("Users", "Manage");
+		}
+		http://playam-dev.azurewebsites.net/images/community/playamobladosLogo.jpg
+	}
 }

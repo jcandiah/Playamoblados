@@ -60,8 +60,14 @@
                         </div>
                     </div>
 
-                    <hr />
-                    
+					<hr />
+
+					<div class="row">
+						<div class="col-lg-10">
+							<a class="btn btn-primary btn-sm" style="margin-bottom: 15px" href="@Url.Action("ExportarPropiedades", "Listing", new { id = 1 })"><i class="fa fa-archive"></i> [[[Export to CSV]]]</a>
+						</div>
+					</div>
+
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
