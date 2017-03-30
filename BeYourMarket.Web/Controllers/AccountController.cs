@@ -16,7 +16,6 @@ using i18n;
 using BeYourMarket.Model.Enum;
 using System.Collections.Generic;
 using BeYourMarket.Model.Models;
-using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -238,6 +237,7 @@ namespace BeYourMarket.Web.Controllers
 				Email = model.Email,
 				FirstName = model.FirstName,
 				LastName = model.LastName,
+                PhoneNumber = model.Phone,
 				Gender = model.Gender,
 				RegisterDate = DateTime.Now,
 				RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP(),
@@ -548,9 +548,11 @@ namespace BeYourMarket.Web.Controllers
 				{
 					return View("ExternalLoginFailure");
 				}
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 user.RegisterDate = DateTime.Now;
                 user.FirstName = info.ExternalIdentity.Name;
+                user.PhoneNumber = model.Telefono;
                 user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
 				user.LastAccessDate = DateTime.Now;
                 user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();

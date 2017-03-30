@@ -56,6 +56,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="LastName">[[[Phone]]] <span class="text-red">*</span></label>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control input-lg", placeholder = "[[[Enter Phone]]]", data_rule_required = "true" })
+                        </div>
+
+                        <div class="form-group">
                             <label for="Gender">[[[Gender]]] <span class="text-red">*</span></label> <br />                            
                             @Html.RadioButton("Gender", "M", true)<i class="fa"></i> [[[Male]]]<i class="fa fa-male"></i>
                             @Html.RadioButton("Gender", "F")<i class="fa"></i> [[[Female]]]<i class="fa fa-female"></i>
