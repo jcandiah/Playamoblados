@@ -238,7 +238,7 @@ namespace BeYourMarket.Web.Controllers
 				Email = model.Email,
 				FirstName = model.FirstName,
 				LastName = model.LastName,
-                PhoneNumber = model.Phone,
+				PhoneNumber = model.Phone,
 				Gender = model.Gender,
 				RegisterDate = DateTime.Now,
 				RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP(),
@@ -462,7 +462,6 @@ namespace BeYourMarket.Web.Controllers
 			return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
 		}
 
-		//
 		// GET: /Account/ExternalLoginCallback
 		[AllowAnonymous]
 		public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -473,60 +472,63 @@ namespace BeYourMarket.Web.Controllers
 				return View("ExternalLoginFailure");
 			}
 
-			var userExisting = _AspNetUserService.Query(x=> x.Email.Equals(loginInfo.Email)).Select().FirstOrDefault();
-			if (userExisting != null)
+			////var userExisting = _AspNetUserService.Query(x => x.Email.Equals(loginInfo.Email)).Select().FirstOrDefault();
+			////if (userExisting.PasswordHash != null)
+			////{
+			//	TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+			//	TempData[TempDataKeys.UserMessage] = "[[[Este usuario se creo en Playamoblados, por favor ingrese su respectivo correo y contraseña.]]]";
+			//	return View("Login");
+			//}
+			//else
+			//{
+			// Sign in the user with this external login provider if the user already has a login
+			var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+			switch (result)
 			{
-				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-				TempData[TempDataKeys.UserMessage] = "[[[Este usuario se creo en Playamoblados, por favor ingrese su respectivo correo y contraseña.]]]";
-				return View("Login");
+				case SignInStatus.Success:
+					return RedirectToLocal(returnUrl);
+				case SignInStatus.LockedOut:
+					return View("Lockout");
+				case SignInStatus.RequiresVerification:
+					return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+				case SignInStatus.Failure:
+				default:
+					// If the user does not have an account, then prompt the user to create an account
+					ViewBag.ReturnUrl = returnUrl;
+					ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+					return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+
+
+					//if (loginInfo.Login.LoginProvider.Equals("Google"))
+					//{
+					//	var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email };
+					//	user.RegisterDate = DateTime.Now;
+					//	user.FirstName = loginInfo.ExternalIdentity.Name;
+					//	user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+					//	user.LastAccessDate = DateTime.Now;
+					//	user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+					//	user.EmailConfirmed = true;
+
+					//	var created = await UserManager.CreateAsync(user);
+
+					//	if (created.Succeeded)
+					//	{
+					//		created = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+					//		if (created.Succeeded)
+					//		{
+					//			await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+					//			return RedirectToLocal(returnUrl);
+					//		}
+					//		AddErrors(created);
+					//	}
+					//	break;
+					//}
+					//else
+					//{
+					//	return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+					//}
 			}
-			else {
-				// Sign in the user with this external login provider if the user already has a login
-				var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-				switch (result)
-				{
-					case SignInStatus.Success:
-						return RedirectToLocal(returnUrl);
-					case SignInStatus.LockedOut:
-						return View("Lockout");
-					case SignInStatus.RequiresVerification:
-						return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-					case SignInStatus.Failure:
-					default:
-						// If the user does not have an account, then prompt the user to create an account
-						ViewBag.ReturnUrl = returnUrl;
-						ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-						if (loginInfo.Login.LoginProvider.Equals("Google"))
-						{
-							var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email };
-							user.RegisterDate = DateTime.Now;
-							user.FirstName = loginInfo.ExternalIdentity.Name;
-							user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
-							user.LastAccessDate = DateTime.Now;
-							user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
-							user.EmailConfirmed = true;
-
-							var created = await UserManager.CreateAsync(user);
-
-							if (created.Succeeded)
-							{
-								created = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
-								if (created.Succeeded)
-								{
-									await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-									return RedirectToLocal(returnUrl);
-								}
-								AddErrors(created);
-							}
-							break;
-						}
-						else
-						{
-							return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-						}
-				}		
-			}			
-			return View("Login");
+			//return View("Login");
 		}
 
 		//
@@ -549,18 +551,17 @@ namespace BeYourMarket.Web.Controllers
 				{
 					return View("ExternalLoginFailure");
 				}
-
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                user.RegisterDate = DateTime.Now;
-                user.FirstName = info.ExternalIdentity.Name;
-                user.PhoneNumber = model.Telefono;
-                user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				user.RegisterDate = DateTime.Now;
+				user.FirstName = info.ExternalIdentity.Name;
+				user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
 				user.LastAccessDate = DateTime.Now;
-                user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
-                user.EmailConfirmed = true;
+				user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+				user.EmailConfirmed = true;
+				user.PhoneNumber = model.Telefono;
 
 
-                var result = await UserManager.CreateAsync(user);
+				var result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{
 					result = await UserManager.AddLoginAsync(user.Id, info.Login);
