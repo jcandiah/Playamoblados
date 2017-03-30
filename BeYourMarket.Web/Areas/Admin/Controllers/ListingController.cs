@@ -1081,6 +1081,5 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
 			return RedirectToAction("Users", "Manage");
 		}
-		http://playam-dev.azurewebsites.net/images/community/playamobladosLogo.jpg
 	}
 }
