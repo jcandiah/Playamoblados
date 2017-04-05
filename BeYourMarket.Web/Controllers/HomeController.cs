@@ -269,17 +269,6 @@ namespace BeYourMarket.Web.Controllers
                 {
                     items2 = items2.Where(x => x.Max_Capacity >= model.Passengers + model.Niños);
                 }
-                else
-                {
-                    items2 = await _listingService.Query(
-                            x => x.Max_Capacity >= model.Passengers + model.Niños)
-                            .Include(x => x.ListingPictures)
-                            .Include(x => x.Category)
-                            .Include(x => x.AspNetUser)
-                            .Include(x => x.Orders)
-                            .Include(x => x.ListingReviews)
-                            .SelectAsync();
-                }
             }
             #endregion
             //Search Type of Property
@@ -442,14 +431,17 @@ namespace BeYourMarket.Web.Controllers
             var itemsModelList = new List<ListingItemModel>();
             var itemsModelList2 = new List<ListingItemModel>();
 
-           foreach(var varitem in items)
-            {
-                //if(items2.Contains(varitem))
-                //{
-                //    items2.ToList().Remove(varitem);
-                //}
-                items2 = items2.Where(x=>x.ID != varitem.ID);
-            }
+			if (items2 != null)
+			{
+				foreach (var varitem in items)
+				{
+					//if(items2.Contains(varitem))
+					//{
+					//    items2.ToList().Remove(varitem);
+					//}
+					items2 = items2.Where(x => x.ID != varitem.ID);
+				}
+			}
             
             foreach (var item in items.Where(x => x.Active && x.Enabled).OrderBy(x => x.Price))
             {
