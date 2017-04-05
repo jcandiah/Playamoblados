@@ -197,8 +197,9 @@
         }, function (isConfirm) {
             if (isConfirm) {
                 swal.disableButtons();
-                $.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, percent: '0' })
+            	$.post('@Url.Action("OrderActionNewReserva", "Payment")', { id: id, status: status, ot : 0, percent: 0 })
                 .done(function (data) {
+                	console.log('Entro');
                     if (data.Success) {
                         location.reload();
                     } else {

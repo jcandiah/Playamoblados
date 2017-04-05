@@ -260,6 +260,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 		{
 			var order = await _orderService.FindAsync(id);
 			order.Status = status;
+			order.Modified = DateTime.Now;
 			_orderService.Update(order);
 
 			await _unitOfWorkAsync.SaveChangesAsync();
@@ -336,8 +337,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var order = await _orderService.FindAsync(id);
             order.Status = status;
             order.OT = ot;
-
-            if (status == 2)
+			order.Modified = DateTime.Now;
+			if (status == 2)
             {
                 order.Percent = percent;
                 int valor = Convert.ToInt32(order.Total.Value);

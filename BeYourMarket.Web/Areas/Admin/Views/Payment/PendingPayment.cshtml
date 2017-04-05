@@ -160,7 +160,7 @@ switch (status)
 	        }, function (isConfirm) {
 	            if (isConfirm) {
 	                swal.disableButtons();
-	                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status, ot: '0' })
+	                $.post('@Url.Action("OrderActionNew", "Payment")', { id: id, status: status })
                     .done(function (data) {
                         if (data.Success) {
                             location.reload();
