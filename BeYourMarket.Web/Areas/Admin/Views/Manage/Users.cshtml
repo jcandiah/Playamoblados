@@ -4,12 +4,20 @@
 }
 
 @{
-    ViewBag.Title = "[[[Users]]]";
+    ViewBag.Title = "[[[Users]]]";	
 }
 
 @helper DisplayDeleteLink(string id, string title)
 {
     <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete('@id', '@title');"><i class="fa fa-remove"></i> [[[Delete]]]</a>
+}
+@helper DisplayDisableLink(string id, string title)
+{
+	<a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="UserDisable('@id', '@title', 0);"><i class="fa fa-user-times"></i> [[[To disable]]]</a>
+}
+@helper DisplayEnableLink(string id, string title)
+{
+	<a class="btn btn-success btn-sm" href="javascript:void(0);" onclick="UserEnable('@id', '@title', 1);"><i class="fa fa-check-square-o"></i> [[[To enable]]]</a>
 }
 
 <div class="wraper container-fluid">
@@ -32,41 +40,49 @@
                     <div class="panel-default">
                         <a class="btn btn-primary btn-sm" style="margin-bottom: 15px" href="@Url.Action("ExportarUsuarios", "Manage", new { id = 2 })"><i class="fa fa-archive"></i> [[[Export to SVC]]]</a>
                     </div>                                        
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>[[[Email]]]</th>
-                                        <th>Nombre</th>
-                                        <th>[[[Email Confirmed]]]</th>
-                                        <th>[[[Phone Number]]]</th>
-                                        <th>[[[Phone Number Confirmed]]]</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>[[[Email]]]</th>
+										<th>Nombre</th>
+										<th>[[[Email Confirmed]]]</th>
+										<th>[[[Phone Number]]]</th>
+										<th>[[[Phone Number Confirmed]]]</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
 
-                                <tbody>
-                                    @foreach (var user in Model)
-                                    {
-                                        <tr>
-                                            <td>@user.Email</td>
-                                            <td>@user.FullName</td>
-                                            <td>@(user.EmailConfirmed ? "Si" : "No")</td>
-                                            <td>@user.PhoneNumber</td>
-                                            <td>@(user.PhoneNumberConfirmed ? "Si" : "No")</td>
-                                            <td>
-                                                <a class="btn btn-primary m-b-5" href="@Url.Action("UserUpdate", "Manage", new { id = user.Id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
-                                            </td>
-                                            <td>@DisplayDeleteLink(user.Id, user.FullName)</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+								<tbody>
+									@foreach (var user in Model)
+									{
 
-                        </div>
-                    </div>
+										<tr>
+											<td>@user.Email</td>
+											<td>@user.FullName</td>
+											<td>@(user.EmailConfirmed ? "Si" : "No")</td>
+											<td>@user.PhoneNumber</td>
+											<td>@(user.PhoneNumberConfirmed ? "Si" : "No")</td>
+											<td>
+												<a class="btn btn-primary m-b-5" href="@Url.Action("UserUpdate", "Manage", new { id = user.Id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
+											</td>
+											@if (user.Disabled == true)
+											{
+												<td>@DisplayEnableLink(user.Id, user.FullName)</td>
+											}
+											else
+											{
+												<td>@DisplayDisableLink(user.Id, user.FullName)</td>
+											}
+										</tr>
+									}
+								</tbody>
+							</table>
+
+						</div>
+					</div>
                 </div>
             </div>
         </div>
@@ -102,6 +118,62 @@
                 swal("Deleted!", "[[[User is deleted.]]]", "success");
             });
         }
+
+	function UserEnable(id, title, enable) {
+		swal({
+			title: "[[[Are you sure?]]]",
+			text: "[[[You will activate the user ]]] " + title,
+			type: "input",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "[[[Yes, enable it!]]]",
+			cancelButtonText: "[[[No, cancel please!]]]",
+			inputPlaceholder: "[[[Type ACTIVATE to confirm.]]]",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		}, function (inputValue) {
+
+			if (inputValue === false)
+				return false;
+			if (inputValue === "" || inputValue != "ACTIVAR") {
+				swal.showInputError("[[[Type ACTIVATE to confirm.]]]"); return false
+			}
+
+			swal.disableButtons();
+
+			post('@Url.Action("UserEnableDisable", "Manage")', { id: id , enable: enable});
+
+			swal("To enabled!", "[[[User is Enable.]]]", "success");
+		});
+	}
+
+	function UserDisable(id, title, enable) {
+		swal({
+			title: "[[[Are you sure?]]]",
+			text: "[[[You will disable the user ]]] " + title,
+			type: "input",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "[[[Yes, disable it!]]]",
+			cancelButtonText: "[[[No, cancel please!]]]",
+			inputPlaceholder: "[[[Type DISABLE to confirm.]]]",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		}, function (inputValue) {
+
+			if (inputValue === false)
+				return false;
+			if (inputValue === "" || inputValue != "DESACTIVAR") {
+				swal.showInputError("[[[Type DISABLE to confirm.]]]"); return false
+			}
+
+			swal.disableButtons();
+
+			post('@Url.Action("UserEnableDisable", "Manage")', { id: id, enable: enable });
+
+			swal("To disable!", "[[[User is Disable.]]]", "success");
+		});
+	}
 </script>
 <script src="~/js/tableexport/Export2Excel.js"></script>
 @*<script src="~/js/tableexport/tableexport-2.1.js"></script>*@
@@ -212,12 +284,6 @@
         }
 
     }(jQuery));
-
-
-
-
-
-
 
      function boton()
      {

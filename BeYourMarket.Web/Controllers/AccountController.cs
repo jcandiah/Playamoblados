@@ -101,7 +101,13 @@ namespace BeYourMarket.Web.Controllers
 			{
 				return View(model);
 			}
-
+			var user = await UserManager.FindByNameAsync(model.Email);
+			if (user != null && user.Disabled == true)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[Your username is disabled, please contact the administrator.]]]";
+				return RedirectToAction("Login", "Account");
+			}
 			// Require the user to have a confirmed email before they can log on.
 			//if (!CacheHelper.Settings.EmailConfirmedRequired)
 			//{
@@ -131,14 +137,12 @@ namespace BeYourMarket.Web.Controllers
 				case SignInStatus.Success:
 					if (string.IsNullOrEmpty(returnUrl))
 					{
-						var user = await UserManager.FindByNameAsync(model.Email);
 						var administrator = await RoleManager.FindByNameAsync(Enum_UserType.Administrator.ToString());
 						var isAdministrator = user.Roles.Any(x => x.RoleId == administrator.Id);
 						var owner = await RoleManager.FindByNameAsync(Enum_UserType.Owner.ToString());
-						var isOwner = user.Roles.Any(x => x.RoleId == owner.Id);
+						var isOwner = user.Roles.Any(x => x.RoleId == owner.Id);						
 						if (isAdministrator)
 							return RedirectToAction("Index", "Manage", new { area = "Admin" });
-
 						if (isOwner)
 							return RedirectToAction("Index", "Manage");
 						if (!isOwner && !isAdministrator)
@@ -482,7 +486,16 @@ namespace BeYourMarket.Web.Controllers
 			//else
 			//{
 			// Sign in the user with this external login provider if the user already has a login
+			var user = await UserManager.FindByNameAsync(loginInfo.Email);
+			if (user != null && user.Disabled == true)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[Your username is disabled, please contact the administrator.]]]";
+				return RedirectToAction("Login", "Account");
+			}
+
 			var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+			
 			switch (result)
 			{
 				case SignInStatus.Success:
@@ -497,7 +510,6 @@ namespace BeYourMarket.Web.Controllers
 					ViewBag.ReturnUrl = returnUrl;
 					ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 					return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-
 
 					//if (loginInfo.Login.LoginProvider.Equals("Google"))
 					//{

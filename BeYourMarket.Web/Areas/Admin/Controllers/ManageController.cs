@@ -20,6 +20,7 @@ using BeYourMarket.Core.Web;
 using BeYourMarket.Core.Plugins;
 using System.Globalization;
 using System.Collections.Generic;
+using BeYourMarket.Web.Models.Grids;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -198,12 +199,23 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var roleAdministrator = await RoleManager.FindByNameAsync(Enum_UserType.Administrator.ToString());
             model.RoleAdministrator = model.Roles.Any(x => x.RoleId == roleAdministrator.Id);
 
-            if (model.RoleAdministrator)
-            {
-                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "[[[You cannot delete Administrator, change the user role first.]]]";
-                return RedirectToAction("Users");
-            }
+			if (model.RoleAdministrator)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[You cannot delete Administrator, change the user role first.]]]";
+				return RedirectToAction("Users");
+			}
+			else if (model.RoleOwner)
+			{
+				TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+				TempData[TempDataKeys.UserMessage] = "[[[You cannot delete Administrator, change the user role first.]]]";
+				return RedirectToAction("Users");
+			}
+			else
+			{
+				//Aqui pregunto si el usuario tiene reservas
+				var order = await _orderService.Query(x => x.UserReceiver.Equals(model.Email)).SelectAsync();
+			}
 
             // delete user
             await UserManager.DeleteAsync(model);
@@ -212,6 +224,31 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             TempData[TempDataKeys.UserMessage] = string.Format("[[[User {0} is deleted.]]]", model.FullName);
             return RedirectToAction("Users");
         }
+
+		[HttpPost]
+		public async Task<ActionResult> UserEnableDisable(string id, int enable)
+		{
+			if (string.IsNullOrEmpty(id))
+				return new HttpNotFoundResult();
+
+			var model = await UserManager.FindByIdAsync(id);
+			if (enable == 1)
+			{
+				model.Disabled = false;
+			}
+			else
+			{
+				model.Disabled = true;
+			}
+
+			await UserManager.UpdateAsync(model);
+			_dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
+			if(enable == 1)
+				TempData[TempDataKeys.UserMessage] = string.Format("[[[Se activo el usuario {0}]]]", model.FullName);
+			else
+				TempData[TempDataKeys.UserMessage] = string.Format("[[[Se desactivo el usuario {0}]]]", model.FullName);
+			return RedirectToAction("Users");
+		}
 
         [HttpPost]
         public async Task<ActionResult> UserUpdate(ApplicationUser user)
@@ -300,8 +337,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public ActionResult Users()
         {
-            return View(UserManager.Users.ToList());
-        }
+			return View(UserManager.Users.ToList());
+		}
 
         public ActionResult SettingsEmail()
         {
