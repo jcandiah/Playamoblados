@@ -295,15 +295,15 @@
                                     </label>
                                     <input name="Pets" type="hidden" value="false" />
                                 </div>
+
                                 <div class="form-group col-md-4">
                                     <label class="cr-styled">
-                                        <input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
+                                        <input id="Children" name="Children" type="checkbox" value="true" @(Model.ListingItem.Children ? "" : "checked")>
                                         <i class="fa"></i>
                                        <strong>Propiedad no apta para niños</strong>
                                     </label>
                                     <input name="Children" type="hidden" value="false" />
                                 </div>
-
 
                                <div class="form-group">
                                    <label>[[[Describe Conditions property]]]</label>

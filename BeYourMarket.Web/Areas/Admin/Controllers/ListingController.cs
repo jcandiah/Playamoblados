@@ -584,9 +584,15 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listing.ContactEmail = user.Email;
                 listing.ShowPhone = false;
                 listing.ShowEmail = false;
-                listing.UserID = user.Id;                
-                updateCount = true;
-                _listingService.Insert(listing);
+                listing.UserID = user.Id;
+				updateCount = true;
+
+				if (listing.Children == false)
+					listing.Children = true;
+				else
+					listing.Children = false;
+
+				_listingService.Insert(listing);
                 listing.Currency = "CLP";
             }
             else
@@ -616,10 +622,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 listingExisting.Beds = listing.Beds;
                 listingExisting.Rooms = listing.Rooms;
-                listingExisting.Children = listing.Children;
+
+				if (listing.Children == false)
+					listingExisting.Children = true;
+				else
+					listingExisting.Children = false;
 
 
-                listingExisting.UserID = listing.UserID;
+				listingExisting.UserID = listing.UserID;
 
                 listingExisting.Price = listing.Price;
                 listingExisting.Currency = listing.Currency;
