@@ -625,6 +625,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 		{
 			IEnumerable<Order> lista = null;
 			var estado = "";
+			var today = DateTime.Now.Date;
 			switch(id)
 			{
 				case 1:
@@ -644,7 +645,15 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 					estado = "Completada";
 					break;
 				case 4:
-					lista = await _orderService.Query(x => x.Status == 4)
+					lista = await _orderService.Query(x => x.Status == 4 && x.ToDate >= today)
+							.Include(x => x.Listing)
+							.Include(x => x.AspNetUserProvider)
+							.Include(x => x.AspNetUserReceiver)
+							.SelectAsync();
+					estado = "Pagada";
+					break;
+				case 5:
+					lista = await _orderService.Query(x => x.Status == 4 && x.ToDate <= today)
 							.Include(x => x.Listing)
 							.Include(x => x.AspNetUserProvider)
 							.Include(x => x.AspNetUserReceiver)
@@ -678,12 +687,21 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				HttpContext context = System.Web.HttpContext.Current;
 				context.Response.Write(sb.ToString());
 				context.Response.ContentType = "text/csv";
-				if (id == 1)
-					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pendientes.csv");
-				if (id == 2)
-					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Completadas.csv");
-				if (id == 4)
-					context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pagadas.csv");
+				switch (id)
+				{
+					case 1:
+						context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pendientes.csv");
+						break;
+					case 2:
+							context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Completadas.csv");
+						break;
+					case 4:
+							context.Response.AddHeader("Content-Disposition", "attachment; filename=Ordenes Pagadas.csv");
+						break;
+					case 5:
+							context.Response.AddHeader("Content-Disposition", "attachment; filename=Historial de arriendos.csv");
+						break;
+				}
 				context.Response.End();
 			}
 			else
@@ -696,6 +714,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 					return RedirectToAction("PendingPayment", "Payment");
 				if(id == 4)
 					return RedirectToAction("Transaction", "Payment");
+				if (id == 5)
+					return RedirectToAction("RentalHistory", "Payment");
 			}
 
 			if (id == 1)

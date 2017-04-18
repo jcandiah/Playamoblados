@@ -49,7 +49,8 @@ var groupPayments = new string[] {
 			"paymentsetting",
 			"order",
 			"transaction",
-			"pendingpayment"
+			"rentalhistory",
+            "pendingpayment"
 		};
 
 var groupPlugins = new string[] {
@@ -124,8 +125,11 @@ var attribute = groupDictionary[menu].Contains(ViewContext.RouteData.Values["act
 					<a href="@Url.Action("PendingPayment", "Payment")">[[[Pending Payments]]]</a>
 				</li>
                 <li class="@DisplayAttribute("transaction")">
-                    <a href="@Url.Action("Transaction", "Payment")">[[[Transaction]]]</a>
+                    <a href="@Url.Action("Transaction", "Payment")">[[[Rental]]]</a>
                 </li>
+				<li class="@DisplayAttribute("rentalhistory")">
+					<a href="@Url.Action("RentalHistory", "Payment")">[[[Rental History]]]</a>
+				</li>
                 @*<li class="@DisplayAttribute("paymentsetting")">
                     <a href="@Url.Action("PaymentSetting", "Payment")">[[[Payment Settings]]]</a>
                 </li>*@

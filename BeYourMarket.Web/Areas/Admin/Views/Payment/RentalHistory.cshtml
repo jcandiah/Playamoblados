@@ -1,0 +1,89 @@
+﻿@using GridMvc.Html
+@using Microsoft.AspNet.Identity
+
+@model BeYourMarket.Web.Models.OrderModel
+
+@{
+    ViewBag.Title = "RentalHistory";
+}
+
+@section Styles {
+	<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+	<link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+<div class="wraper container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">[[[Transactions]]]</h3>
+				</div>
+
+				<div class="panel-body">
+					<div class="alert alert-info">
+						<p>[[[Here you can view ths rental history.]]]</p>
+					</div>
+
+
+					@using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+					{
+						@Html.AntiForgeryToken()
+						<h4><i class="fa fa-shopping-cart"></i> [[[Rental History]]]</h4>
+						<hr />
+
+					}
+					<div class="panel-default">
+						<a class="btn btn-primary btn-sm" style="margin-bottom: 15px" href="@Url.Action("ExportarOrders", "Manage", new { id = 5 })"><i class="fa fa-archive"></i> [[[Export to CSV]]]</a>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							@Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
+					   {
+						   columns.Add(x => x.Status).Titled("[[[Status]]]").RenderValueAs(x => x.Status == 4 ? "Pagado" : "").Css("bg-success");
+						   //.Encoded(false)
+						   //.Sanitized(false)
+						   //.Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
+
+						   columns.Add(x => x.Listing.ID).Titled("[[[ID Property]]]");
+
+						   columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Owner]]]");
+						   columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Passenger]]]");
+
+						   columns.Add(x => x.Total).Titled("[[[Value]]]");
+
+						   columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+						   columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+
+						   columns.Add(x => x.Quantity).Titled("[[[Night]]]");
+
+						   columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+						   columns.Add(x => x.OT).Titled("[[[OT]]]");
+						   columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToString());
+
+
+					   }).WithPaging(10).Sortable().Filterable().Selectable(false)
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/Scripts/gridmvc.min.js"></script>
+	<script src="~/js/tableexport/Export2Excel.js"></script>
+	<script src="~/js/tableexport/tableexport-2.1.js"></script>
+
+	<script>
+     function boton()
+     {
+         $('table').tableExport({ type: 'scv', escape: 'false' });
+         $('#linkexcel').hide();
+     }
+	</script>
+	@Html.Partial("_LocalizationGridMvc")
+}
+
+
