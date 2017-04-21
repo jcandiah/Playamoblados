@@ -26,7 +26,8 @@ namespace BeYourMarket.Model.Models
         {
         }
 
-        public DbSet<AspNetRole> AspNetRoles { get; set; }
+		public DbSet<Country> Countries { get; set; }
+		public DbSet<AspNetRole> AspNetRoles { get; set; }
         public DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
@@ -61,7 +62,8 @@ namespace BeYourMarket.Model.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();
-            modelBuilder.Configurations.Add(new AspNetRoleMap());
+			modelBuilder.Configurations.Add(new CountryMap());
+			modelBuilder.Configurations.Add(new AspNetRoleMap());
             modelBuilder.Configurations.Add(new AspNetUserClaimMap());
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());
             modelBuilder.Configurations.Add(new AspNetUserMap());

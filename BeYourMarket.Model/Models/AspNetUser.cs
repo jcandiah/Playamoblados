@@ -18,7 +18,7 @@ namespace BeYourMarket.Model.Models
             this.ListingReviewsUserFrom = new List<ListingReview>();
             this.ListingReviewsUserTo = new List<ListingReview>();
             this.AspNetRoles = new List<AspNetRole>();
-        }
+		}
 
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -52,6 +52,7 @@ namespace BeYourMarket.Model.Models
         public string PhoneContactPerson { get; set; }
         public string EmailContactPerson { get; set; }
         public string Bank { get; set; }
+		public int? CountryID { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<Listing> Listings { get; set; }
@@ -63,5 +64,6 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<ListingReview> ListingReviewsUserFrom { get; set; }
         public virtual ICollection<ListingReview> ListingReviewsUserTo { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+		public virtual Country Country { get; set; }
     }
 }
