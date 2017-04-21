@@ -29,6 +29,7 @@ namespace BeYourMarket.Web.Controllers
 		private ApplicationRoleManager _roleManager;
 		private readonly IEmailTemplateService _emailTemplateService;
 		private readonly IAspNetUserService _AspNetUserService;
+		private readonly ICountryService _CountryService;
 		#endregion
 
 		#region Properties
@@ -71,10 +72,12 @@ namespace BeYourMarket.Web.Controllers
 
 		#region Constructor
 		public AccountController(IEmailTemplateService emailTemplateService,
-								 IAspNetUserService aspNetUserService)
+								 IAspNetUserService aspNetUserService,
+								 ICountryService countryService)
 		{
 			_emailTemplateService = emailTemplateService;
 			_AspNetUserService = aspNetUserService;
+			_CountryService = countryService;
 		}
 		#endregion
 
@@ -140,7 +143,7 @@ namespace BeYourMarket.Web.Controllers
 						var administrator = await RoleManager.FindByNameAsync(Enum_UserType.Administrator.ToString());
 						var isAdministrator = user.Roles.Any(x => x.RoleId == administrator.Id);
 						var owner = await RoleManager.FindByNameAsync(Enum_UserType.Owner.ToString());
-						var isOwner = user.Roles.Any(x => x.RoleId == owner.Id);						
+						var isOwner = user.Roles.Any(x => x.RoleId == owner.Id);
 						if (isAdministrator)
 							return RedirectToAction("Index", "Manage", new { area = "Admin" });
 						if (isOwner)
@@ -209,7 +212,14 @@ namespace BeYourMarket.Web.Controllers
 		[AllowAnonymous]
 		public ActionResult Register()
 		{
+			ViewBag.Paises = PopulateCountries();
 			return View();
+		}
+
+		public SelectList PopulateCountries(object selectedValue = null)
+		{
+			var paises = _CountryService.Query().Select();
+			return new SelectList(paises, "ID", "Name", selectedValue);
 		}
 
 		//
@@ -219,6 +229,7 @@ namespace BeYourMarket.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Register(RegisterViewModel model)
 		{
+			ViewBag.Paises = PopulateCountries(model.CountryID);
 			if (ModelState.IsValid)
 			{
 				var result = await RegisterAccount(model);
@@ -230,7 +241,7 @@ namespace BeYourMarket.Web.Controllers
 					return RedirectToAction("Index", "Home");
 			}
 
-			// If we got this far, something failed, redisplay form
+			// If we got this far, something failed, redisplay form			
 			return View(model);
 		}
 
@@ -244,6 +255,7 @@ namespace BeYourMarket.Web.Controllers
 				LastName = model.LastName,
 				PhoneNumber = model.Phone,
 				Gender = model.Gender,
+				CountryID = model.CountryID,
 				RegisterDate = DateTime.Now,
 				RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP(),
 				LastAccessDate = DateTime.Now,
@@ -495,7 +507,7 @@ namespace BeYourMarket.Web.Controllers
 			}
 
 			var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-			
+
 			switch (result)
 			{
 				case SignInStatus.Success:
@@ -509,6 +521,7 @@ namespace BeYourMarket.Web.Controllers
 					// If the user does not have an account, then prompt the user to create an account
 					ViewBag.ReturnUrl = returnUrl;
 					ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+					ViewBag.Paises = PopulateCountries();
 					return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
 
 					//if (loginInfo.Login.LoginProvider.Equals("Google"))
@@ -550,6 +563,7 @@ namespace BeYourMarket.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
 		{
+			ViewBag.Paises = PopulateCountries(model.CountryID);
 			if (User.Identity.IsAuthenticated)
 			{
 				return RedirectToAction("Index", "Manage");
@@ -571,6 +585,7 @@ namespace BeYourMarket.Web.Controllers
 				user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
 				user.EmailConfirmed = true;
 				user.PhoneNumber = model.Telefono;
+				user.CountryID = model.CountryID;
 
 
 				var result = await UserManager.CreateAsync(user);

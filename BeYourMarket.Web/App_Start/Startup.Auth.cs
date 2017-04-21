@@ -57,8 +57,8 @@ namespace BeYourMarket.Web
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "739442096211558",
-               appSecret: "c883b4696aef4a0ac786a78be08ca7ee");
+               appId: "271505383308267",
+               appSecret: "2ab52c145b6bfc115d4a4d003a880929");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

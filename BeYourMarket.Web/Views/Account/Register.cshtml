@@ -1,101 +1,107 @@
 ﻿@model BeYourMarket.Web.Models.RegisterViewModel
+@using BeYourMarket.Model.Models;
 @{
-    ViewBag.Title = "[[[Register]]]";
+	ViewBag.Title = "[[[Register]]]";
 }
 
 <!-- Start Main Content -->
 <div class=" main-section">
-    <div class="container-fluid">
-        <div class=" center-block col-md-6">
-            <div class="panel panel-default mrg-t">
-                <div class="panel-body panel-header bdr-b ">
-                    <h4>[[[Create an account]]]</h4>
-                    <p>
-                        @CacheHelper.Settings.SignupText
-                    </p>
-                </div>
-                <div class="panel-body">
+	<div class="container-fluid">
+		<div class=" center-block col-md-6">
+			<div class="panel panel-default mrg-t">
+				<div class="panel-body panel-header bdr-b ">
+					<h4>[[[Create an account]]]</h4>
+					<p>
+						@CacheHelper.Settings.SignupText
+					</p>
+				</div>
+				<div class="panel-body">
 
-                    @if (CacheHelper.Settings.AgreementRequired)
-                    {
-                        <div id="agreementModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="agreementModalLabel" aria-hidden="true" style="display: none;">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="agreementModalLabel">[[[Agreement]]]</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h4>@CacheHelper.Settings.AgreementLabel</h4>
-                                        <p>@CacheHelper.Settings.AgreementText</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">[[[Close]]]</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+					@if (CacheHelper.Settings.AgreementRequired)
+					{
+						<div id="agreementModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="agreementModalLabel" aria-hidden="true" style="display: none;">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="agreementModalLabel">[[[Agreement]]]</h4>
+									</div>
+									<div class="modal-body">
+										<h4>@CacheHelper.Settings.AgreementLabel</h4>
+										<p>@CacheHelper.Settings.AgreementText</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">[[[Close]]]</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
 
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id = "form0" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id = "form0" }))
+					{
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            <label for="Email">[[[Email]]] <span class="text-red">*</span></label>                            
-                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", placeholder = "[[[Enter email]]]", data_rule_required = "true" })
-                        </div>
-                        <div class="form-group">
-                            <label for="FirstName">[[[First Name]]] <span class="text-red">*</span></label>                            
-                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lg", placeholder = "[[[Enter First Name]]]", data_rule_required = "true" })
-                        </div>
-                        <div class="form-group">
-                            <label for="LastName">[[[Last Name]]] <span class="text-red">*</span></label>                            
-                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-lg", placeholder = "[[[Enter Last Name]]]", data_rule_required = "true" })
-                        </div>
+						<div class="form-group">
+							<label for="Email">[[[Email]]] <span class="text-red">*</span></label>
+							@Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", placeholder = "[[[Enter email]]]", data_rule_required = "true" })
+						</div>
+						<div class="form-group">
+							<label for="FirstName">[[[First Name]]] <span class="text-red">*</span></label>
+							@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lg", placeholder = "[[[Enter First Name]]]", data_rule_required = "true" })
+						</div>
+						<div class="form-group">
+							<label for="LastName">[[[Last Name]]] <span class="text-red">*</span></label>
+							@Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-lg", placeholder = "[[[Enter Last Name]]]", data_rule_required = "true" })
+						</div>
 
-                        <div class="form-group">
-                            <label for="LastName">[[[Phone]]] <span class="text-red">*</span></label>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control input-lg", placeholder = "[[[Enter Phone]]]", data_rule_required = "true" })
-                        </div>
+						<div class="form-group">
+							<label for="LastName">[[[Phone]]] <span class="text-red">*</span></label>
+							@Html.TextBoxFor(model => model.Phone, new { @class = "form-control input-lg", placeholder = "[[[Enter Phone]]]", data_rule_required = "true" })
+						</div>
 
-                        <div class="form-group">
-                            <label for="Gender">[[[Gender]]] <span class="text-red">*</span></label> <br />                            
-                            @Html.RadioButton("Gender", "M", true)<i class="fa"></i> [[[Male]]]<i class="fa fa-male"></i>
-                            @Html.RadioButton("Gender", "F")<i class="fa"></i> [[[Female]]]<i class="fa fa-female"></i>
-                        </div>
+						<div>
+							<label for="LastName">[[[Country]]] <span class="text-red">*</span></label>
+							@Html.DropDownListFor(model => model.CountryID, ViewBag.Paises as SelectList, "Seleccione un país", new { @class = "form-control input-lg" })
+						</div>
 
-                        <div class="form-group">
-                            <label for="Password">[[[Password]]] <span class="text-red">*</span></label>                           
-                            @Html.PasswordFor(model => model.Password, new { @class = "form-control input-lg", placeholder = "[[[Please enter a password with at least one digit and at least one uppercase]]]", data_rule_required = "true" })
-                            @*Por favor ingrese una contraseña que contenga al menos un digito y una letra mayuscula*@
-                        </div>
-                        <div class="form-group">
-                            <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>                            
-                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control input-lg", placeholder = "[[[Please repeat password]]]", data_rule_required = "true" })
-                        </div>
-                        if (CacheHelper.Settings.AgreementRequired)
-                        {
-                            <div class="form-group">
-                                <input type="checkbox" id="Accept" name="Accept" value="true" data-rule-required="true" />
-                                <label for="Accept">[[[I accept the]]] <a id="agreementModal" data-toggle="modal" data-target="#agreementModal">[[[Terms & Conditions]]]</a></label>
-                            </div>
-                        }
-                        <input type="submit" class="btn btn-primary btn-lg" value="[[[Join]]]">
-                    }
-                </div>
+						<div class="form-group">
+							<label for="Gender">[[[Gender]]] <span class="text-red">*</span></label> <br />
+							@Html.RadioButton("Gender", "M", true)<i class="fa"></i> [[[Male]]]<i class="fa fa-male"></i>
+							@Html.RadioButton("Gender", "F")<i class="fa"></i> [[[Female]]]<i class="fa fa-female"></i>
+						</div>
 
-                <div class="panel-footer ">
-                    <span>[[[Already a member?]]] <a href="@Url.Action("Login", "Account")">[[[Login]]]</a></span>
-                </div>
+						<div class="form-group">
+							<label for="Password">[[[Password]]] <span class="text-red">*</span></label>
+							@Html.PasswordFor(model => model.Password, new { @class = "form-control input-lg", placeholder = "[[[Please enter a password with at least one digit and at least one uppercase]]]", data_rule_required = "true" })
+							@*Por favor ingrese una contraseña que contenga al menos un digito y una letra mayuscula*@
+						</div>
+						<div class="form-group">
+							<label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
+							@Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control input-lg", placeholder = "[[[Please repeat password]]]", data_rule_required = "true" })
+						</div>
+						if (CacheHelper.Settings.AgreementRequired)
+						{
+							<div class="form-group">
+								<input type="checkbox" id="Accept" name="Accept" value="true" data-rule-required="true" />
+								<label for="Accept">[[[I accept the]]] <a id="agreementModal" data-toggle="modal" data-target="#agreementModal">[[[Terms & Conditions]]]</a></label>
+							</div>
+						}
+						<input type="submit" class="btn btn-primary btn-lg" value="[[[Join]]]">
+					}
+				</div>
 
-            </div>
+				<div class="panel-footer ">
+					<span>[[[Already a member?]]] <a href="@Url.Action("Login", "Account")">[[[Login]]]</a></span>
+				</div>
 
-        </div>
-    </div>
+			</div>
+
+		</div>
+	</div>
 </div>
 <!-- ./ Main Content -->
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }
