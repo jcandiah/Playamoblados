@@ -43,6 +43,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldListingService _customFieldListingService;
+		private readonly ICountryService _countryService;
 
         private readonly IMessageThreadService _messageThreadService;
         private readonly IMessageService _messageService;
@@ -99,7 +100,8 @@ namespace BeYourMarket.Web.Controllers
             IMessageParticipantService messageParticipantService,
             IMessageReadStateService messageReadStateService,
             DataCacheService dataCacheService,
-            SqlDbService sqlDbService)
+            SqlDbService sqlDbService,
+			CountryService countryService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -125,6 +127,8 @@ namespace BeYourMarket.Web.Controllers
             _sqlDbService = sqlDbService;
 
             _unitOfWorkAsync = unitOfWorkAsync;
+
+			_countryService = countryService;
         }
         #endregion
 
@@ -806,19 +810,25 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> UserProfile()
         {
             var userId = User.Identity.GetUserId();
-
-            var user = await UserManager.FindByIdAsync(userId);
+			ViewBag.Paises = PopulateCountries();
+			var user = await UserManager.FindByIdAsync(userId);
 
             return View(user);
         }
 
-        [HttpPost]
+		public SelectList PopulateCountries(object selectedValue = null)
+		{
+			var paises = _countryService.Query().Select();
+			return new SelectList(paises, "ID", "Name", selectedValue);
+		}
+
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ProfileUpdate(ApplicationUser user, HttpPostedFileBase file)
         {
             var userId = User.Identity.GetUserId();
-
-            var userExisting = await UserManager.FindByIdAsync(userId);
+			ViewBag.Paises = PopulateCountries(user.CountryID);
+			var userExisting = await UserManager.FindByIdAsync(userId);
 
             userExisting.FirstName = user.FirstName;
             userExisting.LastName = user.LastName;
@@ -832,6 +842,7 @@ namespace BeYourMarket.Web.Controllers
             userExisting.NameContactPerson = user.NameContactPerson;
             userExisting.EmailContactPerson = user.EmailContactPerson;
             userExisting.PhoneContactPerson = user.PhoneContactPerson;
+			userExisting.CountryID = user.CountryID;
 
             await UserManager.UpdateAsync(userExisting);
 

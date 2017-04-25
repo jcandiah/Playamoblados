@@ -55,6 +55,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
         private readonly AspNetUserService _aspNetUserService;
+		private readonly CountryService _countryService;
         #endregion
 
         #region Properties
@@ -110,7 +111,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
             IPluginFinder pluginFinder,
-            AspNetUserService aspNetUserService)
+            AspNetUserService aspNetUserService,
+			CountryService countryService)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -129,6 +131,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _sqlDbService = sqlDbService;
             _pluginFinder = pluginFinder;
             _aspNetUserService = aspNetUserService;
+			_countryService = countryService;
         }
         #endregion
 
@@ -166,11 +169,17 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<ActionResult> UserUpdate(string id)
+		public SelectList PopulateCountries(object selectedValue = null)
+		{
+			var paises = _countryService.Query().Select();
+			return new SelectList(paises, "ID", "Name", selectedValue);
+		}
+
+		public async Task<ActionResult> UserUpdate(string id)
         {
             var model = new ApplicationUser();
-
-            if (string.IsNullOrEmpty(id))
+			ViewBag.Paises = PopulateCountries(model.CountryID);
+			if (string.IsNullOrEmpty(id))
             {
                 return View(model);
             }
@@ -287,7 +296,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             existingUser.EmailConfirmed = user.EmailConfirmed;
             existingUser.AcceptEmail = user.AcceptEmail;
             existingUser.Disabled = user.Disabled;
-
+			existingUser.CountryID = user.CountryID;
             existingUser.Bank = user.Bank;
             existingUser.AccountType = user.AccountType;
             existingUser.NumberAccount = user.NumberAccount;
