@@ -42,6 +42,30 @@ namespace BeYourMarket.Core
 			}
 		}
 
+		public static string SpreadSheetClientId
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["SpreadSheetClientId"].ToString();
+			}
+		}
+		
+		public static string SpreadSheetClientSecret
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["SpreadSheetClientSecret"].ToString();
+			}
+		}
+
+		public static string SpreadSheetId
+		{
+			get
+			{
+				return ConfigurationManager.AppSettings["SpreadSheetId"].ToString();
+            }
+		}
+
 		public static bool AutomaticMigrationDataLossAllowed
         {
             get

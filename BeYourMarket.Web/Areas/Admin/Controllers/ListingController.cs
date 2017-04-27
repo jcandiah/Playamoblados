@@ -397,7 +397,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         }
 
         public async Task<ActionResult> ListingUpdate(int? id)
-        {
+      {
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
@@ -656,6 +656,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 				listingExisting.Warranty = listing.Warranty;
 				listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
 				listingExisting.Address = listing.Address;
+				listingExisting.Stay = listing.Stay;
 
 				//listingExisting.ListingTypeID = listing.ListingTypeID;                
 

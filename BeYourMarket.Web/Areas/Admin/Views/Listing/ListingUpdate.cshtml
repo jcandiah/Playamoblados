@@ -242,7 +242,7 @@
 
                             @*Radio buttons*@
 
-                                <div class="panel-success" style="padding-left: 100px">
+                                <div class="panel-success" style="padding-left: 100px;">
                                     <div class="form-group col-md-offset-2 col-md-3">
                                         <label class="cr-styled">
                                             <input id="Dishwasher" name="Dishwasher" type="checkbox" value="true" @(Model.ListingItem.Dishwasher ? "checked" : "")>
@@ -300,6 +300,13 @@
                                             [[[TV cable]]]
                                         </label>
                                     </div>
+									<div class="form-group col-md-offset-2 col-md-3">
+										<label class="cr-styled">
+											<input id="Elevator" name="Elevator" type="checkbox" value="true" @(Model.ListingItem.Elevator ? "checked" : "")>
+											<i class="fa"></i>
+											[[[Elevator]]]
+										</label>
+									</div>
                                 </div>
                             </div>
                         </div>   
@@ -343,15 +350,15 @@
 					</legend>
 					<div class="form-group col-md-4">
 						<label class="cr-styled">
-							<input id="Smoker" name="Smoker" type="checkbox" value="true" checked>
+							<input id="Smoker" name="Smoker" type="checkbox" value="true" @(Model.ListingItem.Smoker ? "checked" : "")>
 							<i class="fa"></i>
-							<strong>Se admiten fumadoras</strong>
+							<strong>Se admiten fumadores</strong>
 						</label>
 						<input name="Smoker" type="hidden" value="false" />
 					</div>
 					<div class="form-group col-md-4">
 						<label class="cr-styled">
-							<input id="Pets" name="Pets" type="checkbox" value="true" checked>
+							<input id="Pets" name="Pets" type="checkbox" value="true" @(Model.ListingItem.Pets ? "checked" : "")>
 							<i class="fa"></i>
 							<strong>Se admiten mascotas</strong>
 						</label>
@@ -368,6 +375,11 @@
 					<div class="form-group">
 						<label>[[[Describe Conditions property]]]</label>
 						<textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the conditions of use of your property ]]]" id="ConditionHouse" name="ConditionHouse">@Model.ListingItem.ConditionHouse</textarea>
+					</div>
+
+					<div class="form-group">
+						<label>[[[Describe Conditions Order]]]</label>
+						<textarea type="text" row="5" class="form-control input-lg" placeholder="[[[Describe the conditions of order your property ]]]" id="Stay" name="Stay">@Model.ListingItem.Stay</textarea>
 					</div>
 
 					<div class="form-group">
