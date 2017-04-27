@@ -614,7 +614,7 @@ namespace BeYourMarket.Web.Controllers
 				listingExisting.SafetyMesh = listing.SafetyMesh;
 				listingExisting.ShortDescription = listing.ShortDescription;
 				listingExisting.Smoker = listing.Smoker;
-				//listingExisting.Stay = listing.Stay;
+				listingExisting.Stay = listing.Stay;
 				listingExisting.Suite = listing.Suite;
 				listingExisting.Terrace = listing.Terrace;
 				listingExisting.Tv = listing.Tv;
