@@ -141,24 +141,22 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var model = CacheHelper.Statistics;
             model.TransactionCount = 0;
 
-            // Get transaction count
-            //var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
-            //foreach (var descriptor in descriptors)
-            //{
-            //    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
-            //    var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
-            //    model.TransactionCount += controller.GetTransactionCount();
-            //}
+			// Get transaction count
+			//var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
+			//foreach (var descriptor in descriptors)
+			//{
+			//    var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
+			//    var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+			//    model.TransactionCount += controller.GetTransactionCount();
+			//}
 
-            var coladortrans = _orderService.Queryable().Where(x => x.Status == 4).ToList();
-            coladortrans = coladortrans.Where(x => x.OrderType == 3).ToList();
-
-
+			//Colador transaction
+			var hoy = DateTime.Now;
+            var coladortrans = _orderService.Queryable().Where(x => x.Status == 4 && x.OrderType == 3 && x.FromDate >= hoy).ToList();
             model.TransactionCount = coladortrans.Count;
 
-            //colador order
-            var coladorordercount = _orderService.Queryable().Where(x=> x.Status ==2 || x.Status==1).ToList();
-            coladorordercount = coladorordercount.Where(x => x.OrderType == 3).ToList();
+            //Colador order
+            var coladorordercount = _orderService.Queryable().Where(x=> x.Status ==2 || x.Status==1 && x.OrderType == 3 && x.FromDate < hoy).ToList();
             model.OrderCount = coladorordercount.Count;
             return View("Dashboard", model);
         }
