@@ -37,12 +37,7 @@
                                 @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control" })
                             </div>
                         </div>
-						<div class="form-group">
-							<label class="col-md-2 control-label">[[[Describe Condominium]]]</label>
-							<div class="col-md-10">
-								<textarea class="form-control input-lg" rows="4" placeholder="[[[Describe the condominium]]]"  id="DescribeCondominium" name="DescribeCondominium" required>@Model.ListingItem.DescribeCondominium</textarea>
-							</div>
-						</div>
+						
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Type]]]<span class="text-red">*</span></label>
                             <div class="col-md-10">

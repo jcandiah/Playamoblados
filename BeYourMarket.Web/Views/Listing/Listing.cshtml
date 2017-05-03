@@ -46,6 +46,9 @@
                                 <p class="lead text-lighten">
                                     @Model.ListingCurrent.Location
                                 </p>
+								<h4 style="text-align-last:center">
+									@Model.ListingCurrent.ShortDescription
+								</h4>
                             </div>
 
                         </div>
@@ -71,8 +74,6 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade active in" id="description">
                                 <div class="panel panel-default bdr-t-none">
-                                   
-
                                     <!---Pictures-->
                                     @*<div class="panel-heading bdr-t">
                                             <i class="fa fa-picture-o"></i> [[[Pictures]]]
@@ -108,14 +109,8 @@
 
                                             </div>
 
-                                            <div class="panel-body">
-                                             
-                                                    <h4>
-                                                        @Model.ListingCurrent.ShortDescription
-                                                    </h4>
-                                               
-
-                                            </div>
+                                            <div class="panel-body">                                              
+                                        </div>
                                         }
                                         else
                                         {
@@ -124,6 +119,9 @@
                                         <div class="panel-body">
                                             <h3>@Model.ListingCurrent.Description</h3>
                                         </div>
+										<div class="panel-body" style="text-align-last:center">
+											<h3>@Model.ListingCurrent.Category.Description</h3>
+										</div>
                                     </div>
                                     <!---Pictures-->
                                     <div class="table-responsive">

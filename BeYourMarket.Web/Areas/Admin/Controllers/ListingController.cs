@@ -645,7 +645,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingExisting.Smoker = listing.Smoker;
                 listingExisting.Pets = listing.Pets;
                 listingExisting.Terrace = listing.Terrace;
-                listingExisting.DescribeCondominium = listing.DescribeCondominium;
+                //listingExisting.DescribeCondominium = listing.DescribeCondominium;
                 listingExisting.FirstLine = listing.FirstLine;
                 listingExisting.FloorNumber = listing.FloorNumber;
                 listingExisting.M2 = listing.M2;

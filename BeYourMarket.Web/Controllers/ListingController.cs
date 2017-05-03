@@ -598,7 +598,7 @@ namespace BeYourMarket.Web.Controllers
 				//listingExisting.CleanlinessPrice = listing.CleanlinessPrice;
 				listingExisting.ConditionCheckOut = listing.ConditionCheckOut;
 				listingExisting.ConditionHouse = listing.ConditionHouse;
-				listingExisting.DescribeCondominium = listing.DescribeCondominium;
+				//listingExisting.DescribeCondominium = listing.DescribeCondominium;
 				listingExisting.Description = listing.Description;
 				listingExisting.Dishwasher = listing.Dishwasher;
 				listingExisting.Elevator = listing.Elevator;
