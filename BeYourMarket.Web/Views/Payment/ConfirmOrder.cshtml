@@ -1,6 +1,9 @@
 ﻿@using Microsoft.Practices.Unity;
 @using Microsoft.Practices.Unity.Configuration;
 @using Microsoft.AspNet.Identity
+@using System.Net;
+@using System.Web.Script.Serialization;
+@using System.Collections.Generic;
 
 @model BeYourMarket.Web.Models.PaymentModel
 
@@ -12,6 +15,48 @@
 	ViewBag.Title = "ConfirmOrder";
 	var pasajeros = Model.ListingOrder.Adults.Value + Model.ListingOrder.Children.Value;
 	var servicio = (Model.ListingOrder.Price) * 0.04;
+	var total = Model.ListingOrder.Total;
+
+	//string apiUrl = "http://www.mindicador.cl/api";
+	//string jsonString = "{}";
+	//WebClient http = new WebClient();
+	//JavaScriptSerializer jss = new JavaScriptSerializer();
+
+	//http.Headers.Add(HttpRequestHeader.Accept, "application/json");
+	//jsonString = http.DownloadString(apiUrl);
+	//var indicatorsObject = jss.Deserialize<Dictionary<string, object>>(jsonString);
+
+	//Dictionary<string, Dictionary<string, string>> dailyIndicators = new Dictionary<string, Dictionary<string, string>>();
+
+	//int i = 0;
+	//foreach (var key in indicatorsObject.Keys.ToArray())
+	//{
+	//	var item = indicatorsObject[key];
+
+	//	if (item.GetType().FullName.Contains("System.Collections.Generic.Dictionary"))
+	//	{
+	//		Dictionary<string, object> itemObject = (Dictionary<string, object>)item;
+	//		Dictionary<string, string> indicatorProp = new Dictionary<string, string>();
+
+	//		int j = 0;
+	//		foreach (var key2 in itemObject.Keys.ToArray())
+	//		{
+	//			indicatorProp.Add(key2, itemObject[key2].ToString());
+	//			j++;
+	//		}
+
+	//		dailyIndicators.Add(key, indicatorProp);
+	//	}
+	//	i++;
+	//}
+
+	//var stringdolar = dailyIndicators["dolar"]["valor"];
+	//double dolar = 0;
+	//double.TryParse(stringdolar, out dolar);
+	//var cuenta = stringdolar.Length;
+	//var totalDolar = total / dolar;
+	//totalDolar = Math.Round(totalDolar.Value, 1);
+	//totalDolar = Convert.ToInt32(totalDolar);
 }
 <img src="~/Images/logosintexto.png" style="text-align: left; width: 100px; height: 100px" class="img-rounded img-responsive" />
 <h1 style="text-align:center">[[[Confirm your reservation request]]]</h1>
@@ -97,6 +142,9 @@
                             <div class=""><button class="btn btn-lg btn-success" type="submit" id="btnConfirm" disabled>Confirmar</button></div>
                         }
                     </td>
+					@*<td class="text-center">
+						<div id="paypal-button-container" disabled></div>
+					</td>*@
                     <td class="text-center">
                         @using(Html.BeginForm("CancelOrderAction", "Payment", new { id = Model.ListingOrder.ID }, FormMethod.Post, new { role = "form", id = "cancelForm", name = "cancelForm" }))
                         {
@@ -120,11 +168,13 @@
 <script type="text/javascript">
     var actionButton = false;
     function ActivarBoton() {
-        if (chkActivar.checked) {
-            $('#btnConfirm').attr('disabled', false);
+    	if (chkActivar.checked) {    		
+    		$('#btnConfirm').attr('disabled', false);
+    		$('#paypal-button-container').attr('disabled', false);
         }
         else {
-            $('#btnConfirm').attr('disabled', true);
+    		$('#btnConfirm').attr('disabled', true);
+    		$('#paypal-button-container').attr('disabled', true);
         }
     }
     $('#confirmForm').submit(function (event) {
@@ -154,3 +204,39 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
+@*<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+    // Render the PayPal button
+	paypal.Button.render({
+		// Set your environment
+		env: 'sandbox', // sandbox | production
+		// PayPal Client IDs - replace with your own
+		// Create a PayPal app: https://developer.paypal.com/developer/applications/create
+		client: {
+			sandbox: 'AVzOkXk4d6D_yMI3mqQZirbLNhvacvN9RyEQJ5bMPZKLNIqGdLLCIkAa9sLtua1TBd1rsF6bhkFXm8Yj',
+			production: 'ASziCdDSVbNPopA4W0ToSZvpxHDKReAqk84n-wFtEH37ITgEDquwf0e9IBFbdCyg3Eb5ziV2LYPlaoOF'
+		},
+		// Set to 'Pay Now'
+		commit: true,
+		// Wait for the PayPal button to be clicked
+		payment: function() {
+			// Make a client-side call to the REST api to create the payment
+			return paypal.rest.payment.create(this.props.env, this.props.client, {
+				transactions: [
+                    {
+                    	amount: { total: '@totalDolar', currency: 'USD' }
+                    }
+				]
+			});
+		},
+		// Wait for the payment to be authorized by the customer
+		onAuthorize: function(data, actions) {
+
+			// Execute the payment
+
+			return actions.payment.execute().then(function() {
+				$.post('@Url.Action("PayPalPayment", "Payment", new { id = Model.ListingOrder.ID })')
+			});
+		}
+	}, '#paypal-button-container');
+</script>*@

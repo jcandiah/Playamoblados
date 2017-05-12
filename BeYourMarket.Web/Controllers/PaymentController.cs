@@ -22,6 +22,7 @@ using BeYourMarket.Core.Controllers;
 using BeYourMarket.Service.Models;
 using BeYourMarket.Web.Extensions;
 using i18n;
+using PayPal;
 using Twilio;
 
 namespace BeYourMarket.Web.Controllers
@@ -889,7 +890,37 @@ namespace BeYourMarket.Web.Controllers
             _orderService.Delete(order);
             await _unitOfWorkAsync.SaveChangesAsync();
             return Json(true);
-        }
-        #endregion
-    }
+        }		
+
+		//public ActionResult Congratulations(string returnUrl)
+		//{
+		//	ViewBag.ReturnUrl = returnUrl;
+		//	return View();
+		//}
+
+		//public async Task<ActionResult> PayPalPayment(int id)
+		//{
+		//	var selectQuery = await _orderService.Query(x => x.ID == id)
+		//	.Include(x => x.Listing)
+		//	.Include(x => x.Listing.ListingType)
+		//	.Include(x => x.Listing.ListingPictures)
+		//	.SelectAsync();
+
+		//	var order = selectQuery.FirstOrDefault();
+
+		//	//if (order == null)
+		//	//	return new HttpNotFoundResult();
+
+		//	order.Status = (int)Enum_OrderStatus.PayFor;
+
+		//	_orderService.Update(order);
+
+		//	//Aqui hay que enviar un correo
+
+		//	await _unitOfWorkAsync.SaveChangesAsync();
+
+		//	return RedirectToAction("Congratulations", "Payment", null);
+		//}
+		#endregion
+	}
 }
