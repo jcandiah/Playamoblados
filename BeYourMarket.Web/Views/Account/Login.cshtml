@@ -19,9 +19,15 @@
             @if (Request.QueryString["ReturnUrl"] == "/listing/listingupdate")
             {
                 <div class="alert alert-info">
-                    Para inscribir tu propiedad debes iniciar sesión aqui, si aún no te registras @Html.ActionLink("[[[Hazlo aqui]]]", "Register", new { })
+                    Para inscribir tu propiedad debes iniciar sesión, si aún no te registras @Html.ActionLink("[[[Hazlo aqui]]]", "Register", new { })
                 </div>
             }
+			@*@if (Request.QueryString["ReturnUrl"] == string.Format("/listings/{0}", fechas.Property.ToString()))
+			{
+				<div class="alert alert-info">
+					Para reservar una propiedad debes iniciar sesión, si aún no te registras @Html.ActionLink("[[[Hazlo aqui]]]", "Register", new { })
+				</div>
+			}*@
 			@Html.Partial("_UserMessage")
             <div class="panel panel-default mrg-t">				
                 <div class="panel-body bdr-b panel-header">

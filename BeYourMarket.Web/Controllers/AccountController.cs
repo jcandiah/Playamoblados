@@ -237,8 +237,9 @@ namespace BeYourMarket.Web.Controllers
 				// Add errors
 				AddErrors(result);
 
-				if (result.Succeeded)
-					return RedirectToAction("Index", "Home");
+				if (result.Succeeded)					
+					TempData[TempDataKeys.UserMessage] = "[[[Thank you for registering with us! We need you to confirm your email to enter our system]]]";
+					return RedirectToAction("Login", "Account");
 			}
 
 			// If we got this far, something failed, redisplay form			
@@ -265,14 +266,9 @@ namespace BeYourMarket.Web.Controllers
 			var result = await UserManager.CreateAsync(user, model.Password);
 			if (result.Succeeded)
 			{
-				await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+				//await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-				// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-				// Send an email with this link
-				// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-				// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-				// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+				#region Mensaje
 				// Send Message
 				var roleAdministrator = await RoleManager.FindByNameAsync(BeYourMarket.Model.Enum.Enum_UserType.Administrator.ToString());
 				var administrator = roleAdministrator.Users.FirstOrDefault();
@@ -283,18 +279,18 @@ namespace BeYourMarket.Web.Controllers
 					UserTo = user.Id,
 					Subject = HttpContext.ParseAndTranslate(string.Format("[[[Welcome to {0}!]]]", CacheHelper.Settings.Name)),
 					Body = HttpContext.ParseAndTranslate(string.Format("[[[Hi, Welcome to {0}! I am happy to assist you if you has any questions.]]]", CacheHelper.Settings.Name))
-
 				};
 
 				await MessageHelper.SendMessage(message);
+				#endregion
 
+				#region Correo
+				// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
 				// Send an email with this link
 				string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
 				var urlHelper = new UrlHelper(System.Web.HttpContext.Current.Request.RequestContext);
 				var callbackUrl = urlHelper.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: System.Web.HttpContext.Current.Request.Url.Scheme);
-
-				var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "signup").SelectAsync();
+				await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "signup").SelectAsync();
 				var emailTemplate = emailTemplateQuery.FirstOrDefault();
 
 				if (emailTemplate != null)
@@ -307,6 +303,7 @@ namespace BeYourMarket.Web.Controllers
 					email.CallbackUrl = callbackUrl;
 					EmailHelper.SendEmail(email);
 				}
+				#endregion
 			}
 
 			return result;
