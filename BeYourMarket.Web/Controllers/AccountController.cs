@@ -391,7 +391,9 @@ namespace BeYourMarket.Web.Controllers
 		[AllowAnonymous]
 		public ActionResult ResetPassword(string code)
 		{
-			return code == null ? View("Error") : View();
+			ResetPasswordViewModel model = new ResetPasswordViewModel();
+			model.Code = code;
+			return code == null ? View("Error") : View(model);
 		}
 
 		//
