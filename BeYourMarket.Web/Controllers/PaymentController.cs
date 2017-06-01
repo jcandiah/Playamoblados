@@ -24,6 +24,9 @@ using BeYourMarket.Web.Extensions;
 using i18n;
 using PayPal;
 using Twilio;
+//using Plugin.Payment.PayPal;
+//using MvcApplication1.Utilities;
+using PayPal.Api;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -272,7 +275,7 @@ namespace BeYourMarket.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Order(Order order)
+        public async Task<ActionResult> Order(Model.Models.Order order)
         {
             var listing = await _listingService.FindAsync(order.ListingID);
             var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
@@ -327,7 +330,7 @@ namespace BeYourMarket.Web.Controllers
                 FechasCocinadas.Add(date);
 
             }
-            foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
+            foreach (Model.Models.Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
             {
                 for (DateTime date = ordenesArrendadas.FromDate.Value; date < ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
@@ -528,7 +531,7 @@ namespace BeYourMarket.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> PropertyOrder(Order order)
+        public async Task<ActionResult> PropertyOrder(Model.Models.Order order)
         {
             var listing = await _listingService.FindAsync(order.ListingID);
             var ordersListing = await _orderService.Query(x => x.ListingID == order.ListingID).SelectAsync();
@@ -557,7 +560,7 @@ namespace BeYourMarket.Web.Controllers
                 FechasCocinadas.Add(date);
 
             }
-            foreach (Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
+            foreach (Model.Models.Order ordenesArrendadas in ordersListing.Where(x => x.Status != (int)Enum_OrderStatus.Cancelled))
             {
                 for (DateTime date = ordenesArrendadas.FromDate.Value; date < ordenesArrendadas.ToDate.Value; date = date.Date.AddDays(1))
                 {
@@ -890,36 +893,144 @@ namespace BeYourMarket.Web.Controllers
             _orderService.Delete(order);
             await _unitOfWorkAsync.SaveChangesAsync();
             return Json(true);
-        }		
+        }
 
-		//public ActionResult Congratulations(string returnUrl)
+		public ActionResult Congratulations()
+		{
+			return View();
+		}
+
+		public async Task<JsonResult> PayPalPayment(int id)
+		{
+			var selectQuery = await _orderService.Query(x => x.ID == id)
+			.Include(x => x.Listing)
+			.Include(x => x.Listing.ListingType)
+			.Include(x => x.Listing.ListingPictures)
+			.SelectAsync();
+
+			var order = selectQuery.FirstOrDefault();
+
+			//if (order == null)
+			//	return new HttpNotFoundResult();
+
+			order.Status = (int)Enum_OrderStatus.PayFor;
+
+			_orderService.Update(order);
+
+			//Aqui hay que enviar un correo
+
+			await _unitOfWorkAsync.SaveChangesAsync();
+
+			return Json(true, JsonRequestBehavior.AllowGet);
+		}
+
+		//public void CreatePayment(int id)
 		//{
-		//	ViewBag.ReturnUrl = returnUrl;
-		//	return View();
-		//}
+		//	// ### Api Context
+		//	// Pass in a `APIContext` object to authenticate 
+		//	// the call and to send a unique request id 
+		//	// (that ensures idempotency). The SDK generates
+		//	// a request id if you do not pass one explicitly. 
+		//	// See [Configuration.cs](/Source/Configuration.html) to know more about APIContext.
+		//	var apiContext = Configuration.GetAPIContext();
+			
+		//	// A transaction defines the contract of a payment - what is the payment for and who is fulfilling it. 
+		//	var transaction = new Transaction()
+		//	{
+		//		amount = new Amount()
+		//		{
+		//			currency = "USD",
+		//			total = "7",
+		//			details = new Details()
+		//			{
+		//				shipping = "1",
+		//				subtotal = "5",
+		//				tax = "1"
+		//			}
+		//		},
+		//		description = "This is the payment transaction description.",
+		//		item_list = new ItemList()
+		//		{
+		//			items = new List<Item>()
+		//			{
+		//				new Item()
+		//				{
+		//					name = "Item Name",
+		//					currency = "USD",
+		//					price = "1",
+		//					quantity = "5",
+		//					sku = "sku"
+		//				}
+		//			},
+		//			shipping_address = new ShippingAddress
+		//			{
+		//				city = "Johnstown",
+		//				country_code = "US",
+		//				line1 = "52 N Main ST",
+		//				postal_code = "43210",
+		//				state = "OH",
+		//				recipient_name = "Joe Buyer"
+		//			}
+		//		},
+		//		invoice_number = Common.GetRandomInvoiceNumber()
+		//	};
 
-		//public async Task<ActionResult> PayPalPayment(int id)
-		//{
-		//	var selectQuery = await _orderService.Query(x => x.ID == id)
-		//	.Include(x => x.Listing)
-		//	.Include(x => x.Listing.ListingType)
-		//	.Include(x => x.Listing.ListingPictures)
-		//	.SelectAsync();
+		//	// A resource representing a Payer that funds a payment.
+		//	var payer = new Payer()
+		//	{
+		//		payment_method = "credit_card",
+		//		funding_instruments = new List<FundingInstrument>()
+		//		{
+		//			new FundingInstrument()
+		//			{
+		//				credit_card = new CreditCard()
+		//				{
+		//					billing_address = new PayPal.Api.Address()
+		//					{
+		//						city = "Johnstown",
+		//						country_code = "US",
+		//						line1 = "52 N Main ST",
+		//						postal_code = "43210",
+		//						state = "OH"
+		//					},
+		//					cvv2 = "874",
+		//					expire_month = 11,
+		//					expire_year = 2018,
+		//					first_name = "Joe",
+		//					last_name = "Shopper",
+		//					number = "4877274905927862",
+		//					type = "visa"
+		//				}
+		//			}
+		//		},
+		//		payer_info = new PayerInfo
+		//		{
+		//			email = "test@email.com"
+		//		}
+		//	};
 
-		//	var order = selectQuery.FirstOrDefault();
+		//	// A Payment resource; create one using the above types and intent as `sale` or `authorize`
+		//	var payment = new Payment()
+		//	{
+		//		intent = "sale",
+		//		payer = payer,
+		//		transactions = new List<Transaction>() { transaction }
+		//	};
 
-		//	//if (order == null)
-		//	//	return new HttpNotFoundResult();
+		//	// ^ Ignore workflow code segment
+		//	#region Track Workflow
+		//	//this.flow.AddNewRequest("Create credit card payment", payment);
+		//	#endregion
 
-		//	order.Status = (int)Enum_OrderStatus.PayFor;
+		//	// Create a payment using a valid APIContext
+		//	var createdPayment = payment.Create(apiContext);
 
-		//	_orderService.Update(order);
+		//	// ^ Ignore workflow code segment
+		//	#region Track Workflow
+		//	//this.flow.RecordResponse(createdPayment);
+		//	#endregion
 
-		//	//Aqui hay que enviar un correo
-
-		//	await _unitOfWorkAsync.SaveChangesAsync();
-
-		//	return RedirectToAction("Congratulations", "Payment", null);
+		//	// For more information, please visit [PayPal Developer REST API Reference](https://developer.paypal.com/docs/api/).
 		//}
 		#endregion
 	}
