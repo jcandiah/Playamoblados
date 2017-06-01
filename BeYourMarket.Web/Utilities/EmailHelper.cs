@@ -24,49 +24,34 @@ namespace BeYourMarket.Web.Utilities
 		{
 			var httpContext = Elmah.ErrorSignal.FromCurrentContext();
 
-			Task.Factory.StartNew(() =>
-			{
+			//Task.Factory.StartNew(() =>
+			//{
 				try
 				{
-					//skip email if there is no settings
-					if (string.IsNullOrEmpty(CacheHelper.Settings.SmtpHost) && string.IsNullOrEmpty(CacheHelper.Settings.SmtpPassword))
-						return;
-
 					var message = EmailService.CreateMailMessage(email);
+					
+					SmtpClient server = new SmtpClient(CacheHelper.Settings.SmtpHost, CacheHelper.Settings.SmtpPort.Value);
+					server.Credentials = new System.Net.NetworkCredential(CacheHelper.Settings.SmtpUserName, CacheHelper.Settings.SmtpPassword);
+					server.EnableSsl = CacheHelper.Settings.SmtpSSL;
+					MailMessage mnsj = new MailMessage();
+					//mnsj.Body = "<html><title>hhhh</title><body><p>Hoa mundo prueba 3</p></body></html>";					
+					mnsj.Body = message.Body;
+					mnsj.IsBodyHtml = true;
+					mnsj.Subject = message.Subject;
+					mnsj.To.Add(new MailAddress(message.To.ToString()));
+					mnsj.From = new MailAddress(message.From.ToString(), "Playamoblados");
 
-					using (var smtpClient = new SmtpClient())
-					{
-						smtpClient.UseDefaultCredentials = false;
-
-						// set credential if there is one
-						if (!string.IsNullOrEmpty(CacheHelper.Settings.SmtpUserName) && !string.IsNullOrEmpty(CacheHelper.Settings.SmtpPassword))
-						{
-							var credential = new NetworkCredential
-							{
-								UserName = CacheHelper.Settings.SmtpUserName,
-								Password = CacheHelper.Settings.SmtpPassword
-							};
-							smtpClient.Credentials = credential;
-						}
-						smtpClient.Host = CacheHelper.Settings.SmtpHost;
-						smtpClient.EnableSsl = CacheHelper.Settings.SmtpSSL;
-
-						if (CacheHelper.Settings.SmtpPort.HasValue)
-							smtpClient.Port = CacheHelper.Settings.SmtpPort.Value;
-
-						//moving CSS to inline style attributes, to gain maximum E-mail client compatibility.
-						if (preMailer)
-							message.Body = PreMailer.Net.PreMailer.MoveCssInline(message.Body).Html;
-
-						smtpClient.Send(message);
-					}
+				if (preMailer)
+					mnsj.Body = PreMailer.Net.PreMailer.MoveCssInline(message.Body).Html;
+					/* Enviar */
+					server.Send(mnsj);
 				}
 				catch (Exception ex)
 				{
 					//http://stackoverflow.com/questions/7441062/how-to-use-elmah-to-manually-log-errors
 					httpContext.Raise(ex);
 				}
-			});
+			//});
 		}
 	}
 }

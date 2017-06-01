@@ -17,6 +17,7 @@ using BeYourMarket.Model.Enum;
 using System.Collections.Generic;
 using BeYourMarket.Model.Models;
 using BeYourMarket.Core.Web;
+using Postal;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -30,6 +31,7 @@ namespace BeYourMarket.Web.Controllers
 		private readonly IEmailTemplateService _emailTemplateService;
 		private readonly IAspNetUserService _AspNetUserService;
 		private readonly ICountryService _CountryService;
+		public static IEmailService EmailService = Postal.Email.CreateEmailService();
 		#endregion
 
 		#region Properties
@@ -352,14 +354,11 @@ namespace BeYourMarket.Web.Controllers
 				}
 
 				// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-				// Send an email with this link
-				// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-				// var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-				// await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-				// return RedirectToAction("ForgotPasswordConfirmation", "Account");
-
-				string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+				//Send an email with this link
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
 				var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+				await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+				// return RedirectToAction("ForgotPasswordConfirmation", "Account");				
 
 				var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "forgotpassword").SelectAsync();
 				var emailTemplate = emailTemplateQuery.Single();
